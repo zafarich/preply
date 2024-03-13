@@ -1,0 +1,42 @@
+$primary: #2196f3;
+$secondary: #2970fe;
+$accent: #9c27b0;
+$dark-green: #1b5e20;
+
+$dark: #272a39;
+$dark-page: #121212;
+$dark-light: #767676;
+$positive: #21ba45;
+
+$negative: #c10015;
+$info: #31ccec;
+$warning: #f2c037;
+
+$space-base: 15px !default;
+$flex-cols: 24 !default;
+$flex-gutter-lg: ($space-base * 2) !default;
+
+// Your own variables (that are declared here) and Quasar's own
+// ones will be available out of the box in your .vue/.scss/.sass files
+$scrollbar: #bdc9df;
+$scrollbar-track: #e0e8f1;
+$scrollbar-hover: #d2ddeb;
+$scrollbar-window-inactive: #7685a3;
+$border-color: #eef0f4;
+$shadow-color: rgba(0, 0, 0, 0.1);
+$background-gray: rgba(0, 0, 0, 0.05);
+$gray: rgba(0, 0, 0, 0.5);
+$pink: #9b51e0;
+$orange: #ff9933;
+$btn-primary-gradient: linear-gradient(270deg, $primary 0%, $pink 100%);
+$btn-secondary-gradient: linear-gradient(270deg, $pink 0%, $orange 100%);
+$white: #fff;
+$error-input-bg: rgba(255, 0, 0, 0.3);
+$black: #000;
+$gray-3: #f2f2f2;
+$green: #27ae60;
+$green-10: #207144;
+$gray-2: #a8aab0;
+$text-grey: #a8aab0;
+$gray-5: #ececec;
+$gray-6: #f7f7f7;
