@@ -60,9 +60,7 @@ import BaseImg from "src/components/UI/BaseImg.vue";
 
         <tbody>
           <tr>
-            <td>
-              <img class="mr-3" src="/images/icons/rating_1.png" alt="" />
-            </td>
+            <td>4</td>
             <td>
               <div class="flex items-center">
                 <div>
@@ -74,9 +72,7 @@ import BaseImg from "src/components/UI/BaseImg.vue";
             <td>100%</td>
           </tr>
           <tr>
-            <td>
-              <img class="mr-3" src="/images/icons/rating_2.png" alt="" />
-            </td>
+            <td>5</td>
             <td>
               <div class="flex items-center">
                 <div>
@@ -88,9 +84,7 @@ import BaseImg from "src/components/UI/BaseImg.vue";
             <td>90%</td>
           </tr>
           <tr>
-            <td>
-              <img class="mr-3" src="/images/icons/rating_3.png" alt="" />
-            </td>
+            <td>6</td>
             <td>
               <div class="flex items-center">
                 <div>
@@ -102,7 +96,7 @@ import BaseImg from "src/components/UI/BaseImg.vue";
             <td>87%</td>
           </tr>
           <tr>
-            <td>4</td>
+            <td>7</td>
             <td>
               <div class="flex items-center">
                 <div>
