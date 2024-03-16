@@ -8,12 +8,14 @@ const api = axios.create({ baseURL: process.env.BASE_URL });
 export default boot(({ app }) => {
   api.interceptors.request.use(
     (config) => {
-      const token = getTokenFromCache();
+      const token =
+        getTokenFromCache() ||
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzEwNjcxMzc5LCJpYXQiOjE3MTA1ODQ5NzksImp0aSI6IjA5ZmIxNWJmNTcyZDQ3MWY5OGJmNDc3NzE1YTUwNjQ4IiwidXNlcl9pZCI6MX0.1LJViCKJdboWQlhus7Lr8sqCn4rBaJR7OFHV722ayIs";
       if (token) config.headers.Authorization = "Bearer " + token;
       let lang = localStorage.getItem("locale");
 
       if (lang?.startsWith("uz")) lang = "uz";
-      config.headers["Language"] = lang || "ru";
+      // config.headers["language"] = lang || "ru";
 
       return config;
     },

@@ -12,7 +12,23 @@ const route = useRoute();
 const { t } = useI18n();
 const $q = useQuasar();
 
+import { useReferencesStore } from "src/stores/references";
+
+const referencesStore = useReferencesStore();
+
 const test_type = ref("science");
+
+const subjects = ref([]);
+
+onMounted(() => {
+  fetchData();
+});
+
+async function fetchData() {
+  subjects.value = await referencesStore.getSubjects({ page: 1 });
+
+  console.log("subjects.value", subjects.value);
+}
 </script>
 <template>
   <div>
@@ -30,7 +46,7 @@ const test_type = ref("science");
       </q-tabs>
 
       <div>
-        <ScienceList v-if="test_type === 'science'" />
+        <ScienceList v-if="test_type === 'science'" :subjects="subjects" />
         <BlockTestStart v-if="test_type === 'block'" />
       </div>
     </div>

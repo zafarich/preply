@@ -40,7 +40,7 @@
               <div class="font-semibold text-base money-text">20 000 so'm</div>
             </div>
 
-            <q-btn no-caps outline color="primary" class="full-width"
+            <q-btn no-caps color="primary" class="full-width"
               >Balansni to'ldirish</q-btn
             >
           </div>
