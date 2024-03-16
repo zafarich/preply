@@ -13,7 +13,8 @@ const URL_PROD = "http://cdn.telon.uz/";
 // https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js
 
 const { configure } = require("quasar/wrappers");
-
+require("dotenv").config();
+const BASE_URL = process.env.BASE_URL;
 module.exports = configure(function (ctx) {
   return {
     // https://v2.quasar.dev/quasar-cli-webpack/supporting-ts
@@ -48,7 +49,7 @@ module.exports = configure(function (ctx) {
     build: {
       vueRouterMode: "history", // available values: 'hash', 'history'
       env: {
-        API: ctx.dev ? URL_DEV : URL_PROD,
+        BASE_URL: BASE_URL,
       },
       // transpile: false,
       // publicPath: '/',

@@ -3,12 +3,18 @@ import axios from "axios";
 import { getTokenFromCache } from "src/utils/auth";
 import { Notify } from "quasar";
 import { getServerError } from "src/utils/helpers";
-const api = axios.create({ baseURL: process.env.API });
+const api = axios.create({ baseURL: process.env.BASE_URL });
+
 export default boot(({ app }) => {
   api.interceptors.request.use(
     (config) => {
-      const token = "20|BQGslIUOrj9kwcxxpnPB0XE433MH8GnBtujj2uTT";
+      const token = getTokenFromCache();
       if (token) config.headers.Authorization = "Bearer " + token;
+      let lang = localStorage.getItem("locale");
+
+      if (lang?.startsWith("uz")) lang = "uz";
+      config.headers["Language"] = lang || "ru";
+
       return config;
     },
     (error) => Promise.reject(error)
@@ -16,7 +22,7 @@ export default boot(({ app }) => {
 
   api.interceptors.response.use(
     (response) => {
-      return response?.data || response;
+      return response;
     },
     async (error) => {
       let message = getServerError(error, "errorMessage");
@@ -37,7 +43,7 @@ export default boot(({ app }) => {
       } else if (status === 403) {
         message = "403 Forbidden";
       } else {
-        message = message ?? "Error 500. Backanda nomalum xatolik yuz berdi!";
+        message = message ?? "Error 500. Backendda nomalum xatolik yuz berdi!";
       }
 
       if (message) {
@@ -46,10 +52,9 @@ export default boot(({ app }) => {
           position: "top",
           message,
           type: "negative",
-          timeout: 6000,
+          timeout: 4000,
         });
       }
-
       return { data: { result: null, error: true } };
     }
   );

@@ -1,10 +1,24 @@
 <script setup>
-import { ref } from "vue-demi";
+import { onMounted, ref } from "vue-demi";
 import { useI18n } from "vue-i18n";
 import Banner from "./sections/Banner.vue";
 import PopularScience from "./sections/PopularScience.vue";
 import LeadersList from "./sections/LeadersList.vue";
 const { t } = useI18n();
+
+import { useReferencesStore } from "src/stores/references";
+
+const referencesStore = useReferencesStore();
+
+const subjects = ref([]);
+
+onMounted(() => {
+  fetchData();
+});
+
+async function fetchData() {
+  subjects.value = await referencesStore.getSubjects({ page: 1 });
+}
 </script>
 <template>
   <div>
