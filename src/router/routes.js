@@ -23,6 +23,7 @@ const routes = [
         name: "tests",
         component: () => import("pages/tests/IndexPage.vue"),
       },
+
       {
         path: "profile",
         name: "profile",
@@ -43,6 +44,17 @@ const routes = [
         path: "login-oferta",
         name: "login-oferta",
         component: () => import("pages/doc/LoginOferta.vue"),
+      },
+    ],
+  },
+  {
+    path: "/test",
+    component: () => import("layouts/TestLayout.vue"),
+    children: [
+      {
+        path: "solving",
+        name: "tests.solving",
+        component: () => import("pages/tests/TestSolvePage.vue"),
       },
     ],
   },
