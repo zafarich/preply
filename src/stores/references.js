@@ -6,7 +6,13 @@ export const useReferencesStore = defineStore("references", () => {
     const res = await api.getSubjects(params);
     return res?.results;
   }
+  async function getBanners() {
+    const res = await api.getBanners();
+    return res?.results;
+  }
+
   return {
     getSubjects,
+    getBanners,
   };
 });

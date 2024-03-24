@@ -4,9 +4,9 @@ import LangSwitcher from "./LangSwitcher.vue";
 <template>
   <div>
     <header class="header">
-      <div class="w-[70px]">
+      <div class="w-[120px]">
         <router-link :to="{ name: 'home' }">
-          <img src="/images/logo_s_2.png" alt="" />
+          <img src="/images/logo_s_1.png" alt="" />
         </router-link>
       </div>
       <LangSwitcher />

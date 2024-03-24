@@ -105,6 +105,7 @@ ul {
   }
   &--outlined {
     .q-field__control {
+      border-radius: 12px;
       &:before {
         border-color: $border-color;
       }
@@ -119,6 +120,7 @@ ul {
 }
 
 .q-btn {
+  border-radius: 10px;
   &:before {
     box-shadow: none;
   }
@@ -182,5 +184,51 @@ ul {
 .base-tab {
   .q-tab__label {
     font-weight: 600;
+  }
+}
+
+.base-pagination {
+  button.q-btn {
+    height: 32px;
+    font-weight: 600;
+    min-width: 32px !important;
+    margin: 0;
+    border-radius: 10px;
+    padding: 0px 6px !important;
+    &::before {
+      display: none;
+    }
+    &[aria-current="true"] {
+      background-color: $gray-8;
+      color: $white !important;
+    }
+  }
+  .q-pagination__middle {
+    // margin: 0px 24px;
+  }
+
+  .q-pagination__content {
+    & > button {
+      border-radius: 8px;
+
+      .q-icon {
+        width: 16px;
+      }
+
+      &:disabled {
+        opacity: 0.5 !important;
+      }
+    }
+
+    & > button:first-child,
+    & > button:last-child {
+      border: 1px solid $gray-7;
+    }
+    & > button:first-child {
+      margin-right: 24px;
+    }
+    & > button:last-child {
+      margin-left: 24px;
+    }
   }
 }

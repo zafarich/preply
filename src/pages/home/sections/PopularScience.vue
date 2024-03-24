@@ -31,18 +31,4 @@ const props = defineProps({
   </div>
 </template>
 
-<style lang="scss">
-.science-item {
-  border-radius: 4px;
-  border: 1px solid #ececec;
-  padding: 12px 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  .title-science {
-    font-size: 16px;
-    font-weight: 500;
-    // margin-left: 12px;
-  }
-}
-</style>
+<style lang="scss"></style>

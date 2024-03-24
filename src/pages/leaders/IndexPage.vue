@@ -7,6 +7,7 @@ import LeaderTable from "src/components/LeaderTable.vue";
 const region = ref("");
 const district = ref("");
 const science = ref("");
+const page = ref(1);
 </script>
 <template>
   <div>
@@ -54,6 +55,20 @@ const science = ref("");
     </div>
 
     <LeaderTable />
+
+    <div class="flex justify-center my-5">
+      <q-pagination
+        v-model="page"
+        @update:model-value="changePagination"
+        :max="12"
+        :max-pages="6"
+        boundary-numbers
+        direction-links
+        class="base-pagination"
+        icon-prev="img:/images/icons/chevron_left_16.svg"
+        icon-next="img:/images/icons/chevron_right_16.svg"
+      />
+    </div>
   </div>
 </template>
 

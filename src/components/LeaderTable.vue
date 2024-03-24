@@ -123,7 +123,7 @@ import BaseImg from "src/components/UI/BaseImg.vue";
     position: relative;
     z-index: 1;
     .text-username {
-      color: $primary;
+      color: $secondary;
       margin-top: 5px;
     }
     .position-number {

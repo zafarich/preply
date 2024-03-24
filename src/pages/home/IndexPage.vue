@@ -11,6 +11,7 @@ import { useReferencesStore } from "src/stores/references";
 const referencesStore = useReferencesStore();
 
 const subjects = ref([]);
+const banners = ref([]);
 
 onMounted(() => {
   fetchData();
@@ -18,6 +19,7 @@ onMounted(() => {
 
 async function fetchData() {
   subjects.value = await referencesStore.getSubjects({ page: 1 });
+  banners.value = await referencesStore.getBanners();
 
   console.log("subjects.value", subjects.value);
 }
@@ -25,7 +27,7 @@ async function fetchData() {
 <template>
   <div>
     <div class="mb-8">
-      <Banner />
+      <Banner :banners="banners" />
     </div>
 
     <div class="mb-8">
