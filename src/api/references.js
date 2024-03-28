@@ -14,6 +14,11 @@ export async function getSubjects(params) {
   const { data } = await api(url + "subjects/", { params });
   return data;
 }
+export async function getSubjectById(id) {
+  const { data } = await api(url + "subjects/" + id + "/");
+  return data;
+}
+
 export async function getBanners() {
   const { data } = await api(url + "banners/");
   return data;

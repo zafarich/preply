@@ -23,7 +23,11 @@ const routes = [
         name: "tests",
         component: () => import("pages/tests/IndexPage.vue"),
       },
-
+      {
+        path: "variant/:id",
+        name: "variant",
+        component: () => import("pages/variant/IndexPage.vue"),
+      },
       {
         path: "profile",
         name: "profile",

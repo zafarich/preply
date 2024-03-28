@@ -6,6 +6,10 @@ export const useReferencesStore = defineStore("references", () => {
     const res = await api.getSubjects(params);
     return res?.results;
   }
+  async function getSubjectById(id) {
+    const res = await api.getSubjectById(id);
+    return res;
+  }
   async function getBanners() {
     const res = await api.getBanners();
     return res?.results;
@@ -14,5 +18,6 @@ export const useReferencesStore = defineStore("references", () => {
   return {
     getSubjects,
     getBanners,
+    getSubjectById,
   };
 });

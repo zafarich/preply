@@ -11,12 +11,17 @@ const props = defineProps({
 </script>
 <template>
   <div class="grid grid-cols-2 gap-4">
-    <div v-for="subject in subjects" :key="subject.id" class="science-item">
+    <router-link
+      v-for="subject in subjects"
+      :key="subject.id"
+      :to="{ name: 'variant', params: { id: subject.id } }"
+      class="science-item"
+    >
       <div class="flex justify-center mb-1">
         <BaseImg width="56px" :src="subject.image" />
       </div>
       <div class="title-science">{{ subject.title }}</div>
-    </div>
+    </router-link>
   </div>
 </template>
 
