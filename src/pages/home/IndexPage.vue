@@ -3,6 +3,7 @@ import { onMounted, ref } from "vue-demi";
 import { useI18n } from "vue-i18n";
 import Banner from "./sections/Banner.vue";
 import PopularScience from "./sections/PopularScience.vue";
+import TestsList from "src/components/TestsList.vue";
 import LeadersList from "./sections/LeadersList.vue";
 const { t } = useI18n();
 
@@ -30,7 +31,7 @@ async function fetchData() {
       <Banner :banners="banners" />
     </div>
 
-    <div class="mb-8">
+    <!-- <div class="mb-8">
       <q-btn
         icon="app_registration"
         no-caps
@@ -40,10 +41,15 @@ async function fetchData() {
       >
         Blok test yechish
       </q-btn>
-    </div>
+    </div> -->
 
     <div class="mb-8">
       <PopularScience :subjects="subjects" />
+    </div>
+
+    <div class="mb-8">
+      <div class="font-semibold text-xl mb-6">Xalqaro sertifikat testlari</div>
+      <TestsList />
     </div>
     <div class="">
       <LeadersList />
