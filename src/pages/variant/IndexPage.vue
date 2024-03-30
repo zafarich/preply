@@ -4,6 +4,8 @@ import { useI18n } from "vue-i18n";
 import { useRouter, useRoute } from "vue-router";
 import { useQuasar } from "quasar";
 
+import BaseModal from "src/components/UI/BaseModal.vue";
+
 const router = useRouter();
 const route = useRoute();
 const { t } = useI18n();
@@ -18,7 +20,10 @@ const testStore = useTestStore();
 const subject_id = route.params.id;
 const subject = ref(null);
 
+const notice_test_modal = ref(false);
+
 const variants = ref([]);
+const selected_variant = ref(null);
 
 onMounted(() => {
   fetchSubject();
@@ -37,6 +42,27 @@ async function fetchVariants() {
 async function fetchSubject() {
   subject.value = await referencesStore.getSubjectById(subject_id);
 }
+function close() {
+  notice_test_modal.value = false;
+}
+function goToSolveTest(variant) {
+  selected_variant.value = variant?.id;
+  notice_test_modal.value = true;
+}
+
+function startTest() {
+  if (selected_variant.value) {
+    testStore.changeTestField({
+      type: "single",
+      variant_id: selected_variant.value,
+    });
+
+    router.push({
+      name: "tests.solving",
+      query: { s1: selected_variant.value },
+    });
+  }
+}
 </script>
 <template>
   <div>
@@ -49,6 +75,7 @@ async function fetchSubject() {
 
     <div class="grid grid-cols-2 gap-4">
       <button
+        @click="goToSolveTest(variant)"
         class="variant-item"
         v-for="variant in variants"
         :key="variant.id"
@@ -56,6 +83,50 @@ async function fetchSubject() {
         {{ variant.title }}
       </button>
     </div>
+
+    <BaseModal
+      :model-value="notice_test_modal"
+      @close="close"
+      class="start-test-modal"
+    >
+      <div>
+        <div class="row items-center q-pb-none">
+          <div class="title-modal"></div>
+          <q-space />
+          <button class="close-modal_btn" v-close-popup>
+            <img src="/images/icons/close-modal.png" alt="" />
+          </button>
+        </div>
+        <div>
+          <div class="mb-8">
+            <div class="flex justify-center mb-5">
+              <img src="/images/icons/warning_circle.png" alt="" />
+            </div>
+
+            <div class="font-semibold text-lg mb-2 text-center">Diqqat</div>
+            <div class="font-medium mb-2 text-center">
+              Test boshlangandan keyin uni yakunlamasdan boshqa amallarni bajara
+              olmaysiz !
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4">
+            <button
+              v-close-popup
+              class="px-5 w-full h-10 text-base rounded-xl bg-f1f2f4"
+            >
+              Bekor qilish
+            </button>
+            <button
+              @click="startTest"
+              class="px-5 w-full h-10 text-base text-white rounded-xl bg-primary"
+            >
+              Boshlash
+            </button>
+          </div>
+        </div>
+      </div>
+    </BaseModal>
   </div>
 </template>
 
@@ -70,5 +141,10 @@ async function fetchSubject() {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.start-test-modal .q-card {
+  padding: 24px;
+  width: 340px;
 }
 </style>

@@ -232,3 +232,66 @@ ul {
     }
   }
 }
+#base-modal {
+  .title-modal {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 29px;
+    letter-spacing: -0.02em;
+    margin-bottom: 28px;
+  }
+  .q-dialog__inner {
+    padding: 0px;
+
+    & > div {
+      width: 100%;
+      min-width: 100%;
+      max-height: 100vh;
+      overflow-x: unset;
+      display: flex;
+      justify-content: center;
+      padding: 30px;
+      scrollbar-width: thin; /* Set the width of the scrollbar */
+      &::-webkit-scrollbar {
+        width: 0px; /* Set the width of the scrollbar */
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: transparent; /* Make the thumb (the draggable part) transparent */
+      }
+
+      &::-webkit-scrollbar-track {
+        background-color: transparent; /* Make the track (the area the thumb moves along) transparent */
+      }
+
+      &::-moz-scrollbar-thumb {
+        background-color: transparent; /* Make the thumb (the draggable part) transparent */
+      }
+
+      &::-moz-scrollbar-track {
+        background-color: transparent; /* Make the track (the area the thumb moves along) transparent */
+      }
+    }
+    .q-card {
+      border-radius: 24px;
+      height: 100%;
+    }
+  }
+
+  .close-modal_btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 0px;
+    border-radius: 8px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+      background-color: $gray-8;
+    }
+  }
+}

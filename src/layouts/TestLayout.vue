@@ -4,6 +4,6 @@ import BottomMenu from "src/components/common/BottomMenu.vue";
 <template>
   <div class="test-layout">
     <router-view />
-    <BottomMenu />
+    <!-- <BottomMenu /> -->
   </div>
 </template>

@@ -1,6 +1,34 @@
 <script setup>
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
+
+import { computed, onMounted, ref } from "vue-demi";
+import { useI18n } from "vue-i18n";
+import { useRouter, useRoute } from "vue-router";
+import { useQuasar } from "quasar";
+
+import BaseModal from "src/components/UI/BaseModal.vue";
+
+const router = useRouter();
+const route = useRoute();
+const { t } = useI18n();
+const $q = useQuasar();
+
+import { useReferencesStore } from "src/stores/references";
+import { useTestStore } from "src/stores/test";
+
+const referencesStore = useReferencesStore();
+const testStore = useTestStore();
+
+const tests = ref([]);
+
+const test_store = computed(() => testStore.test);
+
+async function fetchTest() {
+  if(test_store.value.type === 'single'){
+    test.value = await testStore.
+  }
+}
 </script>
 <template>
   <div>
