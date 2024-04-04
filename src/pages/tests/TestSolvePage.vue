@@ -60,11 +60,11 @@ onMounted(() => {
 async function fetchTest() {
   let res = testStore.test_response;
 
-  if (!test_store.value?.type) {
-    if (test_store.value.type === "single") {
-      res = await testStore.getSimpleTest(test_store.value.variant_id);
-    }
+  // if (!test_store.value?.type) {
+  if (test_store.value.type === "single") {
+    res = await testStore.getSimpleTest(test_store.value.variant_id);
   }
+  // }
 
   test_variant.value = res?.test_variant;
 }
