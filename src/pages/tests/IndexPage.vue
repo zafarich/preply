@@ -26,8 +26,6 @@ onMounted(() => {
 
 async function fetchData() {
   subjects.value = await referencesStore.getSubjects({ page: 1 });
-
-  console.log("subjects.value", subjects.value);
 }
 </script>
 <template>

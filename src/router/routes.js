@@ -62,7 +62,17 @@ const routes = [
       },
     ],
   },
-
+  {
+    path: "/lb",
+    component: () => import("layouts/BottomMenuLayout.vue"),
+    children: [
+      {
+        path: "test-result",
+        name: "test.result",
+        component: () => import("pages/tests/TestResultPage.vue"),
+      },
+    ],
+  },
   // Always leave this as last one,
   // but you can also remove it
   {

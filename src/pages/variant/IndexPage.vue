@@ -50,12 +50,16 @@ function goToSolveTest(variant) {
   notice_test_modal.value = true;
 }
 
-function startTest() {
+async function startTest() {
   if (selected_variant.value) {
+    $q.loading.show();
+    await testStore.startTest({ variant_id: selected_variant.value });
+
     testStore.changeTestField({
       type: "single",
       variant_id: selected_variant.value,
     });
+    $q.loading.hide();
 
     router.push({
       name: "tests.solving",
@@ -87,7 +91,7 @@ function startTest() {
     <BaseModal
       :model-value="notice_test_modal"
       @close="close"
-      class="start-test-modal"
+      class="warning-modal"
     >
       <div>
         <div class="row items-center q-pb-none">
@@ -141,10 +145,5 @@ function startTest() {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.start-test-modal .q-card {
-  padding: 24px;
-  width: 340px;
 }
 </style>

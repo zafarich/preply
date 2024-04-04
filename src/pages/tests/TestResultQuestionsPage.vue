@@ -7,8 +7,6 @@ import { useI18n } from "vue-i18n";
 import { useRouter, useRoute } from "vue-router";
 import { useQuasar } from "quasar";
 
-import BaseModal from "src/components/UI/BaseModal.vue";
-
 const router = useRouter();
 const route = useRoute();
 const { t } = useI18n();
@@ -16,10 +14,8 @@ const $q = useQuasar();
 
 const s1 = route.query?.s1;
 
-import { useReferencesStore } from "src/stores/references";
 import { useTestStore } from "src/stores/test";
 
-const referencesStore = useReferencesStore();
 const testStore = useTestStore();
 
 const notice_test_modal = ref(false);
