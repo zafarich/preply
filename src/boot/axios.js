@@ -13,7 +13,7 @@ export default boot(({ app }) => {
     (config) => {
       const token =
         getTokenFromCache() ||
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzEyMzczMjY1LCJpYXQiOjE3MTIyMDA0NjUsImp0aSI6IjAwYjQyYmQwMTBmZjQ0NmY4YWYyYzYyOTk2ZDk3YWU3IiwidXNlcl9pZCI6Mn0.uyPZZBRqI7hw7phq3BqSnNtOwrSJqEdnacJfsY1d10c";
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzEyNjQwNjYxLCJpYXQiOjE3MTI0Njc4NjEsImp0aSI6ImE4YzdkNGZkYjkzNjRhODBiMDRlNmU0NzZhMTUwYzk4IiwidXNlcl9pZCI6Mn0.6RSg6IHNWq0-jXpynEYOlFzMd4pX82L4hz4xgPTUSPA";
       if (token) config.headers.Authorization = "Bearer " + token;
 
       let lang = localStorage.getItem("locale");
