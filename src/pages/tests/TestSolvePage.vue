@@ -30,7 +30,7 @@ function close() {
 
 function confirmBack() {
   testStore.resetStore();
-  router.go(-1);
+  router.back();
 }
 
 const tests = ref([]);

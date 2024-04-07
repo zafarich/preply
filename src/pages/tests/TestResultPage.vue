@@ -12,10 +12,12 @@ const $q = useQuasar();
 import { useTestStore } from "src/stores/test";
 
 const testStore = useTestStore();
+
+const test_id = route.params.id;
 </script>
 
 <template>
-  <div></div>
+  <div>{{ test_id }}</div>
 </template>
 
 <style lang="scss"></style>
