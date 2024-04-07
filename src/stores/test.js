@@ -50,6 +50,10 @@ export const useTestStore = defineStore("test", () => {
   }
 
   function resetStore() {
+    test.value = { ...default_test };
+    questions.value = [];
+    test_response.value = null;
+
     LocalStorage.set("test", { ...default_test });
     LocalStorage.set("questions", []);
     LocalStorage.set("test_response", null);
