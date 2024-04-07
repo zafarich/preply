@@ -13,7 +13,7 @@ export default boot(({ app }) => {
     (config) => {
       const token =
         getTokenFromCache() ||
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzEyNjQwNjYxLCJpYXQiOjE3MTI0Njc4NjEsImp0aSI6ImE4YzdkNGZkYjkzNjRhODBiMDRlNmU0NzZhMTUwYzk4IiwidXNlcl9pZCI6Mn0.6RSg6IHNWq0-jXpynEYOlFzMd4pX82L4hz4xgPTUSPA";
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzEyNjUwMTkyLCJpYXQiOjE3MTI0NzczOTIsImp0aSI6ImM2MzU3ZWIxNWI4NDRhMzViYzUyZGIyMTIzMjEwZWUxIiwidXNlcl9pZCI6M30.GlYsZInADOySkHtCo9VQf2qjPY64TFfsqd1Uc69gGlU";
       if (token) config.headers.Authorization = "Bearer " + token;
 
       let lang = localStorage.getItem("locale");
@@ -38,11 +38,6 @@ export default boot(({ app }) => {
       }
 
       if (status === 401) {
-        const res = await userStore.login({
-          phone: "2",
-          password: "2",
-        });
-        console.log("Res", res);
         return { data: { result: null, error: true } };
       } else if (status?.toString()?.slice(0, 1) === 5) {
         message = "Internal Server Error";
@@ -56,15 +51,15 @@ export default boot(({ app }) => {
         message = message ?? "Error 500. Backendda nomalum xatolik yuz berdi!";
       }
 
-      if (message) {
-        Notify.create({
-          progress: true,
-          position: "top",
-          message,
-          type: "negative",
-          timeout: 4000,
-        });
-      }
+      // if (message) {
+      //   Notify.create({
+      //     progress: true,
+      //     position: "top",
+      //     message,
+      //     type: "negative",
+      //     timeout: 4000,
+      //   });
+      // }
       return { data: { result: null, error: true } };
     }
   );

@@ -7,7 +7,7 @@ export async function getVariants(params) {
   return data;
 }
 export async function getSimpleTest(id) {
-  const { data } = await api(url + "test-variants/" + id + "/current_test");
+  const { data } = await api(url + "test-variants/" + id + "/current_test/");
   return data;
 }
 
