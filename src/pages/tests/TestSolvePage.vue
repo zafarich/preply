@@ -23,9 +23,11 @@ const referencesStore = useReferencesStore();
 const testStore = useTestStore();
 
 const notice_test_modal = ref(false);
+const end_test_modal = ref(false);
 
 function close() {
   notice_test_modal.value = false;
+  end_test_modal.value = false;
 }
 
 function confirmBack() {
@@ -53,24 +55,41 @@ const questions = computed(() => {
 const active_test = computed(() => {
   return testStore.questions?.[test_store.value.active_index];
 });
-onMounted(() => {
-  fetchTest();
+onMounted(async () => {
+  await fetchTest();
 });
 
 async function fetchTest() {
   let res = testStore.test_response;
+  if (!test_store.value?.loaded) {
+    if (test_store.value.type === "single") {
+      res = await testStore.getSimpleTest(test_store.value.variant_id);
 
-  // if (!test_store.value?.type) {
-  if (test_store.value.type === "single") {
-    res = await testStore.getSimpleTest(test_store.value.variant_id);
+      testStore.changeTestField({
+        loaded: true,
+      });
+    }
   }
-  // }
 
   test_variant.value = res?.test_variant;
 }
 
 function selectAnswer(index, question_index) {
   testStore.setSelectedAnswer(index, question_index);
+}
+
+async function confirmEndTest() {
+  $q.loading.show();
+  const res = await testStore.endTest();
+
+  $q.loading.hide();
+
+  if (res?.id) {
+    testStore.resetStore();
+    router.push({ name: "test.result", params: { id: res.id } });
+  }
+
+  console.log("res", res);
 }
 </script>
 <template>
@@ -196,6 +215,7 @@ function selectAnswer(index, question_index) {
 
     <div class="mt-10">
       <q-btn
+        @click="end_test_modal = true"
         label="Testni yakunlash"
         no-caps
         color="warning"
@@ -243,6 +263,51 @@ function selectAnswer(index, question_index) {
               class="px-5 w-full h-10 text-base text-white rounded-xl bg-primary"
             >
               Tasdiqlash
+            </button>
+          </div>
+        </div>
+      </div>
+    </BaseModal>
+
+    <BaseModal
+      :model-value="end_test_modal"
+      @close="close"
+      class="warning-modal"
+    >
+      <div>
+        <div class="row items-center q-pb-none">
+          <div class="title-modal"></div>
+          <q-space />
+          <button class="close-modal_btn" v-close-popup>
+            <img src="/images/icons/close-modal.png" alt="" />
+          </button>
+        </div>
+        <div>
+          <div class="mb-8">
+            <div class="flex justify-center mb-5">
+              <img src="/images/icons/warning_circle.png" alt="" />
+            </div>
+
+            <div class="font-semibold text-lg mb-2 text-center">
+              Testni yakunlaysizmi ?
+            </div>
+            <div class="font-medium mb-2 text-center">
+              Javob belgilanmagan savollar xato deb hisoblanadi
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-4">
+            <button
+              v-close-popup
+              class="px-5 w-full h-10 text-base rounded-xl bg-f1f2f4"
+            >
+              Yo'q
+            </button>
+            <button
+              @click="confirmEndTest"
+              class="px-5 w-full h-10 text-base text-white rounded-xl bg-primary"
+            >
+              Yakunlash
             </button>
           </div>
         </div>

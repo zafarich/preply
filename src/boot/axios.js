@@ -13,13 +13,12 @@ export default boot(({ app }) => {
     (config) => {
       const token =
         getTokenFromCache() ||
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzEyNzcwOTY1LCJpYXQiOjE3MTI1OTgxNjUsImp0aSI6IjU5MGVjYmNkYmUwMzRlYWFiNWEzY2M0ZWYxM2M1ZjE2IiwidXNlcl9pZCI6Mn0.wgmpmsqJ6cvQu8EX89oltQYpgl0VlO7yA90UtJEeJoI";
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE0NTAzNDUzLCJpYXQiOjE3MTMyMDc0NTMsImp0aSI6ImE4YTI1NGEzN2FmMTQ0M2Y4NjI4MjFmMWI3NWQ2NjM3IiwidXNlcl9pZCI6Mn0.xt-AZ_eDUASEy2FTqgZgLzbC2LzaN4GTQ7oNwgIbwjc";
       if (token) config.headers.Authorization = "Bearer " + token;
 
       let lang = localStorage.getItem("locale");
 
       if (lang?.startsWith("uz")) lang = "uz";
-      // config.headers["language"] = lang || "ru";
 
       return config;
     },

@@ -5,6 +5,7 @@ import { ref } from "vue-demi";
 
 export const useTestStore = defineStore("test", () => {
   const default_test = {
+    loaded: false,
     type: "",
     variant_id: 3, // it can be [{subject: 1, variant: 3}]
     selected_answer: [],
@@ -35,8 +36,26 @@ export const useTestStore = defineStore("test", () => {
     const res = await api.startTest(payload);
     return res;
   }
-  async function endTest(payload) {
-    const res = await api.endTest(payload);
+  async function endTest() {
+    const solved_questions = questions.value.filter(
+      (item) => item.selected_answer
+    );
+
+    const answers = [];
+
+    solved_questions.forEach((item) => {
+      answers.push({
+        order_number: item.order_number,
+        user_answer: item.selected_answer,
+      });
+    });
+
+    const data = {
+      variant_id: test.value?.variant_id,
+      answers: answers,
+    };
+
+    const res = await api.endTest(data);
     return res;
   }
   function changeTestField(data) {
