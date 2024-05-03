@@ -3,6 +3,7 @@ import { ref } from "vue-demi";
 import { useI18n } from "vue-i18n";
 
 import BaseSelect from "src/components/UI/BaseSelect.vue";
+import { useReferencesStore } from "src/stores/references";
 
 const { t } = useI18n();
 const data = ref({
@@ -12,6 +13,12 @@ const data = ref({
   s4: "",
   s5: "",
 });
+
+
+const referenceStore = useReferencesStore()
+
+
+
 </script>
 <template>
   <div>
@@ -21,15 +28,11 @@ const data = ref({
         <div class="mb-6">
           <BaseSelect
             v-model="data.s1"
+            option-label="label"
+            option-value="id"
             outlined
             placeholder="Birinchi fan"
-            :options="[
-              'Matematika',
-              'Fizika',
-              'Kimyo',
-              'Biologiya',
-              'Dasturlash',
-            ]"
+            :options="referenceStore.subjects"
           />
         </div>
         <div>

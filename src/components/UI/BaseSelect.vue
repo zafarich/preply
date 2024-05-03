@@ -11,6 +11,7 @@
     options-dense
     @update:model-value="change"
     :model-value="modelValue"
+   
   >
     <template v-if="selected && modelValue" #selected>
       {{ t(modelValue?.label || "") }}
@@ -66,6 +67,12 @@ defineProps({
     type: Boolean,
     default: false,
   },
+  optionLabel: {
+    type: String
+  },
+  optionValue: {
+    type: String
+  }
 });
 const emit = defineEmits(["update:modelValue"]);
 
