@@ -31,18 +31,6 @@ async function fetchData() {
         <div class="mb-8">
             <Banner :banners="banners" />
         </div>
-
-        <!-- <div class="mb-8">
-      <q-btn
-        icon="app_registration"
-        no-caps
-        color="primary"
-        class="block-test-btn w-full"
-        :to="{ name: 'block' }"
-      >
-        Blok test yechish
-      </q-btn>
-    </div> -->
         <div class="mb-8">
             <TestTypes :test-types="testTypes" />
         </div>

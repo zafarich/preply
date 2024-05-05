@@ -1,110 +1,133 @@
 <script setup>
-import { ref } from "vue-demi";
-import { useI18n } from "vue-i18n";
+import { ref } from 'vue-demi'
+import { useI18n } from 'vue-i18n'
 
-import BaseSelect from "src/components/UI/BaseSelect.vue";
-import { useReferencesStore } from "src/stores/references";
+import BaseSelect from 'src/components/UI/BaseSelect.vue'
+import { useReferencesStore } from 'src/stores/references'
+import { useTestStore } from 'src/stores/test'
+import { useRouter } from 'vue-router'
+import { TEST_TYPES } from 'src/utils/constants'
 
-const { t } = useI18n();
+const router = useRouter()
+const { t } = useI18n()
 const data = ref({
-  s1: "",
-  s2: "",
-  s3: "",
-  s4: "",
-  s5: "",
-});
-
+    s1: '',
+    s2: '',
+    s3: '',
+    s4: '',
+    s5: '',
+})
 
 const referenceStore = useReferencesStore()
+const testStore = useTestStore()
 
-
-
+const startBlockTest = () => {
+    testStore.changeTestField({
+        type: 'block',
+        // variant_id: selected_variant.value,
+        // id: test
+    })
+    router.push({
+        name: 'tests.solving',
+        query: {
+            test_type: TEST_TYPES.BLOCK,
+            s1: data.value.s1,
+            s2: data.value.s2,
+        },
+    })
+}
 </script>
 <template>
-  <div>
-    <div class="block-module mb-6">
-      <div class="text-lg mb-4">Asosiy fanlarni tanlang</div>
-      <div>
-        <div class="mb-6">
-          <BaseSelect
-            v-model="data.s1"
-            option-label="label"
-            option-value="id"
-            outlined
-            placeholder="Birinchi fan"
-            :options="referenceStore.subjects"
-          />
+    <div>
+        <div class="block-module mb-6">
+            <div class="text-lg mb-4">Asosiy fanlarni tanlang</div>
+            <div>
+                <div class="mb-6">
+                    <BaseSelect
+                        v-model="data.s1"
+                        emit-value
+                        map-options
+                        outlined
+                        placeholder="Birinchi fan"
+                        :options="referenceStore.subjects"
+                        option-label="title"
+                        option-value="id"
+                    />
+                </div>
+                <div>
+                    <BaseSelect
+                        v-model="data.s2"
+                        emit-value
+                        map-options
+                        outlined
+                        placeholder="Ikkinchi fan"
+                        :options="referenceStore.subjects"
+                        option-label="title"
+                        option-value="id"
+                    />
+                </div>
+            </div>
         </div>
-        <div>
-          <BaseSelect
-            v-model="data.s2"
-            outlined
-            placeholder="Ikkinchi fan"
-            :options="[
-              'Matematika',
-              'Fizika',
-              'Kimyo',
-              'Biologiya',
-              'Dasturlash',
-            ]"
-          />
-        </div>
-      </div>
-    </div>
 
-    <div class="block-module mb-6">
-      <div class="text-lg mb-4">Majburiy fanlarni tanlang</div>
-      <div class="mb-6">
-        <BaseSelect
-          v-model="data.s3"
-          outlined
-          placeholder="Birinchi fan"
-          :options="[
-            'Matematika',
-            'Fizika',
-            'Kimyo',
-            'Biologiya',
-            'Dasturlash',
-          ]"
-        />
-      </div>
-      <div class="mb-6">
-        <BaseSelect
-          v-model="data.s4"
-          outlined
-          placeholder="Ikkinchi fan"
-          :options="[
-            'Matematika',
-            'Fizika',
-            'Kimyo',
-            'Biologiya',
-            'Dasturlash',
-          ]"
-        />
-      </div>
-      <div>
-        <BaseSelect
-          v-model="data.s5"
-          outlined
-          placeholder="Uchinchi fan"
-          :options="[
-            'Matematika',
-            'Fizika',
-            'Kimyo',
-            'Biologiya',
-            'Dasturlash',
-          ]"
-        />
-      </div>
+        <div class="block-module mb-6">
+            <div class="text-lg mb-4">Majburiy fanlarni tanlang</div>
+            <div class="mb-6">
+                <BaseSelect
+                    v-model="data.s3"
+                    outlined
+                    placeholder="Birinchi fan"
+                    :options="[
+                        'Matematika',
+                        'Fizika',
+                        'Kimyo',
+                        'Biologiya',
+                        'Dasturlash',
+                    ]"
+                />
+            </div>
+            <div class="mb-6">
+                <BaseSelect
+                    v-model="data.s4"
+                    outlined
+                    placeholder="Ikkinchi fan"
+                    :options="[
+                        'Matematika',
+                        'Fizika',
+                        'Kimyo',
+                        'Biologiya',
+                        'Dasturlash',
+                    ]"
+                />
+            </div>
+            <div>
+                <BaseSelect
+                    v-model="data.s5"
+                    outlined
+                    placeholder="Uchinchi fan"
+                    :options="[
+                        'Matematika',
+                        'Fizika',
+                        'Kimyo',
+                        'Biologiya',
+                        'Dasturlash',
+                    ]"
+                />
+            </div>
+        </div>
+        <q-btn
+            @click="startBlockTest"
+            color="primary"
+            class="full-width button-md"
+            no-caps
+            >Boshlash</q-btn
+        >
     </div>
-    <q-btn color="primary" class="full-width button-md" no-caps>Boshlash</q-btn>
-  </div>
 </template>
 
 <style lang="scss">
 .block-module {
-  border-radius: 6px;
-  border: 1px solid $gray-5;
-  padding: 24px 16px;
+    border-radius: 6px;
+    border: 1px solid $gray-5;
+    padding: 24px 16px;
 }
 </style>
