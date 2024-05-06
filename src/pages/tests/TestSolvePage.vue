@@ -76,16 +76,10 @@ async function fetchTest() {
 
     if (!test_store.value?.loaded) {
         if (test_store.value.type === 'single') {
-            res = await testStore.getSimpleTest(test_store.value.variant_id)
-
             testStore.changeTestField({
                 loaded: true,
             })
         } else if (test_store.value.type === 'block') {
-            res = await testStore.startBlockTest({
-                subjects: [route.query.s1, route.query.s2],
-            })
-
             testStore.changeTestField({
                 loaded: true,
             })
@@ -103,13 +97,14 @@ async function confirmEndTest() {
     $q.loading.show()
 
     let res
-    if ((route.query.test_type = 'block')) {
+    console.log('route.query.test_type', route)
+    if (route.query.test_type == TEST_TYPES.BLOCK) {
         await testStore.endBlockTest()
-        res = await testStore.getResultDetail()
-        console.log('response', res)
+        // console.log('response', res)
     } else {
-        res = await testStore.endTest()
+        await testStore.endTest()
     }
+    res = await testStore.getResultDetail()
 
     $q.loading.hide()
 

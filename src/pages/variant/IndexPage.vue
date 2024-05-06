@@ -8,6 +8,7 @@ import { useTestStore } from 'src/stores/test'
 import { useModalStore } from 'src/stores/modal'
 import VariantNotifyStartModal from 'src/pages/variant/components/VariantStartNotifyModal.vue'
 import { storeToRefs } from 'pinia'
+import { TEST_TYPES } from 'src/utils/constants'
 
 const router = useRouter()
 const route = useRoute()
@@ -49,17 +50,20 @@ function goToSolveTest(variant) {
 async function startTest() {
     if (selected_variant.value) {
         $q.loading.show()
-        await testStore.startTest({ variant_id: selected_variant.value })
-
         testStore.changeTestField({
             type: 'single',
             variant_id: selected_variant.value,
         })
+        await testStore.startTest({ variant_id: selected_variant.value })
+
         $q.loading.hide()
 
         router.push({
             name: 'tests.solving',
-            query: { s1: selected_variant.value },
+            query: {
+                s1: selected_variant.value,
+                test_type: TEST_TYPES.SCIENCE,
+            },
         })
     }
 }

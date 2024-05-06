@@ -58,7 +58,6 @@ async function fetchTest() {
 
     if (!test_store.value?.type) {
         if (test_store.value.type === 'single') {
-            res = await testStore.getSimpleTest(test_store.value.variant_id)
         }
     }
 
@@ -70,6 +69,7 @@ function selectAnswer(index, question_index) {
 }
 </script>
 <template>
+    ``
     <div>
         <div class="test-solve-header">
             <div class="flex items-center top-wrap justify-between px-3 py-1.5">

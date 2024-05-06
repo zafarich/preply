@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue-demi'
+import { ref, onMounted, watch } from 'vue-demi'
 import { useI18n } from 'vue-i18n'
 
 import BaseSelect from 'src/components/UI/BaseSelect.vue'
@@ -21,12 +21,29 @@ const data = ref({
 const referenceStore = useReferencesStore()
 const testStore = useTestStore()
 
-const startBlockTest = () => {
+onMounted(async () => {
+    await referenceStore.getSubjects({ is_main_for_block: true })
+})
+
+watch(
+    () => data.value.s1,
+    async (newValue) => {
+        data.value.s2 = ''
+        if (newValue) {
+            await referenceStore.getSubjects({ parent_subjects: newValue })
+        }
+    },
+)
+
+const startBlockTest = async () => {
     testStore.changeTestField({
         type: 'block',
-        // variant_id: selected_variant.value,
-        // id: test
     })
+
+    await testStore.startBlockTest({
+        subjects: [data.value.s1, data.value.s2],
+    })
+
     router.push({
         name: 'tests.solving',
         query: {
@@ -49,19 +66,21 @@ const startBlockTest = () => {
                         map-options
                         outlined
                         placeholder="Birinchi fan"
-                        :options="referenceStore.subjects"
+                        :options="referenceStore.main_subjects"
                         option-label="title"
                         option-value="id"
                     />
                 </div>
                 <div>
+                    <!-- {{ data.s2 }} -->
                     <BaseSelect
                         v-model="data.s2"
                         emit-value
                         map-options
                         outlined
+                        :disabled="!!data.s1"
                         placeholder="Ikkinchi fan"
-                        :options="referenceStore.subjects"
+                        :options="referenceStore.sub_main_subjects"
                         option-label="title"
                         option-value="id"
                     />
@@ -69,7 +88,7 @@ const startBlockTest = () => {
             </div>
         </div>
 
-        <div class="block-module mb-6">
+        <!-- <div class="block-module mb-6">
             <div class="text-lg mb-4">Majburiy fanlarni tanlang</div>
             <div class="mb-6">
                 <BaseSelect
@@ -113,7 +132,7 @@ const startBlockTest = () => {
                     ]"
                 />
             </div>
-        </div>
+        </div> -->
         <q-btn
             @click="startBlockTest"
             color="primary"

@@ -36,17 +36,15 @@ export const useTestStore = defineStore('test', () => {
         return res?.results
     }
 
-    async function getSimpleTest(id) {
-        const res = await api.getSimpleTest(id)
-        test_response.value = res
-        questions.value = res.questions
-        LocalStorage.set('test_response', res)
-        LocalStorage.set('questions', questions.value)
-        return res
-    }
-
     async function startTest(payload) {
         const res = await api.startTest(payload)
+
+        test_response.value = res
+        questions.value = res.questions
+
+        LocalStorage.set('test_response', { ...res, type: 'single' })
+        LocalStorage.set('questions', questions.value)
+
         return res
     }
 
@@ -103,6 +101,10 @@ export const useTestStore = defineStore('test', () => {
 
         LocalStorage.set('test_response', { ...res, type: 'block' })
         LocalStorage.set('questions', questions.value)
+
+        console.log('questions', questions.value)
+        console.log('test_response', test_response.value)
+
         return res
     }
 
@@ -130,7 +132,7 @@ export const useTestStore = defineStore('test', () => {
     }
 
     async function getResultDetail() {
-        const res = await api.getTestResultDetail(test_response.value.id)
+        const res = await api.getTestResultDetail(test.value.variant_id)
 
         console.log('result detail', res)
         test_results.value = res
@@ -147,7 +149,6 @@ export const useTestStore = defineStore('test', () => {
         test,
         test_response,
         test_results,
-        getSimpleTest,
         startTest,
         setSelectedAnswer,
         questions,

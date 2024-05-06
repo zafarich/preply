@@ -6,10 +6,6 @@ export async function getVariants(params) {
     const { data } = await api(url + 'test-variants/', { params })
     return data
 }
-export async function getSimpleTest(id) {
-    const { data } = await api(url + 'test-variants/' + id + '/current_test/')
-    return data
-}
 
 export async function startTest(payload) {
     const { data } = await api.post(url + 'test-variants/start_test/', payload)
@@ -23,14 +19,17 @@ export async function endTest(payload) {
 
 export async function startBlockTest(payload) {
     const { data } = await api.post(
-        url + 'block-test/start_block_test/',
+        url + 'test-solving/start_block_test/',
         payload,
     )
     return data
 }
 
 export async function endBlockTest(payload) {
-    const { data } = await api.post(url + 'block-test/end_block_test/', payload)
+    const { data } = await api.post(
+        url + 'test-solving/end_block_test/',
+        payload,
+    )
     return data
 }
 
