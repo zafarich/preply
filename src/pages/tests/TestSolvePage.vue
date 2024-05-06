@@ -53,6 +53,17 @@ const is_visible_subjects = computed(() => {
 const questions = computed(() => {
     return testStore.questions
 })
+
+const isActiveTopSlider = computed(() => {
+    if (active_test.value.order_number < 30) return 0
+    else if (
+        active_test.value.order_number >= 30 &&
+        active_test.value.order_number
+    )
+        return 1
+    else 2
+})
+
 const active_test = computed(() => {
     return testStore.questions?.[test_store.value.active_index]
 })
@@ -63,8 +74,6 @@ onMounted(async () => {
 async function fetchTest() {
     let res = testStore.test_response
 
-    // console.log('res', res)
-    console.log('test_store.value.type', test_store.value)
     if (!test_store.value?.loaded) {
         if (test_store.value.type === 'single') {
             res = await testStore.getSimpleTest(test_store.value.variant_id)
@@ -95,9 +104,9 @@ async function confirmEndTest() {
 
     let res
     if ((route.query.test_type = 'block')) {
-        res = await testStore.endBlockTest()
-        const response = await testStore.getResultDetail()
-        console.log('response', response)
+        await testStore.endBlockTest()
+        res = await testStore.getResultDetail()
+        console.log('response', res)
     } else {
         res = await testStore.endTest()
     }
@@ -106,7 +115,7 @@ async function confirmEndTest() {
 
     if (res?.id) {
         testStore.resetStore()
-        router.push({ name: 'test.result', params: { id: res.id } })
+        router.replace({ name: 'test.result', params: { id: res.id } })
     }
 
     console.log('res', res)
@@ -143,8 +152,9 @@ async function confirmEndTest() {
             <div class="subjects-top-slider" v-if="is_visible_subjects">
                 <swiper :slides-per-view="'auto'" :space-between="10">
                     <swiper-slide
-                        v-for="subject in testStore.test_response
+                        v-for="(subject, index) in testStore.test_response
                             ?.block_test_subjects"
+                        :class="{ _active: isActiveTopSlider === index }"
                         :key="subject.id"
                         class="subject-slider-item"
                     >
@@ -152,6 +162,7 @@ async function confirmEndTest() {
                     </swiper-slide>
                 </swiper>
             </div>
+            <!-- {{ active_test }} -->
             <div class="questions-top-slider">
                 <swiper :slides-per-view="'auto'" :space-between="5">
                     <swiper-slide

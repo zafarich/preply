@@ -12,12 +12,23 @@ export const useTestStore = defineStore('test', () => {
         active_index: 0,
         active_subject: 0,
     }
+
+    const defualt_test_result = {
+        block_test_subjects: [],
+        results: [],
+        test_type: {},
+    }
+
     const test_response = ref(LocalStorage.getItem('test_response') || null)
     const questions = ref(LocalStorage.getItem('questions') || [])
     const test = ref(
         LocalStorage.getItem('test') || {
             ...default_test,
         },
+    )
+
+    const test_results = ref(
+        LocalStorage.getItem('test_results') || { ...defualt_test_result },
     )
 
     async function getVariants(params) {
@@ -76,10 +87,12 @@ export const useTestStore = defineStore('test', () => {
         test.value = { ...default_test }
         questions.value = []
         test_response.value = null
+        // test_results.value = { ...defualt_test_result }
 
         LocalStorage.set('test', { ...default_test })
         LocalStorage.set('questions', [])
         LocalStorage.set('test_response', null)
+        // LocalStorage.set('test_results', { ...defualt_test_result })
     }
 
     async function startBlockTest(payload) {
@@ -118,6 +131,13 @@ export const useTestStore = defineStore('test', () => {
 
     async function getResultDetail() {
         const res = await api.getTestResultDetail(test_response.value.id)
+
+        console.log('result detail', res)
+        test_results.value = res
+        LocalStorage.setItem('test_results', res)
+
+        console.log('test_results')
+
         return res
     }
 
@@ -126,6 +146,7 @@ export const useTestStore = defineStore('test', () => {
         changeTestField,
         test,
         test_response,
+        test_results,
         getSimpleTest,
         startTest,
         setSelectedAnswer,

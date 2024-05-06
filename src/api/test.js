@@ -35,6 +35,6 @@ export async function endBlockTest(payload) {
 }
 
 export async function getTestResultDetail(id) {
-    const { data } = await api.get(url + `results/${id}`)
+    const { data } = await api.get(url + `results/${id}/`)
     return data
 }

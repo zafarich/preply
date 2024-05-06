@@ -23,8 +23,10 @@ const subjects = ref([])
 onMounted(() => {
     if (route.query?.test_type === TEST_TYPES.BLOCK) {
         test_type.value = TEST_TYPES.BLOCK
+        router.push({ query: { test_type: TEST_TYPES.BLOCK } })
     } else {
         test_type.value = TEST_TYPES.SCIENCE
+        router.push({ query: { test_type: TEST_TYPES.SCIENCE } })
     }
 
     fetchData()
