@@ -49,7 +49,7 @@ export const useTestStore = defineStore('test', () => {
     }
 
     async function endVariantTest() {
-        const solved_questions = questions.value?.filter(
+        const solved_questions = questions.value.filter(
             (item) => item.selected_answer,
         )
 

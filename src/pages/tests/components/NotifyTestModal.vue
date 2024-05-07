@@ -6,10 +6,11 @@ import { useModalStore } from 'src/stores/modal'
 const emit = defineEmits(['confirmBack'])
 
 const modalStore = useModalStore()
-const { notifyTestModal } = storeToRefs(modalStore)
+const { notifyTestModal, endTestModal } = storeToRefs(modalStore)
 
 const confirmBack = () => {
     emit('confirmBack')
+    notifyTestModal.value = false
 }
 
 const close = () => {

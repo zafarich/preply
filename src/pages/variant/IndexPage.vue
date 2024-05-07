@@ -58,6 +58,7 @@ async function startTest() {
 
         $q.loading.hide()
 
+        variantNotifyStartModal.value = false
         router.push({
             name: 'tests.solving',
             query: {

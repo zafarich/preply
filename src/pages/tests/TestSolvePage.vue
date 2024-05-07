@@ -26,7 +26,7 @@ import { storeToRefs } from 'pinia'
 const testStore = useTestStore()
 const modalStore = useModalStore()
 
-const { notifyTestModal } = storeToRefs(modalStore)
+const { notifyTestModal, endTestModal } = storeToRefs(modalStore)
 
 function confirmBack() {
     testStore.resetStore()
@@ -97,7 +97,6 @@ async function confirmEndTest() {
     console.log('route.query.test_type', route)
     if (route.query.test_type == TEST_TYPES.BLOCK) {
         await testStore.endBlockTest()
-        // console.log('response', res)
     } else {
         await testStore.endVariantTest()
     }
@@ -109,8 +108,6 @@ async function confirmEndTest() {
         testStore.resetStore()
         router.replace({ name: 'test.result', params: { id: res.id } })
     }
-
-    console.log('res', res)
 }
 </script>
 <template>
@@ -243,7 +240,7 @@ async function confirmEndTest() {
 
         <div class="mt-10">
             <q-btn
-                @click="end_test_modal = true"
+                @click="() => (endTestModal = true)"
                 label="Testni yakunlash"
                 no-caps
                 color="warning"
