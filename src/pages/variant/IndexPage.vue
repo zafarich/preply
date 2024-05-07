@@ -54,7 +54,7 @@ async function startTest() {
             type: 'single',
             variant_id: selected_variant.value,
         })
-        await testStore.startTest({ variant_id: selected_variant.value })
+        await testStore.startVariantTest({ variant_id: selected_variant.value })
 
         $q.loading.hide()
 

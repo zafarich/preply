@@ -36,8 +36,8 @@ export const useTestStore = defineStore('test', () => {
         return res?.results
     }
 
-    async function startTest(payload) {
-        const res = await api.startTest(payload)
+    async function startVariantTest(payload) {
+        const res = await api.startVariantTest(payload)
 
         test_response.value = res
         questions.value = res.questions
@@ -48,8 +48,8 @@ export const useTestStore = defineStore('test', () => {
         return res
     }
 
-    async function endTest() {
-        const solved_questions = questions.value.filter(
+    async function endVariantTest() {
+        const solved_questions = questions.value?.filter(
             (item) => item.selected_answer,
         )
 
@@ -67,7 +67,7 @@ export const useTestStore = defineStore('test', () => {
             answers: answers,
         }
 
-        const res = await api.endTest(data)
+        const res = await api.endVariantTest(data)
         return res
     }
 
@@ -134,7 +134,6 @@ export const useTestStore = defineStore('test', () => {
     async function getResultDetail() {
         const res = await api.getTestResultDetail(test.value.variant_id)
 
-        console.log('result detail', res)
         test_results.value = res
         LocalStorage.setItem('test_results', res)
 
@@ -149,13 +148,13 @@ export const useTestStore = defineStore('test', () => {
         test,
         test_response,
         test_results,
-        startTest,
+        startVariantTest,
         setSelectedAnswer,
         questions,
         startBlockTest,
         resetStore,
         endBlockTest,
-        endTest,
+        endVariantTest,
         getResultDetail,
     }
 })

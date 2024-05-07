@@ -17,6 +17,27 @@ export async function endTest(payload) {
     return data
 }
 
+export async function getTestResultDetail(id) {
+    const { data } = await api.get(url + `results/${id}/`)
+    return data
+}
+
+export async function startVariantTest(payload) {
+    const { data } = await api.post(
+        url + 'test-solving/start_variant_test/',
+        payload,
+    )
+    return data
+}
+
+export async function endVariantTest(payload) {
+    const { data } = await api.post(
+        url + 'test-solving/end_variant_test/',
+        payload,
+    )
+    return data
+}
+
 export async function startBlockTest(payload) {
     const { data } = await api.post(
         url + 'test-solving/start_block_test/',
@@ -33,7 +54,18 @@ export async function endBlockTest(payload) {
     return data
 }
 
-export async function getTestResultDetail(id) {
-    const { data } = await api.get(url + `results/${id}/`)
+export async function startBySubjectTest(payload) {
+    const { data } = await api.post(
+        url + 'test-solving/start_by_subject_test/',
+        payload,
+    )
+    return data
+}
+
+export async function endBySubjectTest(payload) {
+    const { data } = await api.post(
+        url + 'test-solving/end_by_subject_test/',
+        payload,
+    )
     return data
 }

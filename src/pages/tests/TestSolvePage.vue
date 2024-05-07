@@ -8,7 +8,8 @@ import { useRouter, useRoute } from 'vue-router'
 import { useQuasar } from 'quasar'
 import { TEST_TYPES } from 'src/utils/constants'
 
-import BaseModal from 'src/components/UI/BaseModal.vue'
+import NotifyTestModal from './components/NotifyTestModal.vue'
+import EndTestModal from './components/EndTestModal.vue'
 
 const router = useRouter()
 const route = useRoute()
@@ -19,17 +20,13 @@ const s1 = route.query?.s1
 
 import { useReferencesStore } from 'src/stores/references'
 import { useTestStore } from 'src/stores/test'
+import { useModalStore } from 'src/stores/modal'
+import { storeToRefs } from 'pinia'
 
-const referencesStore = useReferencesStore()
 const testStore = useTestStore()
+const modalStore = useModalStore()
 
-const notice_test_modal = ref(false)
-const end_test_modal = ref(false)
-
-function close() {
-    notice_test_modal.value = false
-    end_test_modal.value = false
-}
+const { notifyTestModal } = storeToRefs(modalStore)
 
 function confirmBack() {
     testStore.resetStore()
@@ -102,7 +99,7 @@ async function confirmEndTest() {
         await testStore.endBlockTest()
         // console.log('response', res)
     } else {
-        await testStore.endTest()
+        await testStore.endVariantTest()
     }
     res = await testStore.getResultDetail()
 
@@ -122,7 +119,7 @@ async function confirmEndTest() {
             <div class="flex items-center top-wrap justify-between px-3 py-1.5">
                 <div>
                     <q-btn
-                        @click="notice_test_modal = true"
+                        @click="() => (notifyTestModal = true)"
                         color="primary"
                         flat
                         dense
@@ -253,192 +250,9 @@ async function confirmEndTest() {
                 class="full-width"
             />
         </div>
-
-        <BaseModal
-            :model-value="notice_test_modal"
-            @close="close"
-            class="warning-modal"
-        >
-            <div>
-                <div class="row items-center q-pb-none">
-                    <div class="title-modal"></div>
-                    <q-space />
-                    <button class="close-modal_btn" v-close-popup>
-                        <img src="/images/icons/close-modal.png" alt="" />
-                    </button>
-                </div>
-                <div>
-                    <div class="mb-8">
-                        <div class="flex justify-center mb-5">
-                            <img
-                                src="/images/icons/warning_circle.png"
-                                alt=""
-                            />
-                        </div>
-
-                        <div class="font-semibold text-lg mb-2 text-center">
-                            Ogohlantirish
-                        </div>
-                        <div class="font-medium mb-2 text-center">
-                            Testni yakunlashni tavsiya qilamiz. Oraqaga
-                            qaytishni tasdiqlashingiz bilan ushbu test bekor
-                            qilinadi
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-2 gap-4">
-                        <button
-                            v-close-popup
-                            class="px-5 w-full h-10 text-base rounded-xl bg-f1f2f4"
-                        >
-                            Bekor qilish
-                        </button>
-                        <button
-                            @click="confirmBack"
-                            class="px-5 w-full h-10 text-base text-white rounded-xl bg-primary"
-                        >
-                            Tasdiqlash
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </BaseModal>
-
-        <BaseModal
-            :model-value="end_test_modal"
-            @close="close"
-            class="warning-modal"
-        >
-            <div>
-                <div class="row items-center q-pb-none">
-                    <div class="title-modal"></div>
-                    <q-space />
-                    <button class="close-modal_btn" v-close-popup>
-                        <img src="/images/icons/close-modal.png" alt="" />
-                    </button>
-                </div>
-                <div>
-                    <div class="mb-8">
-                        <div class="flex justify-center mb-5">
-                            <img
-                                src="/images/icons/warning_circle.png"
-                                alt=""
-                            />
-                        </div>
-
-                        <div class="font-semibold text-lg mb-2 text-center">
-                            Testni yakunlaysizmi ?
-                        </div>
-                        <div class="font-medium mb-2 text-center">
-                            Javob belgilanmagan savollar xato deb hisoblanadi
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-2 gap-4">
-                        <button
-                            v-close-popup
-                            class="px-5 w-full h-10 text-base rounded-xl bg-f1f2f4"
-                        >
-                            Yo'q
-                        </button>
-                        <button
-                            @click="confirmEndTest"
-                            class="px-5 w-full h-10 text-base text-white rounded-xl bg-primary"
-                        >
-                            Yakunlash
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </BaseModal>
+        <NotifyTestModal @confirmBack="confirmBack" />
+        <EndTestModal @confirmEndTest="confirmEndTest" />
     </div>
 </template>
 
-<style lang="scss">
-.test-solve-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: #fff;
-    border-bottom: 1px solid $gray-5;
-    .top-wrap {
-        border-bottom: 1px solid $gray-5;
-    }
-
-    .subjects-top-slider {
-        padding: 8px 12px;
-        .swiper-slide {
-            width: auto !important;
-        }
-
-        .subject-slider-item {
-            padding: 4px 12px;
-            font-size: 13px;
-            color: #333;
-            font-weight: 500;
-            border: 1px solid $gray-5;
-            border-radius: 8px;
-        }
-
-        ._active {
-            background-color: $primary;
-            color: #fff;
-            border: 1px solid $primary;
-        }
-    }
-    .questions-top-slider {
-        padding: 8px 12px;
-        .swiper-slide {
-            width: auto !important;
-        }
-
-        .question-slider-item {
-            padding: 4px 10px;
-            font-size: 12px;
-            width: 30px;
-            height: 30px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #333;
-            font-weight: 500;
-            border: 1px solid $gray-5;
-            border-radius: 8px;
-        }
-        ._selected {
-            background-color: #e4ecf3;
-            color: $primary;
-            border: 1px solid #e4ecf3;
-        }
-        ._active {
-            background-color: $primary;
-            color: #fff;
-            border: 1px solid $primary;
-        }
-    }
-}
-
-.question-wrap {
-    .question-text {
-        margin-top: 16px;
-    }
-    .variants-wrap {
-        margin-top: 24px;
-        .variant-item {
-            padding: 12px 24px;
-            border-radius: 10px;
-            border: 2px solid $gray-5;
-            width: 100%;
-            display: block;
-            text-align: left;
-            margin-bottom: 10px;
-            // background-color: #f4f4f4;
-        }
-        ._selected {
-            // background-color: $;
-            border: 2px solid #ffcf26;
-        }
-    }
-}
-</style>
+<style lang="scss" src="src/assets/scss/TestSolvePage.scss"></style>
