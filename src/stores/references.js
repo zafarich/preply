@@ -7,6 +7,8 @@ export const useReferencesStore = defineStore('references', () => {
     let main_subjects = ref([])
     let sub_main_subjects = ref([])
 
+    let test_types = ref([])
+
     async function getSubjects(params) {
         const res = await api.getSubjects(params)
 
@@ -23,6 +25,7 @@ export const useReferencesStore = defineStore('references', () => {
 
     async function getTestTypes(params) {
         const res = await api.getTestTypes(params)
+        test_types.value = res?.results
         return res?.results
     }
 
@@ -39,6 +42,7 @@ export const useReferencesStore = defineStore('references', () => {
         subjects,
         main_subjects,
         sub_main_subjects,
+        test_types,
         getSubjects,
         getBanners,
         getTestTypes,

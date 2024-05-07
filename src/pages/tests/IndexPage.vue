@@ -6,6 +6,7 @@ import { useQuasar } from 'quasar'
 
 import ScienceList from 'src/components/ScienceList.vue'
 import BlockTestStart from 'src/components/BlockTestStart.vue'
+import VariantTest from 'src/components/VariantTest.vue'
 import { TEST_TYPES } from 'src/utils/constants'
 
 const router = useRouter()
@@ -18,22 +19,28 @@ const referencesStore = useReferencesStore()
 
 const test_type = ref(TEST_TYPES.BLOCK)
 
-const subjects = ref([])
-
 onMounted(() => {
     if (route.query?.test_type === TEST_TYPES.BLOCK) {
         test_type.value = TEST_TYPES.BLOCK
         router.push({ query: { test_type: TEST_TYPES.BLOCK } })
+    } else if (route.query?.test_type === TEST_TYPES.BY_SUBJECTS) {
+        test_type.value = TEST_TYPES.BY_SUBJECTS
+        router.push({ query: { test_type: TEST_TYPES.BY_SUBJECTS } })
     } else {
-        test_type.value = TEST_TYPES.SCIENCE
-        router.push({ query: { test_type: TEST_TYPES.SCIENCE } })
+        test_type.value = TEST_TYPES.VARIANT
+        router.push({ query: { test_type: TEST_TYPES.VARIANT } })
     }
 
     fetchData()
 })
 
 async function fetchData() {
-    subjects.value = await referencesStore.getSubjects({ page: 1 })
+    await Promise.allSettled([
+        referencesStore.getSubjects({
+            is_main_for_block: true,
+        }),
+        referencesStore.getSubjects({ page: 1 }),
+    ])
 }
 </script>
 <template>
@@ -48,8 +55,8 @@ async function fetchData() {
                 outlined
             >
                 <q-route-tab
-                    :to="{ query: { test_type: TEST_TYPES.SCIENCE } }"
-                    :name="TEST_TYPES.SCIENCE"
+                    :to="{ query: { test_type: TEST_TYPES.BY_SUBJECTS } }"
+                    :name="TEST_TYPES.BY_SUBJECTS"
                     exact
                     replace
                     label="Fan bo'yicha"
@@ -61,14 +68,25 @@ async function fetchData() {
                     replacew
                     label="Blok test"
                 />
+                <q-route-tab
+                    :to="{ query: { test_type: TEST_TYPES.VARIANT } }"
+                    :name="TEST_TYPES.VARIANT"
+                    exact
+                    replacew
+                    label="Variant test"
+                />
             </q-tabs>
 
             <div>
                 <ScienceList
-                    v-if="test_type === TEST_TYPES.SCIENCE"
-                    :subjects="subjects"
+                    v-if="test_type === TEST_TYPES.BY_SUBJECTS"
+                    :subjects="referencesStore.main_subjects"
                 />
-                <BlockTestStart v-if="test_type === TEST_TYPES.BLOCK" />
+                <BlockTestStart v-else-if="test_type === TEST_TYPES.BLOCK" />
+                <VariantTest
+                    v-else-if="test_type === TEST_TYPES.VARIANT"
+                    :subjects="referencesStore.subjects"
+                />
             </div>
         </div>
     </div>

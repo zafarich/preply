@@ -11,7 +11,10 @@ const props = defineProps({
         <router-link
             v-for="testType in testTypes"
             :key="testType.id"
-            :to="{ name: 'variant', params: { id: testType.id } }"
+            :to="{
+                name: 'tests',
+                query: { test_type: testType.unique_name },
+            }"
             class="test-type-item"
         >
             <div class="title-test-type">{{ testType.title }}</div>

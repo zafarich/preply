@@ -7,16 +7,6 @@ export async function getVariants(params) {
     return data
 }
 
-export async function startTest(payload) {
-    const { data } = await api.post(url + 'test-variants/start_test/', payload)
-    return data
-}
-
-export async function endTest(payload) {
-    const { data } = await api.post(url + 'test-variants/end_test/', payload)
-    return data
-}
-
 export async function getTestResultDetail(id) {
     const { data } = await api.get(url + `results/${id}/`)
     return data

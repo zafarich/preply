@@ -131,13 +131,49 @@ export const useTestStore = defineStore('test', () => {
         return res
     }
 
+    async function startBySubjectTest(payload) {
+        const res = await api.startBySubjectTest(payload)
+
+        test_response.value = res
+        questions.value = res.questions
+
+        LocalStorage.set('test_response', { ...res, type: 'by_subjects' })
+        LocalStorage.set('questions', questions.value)
+
+        console.log('questions', questions.value)
+        console.log('test_response', test_response.value)
+
+        return res
+    }
+
+    async function endBySubjectTest() {
+        const solved_questions = questions.value.filter(
+            (item) => item.selected_answer,
+        )
+
+        const answers = []
+
+        solved_questions.forEach((item) => {
+            answers.push({
+                order_number: item.order_number,
+                user_answer: item.selected_answer,
+            })
+        })
+
+        const data = {
+            result_id: test_response.value?.id,
+            answers,
+        }
+
+        const res = await api.endBySubjectTest(data)
+        return res
+    }
+
     async function getResultDetail() {
-        const res = await api.getTestResultDetail(test.value.variant_id)
+        const res = await api.getTestResultDetail(test_response.value?.id)
 
         test_results.value = res
         LocalStorage.setItem('test_results', res)
-
-        console.log('test_results')
 
         return res
     }
@@ -146,12 +182,14 @@ export const useTestStore = defineStore('test', () => {
         getVariants,
         changeTestField,
         test,
+        endBySubjectTest,
         test_response,
         test_results,
         startVariantTest,
         setSelectedAnswer,
         questions,
         startBlockTest,
+        startBySubjectTest,
         resetStore,
         endBlockTest,
         endVariantTest,

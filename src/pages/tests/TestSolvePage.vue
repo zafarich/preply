@@ -72,15 +72,18 @@ async function fetchTest() {
     let res = testStore.test_response
 
     if (!test_store.value?.loaded) {
-        if (test_store.value.type === 'single') {
-            testStore.changeTestField({
-                loaded: true,
-            })
-        } else if (test_store.value.type === 'block') {
-            testStore.changeTestField({
-                loaded: true,
-            })
-        }
+        testStore.changeTestField({
+            loaded: true,
+        })
+        // if (test_store.value.type === 'single') {
+        //     testStore.changeTestField({
+        //         loaded: true,
+        //     })
+        // } else if (test_store.value.type === 'block') {
+        //     testStore.changeTestField({
+        //         loaded: true,
+        //     })
+        // }
     }
 
     test_variant.value = res?.test_variant
@@ -94,12 +97,14 @@ async function confirmEndTest() {
     $q.loading.show()
 
     let res
-    console.log('route.query.test_type', route)
     if (route.query.test_type == TEST_TYPES.BLOCK) {
         await testStore.endBlockTest()
-    } else {
+    } else if (route.query.test_type == TEST_TYPES.VARIANT) {
         await testStore.endVariantTest()
+    } else if (route.query.test_type == TEST_TYPES.BY_SUBJECTS) {
+        await testStore.endBySubjectTest()
     }
+
     res = await testStore.getResultDetail()
 
     $q.loading.hide()

@@ -63,12 +63,15 @@ async function startTest() {
             name: 'tests.solving',
             query: {
                 s1: selected_variant.value,
-                test_type: TEST_TYPES.SCIENCE,
+                test_type: TEST_TYPES.VARIANT,
             },
         })
     }
 }
 </script>
+
+
+
 <template>
     <div>
         <div class="flex items-center mb-6 mt-5">

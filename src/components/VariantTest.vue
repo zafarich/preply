@@ -1,12 +1,6 @@
 <script setup>
 import { ref, onMounted } from 'vue-demi'
 import BaseImg from 'src/components/UI/BaseImg.vue'
-import { useRouter } from 'vue-router'
-import { useTestStore } from 'src/stores/test'
-import { TEST_TYPES } from 'src/utils/constants'
-
-const router = useRouter()
-const testStore = useTestStore()
 
 const props = defineProps({
     subjects: {
@@ -14,34 +8,20 @@ const props = defineProps({
         default: () => [],
     },
 })
-
-const startBySubjectTest = async (id) => {
-    await testStore.startBySubjectTest({ subject_id: id })
-
-    console.log('startBySubject')
-
-    router.push({
-        name: 'tests.solving',
-        query: {
-            test_type: TEST_TYPES.BY_SUBJECTS,
-        },
-    })
-}
 </script>
 <template>
     <div class="grid grid-cols-2 gap-4">
-        <!-- :to="{ name: 'variant', params: { id: subject.id } }" -->
-        <div
+        <router-link
             v-for="subject in subjects"
             :key="subject.id"
-            @click="startBySubjectTest(subject.id)"
-            class="science-item cursor-pointer"
+            :to="{ name: 'variant', params: { id: subject.id } }"
+            class="science-item"
         >
             <div class="flex justify-center mb-1">
                 <BaseImg width="56px" :src="subject.image" />
             </div>
             <div class="title-science">{{ subject.title }}</div>
-        </div>
+        </router-link>
     </div>
 </template>
 

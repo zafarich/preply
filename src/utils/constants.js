@@ -1,4 +1,6 @@
 export const TEST_TYPES = {
     BLOCK: 'block',
-    SCIENCE: 'science',
+    SCIENCE: 'certificate',
+    VARIANT: 'variant',
+    BY_SUBJECTS: 'by_subjects',
 }
