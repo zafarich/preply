@@ -24,7 +24,8 @@ function close() {
     notice_test_modal.value = false
 }
 
-function confirmBack() {
+async function confirmBack() {
+    await testStore.endVariantTest()
     testStore.resetStore()
     router.go(-1)
 }

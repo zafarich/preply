@@ -28,9 +28,18 @@ const modalStore = useModalStore()
 
 const { notifyTestModal, endTestModal } = storeToRefs(modalStore)
 
-function confirmBack() {
+async function confirmBack() {
+    if (testStore.test.type == TEST_TYPES.BLOCK) {
+        await testStore.endBlockTest()
+    } else if (testStore.test.type == TEST_TYPES.VARIANT) {
+        await testStore.endVariantTest()
+    } else if (testStore.test.type == TEST_TYPES.BY_SUBJECTS) {
+        await testStore.endBySubjectTest()
+    }
+
     testStore.resetStore()
-    router.back()
+
+    router.push({ name: 'home' })
 }
 
 const tests = ref([])
@@ -75,15 +84,6 @@ async function fetchTest() {
         testStore.changeTestField({
             loaded: true,
         })
-        // if (test_store.value.type === 'single') {
-        //     testStore.changeTestField({
-        //         loaded: true,
-        //     })
-        // } else if (test_store.value.type === 'block') {
-        //     testStore.changeTestField({
-        //         loaded: true,
-        //     })
-        // }
     }
 
     test_variant.value = res?.test_variant

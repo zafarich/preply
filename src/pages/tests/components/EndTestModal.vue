@@ -10,6 +10,7 @@ const { endTestModal, notifyTestModal } = storeToRefs(modalStore)
 
 const confirmEndTest = () => {
     emit('confirmEndTest')
+    endTestModal.value = false
 }
 
 const close = () => {
