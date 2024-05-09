@@ -20,15 +20,15 @@ const referencesStore = useReferencesStore()
 const test_type = ref(TEST_TYPES.BLOCK)
 
 onMounted(() => {
-    if (route.query?.test_type === TEST_TYPES.BLOCK) {
-        test_type.value = TEST_TYPES.BLOCK
-        router.push({ query: { test_type: TEST_TYPES.BLOCK } })
-    } else if (route.query?.test_type === TEST_TYPES.BY_SUBJECTS) {
-        test_type.value = TEST_TYPES.BY_SUBJECTS
-        router.push({ query: { test_type: TEST_TYPES.BY_SUBJECTS } })
-    } else {
+    if (route.query?.test_type === TEST_TYPES.VARIANT) {
         test_type.value = TEST_TYPES.VARIANT
         router.push({ query: { test_type: TEST_TYPES.VARIANT } })
+    } else if (route.query?.test_type === TEST_TYPES.BLOCK) {
+        test_type.value = TEST_TYPES.BLOCK
+        router.push({ query: { test_type: TEST_TYPES.BLOCK } })
+    } else {
+        test_type.value = TEST_TYPES.BY_SUBJECTS
+        router.push({ query: { test_type: TEST_TYPES.BY_SUBJECTS } })
     }
 
     fetchData()
