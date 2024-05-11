@@ -22,7 +22,10 @@ onMounted(() => {
 
 async function fetchData() {
     testTypes.value = await referencesStore.getTestTypes()
-    subjects.value = await referencesStore.getSubjects({ page: 1 })
+    subjects.value = await referencesStore.getSubjects({
+        page: 1,
+        is_main_for_block: true,
+    })
     banners.value = await referencesStore.getBanners()
 }
 </script>
@@ -50,19 +53,4 @@ async function fetchData() {
     </div>
 </template>
 
-<style lang="scss">
-.block-test-btn {
-    height: 48px;
-    letter-spacing: 0.5px;
-    .q-icon {
-        width: 20px;
-        height: 20px;
-        margin-right: 8px;
-    }
-    .q-btn__content {
-        display: flex;
-        align-items: center;
-        // font-size: 16px;
-    }
-}
-</style>
+<style lang="scss" src="src/assets/scss/Home.scss"></style>

@@ -1,21 +1,25 @@
 <script setup>
-import { ref, onMounted, watch } from 'vue-demi'
+import { ref, onMounted, watch, nextTick } from 'vue-demi'
 import { useI18n } from 'vue-i18n'
 
 import BaseSelect from 'src/components/UI/BaseSelect.vue'
+import StartTestModal from 'src/components/modals/StartTestModal.vue'
 import { useReferencesStore } from 'src/stores/references'
 import { useTestStore } from 'src/stores/test'
 import { useRouter } from 'vue-router'
 import { TEST_TYPES } from 'src/utils/constants'
+import { useModalStore } from 'src/stores/modal'
+import { storeToRefs } from 'pinia'
+
+const modalStore = useModalStore()
+
+const { startModal } = storeToRefs(modalStore)
 
 const router = useRouter()
 const { t } = useI18n()
 const data = ref({
     s1: '',
     s2: '',
-    s3: '',
-    s4: '',
-    s5: '',
 })
 
 const referenceStore = useReferencesStore()
@@ -35,7 +39,13 @@ watch(
     },
 )
 
-const startBlockTest = async () => {
+const openModal = () => {
+    if (data.value.s1 && data.value.s2) {
+        startModal.value = true
+    }
+}
+
+const startTest = async () => {
     testStore.changeTestField({
         type: 'block',
     })
@@ -51,6 +61,10 @@ const startBlockTest = async () => {
             s1: data.value.s1,
             s2: data.value.s2,
         },
+    })
+
+    nextTick(() => {
+        startModal.value = false
     })
 }
 </script>
@@ -88,58 +102,16 @@ const startBlockTest = async () => {
             </div>
         </div>
 
-        <!-- <div class="block-module mb-6">
-            <div class="text-lg mb-4">Majburiy fanlarni tanlang</div>
-            <div class="mb-6">
-                <BaseSelect
-                    v-model="data.s3"
-                    outlined
-                    placeholder="Birinchi fan"
-                    :options="[
-                        'Matematika',
-                        'Fizika',
-                        'Kimyo',
-                        'Biologiya',
-                        'Dasturlash',
-                    ]"
-                />
-            </div>
-            <div class="mb-6">
-                <BaseSelect
-                    v-model="data.s4"
-                    outlined
-                    placeholder="Ikkinchi fan"
-                    :options="[
-                        'Matematika',
-                        'Fizika',
-                        'Kimyo',
-                        'Biologiya',
-                        'Dasturlash',
-                    ]"
-                />
-            </div>
-            <div>
-                <BaseSelect
-                    v-model="data.s5"
-                    outlined
-                    placeholder="Uchinchi fan"
-                    :options="[
-                        'Matematika',
-                        'Fizika',
-                        'Kimyo',
-                        'Biologiya',
-                        'Dasturlash',
-                    ]"
-                />
-            </div>
-        </div> -->
         <q-btn
-            @click="startBlockTest"
+            @click="openModal"
             color="primary"
             class="full-width button-md"
             no-caps
+            :disable="data.s1 && data.s2"
             >Boshlash</q-btn
         >
+
+        <StartTestModal @startTest="startTest" />
     </div>
 </template>
 

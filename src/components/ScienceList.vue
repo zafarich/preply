@@ -1,12 +1,18 @@
 <script setup>
-import { ref, onMounted } from 'vue-demi'
+import { ref, onMounted, nextTick } from 'vue-demi'
 import BaseImg from 'src/components/UI/BaseImg.vue'
 import { useRouter } from 'vue-router'
 import { useTestStore } from 'src/stores/test'
 import { TEST_TYPES } from 'src/utils/constants'
+import StartTestModal from 'src/components/modals/StartTestModal.vue'
+import { useModalStore } from 'src/stores/modal'
+import { storeToRefs } from 'pinia'
 
 const router = useRouter()
 const testStore = useTestStore()
+const modalStore = useModalStore()
+
+const { startModal } = storeToRefs(modalStore)
 
 const props = defineProps({
     subjects: {
@@ -15,16 +21,27 @@ const props = defineProps({
     },
 })
 
-const startBySubjectTest = async (id) => {
-    await testStore.startBySubjectTest({ subject_id: id })
+const selectId = ref(null)
 
-    console.log('startBySubject')
+const startTest = async (id) => {
+    await testStore.startBySubjectTest({ subject_id: selectId.value })
 
     router.push({
         name: 'tests.solving',
         query: {
             test_type: TEST_TYPES.BY_SUBJECTS,
         },
+    })
+
+    nextTick(() => {
+        startModal.value = false
+    })
+}
+
+const selectSubject = (id) => {
+    selectId.value = id
+    nextTick(() => {
+        startModal.value = true
     })
 }
 </script>
@@ -34,7 +51,7 @@ const startBySubjectTest = async (id) => {
         <div
             v-for="subject in subjects"
             :key="subject.id"
-            @click="startBySubjectTest(subject.id)"
+            @click="selectSubject(subject.id)"
             class="science-item cursor-pointer"
         >
             <div class="flex justify-center mb-1">
@@ -43,6 +60,7 @@ const startBySubjectTest = async (id) => {
             <div class="title-science">{{ subject.title }}</div>
         </div>
     </div>
+    <StartTestModal @start-test="startTest" />
 </template>
 
 <style lang="scss">

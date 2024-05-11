@@ -1,0 +1,15 @@
+.block-test-btn {
+    height: 48px;
+    letter-spacing: 0.5px;
+
+    .q-icon {
+        width: 20px;
+        height: 20px;
+        margin-right: 8px;
+    }
+
+    .q-btn__content {
+        display: flex;
+        align-items: center;
+    }
+}

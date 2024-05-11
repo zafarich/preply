@@ -22,13 +22,13 @@ const test_type = ref(TEST_TYPES.BLOCK)
 onMounted(() => {
     if (route.query?.test_type === TEST_TYPES.VARIANT) {
         test_type.value = TEST_TYPES.VARIANT
-        router.push({ query: { test_type: TEST_TYPES.VARIANT } })
+        router.replace({ query: { test_type: TEST_TYPES.VARIANT } })
     } else if (route.query?.test_type === TEST_TYPES.BLOCK) {
         test_type.value = TEST_TYPES.BLOCK
-        router.push({ query: { test_type: TEST_TYPES.BLOCK } })
+        router.replace({ query: { test_type: TEST_TYPES.BLOCK } })
     } else {
         test_type.value = TEST_TYPES.BY_SUBJECTS
-        router.push({ query: { test_type: TEST_TYPES.BY_SUBJECTS } })
+        router.replace({ query: { test_type: TEST_TYPES.BY_SUBJECTS } })
     }
 
     fetchData()
@@ -91,5 +91,3 @@ async function fetchData() {
         </div>
     </div>
 </template>
-
-<style></style>
