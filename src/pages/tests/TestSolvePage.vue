@@ -9,7 +9,7 @@ import { useQuasar } from 'quasar'
 import { TEST_TYPES } from 'src/utils/constants'
 
 import NotifyTestModal from './components/NotifyTestModal.vue'
-import EndTestModal from './components/EndTestModal.vue'
+import EndTestModal from 'src/components/modals/EndTestModal.vue'
 
 const router = useRouter()
 const route = useRoute()
@@ -29,17 +29,17 @@ const modalStore = useModalStore()
 const { notifyTestModal, endTestModal } = storeToRefs(modalStore)
 
 async function confirmBack() {
-    if (testStore.test.type == TEST_TYPES.BLOCK) {
+    if (testStore.test_type == TEST_TYPES.BLOCK) {
         await testStore.endBlockTest()
-    } else if (testStore.test.type == TEST_TYPES.VARIANT) {
+    } else if (testStore.test_type == TEST_TYPES.VARIANT) {
         await testStore.endVariantTest()
-    } else if (testStore.test.type == TEST_TYPES.BY_SUBJECTS) {
+    } else if (testStore.test_type == TEST_TYPES.BY_SUBJECTS) {
         await testStore.endBySubjectTest()
     }
 
     testStore.resetStore()
 
-    router.push({ name: 'home' })
+    router.replace({ name: 'home' })
 }
 
 const tests = ref([])
@@ -97,11 +97,11 @@ async function confirmEndTest() {
     $q.loading.show()
 
     let res
-    if (route.query.test_type == TEST_TYPES.BLOCK) {
+    if (testStore.test_type == TEST_TYPES.BLOCK) {
         await testStore.endBlockTest()
-    } else if (route.query.test_type == TEST_TYPES.VARIANT) {
+    } else if (testStore.test_type == TEST_TYPES.VARIANT) {
         await testStore.endVariantTest()
-    } else if (route.query.test_type == TEST_TYPES.BY_SUBJECTS) {
+    } else if (testStore.test_type == TEST_TYPES.BY_SUBJECTS) {
         await testStore.endBySubjectTest()
     }
 

@@ -1,0 +1,55 @@
+.profile-top {
+    .avatar {
+        width: 150px;
+        height: 150px;
+        border-radius: 100%;
+        overflow: hidden;
+        border: 2px solid $gray-5;
+    }
+
+    .info-card {
+        padding: 20px 20px 20px 20px;
+        border: 1px solid $gray-5;
+        border-radius: 10px;
+
+        .money-text {
+            color: $primary;
+        }
+
+        .q-btn {
+            padding: 0px !important;
+        }
+
+        .q-icon {
+            font-size: 18px;
+        }
+    }
+
+    .info-wrap {
+        .name-text {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .info-item {
+            font-size: 14px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+
+            .key {
+                font-weight: 500;
+                color: #687588;
+            }
+
+            .value {
+                font-weight: 500;
+            }
+
+            &:last-child {
+                margin-bottom: 0px;
+            }
+        }
+    }
+}

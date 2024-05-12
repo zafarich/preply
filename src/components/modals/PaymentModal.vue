@@ -3,24 +3,23 @@ import { storeToRefs } from 'pinia'
 import BaseModal from 'src/components/UI/BaseModal.vue'
 import { useModalStore } from 'src/stores/modal'
 
-const emit = defineEmits(['confirmEndTest'])
+const emit = defineEmits(['confirmPayment'])
 
 const modalStore = useModalStore()
-const { endTestModal, notifyTestModal } = storeToRefs(modalStore)
+const { paymentModal } = storeToRefs(modalStore)
 
-const confirmEndTest = () => {
-    emit('confirmEndTest')
-    endTestModal.value = false
+const confirmPayment = () => {
+    emit('confirmPayment')
+    paymentModal.value = false
 }
 
 const close = () => {
-    endTestModal.value = false
-    notifyTestModal.value = false
+    paymentModal.value = false
 }
 </script>
 
 <template>
-    <BaseModal :model-value="endTestModal" @close="close" class="warning-modal">
+    <BaseModal :model-value="paymentModal" @close="close" class="warning-modal">
         <div>
             <div class="row items-center q-pb-none">
                 <div class="title-modal"></div>
@@ -51,7 +50,7 @@ const close = () => {
                         Yo'q
                     </button>
                     <button
-                        @click="confirmEndTest"
+                        @click="confirmPayment"
                         class="px-5 w-full h-10 text-base text-white rounded-xl bg-primary"
                     >
                         Yakunlash

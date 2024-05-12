@@ -7,6 +7,7 @@ export const useModalStore = defineStore('modal', () => {
     const notifyTestModal = ref(false)
     const startModal = ref(false)
     const backToModal = ref(false)
+    const paymentModal = ref(false)
 
     return {
         variantNotifyStartModal,
@@ -14,5 +15,6 @@ export const useModalStore = defineStore('modal', () => {
         startModal,
         backToModal,
         notifyTestModal,
+        paymentModal,
     }
 })

@@ -30,7 +30,7 @@ const returnListItemColor = (item, answer, cIndex) => {
                 :key="subject.id"
                 class="subject-slider-item"
             >
-                {{ subject.title }}
+                {{ subject.title }} ddd
             </swiper-slide>
         </swiper>
     </div>
