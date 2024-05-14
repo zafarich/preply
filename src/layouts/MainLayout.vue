@@ -15,7 +15,8 @@ const testStore = useTestStore()
 
 onMounted(() => {
     const token = getTokenFromCache()
-    if (!token) {
+    console.log('token', token)
+    if (token) {
         setTokenToCache(route.query?.access_token)
     }
 
