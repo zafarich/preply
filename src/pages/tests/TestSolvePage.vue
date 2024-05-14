@@ -2,7 +2,7 @@
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import 'swiper/css'
 
-import { computed, onMounted, ref } from 'vue-demi'
+import { computed, onMounted, onUnmounted, ref } from 'vue-demi'
 import { useI18n } from 'vue-i18n'
 import { useRouter, useRoute } from 'vue-router'
 import { useQuasar } from 'quasar'
@@ -42,7 +42,8 @@ async function confirmBack() {
     router.replace({ name: 'home' })
 }
 
-const tests = ref([])
+let timer
+const remainingTime = ref(3 * 60 * 60)
 
 const test_variant = ref(null)
 const test_store = computed(() => testStore.test)
@@ -73,13 +74,50 @@ const isActiveTopSlider = computed(() => {
 const active_test = computed(() => {
     return testStore.questions?.[test_store.value.active_index]
 })
+
+const updateRemainingTime = () => {
+    if (testStore.test_response.started_at) {
+        const currentTime = new Date()
+        const timeDiff =
+            currentTime.getTime() -
+            new Date(testStore.test_response.started_at).getTime()
+        remainingTime.value = Math.max(
+            0,
+            3 * 60 * 60 - Math.floor(timeDiff / 1000),
+        ) // Calculate remaining time
+        if (remainingTime.value <= 0) {
+            console.log('3 hours elapsed')
+            clearInterval(timer) // Stop the timer when 3 hours have elapsed
+        }
+    }
+}
+
 onMounted(async () => {
     await fetchTest()
+    timer = setInterval(updateRemainingTime, 1000)
 })
+
+onUnmounted(() => {
+    clearInterval(timer)
+})
+
+const formatTwoRoom = (number) => {
+    const strNum = number.toString()
+    if (strNum.length == 1) {
+        return `0${strNum}`
+    } else return strNum
+}
+
+const formatTime = (seconds) => {
+    const hours = formatTwoRoom(Math.floor(seconds / 3600))
+    const mins = formatTwoRoom(Math.floor((seconds % 3600) / 60))
+    const secs = formatTwoRoom(seconds % 60)
+
+    return `${hours}:${mins}:${secs}`
+}
 
 async function fetchTest() {
     let res = testStore.test_response
-
     if (!test_store.value?.loaded) {
         testStore.changeTestField({
             loaded: true,
@@ -136,7 +174,9 @@ async function confirmEndTest() {
                         src="/images/icons/stopwatch.svg"
                         alt=""
                     />
-                    <div class="font-semibold text-primary">09:54</div>
+                    <div class="font-semibold text-primary">
+                        {{ formatTime(remainingTime) }}
+                    </div>
                 </div>
 
                 <div v-if="is_visible_variant_title" class="font-semibold">

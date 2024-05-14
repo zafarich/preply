@@ -32,7 +32,7 @@ async function fetchData() {
 <template>
     <div>
         <div class="mb-8">
-            <Banner :banners="banners" />
+            <!-- <Banner :banners="banners" /> -->
         </div>
         <div class="mb-8">
             <TestTypes :test-types="testTypes" />
