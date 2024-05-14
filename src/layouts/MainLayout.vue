@@ -4,6 +4,7 @@ import { useRouter } from 'vue-router'
 
 import BottomMenu from 'src/components/common/BottomMenu.vue'
 import TheHeader from 'src/components/common/TheHeader.vue'
+import { getTokenFromCache, setTokenToCache } from 'src/utils/auth'
 
 import { useTestStore } from 'src/stores/test'
 
@@ -13,6 +14,11 @@ const route = useRouter()
 const testStore = useTestStore()
 
 onMounted(() => {
+    const token = getTokenFromCache()
+    if (!token) {
+        setTokenToCache(route.query?.access_token)
+    }
+
     if (testStore.test.type?.length && route.name !== 'tests.solving') {
         router.push({
             name: 'tests.solving',

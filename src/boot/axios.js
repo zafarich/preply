@@ -6,8 +6,9 @@ import { useUserStore } from 'src/stores/user'
 
 const api = axios.create({ baseURL: process.env.BASE_URL })
 
-export default boot(({ app }) => {
+export default boot(({ app, route }) => {
     const userStore = useUserStore()
+
     api.interceptors.request.use(
         (config) => {
             const token =
