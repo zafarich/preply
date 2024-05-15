@@ -28,10 +28,16 @@ const route = useRoute()
 onMounted(() => {
     // console.log('router', route.query)
 
-    const token = getTokenFromCache()
+    let token = getTokenFromCache()
+    console.log('token', token)
 
     if (!token || token == 'undefined' || token == undefined) {
-        setTokenToCache(route.query?.access_token)
+        // setTokenToCache(route.query?.access_token)
+        setTokenToCache(
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE1OTU5MTE5LCJpYXQiOjE3MTU3ODYzMTksImp0aSI6ImU1NWM1YWYyZjA3ZjRiNDk4YzEyNGIyOGIyM2QyOTA1IiwidXNlcl9pZCI6MywidXNlcl9kYXRhIjp7ImlkIjozLCJmaXJzdF9uYW1lIjoiIiwibGFzdF9uYW1lIjoiIiwidGVsZWdyYW1fdXNlcm5hbWUiOm51bGwsImZ1bGxfbmFtZSI6bnVsbCwibGFuZ3VhZ2UiOiJydSIsInBob25lIjoiMiIsImlzX3ByZW1pdW0iOmZhbHNlLCJpc19mcmVlX2F0dGVtcHRzX2xlZnQiOnRydWV9fQ.1FM6LNRGCUOPO9-7AUv0m419us2iPINJY0aKSScZc4U',
+        )
+
+        token = getTokenFromCache()
 
         let decoded = VueJwtDecode.decode(token)
         userStore.updateUserData({ ...decoded.user_data })

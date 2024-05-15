@@ -6,8 +6,6 @@ import { useBillingStore } from 'src/stores/billing'
 import { ref } from 'vue'
 import BaseInput from 'src/components/UI/BaseInput.vue'
 
-const emit = defineEmits(['confirmPayment'])
-
 const modalStore = useModalStore()
 const { paymentModal } = storeToRefs(modalStore)
 

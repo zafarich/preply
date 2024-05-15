@@ -1,16 +1,23 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import PaymentModal from 'src/components/modals/PaymentModal.vue'
+import AddSubscriptionModal from 'src/components/modals/AddSubscriptionModal.vue'
 import { useBillingStore } from 'src/stores/billing'
 import { useModalStore } from 'src/stores/modal'
+import { ref } from 'vue'
 import { onMounted } from 'vue'
+import MyCards from './components/MyCards.vue'
+import MySubscriptions from './components/MySubscriptions.vue'
+import PaymentHistory from './components/PaymentHistory.vue'
 
 const modalStore = useModalStore()
 const { paymentModal } = storeToRefs(modalStore)
 const billingStore = useBillingStore()
 
-onMounted(async () => {
-    await billingStore.getTariffs()
+const tabs = ref('my_cards')
+
+onMounted(() => {
+    billingStore.getTariffs()
 })
 </script>
 <template>
@@ -56,30 +63,42 @@ onMounted(async () => {
                         </div>
                     </div>
 
-                    <div class="info-card">
-                        <div class="flex justify-between mb-4">
-                            <div class="font-semibold text-base">
-                                Mening kartalarim
-                            </div>
-                            <div class="font-semibold text-base money-text">
-                                20 000 so'm
-                            </div>
-                        </div>
+                    <q-tabs
+                        active-color="primary"
+                        class="base-tab mb-6"
+                        v-model="tabs"
+                        no-caps
+                        outlined
+                    >
+                        <q-tab
+                            name="my_cards"
+                            exact
+                            replace
+                            label=" Kartalarim"
+                        />
+                        <q-tab
+                            name="my_subscriptions"
+                            exact
+                            replacew
+                            label=" Obunalarim"
+                        />
+                        <q-tab
+                            name="payment_history"
+                            exact
+                            replacew
+                            label="To'lovlar tarixi"
+                        />
+                    </q-tabs>
 
-                        <q-btn
-                            no-caps
-                            color="primary"
-                            class="full-width"
-                            @click="() => (paymentModal = true)"
-                            >Karta qo'shish</q-btn
-                        >
-                    </div>
+                    <MyCards v-if="tabs === 'my_cards'" />
+                    <MySubscriptions v-else-if="tabs === 'my_subscriptions'" />
+                    <PaymentHistory v-else="tabs === 'payment_history'" />
                 </div>
             </div>
-            <div class="profile-left"></div>
         </div>
     </div>
-    <PaymentModal @confirmPayment="() => {}" />
+    <PaymentModal />
+    <AddSubscriptionModal />
 </template>
 
 <style lang="scss" src="src/assets/scss/Profile.scss"></style>
