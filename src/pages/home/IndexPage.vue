@@ -6,17 +6,37 @@ import TestTypes from './sections/TestTypes.vue'
 import PopularScience from './sections/PopularScience.vue'
 import TestsList from 'src/components/TestsList.vue'
 import LeadersList from './sections/LeadersList.vue'
-const { t } = useI18n()
+import { getTokenFromCache, setTokenToCache } from 'src/utils/auth'
+import VueJwtDecode from 'vue-jwt-decode'
+import { useUserStore } from 'src/stores/user'
+import { useMainStore } from 'src/stores/main'
 
 import { useReferencesStore } from 'src/stores/references'
+import { useRoute } from 'vue-router'
 
+const { t } = useI18n()
+const userStore = useUserStore()
+const mainStore = useMainStore()
 const referencesStore = useReferencesStore()
 
 const testTypes = ref([])
 const subjects = ref([])
 const banners = ref([])
 
+const route = useRoute()
+
 onMounted(() => {
+    // console.log('router', route.query)
+
+    const token = getTokenFromCache()
+
+    if (!token || token == 'undefined' || token == undefined) {
+        setTokenToCache(route.query?.access_token)
+
+        let decoded = VueJwtDecode.decode(token)
+        userStore.updateUserData({ ...decoded.user_data })
+        mainStore.setLanguage(decoded.user_data.language)
+    }
     fetchData()
 })
 
