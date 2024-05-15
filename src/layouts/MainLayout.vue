@@ -5,19 +5,28 @@ import { useRouter } from 'vue-router'
 import BottomMenu from 'src/components/common/BottomMenu.vue'
 import TheHeader from 'src/components/common/TheHeader.vue'
 import { getTokenFromCache, setTokenToCache } from 'src/utils/auth'
+import VueJwtDecode from 'vue-jwt-decode'
 
 import { useTestStore } from 'src/stores/test'
+import { useUserStore } from 'src/stores/user'
+import { useMainStore } from 'src/stores/main'
 
 const router = useRouter()
 const route = useRouter()
 
 const testStore = useTestStore()
+const userStore = useUserStore()
+const mainStore = useMainStore()
 
 onMounted(() => {
     const token = getTokenFromCache()
-    console.log('token', token)
-    if (token) {
+
+    if (!token || token == 'undefined') {
         setTokenToCache(route.query?.access_token)
+
+        let decoded = VueJwtDecode.decode(token)
+        userStore.updateUserData({ ...decoded.user_data })
+        mainStore.setLanguage(decoded.user_data.language)
     }
 
     if (testStore.test.type?.length && route.name !== 'tests.solving') {

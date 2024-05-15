@@ -63,7 +63,7 @@ export const useTestStore = defineStore('test', () => {
         const res = await api.getTestResultDetail(test_response.value?.id)
 
         test_results.value = res
-        LocalStorage.setItem('test_results', res)
+        LocalStorage.set('test_results', res)
 
         return res
     }

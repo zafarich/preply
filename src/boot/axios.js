@@ -13,7 +13,7 @@ export default boot(({ app, route }) => {
         (config) => {
             const token =
                 getTokenFromCache() ||
-                'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE2MTkwNTczLCJpYXQiOjE3MTQ4OTQ1NzMsImp0aSI6IjVlYzBjNzRhYTExNTRlYmViNDljNGY4YjFmYmYzZGFiIiwidXNlcl9pZCI6Mn0.Qa9Nk8uysMB2hltIDaAFeOmAVMoc2_cejz2eqgPmMPk'
+                'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE1ODgzODExLCJpYXQiOjE3MTU3MTEwMTEsImp0aSI6IjFiMDJkNzljN2NlYzQ4Nzg5MmNjODZhYWMwYmNjOTEyIiwidXNlcl9pZCI6MywidXNlcl9kYXRhIjp7ImlkIjozLCJmaXJzdF9uYW1lIjoiIiwibGFzdF9uYW1lIjoiIiwidGVsZWdyYW1fdXNlcm5hbWUiOm51bGwsImZ1bGxfbmFtZSI6bnVsbCwibGFuZ3VhZ2UiOiJ1eiIsInBob25lIjoiMiIsImlzX3ByZW1pdW0iOmZhbHNlLCJpc19mcmVlX2F0dGVtcHRzX2xlZnQiOnRydWV9fQ.tmW5J0GmF7Cx8TAm89k5VHdONdS-3L9KJTCipkiUkLc'
             if (token) config.headers.Authorization = 'Bearer ' + token
 
             let lang = localStorage.getItem('locale')
