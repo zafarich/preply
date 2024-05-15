@@ -1,9 +1,8 @@
-@import "tailwindcss/basse";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
-
+@import 'tailwindcss/basse';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 @layer components {
-  .title-lg {
-    @apply text-2xl font-bold;
-  }
+    .title-lg {
+        @apply text-2xl font-bold;
+    }
 }

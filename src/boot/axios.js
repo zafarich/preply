@@ -20,7 +20,7 @@ export default boot(({ app, route }) => {
 
             if (lang?.startsWith('uz')) lang = 'uz'
 
-            // if (lang) config.headers['Language'] = lang
+            if (lang) config.headers['lang'] = lang
 
             // config.headers['Access-Control-Allow-Origin'] = '*'
             // config.headers['Access-Control-Allow-Credentials'] = true

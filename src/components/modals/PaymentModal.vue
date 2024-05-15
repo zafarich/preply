@@ -2,6 +2,7 @@
 import { storeToRefs } from 'pinia'
 import BaseModal from 'src/components/UI/BaseModal.vue'
 import { useModalStore } from 'src/stores/modal'
+import { useBillingStore } from 'src/stores/billing'
 import { ref } from 'vue'
 import BaseInput from 'src/components/UI/BaseInput.vue'
 
@@ -11,20 +12,44 @@ const modalStore = useModalStore()
 const { paymentModal } = storeToRefs(modalStore)
 
 const data = ref({
-    card: '',
-    expire_in: '',
-    is_save: false,
-    sms_code: '',
+    card_number: '8600 4954 7331 6478',
+    expire: '03/99',
+    recurrent: false,
+})
+let sms_code = ref('666666')
+
+const card_id = ref('')
+const verifyData = ref({
+    sent: false,
+    phone: '',
+    wait: 60000,
 })
 
 const currentStep = ref(1)
+const billingStore = useBillingStore()
 
-const confirmPayment = () => {
-    if (currentStep === 2) {
-        emit('confirmPayment')
-        paymentModal.value = false
+const addCard = async () => {
+    const cardData = await billingStore.addBillingCard(data.value)
+    card_id.value = cardData.id
+    verifyData.value = await billingStore.getBillingCardVerifyCode(cardData.id)
+    if (verifyData.value) currentStep.value = 2
+}
+
+const verifyCard = async () => {
+    const data = await billingStore.sendBillingCardVerifyCode(card_id.value, {
+        code: sms_code.value,
+    })
+    console.log('verifyCard')
+    paymentModal.value = false
+    currentStep.value = 1
+}
+
+const submitButton = () => {
+    if (currentStep.value == 1) {
+        addCard()
+    } else {
+        verifyCard()
     }
-    currentStep.value = 2
 }
 
 const close = () => {
@@ -51,7 +76,7 @@ const close = () => {
 
             <q-input
                 label="Karta raqami"
-                v-model="data.card"
+                v-model="data.card_number"
                 mask="#### #### #### ####"
                 class="mb-2"
                 :dense="false"
@@ -59,7 +84,7 @@ const close = () => {
 
             <div class="flex justify-start items-end">
                 <q-input
-                    v-model="data.expire_in"
+                    v-model="data.expire"
                     label="OO/YY"
                     mask="##/##"
                     class="inline-block"
@@ -67,7 +92,7 @@ const close = () => {
                 />
                 <div>
                     <q-checkbox
-                        v-model="data.is_save"
+                        v-model="data.recurrent"
                         label="Eslab qol"
                         size="sm"
                     />
@@ -76,7 +101,7 @@ const close = () => {
         </div>
         <div v-else-if="currentStep === 2">
             <q-input
-                v-model="data.sms_code"
+                v-model="sms_code"
                 label="SMS kod"
                 mask="####"
                 :dense="false"
@@ -92,7 +117,7 @@ const close = () => {
                     Yopish
                 </button>
                 <button
-                    @click="confirmPayment"
+                    @click="submitButton"
                     class="px-5 w-full h-10 text-base text-white rounded-xl bg-primary"
                 >
                     Qo'shish

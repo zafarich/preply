@@ -1,10 +1,17 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import PaymentModal from 'src/components/modals/PaymentModal.vue'
+import { useBillingStore } from 'src/stores/billing'
 import { useModalStore } from 'src/stores/modal'
+import { onMounted } from 'vue'
 
 const modalStore = useModalStore()
 const { paymentModal } = storeToRefs(modalStore)
+const billingStore = useBillingStore()
+
+onMounted(async () => {
+    await billingStore.getTariffs()
+})
 </script>
 <template>
     <div>
@@ -51,7 +58,9 @@ const { paymentModal } = storeToRefs(modalStore)
 
                     <div class="info-card">
                         <div class="flex justify-between mb-4">
-                            <div class="font-semibold text-base">Balans</div>
+                            <div class="font-semibold text-base">
+                                Mening kartalarim
+                            </div>
                             <div class="font-semibold text-base money-text">
                                 20 000 so'm
                             </div>
@@ -62,7 +71,7 @@ const { paymentModal } = storeToRefs(modalStore)
                             color="primary"
                             class="full-width"
                             @click="() => (paymentModal = true)"
-                            >Balansni to'ldirish</q-btn
+                            >Karta qo'shish</q-btn
                         >
                     </div>
                 </div>

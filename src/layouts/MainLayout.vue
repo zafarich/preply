@@ -19,15 +19,15 @@ const userStore = useUserStore()
 const mainStore = useMainStore()
 
 onMounted(() => {
-    const token = getTokenFromCache()
+    // const token = getTokenFromCache()
 
-    if (!token || token == 'undefined') {
-        setTokenToCache(route.query?.access_token)
+    // if (!token || token == 'undefined') {
+    //     setTokenToCache(route.query?.access_token)
 
-        let decoded = VueJwtDecode.decode(token)
-        userStore.updateUserData({ ...decoded.user_data })
-        mainStore.setLanguage(decoded.user_data.language)
-    }
+    //     let decoded = VueJwtDecode.decode(token)
+    //     userStore.updateUserData({ ...decoded.user_data })
+    //     mainStore.setLanguage(decoded.user_data.language)
+    // }
 
     if (testStore.test.type?.length && route.name !== 'tests.solving') {
         router.push({
