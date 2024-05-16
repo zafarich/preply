@@ -15,7 +15,7 @@ const billingStore = useBillingStore()
 const userStore = useUserStore()
 
 const tariff = ref('')
-const seletedCard = ref(userStore.userCards[0]?.id)
+const seletedCard = ref('')
 
 const card = ref('')
 
@@ -28,7 +28,6 @@ const addSubscribe = async () => {
         tariff: tariff.value,
         card: seletedCard.value,
     })
-    // console.log('res', res)
     await billingStore.paySubscription(res.id)
     subscriptionModal.value = false
 }
@@ -53,7 +52,7 @@ const close = () => {
                 </button>
             </div>
             <div>
-                <div class="mb-8">
+                <div class="mb-4">
                     <BaseSelect
                         v-model="tariff"
                         emit-value
@@ -66,20 +65,27 @@ const close = () => {
                     />
                 </div>
 
+                <div class="font-bold text-md mb-1">Kartani tanlang:</div>
                 <q-card
-                    flat
-                    bordered
                     v-for="(card, index) in userStore.userCards"
                     :key="index"
-                    class="mb-4 p !w-auto"
+                    class="mb-4 p !w-auto !rounded-lg cursor-pointer relative !py-2 !pl-6"
+                    @click="() => (seletedCard = card.id)"
+                    flat
+                    bordered
                 >
-                    <q-radio dense v-model="seletedCard" :val="card.id" />
-                    <div class="flex justify-between items-center mb-2">
+                    <q-radio
+                        dense
+                        v-model="seletedCard"
+                        :val="card.id"
+                        class="absolute left-2 top-2.5"
+                    />
+                    <div class="flex justify-between items-center mb-2 ml-3">
                         <div>
                             {{ card.card_number }}
                         </div>
                     </div>
-                    <div>
+                    <div class="ml-3">
                         {{ card.expire }}
                     </div>
                 </q-card>
@@ -91,8 +97,10 @@ const close = () => {
                     >
                         Yo'q
                     </button>
+
                     <button
                         @click="addSubscribe"
+                        :disabled="!tariff || !seletedCard"
                         class="px-5 w-full h-10 text-base text-white rounded-xl bg-primary"
                     >
                         Qo'shish

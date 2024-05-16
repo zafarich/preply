@@ -44,6 +44,7 @@ async function confirmBack() {
 
 let timer
 const remainingTime = ref(3 * 60 * 60)
+const warningTimePeriod = 3 * 60
 
 const test_variant = ref(null)
 const test_store = computed(() => testStore.test)
@@ -76,7 +77,7 @@ const active_test = computed(() => {
 })
 
 const updateRemainingTime = () => {
-    if (testStore.test_response.started_at) {
+    if (testStore.test_response.started_at) {   
         const currentTime = new Date()
         const timeDiff =
             currentTime.getTime() -
@@ -84,10 +85,10 @@ const updateRemainingTime = () => {
         remainingTime.value = Math.max(
             0,
             3 * 60 * 60 - Math.floor(timeDiff / 1000),
-        ) // Calculate remaining time
+        )
         if (remainingTime.value <= 0) {
-            console.log('3 hours elapsed')
-            clearInterval(timer) // Stop the timer when 3 hours have elapsed
+            confirmEndTest()
+            clearInterval(timer)
         }
     }
 }
@@ -174,7 +175,15 @@ async function confirmEndTest() {
                         src="/images/icons/stopwatch.svg"
                         alt=""
                     />
-                    <div class="font-semibold text-primary">
+                    <div
+                        class="font-semibold"
+                        :class="
+                            warningTimePeriod >= remainingTime
+                                ? 'clock-warning'
+                                : 'text-primary'
+                        "
+                    >
+                        {{ remainingTime }}
                         {{ formatTime(remainingTime) }}
                     </div>
                 </div>
@@ -298,3 +307,25 @@ async function confirmEndTest() {
 </template>
 
 <style lang="scss" src="src/assets/scss/TestSolvePage.scss"></style>
+<style lang="scss">
+.clock-warning {
+    animation-name: animation;
+    animation-duration: 1s;
+    // animation-repeat: infinite;
+    animation-iteration-count: infinite;
+    animation-delay: 1s;
+    animation-fill-mode: none;
+}
+
+@keyframes animation {
+    0% {
+        color: green;
+        // border-radius: 50%;
+    }
+
+    100% {
+        color: rgb(236, 27, 27);
+        // border-radius: 50%;
+    }
+}
+</style>

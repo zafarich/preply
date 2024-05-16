@@ -4,7 +4,7 @@ const url = '/api/v1/users/'
 
 export async function getLeaders() {
     const { data } = await api(url + 'leaders/')
-    return data?.result
+    return data
 }
 
 export async function getMe() {

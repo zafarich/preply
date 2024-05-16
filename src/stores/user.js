@@ -6,8 +6,10 @@ import { ref } from 'vue-demi'
 export const useUserStore = defineStore('user', () => {
     const all_count = ref(0)
     const userCards = ref([])
-
     const userData = ref(LocalStorage.getItem('userData') || {})
+    const leaders = ref({
+        results: [],
+    })
 
     function setUserData(data) {
         userData.value = data
@@ -21,14 +23,14 @@ export const useUserStore = defineStore('user', () => {
 
     function updateUserData(payload) {
         const newUserData = { ...userData.value, ...payload }
-
         userData.value = { ...newUserData }
         LocalStorage.set('userData', userData.value)
     }
 
     async function getLeaders(params) {
         const res = await api.getLeaders(params)
-        return res?.results
+        leaders.value = res
+        return res
     }
     async function login(payload) {
         const res = await api.login(payload)
@@ -57,5 +59,6 @@ export const useUserStore = defineStore('user', () => {
         updateUserData,
         getMe,
         userCards,
+        leaders,
     }
 })

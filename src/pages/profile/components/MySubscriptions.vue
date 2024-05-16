@@ -22,7 +22,14 @@
 <script setup>
 import { useModalStore } from 'src/stores/modal'
 import { storeToRefs } from 'pinia'
+import { useBillingStore } from 'src/stores/billing'
+import { onMounted } from 'vue'
 
 const modalStore = useModalStore()
+const billingStore = useBillingStore()
 const { subscriptionModal } = storeToRefs(modalStore)
+
+onMounted(async () => {
+    billingStore.getSubscriptions()
+})
 </script>
