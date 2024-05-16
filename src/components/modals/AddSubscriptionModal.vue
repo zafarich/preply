@@ -6,20 +6,32 @@ import BaseSelect from 'src/components/UI/BaseSelect.vue'
 import { useBillingStore } from 'src/stores/billing'
 import { onMounted } from 'vue'
 import { ref } from 'vue'
+import { useUserStore } from 'src/stores/user'
 
 const modalStore = useModalStore()
 const { subscriptionModal } = storeToRefs(modalStore)
 
 const billingStore = useBillingStore()
+const userStore = useUserStore()
 
 const tariff = ref('')
+const seletedCard = ref(userStore.userCards[0]?.id)
+
 const card = ref('')
 
 onMounted(async () => {
     await billingStore.getTariffs()
 })
 
-const addSubscribe = () => {}
+const addSubscribe = async () => {
+    const res = await billingStore.createSubscription({
+        tariff: tariff.value,
+        card: seletedCard.value,
+    })
+    // console.log('res', res)
+    await billingStore.paySubscription(res.id)
+    subscriptionModal.value = false
+}
 
 const close = () => {
     subscriptionModal.value = false
@@ -49,10 +61,28 @@ const close = () => {
                         outlined
                         placeholder="Tarif tanlang"
                         :options="billingStore.tariffs"
-                        option-label="title"
+                        option-label="name"
                         option-value="id"
                     />
                 </div>
+
+                <q-card
+                    flat
+                    bordered
+                    v-for="(card, index) in userStore.userCards"
+                    :key="index"
+                    class="mb-4 p !w-auto"
+                >
+                    <q-radio dense v-model="seletedCard" :val="card.id" />
+                    <div class="flex justify-between items-center mb-2">
+                        <div>
+                            {{ card.card_number }}
+                        </div>
+                    </div>
+                    <div>
+                        {{ card.expire }}
+                    </div>
+                </q-card>
 
                 <div class="grid grid-cols-2 gap-4">
                     <button
@@ -65,7 +95,7 @@ const close = () => {
                         @click="addSubscribe"
                         class="px-5 w-full h-10 text-base text-white rounded-xl bg-primary"
                     >
-                        Yakunlash
+                        Qo'shish
                     </button>
                 </div>
             </div>

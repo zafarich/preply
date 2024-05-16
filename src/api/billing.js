@@ -21,13 +21,24 @@ export async function sendBillingCardVerifyCode(id, payload) {
     return data
 }
 
+export async function deleteCard(id) {
+    await api.delete(url + `card/${id}/`)
+}
+
 export async function getSubscriptions() {
     const { data } = await api.get(url + `subscriptions/`)
     return data
 }
 
 export async function createSubscription(payload) {
-    const { data } = await api.post(url + 'subscriptions', payload)
+    const { data } = await api.post(url + 'subscriptions/', payload)
+    return data
+}
+
+export async function paySubscription(id) {
+    const { data } = await api.get(
+        url + `subscriptions/${id}/subscription_pay/`,
+    )
     return data
 }
 

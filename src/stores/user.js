@@ -5,6 +5,7 @@ import { ref } from 'vue-demi'
 
 export const useUserStore = defineStore('user', () => {
     const all_count = ref(0)
+    const userCards = ref([])
 
     const userData = ref(LocalStorage.getItem('userData') || {})
 
@@ -40,6 +41,12 @@ export const useUserStore = defineStore('user', () => {
         updateUserData(data)
     }
 
+    async function getMe() {
+        const res = await api.getMe()
+        userCards.value = [...res.cards]
+        return res
+    }
+
     return {
         getLeaders,
         login,
@@ -48,5 +55,7 @@ export const useUserStore = defineStore('user', () => {
         setUserData,
         removeUserData,
         updateUserData,
+        getMe,
+        userCards,
     }
 })
