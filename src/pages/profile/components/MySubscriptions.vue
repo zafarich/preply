@@ -1,6 +1,6 @@
 <template>
     <div class="info-card">
-        <div class="flex justify-between item-center mb-4">
+        <div class="flex justify-between items-center mb-4">
             <div class="font-semibold text-base items-center">
                 Mening Obunalarim
             </div>
