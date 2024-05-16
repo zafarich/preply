@@ -3,14 +3,16 @@ import { storeToRefs } from 'pinia'
 import BaseModal from 'src/components/UI/BaseModal.vue'
 import { useModalStore } from 'src/stores/modal'
 import { useBillingStore } from 'src/stores/billing'
+
 import { ref } from 'vue'
 import BaseInput from 'src/components/UI/BaseInput.vue'
+import { useUserStore } from 'src/stores/user'
 
 const modalStore = useModalStore()
 const { paymentModal } = storeToRefs(modalStore)
 
 const data = ref({
-    card_number: '8600 4954 7331 6478',
+    card_number: '8600 0691 9540 6311',
     expire: '03/99',
     recurrent: false,
 })
@@ -25,6 +27,7 @@ const verifyData = ref({
 
 const currentStep = ref(1)
 const billingStore = useBillingStore()
+const userStore = useUserStore()
 
 const addCard = async () => {
     const cardData = await billingStore.addBillingCard(data.value)
@@ -37,16 +40,16 @@ const verifyCard = async () => {
     const data = await billingStore.sendBillingCardVerifyCode(card_id.value, {
         code: sms_code.value,
     })
-    console.log('verifyCard')
     paymentModal.value = false
     currentStep.value = 1
 }
 
-const submitButton = () => {
+const submitButton = async () => {
     if (currentStep.value == 1) {
-        addCard()
+        await addCard()
     } else {
-        verifyCard()
+        await verifyCard()
+        userStore.getMe()
     }
 }
 

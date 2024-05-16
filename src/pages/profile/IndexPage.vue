@@ -9,15 +9,18 @@ import { onMounted } from 'vue'
 import MyCards from './components/MyCards.vue'
 import MySubscriptions from './components/MySubscriptions.vue'
 import PaymentHistory from './components/PaymentHistory.vue'
+import { useUserStore } from 'src/stores/user'
 
 const modalStore = useModalStore()
 const { paymentModal } = storeToRefs(modalStore)
 const billingStore = useBillingStore()
+const userStore = useUserStore()
 
 const tabs = ref('my_cards')
 
 onMounted(() => {
     billingStore.getTariffs()
+    userStore.getMe()
 })
 </script>
 <template>
@@ -92,7 +95,7 @@ onMounted(() => {
 
                     <MyCards v-if="tabs === 'my_cards'" />
                     <MySubscriptions v-else-if="tabs === 'my_subscriptions'" />
-                    <PaymentHistory v-else="tabs === 'payment_history'" />
+                    <PaymentHistory v-else-if="tabs === 'payment_history'" />
                 </div>
             </div>
         </div>

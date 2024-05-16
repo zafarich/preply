@@ -26,7 +26,18 @@ export const useBillingStore = defineStore('billing', () => {
 
     async function createSubscription(payload) {
         const res = await api.createSubscription(payload)
+        console.log('subsres', res)
         return res
+    }
+
+    async function paySubscription(id) {
+        const res = await api.paySubscription(id)
+        console.log('res', res)
+        return res
+    }
+
+    async function deleteCard(id) {
+        await api.deleteCard(id)
     }
 
     return {
@@ -36,5 +47,7 @@ export const useBillingStore = defineStore('billing', () => {
         getTariffs,
         createSubscription,
         tariffs,
+        deleteCard,
+        paySubscription,
     }
 })

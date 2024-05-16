@@ -7,6 +7,10 @@ export async function getLeaders() {
     return data?.result
 }
 
+export async function getMe() {
+    const { data } = await api(url + 'me/')
+    return data
+}
 
 export async function me() {
     const { data } = await api(url)
