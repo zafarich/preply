@@ -9,10 +9,11 @@ import { onMounted } from 'vue'
 import MyCards from './components/MyCards.vue'
 import MySubscriptions from './components/MySubscriptions.vue'
 import PaymentHistory from './components/PaymentHistory.vue'
+import UserEditModal from 'src/components/modals/UserEditModal.vue'
 import { useUserStore } from 'src/stores/user'
 
 const modalStore = useModalStore()
-const { paymentModal } = storeToRefs(modalStore)
+const { paymentModal, userEditModal } = storeToRefs(modalStore)
 const billingStore = useBillingStore()
 const userStore = useUserStore()
 
@@ -22,6 +23,10 @@ onMounted(() => {
     billingStore.getTariffs()
     userStore.getMe()
 })
+
+const onChange = async (data) => {
+    await userStore.updateUser(data)
+}
 </script>
 <template>
     <div>
@@ -44,24 +49,36 @@ onMounted(() => {
                             </div>
                             <q-btn
                                 color="primary"
-                                flat
                                 dense
                                 no-caps
+                                @click="() => (userEditModal = true)"
                                 label="O'zgartirish"
                             />
                         </div>
                         <div class="info-wrap mb-2">
                             <div class="info-item">
                                 <div class="key">Ism</div>
-                                <div class="value">Zafarich</div>
+                                <div class="value">
+                                    {{ userStore.userData.first_name }}
+                                </div>
+                            </div>
+                            <div class="info-item">
+                                <div class="key">Familya</div>
+                                <div class="value">
+                                    {{ userStore.userData.last_name }}
+                                </div>
                             </div>
                             <div class="info-item">
                                 <div class="key">ID</div>
-                                <div class="value">1001</div>
+                                <div class="value">
+                                    {{ userStore.userData.id }}
+                                </div>
                             </div>
                             <div class="info-item">
                                 <div class="key">Hudud</div>
-                                <div class="value">Toshkent shahar</div>
+                                <div class="value">
+                                    {{ userStore.userData.region }}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -102,6 +119,7 @@ onMounted(() => {
     </div>
     <PaymentModal />
     <AddSubscriptionModal />
+    <UserEditModal @on-change="onChange" v-bind="userStore.userData" />
 </template>
 
 <style lang="scss" src="src/assets/scss/Profile.scss"></style>

@@ -39,7 +39,6 @@ export const useUserStore = defineStore('user', () => {
 
     async function updateUser(data) {
         const res = await api.updateUser(userData.value.id, data)
-        console.log('datapass', res)
         updateUserData(data)
     }
 

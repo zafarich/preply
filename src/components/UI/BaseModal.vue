@@ -1,41 +1,46 @@
 <script setup>
-import { ref, useAttrs } from "vue-demi";
+import { ref, useAttrs } from 'vue-demi'
 
-const emit = defineEmits(["update:modelValue", "close"]);
+const emit = defineEmits(['update:modelValue', 'close', 'beforeShow'])
 
-const mouseDownWithinModal = ref(false);
-const attrs = useAttrs();
+const mouseDownWithinModal = ref(false)
+const attrs = useAttrs()
 function close() {
-  emit("close");
-  mouseDownWithinModal.value = false;
+    emit('close')
+    mouseDownWithinModal.value = false
+}
+
+function beforeShow() {
+    emit('beforeShow')
 }
 
 function handleMouseDown() {
-  mouseDownWithinModal.value = true;
+    mouseDownWithinModal.value = true
 }
 function handleMouseUp() {
-  if (mouseDownWithinModal.value) {
-    close();
-  }
+    if (mouseDownWithinModal.value) {
+        close()
+    }
 }
 </script>
 <template>
-  <q-dialog
-    id="base-modal"
-    v-bind="attrs"
-    :model-value="modelValue"
-    @hide="close"
-  >
-    <div
-      class="modal-scroll-wrap"
-      @mousedown="handleMouseDown"
-      @mouseup="handleMouseUp"
+    <q-dialog
+        id="base-modal"
+        v-bind="attrs"
+        :model-value="modelValue"
+        @hide="close"
+        @before-show="beforeShow"
     >
-      <q-card @mousedown.stop @mouseup.stop>
-        <slot />
-      </q-card>
-    </div>
-  </q-dialog>
+        <div
+            class="modal-scroll-wrap"
+            @mousedown="handleMouseDown"
+            @mouseup="handleMouseUp"
+        >
+            <q-card @mousedown.stop @mouseup.stop>
+                <slot />
+            </q-card>
+        </div>
+    </q-dialog>
 </template>
 
 <style></style>
