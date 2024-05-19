@@ -28,7 +28,7 @@ export const useUserStore = defineStore('user', () => {
     }
 
     async function getLeaders(params) {
-        const res = await api.getLeaders(params)
+        const res = await api.getLeaders({ ...params, page_size: 10 })
         leaders.value = res
         return res
     }

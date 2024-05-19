@@ -3,17 +3,36 @@ import { ref } from 'vue-demi'
 import BaseSelect from 'src/components/UI/BaseSelect.vue'
 import LeaderTable from 'src/components/LeaderTable.vue'
 import { useUserStore } from 'src/stores/user'
-import { onMounted } from 'vue'
+import { useReferencesStore } from 'src/stores/references'
+import { onMounted, watch } from 'vue'
 
 const region = ref('')
 const district = ref('')
 const science = ref('')
 const page = ref(1)
 const usersStore = useUserStore()
+const referenceStore = useReferencesStore()
 
 onMounted(async () => {
-    await usersStore.getLeaders()
+    await referenceStore.getRegions()
+    await referenceStore.getSubjects({ is_main_for_block: true })
+    await fetchLeaders()
 })
+
+watch(
+    () => region.value + science.value + district.value,
+    async () => {
+        await fetchLeaders()
+    },
+)
+
+const fetchLeaders = async () => {
+    await usersStore.getLeaders({
+        page: page.value,
+        region: region.value,
+        district: district.value,
+    })
+}
 </script>
 <template>
     <div>
@@ -27,21 +46,21 @@ onMounted(async () => {
             <div><q-btn outline color="primary" no-caps label="Oylik" /></div>
             <div><q-btn outline color="primary" no-caps label="Barcha" /></div>
         </div>
-
+        {{ science }}
+        {{ region }}
         <div class="grid grid-cols-2 gap-4 mb-4">
             <BaseSelect
                 v-model="region"
                 outlined
                 placeholder="Viloyat"
-                :options="[
-                    'Toshkent',
-                    'Buxoro',
-                    'Qoraqalpog\'iston respublikasi',
-                    'Andijon',
-                ]"
+                emit-value
+                map-options
+                :options="referenceStore.regions"
+                option-label="title"
+                option-value="id"
             />
+            <!-- v-model="district" -->
             <BaseSelect
-                v-model="district"
                 outlined
                 placeholder="Tuman"
                 :options="[
@@ -58,30 +77,32 @@ onMounted(async () => {
                 v-model="science"
                 outlined
                 placeholder="Fan"
-                :options="[
-                    'Matematika',
-                    'Fizika',
-                    'Kimyo',
-                    'Biologiya',
-                    'Dasturlash',
-                ]"
+                :options="referenceStore.main_subjects"
+                emit-value
+                map-options
+                option-label="title"
+                option-value="id"
             />
         </div>
+        <div v-if="usersStore.leaders.results.length > 0">
+            <LeaderTable :items="usersStore.leaders.results" />
 
-        <LeaderTable :items="usersStore.leaders.results" />
-
-        <div class="flex justify-center my-5">
-            <q-pagination
-                v-model="page"
-                @update:model-value="changePagination"
-                :max="12"
-                :max-pages="6"
-                boundary-numbers
-                direction-links
-                class="base-pagination"
-                icon-prev="img:/images/icons/chevron_left_16.svg"
-                icon-next="img:/images/icons/chevron_right_16.svg"
-            />
+            <div class="flex justify-center my-5">
+                <q-pagination
+                    v-model="page"
+                    @update:model-value="fetchLeaders"
+                    :max="Math.ceil(usersStore.leaders.count / 10)"
+                    :max-pages="10"
+                    boundary-numbers
+                    direction-links
+                    class="base-pagination"
+                    icon-prev="img:/images/icons/chevron_left_16.svg"
+                    icon-next="img:/images/icons/chevron_right_16.svg"
+                />
+            </div>
+        </div>
+        <div v-else class="text-center font-semibold text-base text-gray-400">
+            Ma'lumotlar mavjud emas
         </div>
     </div>
 </template>

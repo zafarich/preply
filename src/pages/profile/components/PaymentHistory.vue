@@ -1,17 +1,7 @@
 <template>
     <div class="info-card">
-        <div class="flex justify-between items-center mb-4">
-            <div class="font-semibold text-base items-center">
-                Mening kartalarim
-            </div>
-            <!-- <div class="font-semibold text-base money-text">20 000 so'm</div> -->
-            <q-btn no-caps color="primary" @click="() => (paymentModal = true)"
-                >Karta qo'shish</q-btn
-            >
-        </div>
-
-        <h1 class="text-center font-semibold text-base">
-            Sizda hozircha hech qanday karta mavjud emas
+        <h1 class="text-center font-semibold text-base text-gray-400">
+            Sizda hozircha hech qanday karta mavjud emasP
         </h1>
     </div>
 </template>

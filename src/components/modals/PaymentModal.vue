@@ -25,6 +25,7 @@ const verifyData = ref({
     phone: '',
     wait: 60000,
 })
+const loading = ref(false)
 
 const currentStep = ref(1)
 const billingStore = useBillingStore()
@@ -51,12 +52,14 @@ const verifyCard = async () => {
 }
 
 const submitButton = async () => {
+    loading.value = true
     if (currentStep.value == 1) {
         await addCard()
     } else {
         await verifyCard()
         userStore.getMe()
     }
+    loading.value = false
 }
 
 const close = () => {
@@ -134,12 +137,13 @@ const close = () => {
                         Yopish
                     </button>
                     <!-- @click="submitButton" -->
-                    <button
+                    <q-btn
+                        :loading="loading"
                         type="submit"
                         class="px-5 w-full h-10 text-base text-white rounded-xl bg-primary"
                     >
                         Qo'shish
-                    </button>
+                    </q-btn>
                 </div>
             </div>
         </q-form>

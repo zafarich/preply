@@ -2,8 +2,8 @@ import { api } from 'src/boot/axios'
 
 const url = '/api/v1/users/'
 
-export async function getLeaders() {
-    const { data } = await api(url + 'leaders/')
+export async function getLeaders(params) {
+    const { data } = await api(url + 'leaders/', { params })
     return data
 }
 

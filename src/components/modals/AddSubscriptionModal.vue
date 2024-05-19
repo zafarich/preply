@@ -16,20 +16,18 @@ const userStore = useUserStore()
 
 const tariff = ref('')
 const seletedCard = ref('')
-
-const card = ref('')
-
-onMounted(async () => {
-    await billingStore.getTariffs()
-})
+const loading = ref(false)
 
 const addSubscribe = async () => {
+    loading.value = true
     const res = await billingStore.createSubscription({
         tariff: tariff.value,
         card: seletedCard.value,
     })
     await billingStore.paySubscription(res.id)
+    await billingStore.getSubscriptions()
     subscriptionModal.value = false
+    loading.value = false
 }
 
 const close = () => {
@@ -98,13 +96,14 @@ const close = () => {
                         Yo'q
                     </button>
 
-                    <button
+                    <q-btn
+                        :loading="loading"
                         @click="addSubscribe"
                         :disabled="!tariff || !seletedCard"
                         class="px-5 w-full h-10 text-base text-white rounded-xl bg-primary"
                     >
                         Qo'shish
-                    </button>
+                    </q-btn>
                 </div>
             </div>
         </div>

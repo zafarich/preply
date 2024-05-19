@@ -19,9 +19,12 @@ const userStore = useUserStore()
 
 const tabs = ref('my_cards')
 
-onMounted(() => {
-    billingStore.getTariffs()
-    userStore.getMe()
+onMounted(async () => {
+    await Promise.allSettled([
+        billingStore.getTariffs(),
+        userStore.getMe(),
+        billingStore.getSubscriptions(),
+    ])
 })
 
 const onChange = async (data) => {

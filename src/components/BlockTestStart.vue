@@ -10,7 +10,6 @@ import { useRouter } from 'vue-router'
 import { TEST_TYPES } from 'src/utils/constants'
 import { useModalStore } from 'src/stores/modal'
 import { storeToRefs } from 'pinia'
-
 const modalStore = useModalStore()
 
 const { startModal } = storeToRefs(modalStore)
@@ -21,7 +20,7 @@ const data = ref({
     s1: '',
     s2: '',
 })
-
+const loading = ref(false)
 const referenceStore = useReferencesStore()
 const testStore = useTestStore()
 
@@ -46,6 +45,7 @@ const openModal = () => {
 }
 
 const startTest = async () => {
+    loading.value = true
     testStore.changeTestField({
         type: 'block',
     })
@@ -66,6 +66,7 @@ const startTest = async () => {
     nextTick(() => {
         startModal.value = false
     })
+    loading.value = false
 }
 </script>
 <template>
@@ -107,6 +108,7 @@ const startTest = async () => {
             color="primary"
             class="full-width button-md"
             no-caps
+            :loading="loading"
             :disable="data.s1 && data.s2"
             >Boshlash</q-btn
         >

@@ -4,6 +4,7 @@ import { ref } from 'vue'
 
 export const useBillingStore = defineStore('billing', () => {
     const tariffs = ref([])
+    const subscriptions = ref([])
 
     async function addBillingCard(data) {
         const res = await api.addBillingCard(data)
@@ -26,6 +27,7 @@ export const useBillingStore = defineStore('billing', () => {
 
     async function getSubscriptions() {
         const res = await api.getSubscriptions()
+        subscriptions.value = res.results
         console.log('res', res)
     }
 
@@ -55,5 +57,6 @@ export const useBillingStore = defineStore('billing', () => {
         deleteCard,
         paySubscription,
         getSubscriptions,
+        subscriptions,
     }
 })

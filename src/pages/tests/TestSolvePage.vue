@@ -77,7 +77,7 @@ const active_test = computed(() => {
 })
 
 const updateRemainingTime = () => {
-    if (testStore.test_response.started_at) {   
+    if (testStore.test_response.started_at) {
         const currentTime = new Date()
         const timeDiff =
             currentTime.getTime() -
@@ -183,7 +183,6 @@ async function confirmEndTest() {
                                 : 'text-primary'
                         "
                     >
-                        {{ remainingTime }}
                         {{ formatTime(remainingTime) }}
                     </div>
                 </div>
@@ -194,10 +193,10 @@ async function confirmEndTest() {
             </div>
             <div class="subjects-top-slider" v-if="is_visible_subjects">
                 <swiper :slides-per-view="'auto'" :space-between="10">
+                    <!-- :class="{ _active: isActiveTopSlider === index }" -->
                     <swiper-slide
                         v-for="(subject, index) in testStore.test_response
                             ?.block_test_subjects"
-                        :class="{ _active: isActiveTopSlider === index }"
                         :key="subject.id"
                         class="subject-slider-item"
                     >

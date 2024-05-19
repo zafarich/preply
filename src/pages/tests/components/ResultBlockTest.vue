@@ -28,9 +28,9 @@ const returnListItemColor = (item, answer, cIndex) => {
                     ?.block_test_subjects"
                 :class="{ _active: isActiveTopSlider === index }"
                 :key="subject.id"
-                class="subject-slider-item"
+                class="subject-slider-item mr-1"
             >
-                {{ subject.title }} ddd
+                {{ subject.title }}
             </swiper-slide>
         </swiper>
     </div>

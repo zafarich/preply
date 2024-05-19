@@ -6,8 +6,20 @@ export const useReferencesStore = defineStore('references', () => {
     let subjects = ref([])
     let main_subjects = ref([])
     let sub_main_subjects = ref([])
-
+    let regions = ref([])
+    let districts = ref([])
     let test_types = ref([])
+
+    async function getRegions() {
+        const res = await api.loadRegions()
+        console.log('res res', res)
+        regions.value = res.results
+    }
+
+    async function getDistricts(id) {
+        const res = await api.loadDistricts(id)
+        districts.value = res.results
+    }
 
     async function getSubjects(params) {
         const res = await api.getSubjects(params)
@@ -43,6 +55,10 @@ export const useReferencesStore = defineStore('references', () => {
         main_subjects,
         sub_main_subjects,
         test_types,
+        regions,
+        districts,
+        getRegions,
+        getDistricts,
         getSubjects,
         getBanners,
         getTestTypes,
