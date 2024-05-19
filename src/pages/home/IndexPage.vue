@@ -27,15 +27,11 @@ const route = useRoute()
 
 onMounted(() => {
     let token = getTokenFromCache()
-    console.log('token', token)
+    // console.log('token', token)
 
     if (!token || token == 'undefined' || token == undefined) {
-        setTokenToCache(
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE2Mjg4Nzk0LCJpYXQiOjE3MTYxMTU5OTQsImp0aSI6Ijc0MDhlYWFmMTUxZDQ1ZDc4OTAyY2Q5MWRhZWZjMmFlIiwidXNlcl9pZCI6MSwidXNlcl9kYXRhIjp7ImlkIjoxLCJmaXJzdF9uYW1lIjoiS2hhc2FuIiwibGFzdF9uYW1lIjoiTXVzYWV2MzMzMyIsInRlbGVncmFtX3VzZXJuYW1lIjpudWxsLCJmdWxsX25hbWUiOm51bGwsImxhbmd1YWdlIjoidXoiLCJwaG9uZSI6IjEiLCJpc19wcmVtaXVtIjpmYWxzZSwiaXNfZnJlZV9hdHRlbXB0c19sZWZ0Ijp0cnVlLCJjYXJkcyI6W3siaWQiOjE3LCJjYXJkX251bWJlciI6Ijg2MDA0OSoqKioqKjY0NzgiLCJleHBpcmUiOiIwMy85OSIsInZlcmlmeSI6dHJ1ZSwicmVjdXJyZW50Ijp0cnVlLCJ1c2VyIjoxLCJjcmVhdGVkIjoiMjAyNC0wNS0xNVQyMzo0MToxMi4yNTA0MDkrMDU6MDAifSx7ImlkIjoyNiwiY2FyZF9udW1iZXIiOiI4NjAwMDYqKioqKio2MzExIiwiZXhwaXJlIjoiMDMvOTkiLCJ2ZXJpZnkiOmZhbHNlLCJyZWN1cnJlbnQiOmZhbHNlLCJ1c2VyIjoxLCJjcmVhdGVkIjoiMjAyNC0wNS0xN1QxNDo1NjoyMC44OTg5NTMrMDU6MDAifV0sInJlZ2lvbiI6IlFvcmFxYWxwb2cnaXN0b24ifX0.QRBjqrTYarSy5UYj8sVnskdfgnv0dMpIHvrRvcQafRQ',
-        )
-
-        token = getTokenFromCache()
-
+        token = route.query.access_token
+        setTokenToCache('token', token)
         let decoded = VueJwtDecode.decode(token)
         userStore.updateUserData({ ...decoded.user_data })
         mainStore.setLanguage(decoded.user_data.language)
