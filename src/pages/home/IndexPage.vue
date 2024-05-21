@@ -25,7 +25,7 @@ const banners = ref([])
 
 const route = useRoute()
 
-onMounted(() => {
+onMounted(async () => {
     let token = getTokenFromCache()
     // console.log('token', token)
 
@@ -46,6 +46,7 @@ async function fetchData() {
         is_main_for_block: true,
     })
     banners.value = await referencesStore.getBanners()
+    await userStore.getLeaders()
 }
 </script>
 <template>
