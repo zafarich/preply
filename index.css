@@ -6,3 +6,13 @@
         @apply text-2xl font-bold;
     }
 }
+
+.body--light {
+    /* ... */
+    background-color: #ffffff;
+}
+
+.body--dark {
+    /* ... */
+    background-color: #ffffff;
+}
