@@ -80,7 +80,7 @@ function selectAnswer(index, question_index) {
                         color="primary"
                         flat
                         dense
-                        label="Orqaga"
+                        :label="$t('back')"
                         icon="chevron_left"
                         no-caps
                     ></q-btn>

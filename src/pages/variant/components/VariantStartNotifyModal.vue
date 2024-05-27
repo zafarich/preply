@@ -37,11 +37,10 @@ const startTest = () => {
                     </div>
 
                     <div class="font-semibold text-lg mb-2 text-center">
-                        Diqqat
+                        {{ $t('attention') }}
                     </div>
                     <div class="font-medium mb-2 text-center">
-                        Test boshlangandan keyin uni yakunlamasdan boshqa
-                        amallarni bajara olmaysiz !
+                        {{ $t('warning_test_test') }}
                     </div>
                 </div>
 
@@ -50,13 +49,13 @@ const startTest = () => {
                         v-close-popup
                         class="px-5 w-full h-10 text-base rounded-xl bg-f1f2f4"
                     >
-                        Bekor qilish
+                        {{ $t('cancel') }}
                     </button>
                     <button
                         @click="startTest"
                         class="px-5 w-full h-10 text-base text-white rounded-xl bg-primary"
                     >
-                        Boshlash
+                        {{ $t('start') }}
                     </button>
                 </div>
             </div>

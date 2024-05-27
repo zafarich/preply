@@ -164,7 +164,7 @@ async function confirmEndTest() {
                         color="primary"
                         flat
                         dense
-                        label="Orqaga"
+                        :label="$t('back')"
                         icon="chevron_left"
                         no-caps
                     ></q-btn>
@@ -267,7 +267,7 @@ async function confirmEndTest() {
                             active_index: test_store.active_index - 1,
                         })
                     "
-                    label="Oldingi"
+                    :label="$t('previous')"
                     no-caps
                     color="primary"
                     icon="chevron_left"
@@ -282,7 +282,7 @@ async function confirmEndTest() {
                             active_index: test_store.active_index + 1,
                         })
                     "
-                    label="Keyingi"
+                    :label="$t('next')"
                     no-caps
                     color="primary"
                     icon-right="chevron_right"
@@ -294,7 +294,7 @@ async function confirmEndTest() {
         <div class="mt-10">
             <q-btn
                 @click="() => (endTestModal = true)"
-                label="Testni yakunlash"
+                :label="$t('finish')"
                 no-caps
                 color="warning"
                 class="full-width"

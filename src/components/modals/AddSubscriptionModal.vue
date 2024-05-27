@@ -56,14 +56,16 @@ const close = () => {
                         emit-value
                         map-options
                         outlined
-                        placeholder="Tarif tanlang"
+                        :placeholder="$t('select_rate')"
                         :options="billingStore.tariffs"
                         option-label="name"
                         option-value="id"
                     />
                 </div>
 
-                <div class="font-bold text-md mb-1">Kartani tanlang:</div>
+                <div class="font-bold text-md mb-1">
+                    {{ $t('select_card)') }}:
+                </div>
                 <q-card
                     v-for="(card, index) in userStore.userCards"
                     :key="index"
@@ -93,7 +95,7 @@ const close = () => {
                         v-close-popup
                         class="px-5 w-full h-10 text-base rounded-xl bg-f1f2f4"
                     >
-                        Yo'q
+                        {{ $t('no') }}
                     </button>
 
                     <q-btn
@@ -102,7 +104,7 @@ const close = () => {
                         :disabled="!tariff || !seletedCard"
                         class="px-5 w-full h-10 text-base text-white rounded-xl bg-primary"
                     >
-                        Qo'shish
+                        {{ $t('add') }}
                     </q-btn>
                 </div>
             </div>

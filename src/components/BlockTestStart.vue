@@ -80,7 +80,7 @@ const startTest = async () => {
                         emit-value
                         map-options
                         outlined
-                        placeholder="Birinchi fan"
+                        :placeholder="$t('first_subject')"
                         :options="referenceStore.main_subjects"
                         option-label="title"
                         option-value="id"
@@ -94,7 +94,7 @@ const startTest = async () => {
                         map-options
                         outlined
                         :disabled="!!data.s1"
-                        placeholder="Ikkinchi fan"
+                        :placeholder="$t('second_subject')"
                         :options="referenceStore.sub_main_subjects"
                         option-label="title"
                         option-value="id"
@@ -110,7 +110,7 @@ const startTest = async () => {
             no-caps
             :loading="loading"
             :disable="data.s1 && data.s2"
-            >Boshlash</q-btn
+            >{{ $t('start') }}</q-btn
         >
 
         <StartTestModal @startTest="startTest" />

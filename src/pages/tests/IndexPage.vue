@@ -45,7 +45,7 @@ async function fetchData() {
 </script>
 <template>
     <div>
-        <div class="text-bold mt-6 mb-4 text-xl">Testlar</div>
+        <div class="text-bold mt-6 mb-4 text-xl">{{ $t('tests') }}</div>
         <div>
             <q-tabs
                 active-color="primary"
@@ -59,21 +59,21 @@ async function fetchData() {
                     :name="TEST_TYPES.BY_SUBJECTS"
                     exact
                     replace
-                    label="Fan bo'yicha"
+                    :label="$t('by_science')"
                 />
                 <q-route-tab
                     :to="{ query: { test_type: TEST_TYPES.BLOCK } }"
                     :name="TEST_TYPES.BLOCK"
                     exact
                     replacew
-                    label="Blok test"
+                    :label="$t('by_block')"
                 />
                 <q-route-tab
                     :to="{ query: { test_type: TEST_TYPES.VARIANT } }"
                     :name="TEST_TYPES.VARIANT"
                     exact
                     replacew
-                    label="Variant test"
+                    :label="$t('by_variant')"
                 />
             </q-tabs>
 

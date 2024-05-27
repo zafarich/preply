@@ -36,10 +36,10 @@ const close = () => {
                     </div>
 
                     <div class="font-semibold text-lg mb-2 text-center">
-                        Testni yakunlaysizmi ?
+                        {{ $t('will_you_complete_tests') }}
                     </div>
                     <div class="font-medium mb-2 text-center">
-                        Javob belgilanmagan savollar xato deb hisoblanadi
+                        {{ $t('unmarked_questions_are_considered_wrong') }}
                     </div>
                 </div>
 
@@ -48,13 +48,13 @@ const close = () => {
                         v-close-popup
                         class="px-5 w-full h-10 text-base rounded-xl bg-f1f2f4"
                     >
-                        Yo'q
+                        {{ $t('no') }}
                     </button>
                     <button
                         @click="confirmEndTest"
                         class="px-5 w-full h-10 text-base text-white rounded-xl bg-primary"
                     >
-                        Yakunlash
+                        {{ $t('finish') }}
                     </button>
                 </div>
             </div>

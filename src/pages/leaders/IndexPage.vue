@@ -36,7 +36,7 @@ const fetchLeaders = async () => {
 </script>
 <template>
     <div>
-        <div class="text-bold mt-6 mb-6 text-xl">Leaderboard</div>
+        <div class="text-bold mt-6 mb-6 text-xl">{{ $t('leaders') }}</div>
 
         <div class="flex justify-between mb-4">
             <div><q-btn color="primary" no-caps label="Kunlik" /></div>
@@ -46,13 +46,12 @@ const fetchLeaders = async () => {
             <div><q-btn outline color="primary" no-caps label="Oylik" /></div>
             <div><q-btn outline color="primary" no-caps label="Barcha" /></div>
         </div>
-        {{ science }}
-        {{ region }}
+
         <div class="grid grid-cols-2 gap-4 mb-4">
             <BaseSelect
                 v-model="region"
                 outlined
-                placeholder="Viloyat"
+                :placeholder="$t('province')"
                 emit-value
                 map-options
                 :options="referenceStore.regions"
@@ -62,7 +61,7 @@ const fetchLeaders = async () => {
             <!-- v-model="district" -->
             <BaseSelect
                 outlined
-                placeholder="Tuman"
+                :placeholder="$t('district')"
                 :options="[
                     'Toshkent',
                     'Buxoro',
@@ -76,7 +75,7 @@ const fetchLeaders = async () => {
             <BaseSelect
                 v-model="science"
                 outlined
-                placeholder="Fan"
+                :placeholder="$t('subject')"
                 :options="referenceStore.main_subjects"
                 emit-value
                 map-options
@@ -102,7 +101,7 @@ const fetchLeaders = async () => {
             </div>
         </div>
         <div v-else class="text-center font-semibold text-base text-gray-400">
-            Ma'lumotlar mavjud emas
+            {{ $t('not_data') }}
         </div>
     </div>
 </template>

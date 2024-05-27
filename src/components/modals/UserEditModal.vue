@@ -53,9 +53,9 @@ const beforeShow = () => {
         class="warning-modal"
     >
         <q-form @submit="onChange">
-            <div class="text-lg font-bold">Ma'lumotlarni o'zgartirish</div>
+            <div class="text-lg font-bold">{{ $t('change_data') }}</div>
             <q-input
-                label="Ismi"
+                :label="$t('name')"
                 v-model="userData.first_name"
                 class="mb-2"
                 :dense="false"
@@ -66,7 +66,7 @@ const beforeShow = () => {
                 ]"
             />
             <q-input
-                label="Familyasi"
+                :label="$t('surname')"
                 v-model="userData.last_name"
                 :dense="false"
                 class="mb-6"
@@ -81,13 +81,13 @@ const beforeShow = () => {
                     v-close-popup
                     class="px-5 w-full h-10 text-base rounded-xl bg-f1f2f4"
                 >
-                    Yo'q
+                    {{ $t('no') }}
                 </button>
                 <button
                     type="submit"
                     class="px-5 w-full h-10 text-base text-white rounded-xl bg-primary"
                 >
-                    O'zgartirish
+                    {{ $t("O'zgartirish") }}
                 </button>
             </div>
         </q-form>

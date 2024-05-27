@@ -65,8 +65,8 @@ const props = defineProps({
             <table>
                 <thead>
                     <th>#</th>
-                    <th>F.I.O</th>
-                    <th>Aniqlik ( % )</th>
+                    <th>{{ $t('student') }}</th>
+                    <th>{{ $t('accuracy') }} ( % )</th>
                 </thead>
 
                 <tbody>

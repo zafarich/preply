@@ -86,7 +86,7 @@ const close = () => {
                 </div>
 
                 <q-input
-                    label="Karta raqami"
+                    :label="$t('card_number')"
                     v-model="data.card_number"
                     mask="#### #### #### ####"
                     :dense="false"
@@ -99,7 +99,7 @@ const close = () => {
 
                 <q-input
                     v-model="data.expire"
-                    label="OO/YY"
+                    :label="$t('card_expire_in')"
                     mask="##/##"
                     :dense="false"
                     :rules="[
@@ -110,14 +110,14 @@ const close = () => {
                 />
                 <q-checkbox
                     v-model="data.recurrent"
-                    label="Eslab qol"
+                    :label="$t('remember')"
                     size="sm"
                 />
             </div>
             <div v-else-if="currentStep === 2">
                 <q-input
                     v-model="sms_code"
-                    label="SMS kod"
+                    :label="$t('sms_code')"
                     mask="######"
                     :dense="false"
                     :rules="[
@@ -134,7 +134,7 @@ const close = () => {
                         v-close-popup
                         class="px-5 w-full h-10 text-base rounded-xl bg-f1f2f4"
                     >
-                        Yopish
+                        {{ $t('shut_down') }}
                     </button>
                     <!-- @click="submitButton" -->
                     <q-btn
@@ -142,7 +142,7 @@ const close = () => {
                         type="submit"
                         class="px-5 w-full h-10 text-base text-white rounded-xl bg-primary"
                     >
-                        Qo'shish
+                        {{ $t('add') }}
                     </q-btn>
                 </div>
             </div>

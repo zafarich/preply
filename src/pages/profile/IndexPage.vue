@@ -48,25 +48,25 @@ const onChange = async (data) => {
                     <div class="info-card mb-4">
                         <div class="flex justify-between mb-4">
                             <div class="font-semibold text-base">
-                                Ma'lumotlar
+                                {{ $t('user_data') }}
                             </div>
                             <q-btn
                                 color="primary"
                                 dense
                                 no-caps
                                 @click="() => (userEditModal = true)"
-                                label="O'zgartirish"
+                                :label="$t('change')"
                             />
                         </div>
                         <div class="info-wrap mb-2">
                             <div class="info-item">
-                                <div class="key">Ism</div>
+                                <div class="key">{{ $t('name') }}</div>
                                 <div class="value">
                                     {{ userStore.userData.first_name }}
                                 </div>
                             </div>
                             <div class="info-item">
-                                <div class="key">Familya</div>
+                                <div class="key">{{ $t('surname') }}</div>
                                 <div class="value">
                                     {{ userStore.userData.last_name }}
                                 </div>
@@ -78,7 +78,7 @@ const onChange = async (data) => {
                                 </div>
                             </div>
                             <div class="info-item">
-                                <div class="key">Hudud</div>
+                                <div class="key">{{ $t('place') }}</div>
                                 <div class="value">
                                     {{ userStore.userData.region }}
                                 </div>
@@ -97,19 +97,19 @@ const onChange = async (data) => {
                             name="my_cards"
                             exact
                             replace
-                            label=" Kartalarim"
+                            :label="$t('my_cards')"
                         />
                         <q-tab
                             name="my_subscriptions"
                             exact
                             replacew
-                            label=" Obunalarim"
+                            :label="$t('my_subscriptions')"
                         />
                         <q-tab
                             name="payment_history"
                             exact
                             replacew
-                            label="To'lovlar tarixi"
+                            :label="$t('payment_history')"
                         />
                     </q-tabs>
 

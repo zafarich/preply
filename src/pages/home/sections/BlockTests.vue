@@ -14,7 +14,7 @@ const props = defineProps({
 <template>
     <div class="popular-subjects">
         <div class="flex mb-6 justify-between items-center">
-            <div class="font-semibold text-xl">Blok Testlar</div>
+            <div class="font-semibold text-xl">{{ $t('block_tests') }}</div>
         </div>
 
         <ScienceList :subjects="subjects" />

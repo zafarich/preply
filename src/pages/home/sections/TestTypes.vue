@@ -11,7 +11,7 @@ const props = defineProps({
 <template>
     <div class="popular-subjects">
         <div class="flex mb-6 justify-between items-center">
-            <div class="font-semibold text-xl">Test Turlari</div>
+            <div class="font-semibold text-xl">{{ $t('test_types') }}</div>
         </div>
 
         <TestTypeList :test-types="testTypes" />

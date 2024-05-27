@@ -39,7 +39,9 @@ export const useUserStore = defineStore('user', () => {
 
     async function updateUser(data) {
         const res = await api.updateUser(userData.value.id, data)
-        updateUserData(data)
+        const res2 = getMe()
+
+        updateUserData(res2)
     }
 
     async function getMe() {
