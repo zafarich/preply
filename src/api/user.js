@@ -23,6 +23,13 @@ export async function login(payload) {
     return data
 }
 
+export async function register(payload) {
+    const { data } = await api.post(url + 'register/', payload, {
+        pass: true,
+    })
+    return data
+}
+
 export async function updateUser(id, data) {
     await api.patch(url + `${id}/`, data, {
         pass: true,

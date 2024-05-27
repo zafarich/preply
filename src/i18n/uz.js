@@ -50,4 +50,5 @@ export default {
     back: 'Orqaga',
     previous: 'Oldingi',
     next: 'Keyingi',
+    personal_cabinet: 'Shaxsiy kabinet',
 }
