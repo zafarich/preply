@@ -1,7 +1,7 @@
 <template>
     <div class="info-card">
         <h1 class="text-center font-semibold text-base text-gray-400">
-            Sizda hozircha hech qanday karta mavjud emasP
+            Sizda hozircha hech qanday karta mavjud emas
         </h1>
     </div>
 </template>

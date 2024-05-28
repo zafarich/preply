@@ -6,27 +6,40 @@
             <div class="app-container">
                 <div class="text-lg font-medium text-center py-5 tracking-wide">
                     <!-- {{ $t('Welcome') }} -->
-                    Login
+                    {{ $t('login') }}
                 </div>
 
-                <q-form ref="formRef">
-                    <div class="label">{{ $t('Phone_number') }}</div>
-                    <BaseInput
-                        type="tel"
-                        prepend
+                <q-form ref="formRef" @submit="submitForm">
+                    <!-- type="tel" -->
+                    <q-input
                         v-model="phone"
-                        mask="## ### ## ##"
+                        :label="$t('Phone')"
+                        mask="+998 ## ### ## ##"
+                        :dense="false"
+                        :rules="[validate?.required, validate?.phone_number]"
+                    />
+                    <q-input
+                        v-model="password"
+                        :type="isPwd ? 'password' : 'text'"
+                        :rules="[validate.password]"
+                        :label="$t('Password')"
+                        :dense="false"
+                        @keyup.enter="submitForm"
                     >
-                        <template #prepend>
-                            <div class="phone_prefix">{{ PHONE_PREFIX }}</div>
+                        <template v-slot:append>
+                            <q-icon
+                                :name="isPwd ? 'visibility_off' : 'visibility'"
+                                class="cursor-pointer"
+                                @click="isPwd = !isPwd"
+                            />
                         </template>
-                    </BaseInput>
+                    </q-input>
 
                     <q-btn
                         class="full-width mt-6"
                         color="primary"
                         no-caps
-                        @click="tryLogin"
+                        type="submit"
                         :label="$t('Continue')"
                     />
                     <div class="text-center mt-10">
@@ -52,12 +65,35 @@
 </template>
 
 <script setup>
-import BackPanel from 'src/components/BackPanel.vue'
-import BaseInput from 'src/components/UI/BaseInput.vue'
-import { PHONE_PREFIX } from 'src/utils/helpers'
 import { ref } from 'vue-demi'
+import { useUserStore } from 'src/stores/user'
+import validate from 'src/utils/validate'
+
+const userStore = useUserStore()
 
 const phone = ref('')
+const password = ref('')
+const formRef = ref('')
+const pwd = ref('')
+
+let resetTimeout = 0
+function resetValidation(timeout = 0) {
+    clearTimeout(resetTimeout)
+    resetTimeout = setTimeout(() => {
+        formRef.value.resetValidation()
+    }, timeout)
+}
+
+const submitForm = async () => {
+    resetValidation()
+    const hasError = !(await formRef.value.validate())
+    if (hasError) return resetValidation(5000)
+
+    userStore.login({
+        phone: phone.value.replace(/\s/g, ''),
+        password: password.value,
+    })
+}
 </script>
 
 <style lang="scss" scoped>

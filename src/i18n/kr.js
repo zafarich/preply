@@ -50,4 +50,14 @@ export default {
     back: 'Орқага',
     previous: 'Олдинги',
     next: 'Кейинги',
+    personal_cabinet: 'Шахсий кабинет',
+    phone: 'Телефон',
+    login: 'Кириш',
+    register: 'Рўйхатдан ўтиш',
+    password: 'Парол',
+    passwordConfirm: 'Паролни тасдиқланг',
+    Continue: 'Давом этиш',
+    rules: {
+        required: 'Бу майдон мажбурий',
+    },
 }

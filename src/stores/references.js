@@ -9,6 +9,7 @@ export const useReferencesStore = defineStore('references', () => {
     let regions = ref([])
     let districts = ref([])
     let test_types = ref([])
+    let selections = ref([])
 
     async function getRegions() {
         const res = await api.loadRegions()
@@ -50,6 +51,13 @@ export const useReferencesStore = defineStore('references', () => {
         return res?.results
     }
 
+    async function getSelection(params) {
+        const res = await api.getSelection(params)
+        // console.log('res', res)
+        selections.value = [...res.results]
+        return res
+    }
+
     return {
         subjects,
         main_subjects,
@@ -57,6 +65,8 @@ export const useReferencesStore = defineStore('references', () => {
         test_types,
         regions,
         districts,
+        selections,
+        getSelection,
         getRegions,
         getDistricts,
         getSubjects,

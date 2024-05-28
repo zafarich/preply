@@ -6,49 +6,38 @@
                     Register
                 </div>
 
-                <q-form ref="formRef" @submit="submitForm">
+                <q-form ref="registerRef" @submit="submitForm">
                     <q-input
                         :label="$t('name')"
                         v-model="first_name"
                         :dense="false"
-                        :rules="[
-                            (val) =>
-                                (val && val.length > 3) ||
-                                `To'g'ri formatda kiriting`,
-                        ]"
+                        :rules="[validate.required]"
+                        @keyup.enter="submitForm"
                     />
                     <q-input
                         :label="$t('surname')"
                         v-model="last_name"
                         :dense="false"
-                        :rules="[
-                            (val) =>
-                                (val && val.length > 3) ||
-                                `To'g'ri formatda kiriting`,
-                        ]"
+                        :rules="[validate.required]"
+                        @keyup.enter="submitForm"
                     />
-
+                    {{ phone }}
                     <q-input
                         v-model="phone"
-                        :label="$t('Phone')"
+                        :label="$t('phone')"
+                        mask="+998 ## ### ## ##"
                         :dense="false"
-                        :rules="[
-                            (val) =>
-                                (val && val.length > 3) ||
-                                `To'g'ri formatda kiriting`,
-                        ]"
+                        :rules="[validate?.required, validate?.phone_number]"
                     />
+                    <!-- @keyup.enter="submitForm" -->
 
                     <q-input
                         v-model="password1"
                         :type="isPwd1 ? 'password' : 'text'"
-                        :rules="[
-                            (val) =>
-                                (val && val.length > 3) ||
-                                `To'g'ri formatda kiriting`,
-                        ]"
-                        :label="$t('Password 1')"
+                        :rules="[validate.password]"
+                        :label="$t('password')"
                         :dense="false"
+                        @keyup.enter="submitForm"
                     >
                         <template v-slot:append>
                             <q-icon
@@ -61,13 +50,10 @@
                     <q-input
                         v-model="password2"
                         :type="isPwd2 ? 'password' : 'text'"
-                        :rules="[
-                            (val) =>
-                                (val && val.length > 3) ||
-                                `To'g'ri formatda kiriting`,
-                        ]"
-                        :label="$t('Password 2')"
+                        :rules="[validate.password, validate.passwordConfirm]"
+                        :label="$t('passwordConfirm')"
                         :dense="false"
+                        @keyup.enter="submitForm"
                     >
                         <template v-slot:append>
                             <q-icon
@@ -84,6 +70,7 @@
                         no-caps
                         @click="tryLogin"
                         :label="$t('Continue')"
+                        type="submit"
                     />
                     <div class="text-center mt-10">
                         Sizda akkount mavjud bo'lsa<router-link
@@ -108,11 +95,12 @@
 </template>
 
 <script setup>
-import BackPanel from 'src/components/BackPanel.vue'
-import BaseInput from 'src/components/UI/BaseInput.vue'
-import { PHONE_PREFIX } from 'src/utils/helpers'
 import { ref } from 'vue-demi'
+import { useUserStore } from 'src/stores/user'
+import validate from 'src/utils/validate'
 
+const userStore = useUserStore()
+const registerRef = ref('')
 const first_name = ref('')
 const last_name = ref('')
 const phone = ref('')
@@ -122,7 +110,27 @@ const password2 = ref('')
 const isPwd1 = ref(true)
 const isPwd2 = ref(true)
 
-const submitForm = () => {}
+let resetTimeout = 0
+function resetValidation(timeout = 0) {
+    clearTimeout(resetTimeout)
+    resetTimeout = setTimeout(() => {
+        registerRef.value.resetValidation()
+    }, timeout)
+}
+
+const submitForm = async () => {
+    resetValidation()
+    const hasError = !(await registerRef.value.validate())
+    if (hasError) return resetValidation(5000)
+
+    userStore.register({
+        first_name: first_name.value,
+        last_name: last_name.value,
+        phone: phone.value,
+        password: password1.value,
+        password2: password2.value,
+    })
+}
 </script>
 
 <style lang="scss" scoped>

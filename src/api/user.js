@@ -17,14 +17,14 @@ export async function me() {
     return data
 }
 export async function login(payload) {
-    const { data } = await api.post(url + 'login/', payload, {
+    const { data } = await api.post(url + 'login', payload, {
         pass: true,
     })
     return data
 }
 
 export async function register(payload) {
-    const { data } = await api.post(url + 'register/', payload, {
+    const { data } = await api.post(url + 'register', payload, {
         pass: true,
     })
     return data

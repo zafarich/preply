@@ -26,7 +26,7 @@ const props = defineProps({
         <router-link
             v-for="subject in subjects"
             :key="subject.title"
-            :to="{ name: 'variant', params: { id: 2 } }"
+            :to="{ name: 'variant', params: { id: subject.id } }"
             class="tests-item"
         >
             <div class="flex justify-center">
@@ -35,6 +35,9 @@ const props = defineProps({
                     height="70px"
                     :src="`/images/tests/${subject.image}`"
                 />
+                <div>
+                    {{ subject.title }}
+                </div>
             </div>
         </router-link>
     </div>

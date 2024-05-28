@@ -12,6 +12,7 @@ export const useUserStore = defineStore('user', () => {
     })
 
     function setUserData(data) {
+        console.log('setUserData')
         userData.value = data
         LocalStorage.set('userData', data)
     }
@@ -22,6 +23,7 @@ export const useUserStore = defineStore('user', () => {
     }
 
     function updateUserData(payload) {
+        console.log('updateUserData')
         const newUserData = { ...userData.value, ...payload }
         userData.value = { ...newUserData }
         LocalStorage.set('userData', userData.value)
@@ -37,9 +39,14 @@ export const useUserStore = defineStore('user', () => {
         return res
     }
 
+    async function register(payload) {
+        const res = await api.register(payload)
+        return res
+    }
+
     async function updateUser(data) {
         const res = await api.updateUser(userData.value.id, data)
-        const res2 = getMe()
+        const res2 = await getMe()
 
         updateUserData(res2)
     }
@@ -47,6 +54,7 @@ export const useUserStore = defineStore('user', () => {
     async function getMe() {
         const res = await api.getMe()
         userCards.value = [...res.cards]
+        // userData.value = [...res]
         return res
     }
 
@@ -61,5 +69,6 @@ export const useUserStore = defineStore('user', () => {
         getMe,
         userCards,
         leaders,
+        register,
     }
 })

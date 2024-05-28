@@ -50,4 +50,14 @@ export default {
     back: 'Назад',
     previous: 'Предыдущий',
     next: 'Следующий',
+    personal_cabinet: 'Личный кабинет',
+    phone: 'Телефон',
+    login: 'Войти',
+    register: 'Зарегистрироваться',
+    password: 'Пароль',
+    passwordConfirm: 'Подтвердить Пароль',
+    Continue: 'Продолжить',
+    rules: {
+        required: 'Это обязательное поле',
+    },
 }

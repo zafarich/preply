@@ -78,7 +78,7 @@ const props = defineProps({
                         <td>
                             <div class="flex items-center">
                                 <div>
-                                    <div class="fio">{{ item.first_name }}</div>
+                                    <div class="fio">{{ item.full_name }}</div>
                                     <div class="city">{{ item.region }}</div>
                                 </div>
                             </div>

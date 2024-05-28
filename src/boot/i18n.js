@@ -1,29 +1,29 @@
-import { boot } from "quasar/wrappers";
-import { createI18n } from "vue-i18n";
-import messages from "src/i18n";
+import { boot } from 'quasar/wrappers'
+import { createI18n } from 'vue-i18n'
+import messages from 'src/i18n'
 
 function customRule(choice, choicesLength) {
-  if (choice === 0) return 0;
+    if (choice === 0) return 0
 
-  const teen = choice > 10 && choice < 20;
-  const endsWithOne = choice % 10 === 1;
-  if (!teen && endsWithOne) return 1;
-  if (!teen && choice % 10 >= 2 && choice % 10 <= 4) return 2;
+    const teen = choice > 10 && choice < 20
+    const endsWithOne = choice % 10 === 1
+    if (!teen && endsWithOne) return 1
+    if (!teen && choice % 10 >= 2 && choice % 10 <= 4) return 2
 
-  return choicesLength < 4 ? 2 : 3;
+    return choicesLength < 4 ? 2 : 3
 }
 
-const i18n = createI18n({
-  locale: "ru",
-  globalInjection: true,
-  legacy: false,
-  pluralRules: {
-    ru: customRule,
-  },
-  messages,
-});
+const storedLocale = localStorage.getItem('locale')
 
-export { i18n };
+const i18n = createI18n({
+    globalInjection: true,
+    locale: storedLocale || 'uz-Latn',
+    fallbackLocale: storedLocale || 'uz-Latn',
+    legacy: false,
+    messages,
+})
+
+export { i18n }
 export default boot(({ app }) => {
-  app.use(i18n);
-});
+    app.use(i18n)
+})

@@ -51,4 +51,13 @@ export default {
     previous: 'Oldingi',
     next: 'Keyingi',
     personal_cabinet: 'Shaxsiy kabinet',
+    phone: 'Telefon',
+    login: 'Kirish',
+    register: "Ro'yhatdan o'tish",
+    password: 'Parol',
+    passwordConfirm: 'Parolni tasdiqlang',
+    Continue: 'Davom etish',
+    rules: {
+        required: 'Bu maydon majburiy',
+    },
 }
