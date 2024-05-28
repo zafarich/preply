@@ -59,5 +59,8 @@ export default {
     Continue: 'Davom etish',
     rules: {
         required: 'Bu maydon majburiy',
+        passwordConfirm: 'Parollar mos emas',
+        password: "Parol eng kamida 6 belgidan iborat bo'lishi kerak",
+        phone: "Telefonnni to'g'ri formatda kiriting",
     },
 }

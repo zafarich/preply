@@ -1,5 +1,5 @@
 <template>
-    <div class="login-page">
+    <div class="register-page">
         <div>
             <div class="app-container">
                 <div class="text-lg font-medium text-center py-5 tracking-wide">
@@ -21,14 +21,19 @@
                         :rules="[validate.required]"
                         @keyup.enter="submitForm"
                     />
-                    {{ phone }}
+                    <!-- {{ phone }} -->
                     <q-input
                         v-model="phone"
+                        type="tel"
+                        class="phone"
+                        mask="## ### ## ##"
                         :label="$t('phone')"
-                        mask="+998 ## ### ## ##"
-                        :dense="false"
                         :rules="[validate?.required, validate?.phone_number]"
-                    />
+                        :dense="false"
+                    >
+                        <template #prepend> +998 </template>
+                    </q-input>
+
                     <!-- @keyup.enter="submitForm" -->
 
                     <q-input
@@ -50,7 +55,10 @@
                     <q-input
                         v-model="password2"
                         :type="isPwd2 ? 'password' : 'text'"
-                        :rules="[validate.password, validate.passwordConfirm]"
+                        :rules="[
+                            validate.password,
+                            (v) => validate.passwordConfirm(v, password1),
+                        ]"
                         :label="$t('passwordConfirm')"
                         :dense="false"
                         @keyup.enter="submitForm"
@@ -68,7 +76,6 @@
                         class="full-width mt-6"
                         color="primary"
                         no-caps
-                        @click="tryLogin"
                         :label="$t('Continue')"
                         type="submit"
                     />
@@ -84,13 +91,13 @@
             </div>
         </div>
 
-        <div class="login-footer">
+        <!-- <div class="login-footer">
             Avtorizatsiyadani davom ettirsangiz
             <router-link class="text-primary" :to="{ name: 'login-oferta' }"
                 >ushbu qoidalarga</router-link
             >
             rozilik bildirasiz
-        </div>
+        </div> -->
     </div>
 </template>
 
@@ -98,7 +105,9 @@
 import { ref } from 'vue-demi'
 import { useUserStore } from 'src/stores/user'
 import validate from 'src/utils/validate'
-
+import BaseInput from 'src/components/UI/BaseInput.vue'
+import { useQuasar } from 'quasar'
+import { setTokenToCache } from 'src/utils/auth'
 const userStore = useUserStore()
 const registerRef = ref('')
 const first_name = ref('')
@@ -109,6 +118,8 @@ const password2 = ref('')
 
 const isPwd1 = ref(true)
 const isPwd2 = ref(true)
+
+const $q = useQuasar()
 
 let resetTimeout = 0
 function resetValidation(timeout = 0) {
@@ -123,18 +134,43 @@ const submitForm = async () => {
     const hasError = !(await registerRef.value.validate())
     if (hasError) return resetValidation(5000)
 
-    userStore.register({
-        first_name: first_name.value,
-        last_name: last_name.value,
-        phone: phone.value,
-        password: password1.value,
-        password2: password2.value,
-    })
+    try {
+        const res = await userStore.register({
+            first_name: first_name.value,
+            last_name: last_name.value,
+            phone: phone.value.replace(/\s/g, ''),
+            password: password1.value,
+            password2: password2.value,
+        })
+
+        if (res) {
+            const loginRes = await userStore.login({
+                phone: phone.value.replace(/\s/g, ''),
+                password: password1.value,
+            })
+        }
+
+        $q.notify({
+            color: 'green-4',
+            textColor: 'white',
+            icon: 'cloud_done',
+            message: 'You have authorized',
+        })
+    } catch (error) {
+        console.log('rerro', error)
+        // if (accept.value !== true) {
+        $q.notify({
+            color: 'red-5',
+            textColor: 'white',
+            icon: 'warning',
+            message: 'User with this phone already exists',
+        })
+    }
 }
 </script>
 
 <style lang="scss" scoped>
-.login-page {
+.register-page {
     display: flex;
     height: 100vh;
     align-content: space-between;
@@ -145,6 +181,14 @@ const submitForm = async () => {
     .login-footer {
         padding: 60px 60px;
         text-align: center;
+    }
+
+    .q-field__prepend {
+        color: #444 !important;
+        font-size: 14px !important;
+        line-height: 17px !important;
+        padding-right: 3px !important;
+        font-weight: 500 !important;
     }
 }
 </style>

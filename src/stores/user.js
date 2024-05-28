@@ -1,9 +1,12 @@
 import * as api from 'src/api/user'
 import { defineStore } from 'pinia'
 import { LocalStorage } from 'quasar'
-import { ref } from 'vue-demi'
+import { ref, computed } from 'vue-demi'
+import { getTokenFromCache, setTokenToCache } from 'src/utils/auth'
 
 export const useUserStore = defineStore('user', () => {
+    const token = ref(getTokenFromCache())
+    const isAuth = computed(() => !!token.value)
     const all_count = ref(0)
     const userCards = ref([])
     const userData = ref(LocalStorage.getItem('userData') || {})
@@ -36,6 +39,10 @@ export const useUserStore = defineStore('user', () => {
     }
     async function login(payload) {
         const res = await api.login(payload)
+        if (res && res.access) {
+            setTokenToCache(res.access)
+        }
+
         return res
     }
 
@@ -69,6 +76,7 @@ export const useUserStore = defineStore('user', () => {
         getMe,
         userCards,
         leaders,
+        isAuth,
         register,
     }
 })

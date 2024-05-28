@@ -1,3 +1,5 @@
+// const userStore = useUserStore()
+
 const routes = [
     {
         path: '/',
