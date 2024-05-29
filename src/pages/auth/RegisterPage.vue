@@ -99,6 +99,7 @@ import { ref } from 'vue-demi'
 import { useUserStore } from 'src/stores/user'
 import validate from 'src/utils/validate'
 import { useQuasar } from 'quasar'
+import { useRouter } from 'vue-router'
 const userStore = useUserStore()
 const registerRef = ref('')
 const first_name = ref('')
@@ -106,6 +107,8 @@ const last_name = ref('')
 const phone = ref('')
 const password1 = ref('')
 const password2 = ref('')
+
+const router = useRouter()
 
 const isPwd1 = ref(true)
 const isPwd2 = ref(true)
