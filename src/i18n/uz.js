@@ -63,4 +63,11 @@ export default {
         password: "Parol eng kamida 6 belgidan iborat bo'lishi kerak",
         phone: "Telefonnni to'g'ri formatda kiriting",
     },
+    dont_have_account: "Sizda akkount mavjud bo'lmasa",
+    registering: "Ro'yhatdan o'ting",
+    have_account: "Sizda akkount mavjud bo'lsa",
+    logining: 'Login qiling',
+    user_not_found: "Bunday ma'lumotli foydalanuvchi topilmadi",
+    already_exists: 'Bunday raqamli foydalanuvchi oldin mavjud',
+    success_welcome: 'Xush kelibsiz',
 }

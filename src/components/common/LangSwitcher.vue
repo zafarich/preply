@@ -4,6 +4,7 @@ import { useMainStore } from 'stores/main'
 import BaseImg from 'components/UI/BaseImg.vue'
 import { debounce } from 'quasar'
 import { useUserStore } from 'src/stores/user'
+import { getTokenFromCache } from 'src/utils/auth'
 
 const attrs = useAttrs()
 
@@ -33,12 +34,10 @@ const menuToggle = debounce((status) => {
 
 const changeLang = async (lang) => {
     mainStore.setLanguage(lang)
-    console.log('changLang Called')
     const language =
         lang === 'uz-Latn' ? 'uz' : lang === 'uz-Cyrl' ? 'kr' : 'ru'
-    console.log('lang', lang)
-    console.log('changeLang', language)
-    await userStore.updateUser({ language })
+
+    if (getTokenFromCache()) await userStore.updateUser({ language })
 }
 </script>
 

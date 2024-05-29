@@ -7,7 +7,6 @@ import {
 } from 'vue-router'
 import routes from './routes'
 import middlewarePipeline from './middlewarePipeline'
-import { useUserStore } from 'src/stores/user'
 
 /*
  * If not building with SSR mode, you can
@@ -43,16 +42,9 @@ export default route(function (/* { ssrContext } */ { store }) {
         ),
     })
 
-    const userStore = useUserStore()
-
     router.beforeEach((to, from, next) => {
         const middlewares = []
 
-        // if (!userStore.isAuth) {
-        //     next('/auth/login')
-        // } else {
-        //     next()
-        // }
         to.matched.forEach((route) => {
             if (route.meta.middlewares) {
                 route.meta.middlewares.forEach((middleware) =>

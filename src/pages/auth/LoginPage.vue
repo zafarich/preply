@@ -46,38 +46,42 @@
                         :label="$t('Continue')"
                     />
                     <div class="text-center mt-10">
-                        Sizda akkount mavjud bo'lmasa<router-link
+                        {{ $t('dont_have_account')
+                        }}<router-link
                             class="text-primary"
                             :to="{ name: 'register' }"
                         >
-                            ro'yhatdan o'ting</router-link
+                            {{ $t('registering') }}</router-link
                         >
                     </div>
                 </q-form>
             </div>
         </div>
-
-        <!-- <div class="login-footer">
-            Avtorizatsiyadani davom ettirsangiz
-            <router-link class="text-primary" :to="{ name: 'login-oferta' }"
-                >ushbu qoidalarga</router-link
-            >
-            rozilik bildirasiz
-        </div> -->
     </div>
 </template>
 
 <script setup>
-import { ref } from 'vue-demi'
+import { ref, onMounted } from 'vue-demi'
 import { useUserStore } from 'src/stores/user'
 import validate from 'src/utils/validate'
 import { useQuasar } from 'quasar'
+import { useRoute, useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 const userStore = useUserStore()
 
+const route = useRoute()
+const router = useRouter()
+
+onMounted(() => {
+    console.log('userIsloggedIn', userStore.isAuth)
+    console.log('route', route)
+})
 const phone = ref('')
 const password = ref('')
 const formRef = ref('')
 const pwd = ref('')
+
+const { t: $tranlate } = useI18n()
 
 const $q = useQuasar()
 
@@ -99,20 +103,21 @@ const submitForm = async () => {
             password: password.value,
         })
 
+        router.push({ name: 'home' })
+
         $q.notify({
             color: 'green-4',
             textColor: 'white',
             icon: 'cloud_done',
-            message: 'You have authorized',
+            message: $tranlate('success_welcome'),
         })
     } catch (error) {
         console.log('rerro', error)
-        // if (accept.value !== true) {
         $q.notify({
             color: 'red-5',
             textColor: 'white',
             icon: 'warning',
-            message: 'User not found with this creadentials',
+            message: $tranlate('user_not_found'),
         })
     }
 }

@@ -3,6 +3,7 @@ import { defineStore } from 'pinia'
 import { LocalStorage } from 'quasar'
 import { ref, computed } from 'vue-demi'
 import { getTokenFromCache, setTokenToCache } from 'src/utils/auth'
+import { useMainStore } from './main'
 
 export const useUserStore = defineStore('user', () => {
     const token = ref(getTokenFromCache())
@@ -39,9 +40,16 @@ export const useUserStore = defineStore('user', () => {
     }
     async function login(payload) {
         const res = await api.login(payload)
+        console.log('res', res.access)
         if (res && res.access) {
             setTokenToCache(res.access)
         }
+
+        const res2 = await getMe()
+        console.log('res', res2)
+
+        useMainStore().setLanguage(res2.language)
+        updateUserData(res2)
 
         return res
     }

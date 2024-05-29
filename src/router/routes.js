@@ -1,4 +1,5 @@
 // const userStore = useUserStore()
+import auth from './middlewares/auth'
 
 const routes = [
     {
@@ -9,37 +10,43 @@ const routes = [
                 path: '',
                 name: 'home',
                 component: () => import('pages/home/IndexPage.vue'),
+                meta: { middlewares: [auth] },
             },
             {
                 path: 'block',
                 name: 'block',
                 component: () => import('pages/block/IndexPage.vue'),
+                meta: { middlewares: [auth] },
             },
             {
                 path: 'leaders',
                 name: 'leaders',
                 component: () => import('pages/leaders/IndexPage.vue'),
+                meta: { middlewares: [auth] },
             },
             {
                 path: 'tests',
                 name: 'tests',
                 component: () => import('pages/tests/IndexPage.vue'),
+                meta: { middlewares: [auth] },
             },
             {
                 path: 'variant/:id',
                 name: 'variant',
                 component: () => import('pages/variant/IndexPage.vue'),
+                meta: { middlewares: [auth] },
             },
             {
                 path: 'profile',
                 name: 'profile',
                 component: () => import('pages/profile/IndexPage.vue'),
+                meta: { middlewares: [auth] },
             },
         ],
     },
     {
         path: '/auth',
-        component: () => import('layouts/AuthLayout.vue'),
+        component: () => import('layouts/MainLayout.vue'),
         children: [
             {
                 path: 'login',
@@ -66,6 +73,7 @@ const routes = [
                 path: 'solving',
                 name: 'tests.solving',
                 component: () => import('pages/tests/TestSolvePage.vue'),
+                meta: { middlewares: [auth] },
             },
         ],
     },
@@ -77,12 +85,14 @@ const routes = [
                 path: 'test-result/:id',
                 name: 'test.result',
                 component: () => import('pages/tests/TestResultPage.vue'),
+                meta: { middlewares: [auth] },
             },
             {
                 path: 'test-result-questions',
                 name: 'test.result.questions',
                 component: () =>
                     import('pages/tests/TestResultQuestionsPage.vue'),
+                meta: { middlewares: [auth] },
             },
         ],
     },

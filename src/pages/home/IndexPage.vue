@@ -26,8 +26,6 @@ const route = useRoute()
 const router = useRouter()
 
 onMounted(async () => {
-    removeTokenFromCache()
-
     // if (!route.query.access_token) {
     //     await router.push({
     //         name: 'home',
@@ -37,19 +35,18 @@ onMounted(async () => {
     //         },
     //     })
     // }
-    if (route.query.access_token) {
-        let token = route.query.access_token
+    // if (route.query.access_token) {
+    //     let token = route.query.access_token
 
-        setTokenToCache(token)
-        if (token) {
-            let decoded = VueJwtDecode.decode(token)
-            console.log('decoded.user', decoded.user_data)
-            userStore.updateUserData({ ...decoded.user_data })
-            mainStore.setLanguage(decoded.user_data.language)
-        }
-
-        fetchData()
-    }
+    //     setTokenToCache(token)
+    //     if (token) {
+    //         let decoded = VueJwtDecode.decode(token)
+    //         console.log('decoded.user', decoded.user_data)
+    //         userStore.updateUserData({ ...decoded.user_data })
+    //         mainStore.setLanguage(decoded.user_data.language)
+    //     }
+    // }
+    fetchData()
 })
 
 async function fetchData() {

@@ -80,24 +80,17 @@
                         type="submit"
                     />
                     <div class="text-center mt-10">
-                        Sizda akkount mavjud bo'lsa<router-link
+                        {{ $t('have_account')
+                        }}<router-link
                             class="text-primary"
                             :to="{ name: 'login' }"
                         >
-                            login qiling</router-link
+                            {{ $t('logining') }}</router-link
                         >
                     </div>
                 </q-form>
             </div>
         </div>
-
-        <!-- <div class="login-footer">
-            Avtorizatsiyadani davom ettirsangiz
-            <router-link class="text-primary" :to="{ name: 'login-oferta' }"
-                >ushbu qoidalarga</router-link
-            >
-            rozilik bildirasiz
-        </div> -->
     </div>
 </template>
 
@@ -148,13 +141,15 @@ const submitForm = async () => {
                 phone: phone.value.replace(/\s/g, ''),
                 password: password1.value,
             })
+
+            router.push({ name: 'home' })
         }
 
         $q.notify({
             color: 'green-4',
             textColor: 'white',
             icon: 'cloud_done',
-            message: 'You have authorized',
+            message: $t('success_welcome'),
         })
     } catch (error) {
         console.log('rerro', error)
@@ -163,7 +158,7 @@ const submitForm = async () => {
             color: 'red-5',
             textColor: 'white',
             icon: 'warning',
-            message: 'User with this phone already exists',
+            message: $t('already_exists'),
         })
     }
 }
