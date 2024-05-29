@@ -46,8 +46,8 @@
                         :label="$t('Continue')"
                     />
                     <div class="text-center mt-10">
-                        {{ $t('dont_have_account')
-                        }}<router-link
+                        {{ $t('dont_have_account') }}
+                        <router-link
                             class="text-primary"
                             :to="{ name: 'register' }"
                         >

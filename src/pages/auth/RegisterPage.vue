@@ -98,9 +98,7 @@
 import { ref } from 'vue-demi'
 import { useUserStore } from 'src/stores/user'
 import validate from 'src/utils/validate'
-import BaseInput from 'src/components/UI/BaseInput.vue'
 import { useQuasar } from 'quasar'
-import { setTokenToCache } from 'src/utils/auth'
 const userStore = useUserStore()
 const registerRef = ref('')
 const first_name = ref('')
@@ -137,7 +135,7 @@ const submitForm = async () => {
         })
 
         if (res) {
-            const loginRes = await userStore.login({
+            await userStore.login({
                 phone: phone.value.replace(/\s/g, ''),
                 password: password1.value,
             })
