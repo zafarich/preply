@@ -6,10 +6,9 @@
   "author": "Zafarbek Qalandarov <webzafar6699@gmail.com>",
   "private": true,
   "scripts": {
-    "dev": "yarn i18n:build & quasar dev",
-    "build": "yarn i18n:build & quasar build",
-    "format": "prettier --write \"**/*.{js,vue,scss,html,md,json}\" --ignore-path .gitignore",
-    "i18n:build": "google-spreadsheet-vue-i18n --spreadsheet=1eytNSz1uckBr64QVI9fq7AWIsRrph-mjcyUg1p4K6tE --sheet=Client --format=js --output=src/i18n/i18nData.js"
+    "dev": "quasar dev",
+    "build": "quasar build",
+    "format": "prettier --write \"**/*.{js,vue,scss,html,md,json}\" --ignore-path .gitignore"
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",
