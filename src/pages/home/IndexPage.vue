@@ -26,26 +26,6 @@ const route = useRoute()
 const router = useRouter()
 
 onMounted(async () => {
-    // if (!route.query.access_token) {
-    //     await router.push({
-    //         name: 'home',
-    //         query: {
-    //             access_token:
-    //                 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE3MDc2NTEyLCJpYXQiOjE3MTY5MDM3MTIsImp0aSI6ImZiN2QxZDJlYzZlYzRjYTlhZDRmNDA4MjAzODRhOGQ1IiwidXNlcl9pZCI6MSwidXNlcl9kYXRhIjp7ImlkIjoxLCJmaXJzdF9uYW1lIjoiS2hhZiIsImxhc3RfbmFtZSI6Ik11c2FldjMzMzMiLCJ0ZWxlZ3JhbV91c2VybmFtZSI6bnVsbCwiZnVsbF9uYW1lIjoiSGFzYW4gTXVzYWV2IiwibGFuZ3VhZ2UiOiJrciIsInBob25lIjoiMSIsImlzX3ByZW1pdW0iOmZhbHNlLCJpc19mcmVlX2F0dGVtcHRzX2xlZnQiOnRydWUsImNhcmRzIjpbeyJpZCI6MTcsImNhcmRfbnVtYmVyIjoiODYwMDQ5KioqKioqNjQ3OCIsImV4cGlyZSI6IjAzLzk5IiwidmVyaWZ5Ijp0cnVlLCJyZWN1cnJlbnQiOnRydWUsInVzZXIiOjEsImNyZWF0ZWQiOiIyMDI0LTA1LTE1VDIzOjQxOjEyLjI1MDQwOSswNTowMCJ9LHsiaWQiOjI2LCJjYXJkX251bWJlciI6Ijg2MDAwNioqKioqKjYzMTEiLCJleHBpcmUiOiIwMy85OSIsInZlcmlmeSI6ZmFsc2UsInJlY3VycmVudCI6ZmFsc2UsInVzZXIiOjEsImNyZWF0ZWQiOiIyMDI0LTA1LTE3VDE0OjU2OjIwLjg5ODk1MyswNTowMCJ9XSwicmVnaW9uIjoiUWFyYXFhbHBhcXN0YW4ifX0.kdwgtlzJ4XlB3sHtLQ9qUJ6-jsS9_UcuVhzigtmGnh8',
-    //         },
-    //     })
-    // }
-    // if (route.query.access_token) {
-    //     let token = route.query.access_token
-
-    //     setTokenToCache(token)
-    //     if (token) {
-    //         let decoded = VueJwtDecode.decode(token)
-    //         console.log('decoded.user', decoded.user_data)
-    //         userStore.updateUserData({ ...decoded.user_data })
-    //         mainStore.setLanguage(decoded.user_data.language)
-    //     }
-    // }
     fetchData()
 })
 

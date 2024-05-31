@@ -1,12 +1,12 @@
 import { boot } from 'quasar/wrappers'
 import axios from 'axios'
-import { getTokenFromCache } from 'src/utils/auth'
+import { getTokenFromCache, removeTokenFromCache } from 'src/utils/auth'
 import { getServerError } from 'src/utils/helpers'
 import { useUserStore } from 'src/stores/user'
 
 const api = axios.create({ baseURL: process.env.BASE_URL })
 
-export default boot(({ app, route }) => {
+export default boot(({ app, route, router }) => {
     const userStore = useUserStore()
 
     api.interceptors.request.use(
@@ -43,6 +43,8 @@ export default boot(({ app, route }) => {
             }
 
             if (status === 401) {
+                removeTokenFromCache()
+                router.push({ name: 'login' })
                 return { data: { result: null, error: true } }
             } else if (status?.toString()?.slice(0, 1) === 5) {
                 message = 'Internal Server Error'

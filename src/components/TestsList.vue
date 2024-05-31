@@ -30,11 +30,7 @@ const props = defineProps({
             class="tests-item"
         >
             <div class="flex justify-center">
-                <BaseImg
-                    width="70px"
-                    height="70px"
-                    :src="`/images/tests/${subject.image}`"
-                />
+                <BaseImg width="70px" height="70px" :src="subject.image" />
                 <div>
                     {{ subject.title }}
                 </div>
