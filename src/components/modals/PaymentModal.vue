@@ -13,8 +13,8 @@ const modalStore = useModalStore()
 const { paymentModal } = storeToRefs(modalStore)
 
 const data = ref({
-    card_number: '8600 0691 9540 6311',
-    expire: '03/99',
+    card_number: '',
+    expire: '',
     recurrent: false,
 })
 let sms_code = ref('666666')
@@ -33,6 +33,7 @@ const userStore = useUserStore()
 
 const addCard = async () => {
     const cardData = await billingStore.addBillingCard(data.value)
+
     if (cardData.id) {
         card_id.value = cardData.id
         console.log('cardData', cardData)
@@ -75,6 +76,9 @@ const close = () => {
         id="payment-modal"
     >
         <q-form @submit="submitButton">
+            <div>card_number: '8600 0691 9540 6311',</div>
+
+            <div>expire: '03/99',</div>
             <div v-if="currentStep === 1">
                 <div class="flex justify-center items-center mb-4">
                     <span class="border rounded-lg h-[47px] mr-2">

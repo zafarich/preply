@@ -64,7 +64,7 @@ const close = () => {
                 </div>
 
                 <div class="font-bold text-md mb-1">
-                    {{ $t('select_card)') }}:
+                    {{ $t('select_card') }}:
                 </div>
                 <q-card
                     v-for="(card, index) in userStore.userCards"

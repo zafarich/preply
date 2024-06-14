@@ -5,18 +5,18 @@ const props = defineProps({
     subjects: {
         type: Array,
         default: () => [
-            {
-                title: 'IELTS',
-                image: 'ielts.png',
-            },
-            {
-                title: 'TOEFL',
-                image: 'toefl.png',
-            },
-            {
-                title: 'CEFR',
-                image: 'cefr.png',
-            },
+            // {
+            //     title: 'IELTS',
+            //     image: 'ielts.png',
+            // },
+            // {
+            //     title: 'TOEFL',
+            //     image: 'toefl.png',
+            // },
+            // {
+            //     title: 'CEFR',
+            //     image: 'cefr.png',
+            // },
         ],
     },
 })
@@ -29,11 +29,11 @@ const props = defineProps({
             :to="{ name: 'variant', params: { id: subject.id } }"
             class="tests-item"
         >
-            <div class="flex justify-center">
+            <div>
                 <BaseImg width="70px" height="70px" :src="subject.image" />
-                <div>
-                    {{ subject.title }}
-                </div>
+            </div>
+            <div>
+                {{ subject.title }}
             </div>
         </router-link>
     </div>
