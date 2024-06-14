@@ -19,7 +19,7 @@ export default {
     select_rate: 'Тарифни танланг',
     select_card: 'Картани танланг',
     finish: 'Якунлаш',
-    will_you_complete_test: 'Тестни якунлайсизми  ?',
+    will_you_complete_test: 'Тестни якунлайсизми ?',
     unmarked_questions_are_considered_wrong:
         'Жавоб белгиланмаган саволлар хато деб ҳисобланади',
     shut_down: 'Ёпиш',

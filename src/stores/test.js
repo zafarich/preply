@@ -1,7 +1,7 @@
 import * as api from 'src/api/test'
 import { defineStore } from 'pinia'
 import { LocalStorage } from 'quasar'
-import { ref } from 'vue-demi'
+import { ref, computed } from 'vue-demi'
 import { TEST_TYPES } from 'src/utils/constants'
 
 export const useTestStore = defineStore('test', () => {
@@ -34,6 +34,13 @@ export const useTestStore = defineStore('test', () => {
         LocalStorage.getItem('test_results') || { ...defualt_test_result },
     )
 
+    const getOverallBall = computed(() => {
+        const sum = test_results.value.results.reduce(
+            (partialSum, a) => partialSum + a.score,
+            0,
+        )
+        return sum
+    })
     async function getVariants(params) {
         const res = await api.getVariants(params)
         return res?.results
@@ -199,6 +206,7 @@ export const useTestStore = defineStore('test', () => {
         test_results,
         startVariantTest,
         setSelectedAnswer,
+        getOverallBall,
         questions,
         startBlockTest,
         startBySubjectTest,

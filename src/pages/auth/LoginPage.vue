@@ -4,7 +4,9 @@
             <!-- <BackPanel :title="$t('personal_cabinet')" /> -->
 
             <div class="app-container">
-                <div class="text-lg font-medium text-center py-5 tracking-wide">
+                <div
+                    class="text-lg font-medium text-center py-5 tracking-widenfont-bold"
+                >
                     <!-- {{ $t('Welcome') }} -->
                     {{ $t('login') }}
                 </div>
@@ -14,12 +16,12 @@
                     <q-input
                         v-model="phone"
                         type="tel"
-                        mask="## ### ## ##"
+                        mask="+### ## ### ## ##"
                         :label="$t('phone')"
                         :rules="[validate?.required, validate?.phone_number]"
                         :dense="false"
                     >
-                        <template #prepend> +998 </template>
+                        <!-- <template #prepend> +998 </template> -->
                     </q-input>
                     <q-input
                         v-model="password"
@@ -76,7 +78,7 @@ onMounted(() => {
     console.log('userIsloggedIn', userStore.isAuth)
     console.log('route', route)
 })
-const phone = ref('')
+const phone = ref('+998 ')
 const password = ref('')
 const formRef = ref('')
 const pwd = ref('')
@@ -91,6 +93,10 @@ function resetValidation(timeout = 0) {
     resetTimeout = setTimeout(() => {
         formRef.value.resetValidation()
     }, timeout)
+}
+
+function phoneFocus() {
+    if (!phone.length) phone.value = '+998'
 }
 
 const submitForm = async () => {
@@ -109,6 +115,7 @@ const submitForm = async () => {
             color: 'green-4',
             textColor: 'white',
             icon: 'cloud_done',
+            position: 'top',
             message: $tranlate('success_welcome'),
         })
     } catch (error) {
@@ -116,6 +123,7 @@ const submitForm = async () => {
         $q.notify({
             color: 'red-5',
             textColor: 'white',
+            position: 'top',
             icon: 'warning',
             message: $tranlate('user_not_found'),
         })

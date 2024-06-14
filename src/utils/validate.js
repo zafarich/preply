@@ -13,7 +13,7 @@ export const regExp = {
 
 export default {
     required: (v) => !!trimBetween(v) || t('rules.required'),
-    phone_number: (v) => trimBetween(v)?.length === 9 || t('rules.phone'),
+    phone_number: (v) => trimBetween(v)?.length === 13 || t('rules.phone'),
     number: (v) =>
         !v ||
         regExp.number.test(Math.abs(trimBetween(v))) ||

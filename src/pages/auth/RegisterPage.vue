@@ -2,8 +2,10 @@
     <div class="register-page">
         <div>
             <div class="app-container">
-                <div class="text-lg font-medium text-center py-5 tracking-wide">
-                    Register
+                <div
+                    class="text-lg font-medium text-center py-5 tracking-wide font-bold"
+                >
+                    {{ $t('register') }}
                 </div>
 
                 <q-form ref="registerRef" @submit="submitForm">
@@ -26,12 +28,13 @@
                         v-model="phone"
                         type="tel"
                         class="phone"
-                        mask="## ### ## ##"
+                        mask="+### ## ### ## ##"
                         :label="$t('phone')"
                         :rules="[validate?.required, validate?.phone_number]"
                         :dense="false"
                     >
-                        <template #prepend> +998 </template>
+                        <!-- @focus="phoneFocus" -->
+                        <!-- <template #prepend> +998 </template> -->
                     </q-input>
 
                     <!-- @keyup.enter="submitForm" -->
@@ -95,16 +98,18 @@
 </template>
 
 <script setup>
-import { ref } from 'vue-demi'
+import { ref, nextTick } from 'vue'
 import { useUserStore } from 'src/stores/user'
 import validate from 'src/utils/validate'
 import { useQuasar } from 'quasar'
 import { useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
+
 const userStore = useUserStore()
 const registerRef = ref('')
 const first_name = ref('')
 const last_name = ref('')
-const phone = ref('')
+const phone = ref('+998 ')
 const password1 = ref('')
 const password2 = ref('')
 
@@ -114,6 +119,7 @@ const isPwd1 = ref(true)
 const isPwd2 = ref(true)
 
 const $q = useQuasar()
+const { t: $tranlate } = useI18n()
 
 let resetTimeout = 0
 function resetValidation(timeout = 0) {
@@ -149,8 +155,9 @@ const submitForm = async () => {
         $q.notify({
             color: 'green-4',
             textColor: 'white',
-            icon: 'cloud_done',
-            message: $t('success_welcome'),
+            position: 'top'
+,            icon: 'cloud_done',
+            message: $tranlate('success_welcome'),
         })
     } catch (error) {
         console.log('rerro', error)
@@ -159,7 +166,8 @@ const submitForm = async () => {
             color: 'red-5',
             textColor: 'white',
             icon: 'warning',
-            message: $t('already_exists'),
+            position: 'top',
+            message: $tranlate('already_exists'),
         })
     }
 }

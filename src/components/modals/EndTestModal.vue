@@ -36,7 +36,7 @@ const close = () => {
                     </div>
 
                     <div class="font-semibold text-lg mb-2 text-center">
-                        {{ $t('will_you_complete_tests') }}
+                        {{ $t('will_you_complete_test') }}
                     </div>
                     <div class="font-medium mb-2 text-center">
                         {{ $t('unmarked_questions_are_considered_wrong') }}

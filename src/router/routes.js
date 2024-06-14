@@ -81,7 +81,7 @@ const routes = [
         path: '/lb',
         component: () => import('layouts/BottomMenuLayout.vue'),
         children: [
-            {
+        {
                 path: 'test-result/:id',
                 name: 'test.result',
                 component: () => import('pages/tests/TestResultPage.vue'),

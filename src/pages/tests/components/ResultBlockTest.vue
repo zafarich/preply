@@ -18,22 +18,20 @@ const returnListItemColor = (item, answer, cIndex) => {
 </script>
 
 <template>
-    <div
-        class="subjects-top-slider"
-        v-if="testStore.test_results?.block_test_subjects"
-    >
-        <swiper :slides-per-view="'auto'" :space-between="10">
-            <swiper-slide
-                v-for="(subject, index) in testStore.test_results
-                    ?.block_test_subjects"
-                :class="{ _active: isActiveTopSlider === index }"
-                :key="subject.id"
-                class="subject-slider-item mr-1"
-            >
-                {{ subject.title }}
-            </swiper-slide>
-        </swiper>
+    <div class="subjects-top-slider" v-if="testStore.test_results?.results">
+        <!-- <swiper :slides-per-view="'auto'" :space-between="10"> -->
+        <div
+            v-for="(subject, index) in testStore.test_results?.results"
+            :class="{ _active: isActiveTopSlider === index }"
+            :key="subject.id"
+            class="subject-slider-item mr-1 mb-2"
+        >
+            {{ subject.subject.title }} : {{ subject.score }} ball
+        </div>
+        <!-- </swiper> -->
+        <div>Jami: {{ testStore.getOverallBall }} ball</div>
     </div>
+
     <div
         v-for="(result, aIndex) in testStore.test_results.results"
         :key="aIndex"
