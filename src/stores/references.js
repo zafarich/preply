@@ -13,7 +13,6 @@ export const useReferencesStore = defineStore('references', () => {
 
     async function getRegions() {
         const res = await api.loadRegions()
-        console.log('res res', res)
         regions.value = res.results
     }
 
@@ -53,7 +52,6 @@ export const useReferencesStore = defineStore('references', () => {
 
     async function getSelection(params) {
         const res = await api.getSelection(params)
-        // console.log('res', res)
         selections.value = [...res.results]
         return res
     }

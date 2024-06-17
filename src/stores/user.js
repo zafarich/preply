@@ -15,8 +15,11 @@ export const useUserStore = defineStore('user', () => {
         results: [],
     })
 
+    const userVerifyCards = computed(() => {
+        return userCards.value.filter((item) => item.verify === true)
+    })
+
     function setUserData(data) {
-        console.log('setUserData')
         userData.value = data
         LocalStorage.set('userData', data)
     }
@@ -27,7 +30,6 @@ export const useUserStore = defineStore('user', () => {
     }
 
     function updateUserData(payload) {
-        console.log('updateUserData')
         const newUserData = { ...userData.value, ...payload }
         userData.value = { ...newUserData }
         LocalStorage.set('userData', userData.value)
@@ -40,13 +42,11 @@ export const useUserStore = defineStore('user', () => {
     }
     async function login(payload) {
         const res = await api.login(payload)
-        console.log('res', res.access)
         if (res && res.access) {
             setTokenToCache(res.access)
         }
 
         const res2 = await getMe()
-        console.log('res', res2)
 
         useMainStore().setLanguage(res2.language)
         updateUserData(res2)
@@ -69,7 +69,6 @@ export const useUserStore = defineStore('user', () => {
     async function getMe() {
         const res = await api.getMe()
         userCards.value = [...res.cards]
-        // userData.value = [...res]
         return res
     }
 
@@ -86,5 +85,6 @@ export const useUserStore = defineStore('user', () => {
         leaders,
         isAuth,
         register,
+        userVerifyCards,
     }
 })

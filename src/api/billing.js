@@ -25,8 +25,8 @@ export async function deleteCard(id) {
     await api.delete(url + `card/${id}/`)
 }
 
-export async function getSubscriptions() {
-    const { data } = await api.get(url + `subscriptions/`)
+export async function getSubscriptions(params) {
+    const { data } = await api.get(url + `subscriptions/`, params)
     return data
 }
 

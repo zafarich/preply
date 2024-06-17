@@ -73,11 +73,6 @@ const userStore = useUserStore()
 
 const route = useRoute()
 const router = useRouter()
-
-onMounted(() => {
-    console.log('userIsloggedIn', userStore.isAuth)
-    console.log('route', route)
-})
 const phone = ref('+998 ')
 const password = ref('')
 const formRef = ref('')

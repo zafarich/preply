@@ -25,21 +25,18 @@ export const useBillingStore = defineStore('billing', () => {
         tariffs.value = res.results
     }
 
-    async function getSubscriptions() {
-        const res = await api.getSubscriptions()
+    async function getSubscriptions(params) {
+        const res = await api.getSubscriptions(params)
         subscriptions.value = res.results
-        console.log('res', res)
     }
 
     async function createSubscription(payload) {
         const res = await api.createSubscription(payload)
-        console.log('subsres', res)
         return res
     }
 
     async function paySubscription(id) {
         const res = await api.paySubscription(id)
-        console.log('res', res)
         return res
     }
 

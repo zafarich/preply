@@ -11,13 +11,13 @@
         </div>
 
         <div
-            v-if="userStore.userCards.length > 0"
+            v-if="userStore.userVerifyCards.length > 0"
             class="grid 768:grid-cols-3 640:grid-cols-2 gap-4"
         >
             <q-card
                 flat
                 bordered
-                v-for="(card, index) in userStore.userCards"
+                v-for="(card, index) in userStore.userVerifyCards"
                 :key="index"
                 class="mb-4 p-4"
             >

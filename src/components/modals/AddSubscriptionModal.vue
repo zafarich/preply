@@ -7,6 +7,7 @@ import { useBillingStore } from 'src/stores/billing'
 import { onMounted } from 'vue'
 import { ref } from 'vue'
 import { useUserStore } from 'src/stores/user'
+import { useQuasar } from 'quasar'
 
 const modalStore = useModalStore()
 const { subscriptionModal } = storeToRefs(modalStore)
@@ -14,19 +15,32 @@ const { subscriptionModal } = storeToRefs(modalStore)
 const billingStore = useBillingStore()
 const userStore = useUserStore()
 
+const $q = useQuasar()
+
 const tariff = ref('')
 const seletedCard = ref('')
 const loading = ref(false)
 
 const addSubscribe = async () => {
-    loading.value = true
-    const res = await billingStore.createSubscription({
-        tariff: tariff.value,
-        card: seletedCard.value,
-    })
-    await billingStore.paySubscription(res.id)
-    await billingStore.getSubscriptions()
-    subscriptionModal.value = false
+    try {
+        loading.value = true
+        const res = await billingStore.createSubscription({
+            tariff: tariff.value,
+            card: seletedCard.value,
+        })
+        await billingStore.paySubscription(res.id)
+        await billingStore.getSubscriptions({ page_size: 1000 })
+        subscriptionModal.value = false
+    } catch (error) {
+        $q.notify({
+            color: 'red-5',
+            textColor: 'white',
+            position: 'top',
+            icon: 'warning',
+            message: error.response.data.error.message,
+        })
+    }
+
     loading.value = false
 }
 
@@ -67,7 +81,7 @@ const close = () => {
                     {{ $t('select_card') }}:
                 </div>
                 <q-card
-                    v-for="(card, index) in userStore.userCards"
+                    v-for="(card, index) in userStore.userVerifyCards"
                     :key="index"
                     class="mb-4 p !w-auto !rounded-lg cursor-pointer relative !py-2 !pl-6"
                     @click="() => (seletedCard = card.id)"

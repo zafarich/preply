@@ -26,10 +26,6 @@ const userData = ref({
     last_name: '',
 })
 
-onMounted(() => {
-    console.log('modal mounted')
-})
-
 const onChange = () => {
     emit('onChange', { ...userData.value })
     userEditModal.value = false

@@ -6,6 +6,7 @@
             </div>
             <!-- <div class="font-semibold text-base money-text">20 000 so'm</div> -->
             <q-btn
+                v-if="userStore.userVerifyCards.length > 0"
                 no-caps
                 color="primary"
                 @click="() => (subscriptionModal = true)"

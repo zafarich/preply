@@ -3,6 +3,7 @@ import axios from 'axios'
 import { getTokenFromCache, removeTokenFromCache } from 'src/utils/auth'
 import { getServerError } from 'src/utils/helpers'
 import { useUserStore } from 'src/stores/user'
+import { Notify } from 'quasar'
 
 const api = axios.create({ baseURL: process.env.BASE_URL })
 
@@ -36,6 +37,7 @@ export default boot(({ app, route, router }) => {
             return response
         },
         async (error) => {
+            console.log('errorrr', error.response)
             let message = getServerError(error, 'errorMessage')
             const status = error?.response?.status
             if ('pass' in error?.config) {
@@ -58,17 +60,17 @@ export default boot(({ app, route, router }) => {
                 message =
                     message ?? 'Error 500. Backendda nomalum xatolik yuz berdi!'
             }
-
             // if (message) {
-            //   Notify.create({
-            //     progress: true,
-            //     position: "top",
-            //     message,
-            //     type: "negative",
-            //     timeout: 4000,
-            //   });
+            //     Notify.create({
+            //         progress: true,
+            //         position: 'top',
+            //         message,
+            //         type: 'info',
+            //         color: 'negative',
+            //         timeout: 4000,
+            //     })
             // }
-            return { data: { result: null, error: true } }
+            return Promise.reject(error)
         },
     )
 })

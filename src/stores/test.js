@@ -168,8 +168,6 @@ export const useTestStore = defineStore('test', () => {
 
         LocalStorage.set('questions', questions.value)
 
-        console.log('questions', questions.value)
-        console.log('test_response', test_response.value)
 
         return res
     }

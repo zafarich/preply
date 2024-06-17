@@ -8,6 +8,7 @@ import { useBillingStore } from 'src/stores/billing'
 import { ref } from 'vue'
 import BaseInput from 'src/components/UI/BaseInput.vue'
 import { useUserStore } from 'src/stores/user'
+import { useQuasar } from 'quasar'
 
 const modalStore = useModalStore()
 const { paymentModal } = storeToRefs(modalStore)
@@ -17,6 +18,9 @@ const data = ref({
     expire: '',
     recurrent: false,
 })
+
+const $q = useQuasar()
+
 let sms_code = ref('666666')
 
 const card_id = ref('')
@@ -36,7 +40,6 @@ const addCard = async () => {
 
     if (cardData.id) {
         card_id.value = cardData.id
-        console.log('cardData', cardData)
         verifyData.value = await billingStore.getBillingCardVerifyCode(
             cardData.id,
         )
@@ -54,12 +57,23 @@ const verifyCard = async () => {
 
 const submitButton = async () => {
     loading.value = true
-    if (currentStep.value == 1) {
-        await addCard()
-    } else {
-        await verifyCard()
-        userStore.getMe()
+    try {
+        if (currentStep.value == 1) {
+            await addCard()
+        } else {
+            await verifyCard()
+            userStore.getMe()
+        }
+    } catch (error) {
+        $q.notify({
+            color: 'red-5',
+            textColor: 'white',
+            position: 'top',
+            icon: 'warning',
+            message: error.response.data.error.message,
+        })
     }
+
     loading.value = false
 }
 

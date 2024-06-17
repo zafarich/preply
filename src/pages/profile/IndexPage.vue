@@ -23,7 +23,7 @@ onMounted(async () => {
     await Promise.allSettled([
         billingStore.getTariffs(),
         userStore.getMe(),
-        billingStore.getSubscriptions(),
+        billingStore.getSubscriptions({ page: 1, page_size: 1000 }),
     ])
 })
 
