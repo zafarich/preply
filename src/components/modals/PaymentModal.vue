@@ -21,7 +21,7 @@ const data = ref({
 
 const $q = useQuasar()
 
-let sms_code = ref('666666')
+let sms_code = ref('')
 
 const card_id = ref('')
 const verifyData = ref({
@@ -90,9 +90,6 @@ const close = () => {
         id="payment-modal"
     >
         <q-form @submit="submitButton">
-            <div>card_number: '8600 0691 9540 6311',</div>
-
-            <div>expire: '03/99',</div>
             <div v-if="currentStep === 1">
                 <div class="flex justify-center items-center mb-4">
                     <span class="border rounded-lg h-[47px] mr-2">
