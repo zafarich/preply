@@ -67,16 +67,18 @@ export const useMainStore = defineStore('main', () => {
         // const langQuasar = `quasar/lang/${lang}`;
 
         // const qLang = await import("quasar/lang/" + lang);
-
+        console.log('lang1', lang)
         try {
             langList[`../../node_modules/quasar/lang/${lang}.mjs`]().then(
                 (lang) => {
+                    console.log('laninside', lang.default)
                     Quasar.lang.set(lang.default)
                 },
             )
         } catch (err) {
             // Requested Quasar Language Pack does not exist,
             // let's not break the app, so catching error
+            console.log('langerr', err)
         }
         // Quasar.lang.set(qLang.default);
         i18n.global.locale.value = lang

@@ -70,4 +70,7 @@ export default {
     user_not_found: 'Бундай маълумотли фойдаланувчи топилмади',
     already_exists: 'Бундай рақамли фойдаланувчи олдин мавжуд',
     success_welcome: 'Хуш келибсиз',
+    daily: 'Кунлик',
+    weekly: 'Ҳафталик',
+    monthly: 'Ойлик',
 }

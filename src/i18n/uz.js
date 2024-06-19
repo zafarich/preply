@@ -70,4 +70,7 @@ export default {
     user_not_found: "Bunday ma'lumotli foydalanuvchi topilmadi",
     already_exists: 'Bunday raqamli foydalanuvchi oldin mavjud',
     success_welcome: 'Xush kelibsiz',
+    daily: "Kunlik", 
+    weekly: 'Haftalik',
+    monthly: "Oylik"
 }

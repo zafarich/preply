@@ -39,12 +39,18 @@ const fetchLeaders = async () => {
         <div class="text-bold mt-6 mb-6 text-xl">{{ $t('leaders') }}</div>
 
         <div class="flex justify-between mb-4">
-            <div><q-btn color="primary" no-caps label="Kunlik" /></div>
-            <div>
-                <q-btn outline color="primary" no-caps label="Haftalik" />
+            <div class="mb-3">
+                <q-btn color="primary" no-caps :label="$t('daily')" />
             </div>
-            <div><q-btn outline color="primary" no-caps label="Oylik" /></div>
-            <div><q-btn outline color="primary" no-caps label="Barcha" /></div>
+            <div class="mb-3">
+                <q-btn outline color="primary" no-caps :label="$t('weekly')" />
+            </div>
+            <div class="mb-3">
+                <q-btn outline color="primary" no-caps :label="$t('monthly')" />
+            </div>
+            <div class="mb-3">
+                <q-btn outline color="primary" no-caps :label="$t('all')" />
+            </div>
         </div>
 
         <div class="grid grid-cols-2 gap-4 mb-4">
