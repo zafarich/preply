@@ -5,6 +5,7 @@ import BaseImg from 'components/UI/BaseImg.vue'
 import { debounce } from 'quasar'
 import { useUserStore } from 'src/stores/user'
 import { getTokenFromCache } from 'src/utils/auth'
+import { useRouter } from 'vue-router'
 
 const attrs = useAttrs()
 
@@ -22,6 +23,7 @@ const props = defineProps({
 const mainStore = useMainStore()
 const userStore = useUserStore()
 
+const router = useRouter()
 const userMenu = ref(false)
 
 const menuToggle = debounce((status) => {
@@ -39,6 +41,8 @@ const changeLang = async (lang) => {
         lang === 'uz-Latn' ? 'uz' : lang === 'uz-Cyrl' ? 'kr' : 'ru'
 
     if (getTokenFromCache()) await userStore.updateUser({ language })
+
+    router.go()
 }
 </script>
 

@@ -75,6 +75,7 @@ const selectSubject = (id) => {
     .title-science {
         font-size: 16px;
         font-weight: 500;
+        text-align: center;
         // margin-left: 12px;
     }
 }

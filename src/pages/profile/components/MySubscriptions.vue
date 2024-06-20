@@ -2,7 +2,7 @@
     <div class="info-card">
         <div class="flex justify-between items-center mb-4">
             <div class="font-semibold text-base items-center">
-                Mening Obunalarim
+                {{ $t('my_subscriptions') }}
             </div>
             <!-- <div class="font-semibold text-base money-text">20 000 so'm</div> -->
             <q-btn
@@ -10,7 +10,7 @@
                 no-caps
                 color="primary"
                 @click="() => (subscriptionModal = true)"
-                >Sotib olish</q-btn
+                >{{ $t('purchase') }}</q-btn
             >
         </div>
 
@@ -38,7 +38,7 @@
         </div>
 
         <h1 v-else class="text-center font-semibold text-base text-gray-400">
-            Sizda hozircha hech qanday obuna mavjud emas
+            {{ $t('you_have_not_subscription') }}
         </h1>
     </div>
 </template>
@@ -47,7 +47,6 @@
 import { useModalStore } from 'src/stores/modal'
 import { storeToRefs } from 'pinia'
 import { useBillingStore } from 'src/stores/billing'
-import { onMounted } from 'vue'
 import { useUserStore } from 'src/stores/user'
 import { formatDate } from 'src/utils/helpers'
 

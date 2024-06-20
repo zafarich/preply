@@ -29,11 +29,13 @@ const modalStore = useModalStore()
 const { notifyTestModal, endTestModal } = storeToRefs(modalStore)
 
 async function confirmBack() {
-    if (testStore.test_type == TEST_TYPES.BLOCK) {
+    const test_type = route.query.test_type
+
+    if (test_type == TEST_TYPES.BLOCK) {
         await testStore.endBlockTest()
-    } else if (testStore.test_type == TEST_TYPES.VARIANT) {
+    } else if (test_type == TEST_TYPES.VARIANT) {
         await testStore.endVariantTest()
-    } else if (testStore.test_type == TEST_TYPES.BY_SUBJECTS) {
+    } else if (test_type == TEST_TYPES.BY_SUBJECTS) {
         await testStore.endBySubjectTest()
     }
 
@@ -135,12 +137,16 @@ function selectAnswer(index, question_index) {
 async function confirmEndTest() {
     $q.loading.show()
 
+    const test_type = route.query.test_type
+
+    console.log('test_type', test_type)
+
     let res
-    if (testStore.test_type == TEST_TYPES.BLOCK) {
+    if (test_type == TEST_TYPES.BLOCK) {
         await testStore.endBlockTest()
-    } else if (testStore.test_type == TEST_TYPES.VARIANT) {
+    } else if (test_type == TEST_TYPES.VARIANT) {
         await testStore.endVariantTest()
-    } else if (testStore.test_type == TEST_TYPES.BY_SUBJECTS) {
+    } else if (test_type == TEST_TYPES.BY_SUBJECTS) {
         await testStore.endBySubjectTest()
     }
 

@@ -110,6 +110,7 @@ export const useTestStore = defineStore('test', () => {
         }
 
         const res = await api.endVariantTest(data)
+        console.log('ress', res)
         return res
     }
 
@@ -167,7 +168,6 @@ export const useTestStore = defineStore('test', () => {
         LocalStorage.set('test_type', TEST_TYPES.BY_SUBJECTS)
 
         LocalStorage.set('questions', questions.value)
-
 
         return res
     }

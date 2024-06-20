@@ -12,6 +12,7 @@ import { useMainStore } from 'src/stores/main'
 
 import { useReferencesStore } from 'src/stores/references'
 import { useRoute, useRouter } from 'vue-router'
+import { useQuasar } from 'quasar'
 
 const { t } = useI18n()
 const userStore = useUserStore()
@@ -22,14 +23,17 @@ const testTypes = ref([])
 const subjects = ref([])
 const banners = ref([])
 
-const route = useRoute()
-const router = useRouter()
+const $q = useQuasar()
 
 onMounted(async () => {
     fetchData()
 })
 
 async function fetchData() {
+    $q.loading.show({
+        spinnerSize: 40,
+        backgroundColor: 'black',
+    })
     testTypes.value = await referencesStore.getTestTypes()
     subjects.value = await referencesStore.getSubjects({
         page: 1,
@@ -37,6 +41,7 @@ async function fetchData() {
     })
     banners.value = await referencesStore.getBanners()
     await referencesStore.getSelection()
+    $q.loading.hide()
 }
 </script>
 <template>

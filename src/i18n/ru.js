@@ -73,4 +73,10 @@ export default {
     daily: 'Ежедневно',
     weekly: 'Еженедельно',
     monthly: 'Ежемесячно',
+    main: 'Главная',
+    profile: 'Профиль',
+    add_card: 'Добавить карту',
+    you_have_not_card: 'У вас еще нет карты',
+    purchase: 'Купить',
+    you_have_not_subscription: 'У вас еще нет подписки',
 }

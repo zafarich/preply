@@ -73,4 +73,10 @@ export default {
     daily: 'Кунлик',
     weekly: 'Ҳафталик',
     monthly: 'Ойлик',
+    main: 'Асосий',
+    profile: 'Профил',
+    add_card: 'Карта қўшиш',
+    you_have_not_card: 'Сизда ҳозирча ҳеч қандай карта мавжуд эмас',
+    purchase: 'Сотиб олиш',
+    you_have_not_subscription: 'Сизда ҳозирча ҳеч қандай обуна мавжуд эмас',
 }

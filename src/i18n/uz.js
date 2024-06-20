@@ -70,7 +70,13 @@ export default {
     user_not_found: "Bunday ma'lumotli foydalanuvchi topilmadi",
     already_exists: 'Bunday raqamli foydalanuvchi oldin mavjud',
     success_welcome: 'Xush kelibsiz',
-    daily: "Kunlik", 
+    daily: 'Kunlik',
     weekly: 'Haftalik',
-    monthly: "Oylik"
+    monthly: 'Oylik',
+    main: 'Asosiy',
+    profile: 'Profil',
+    add_card: "Karta qo'shish",
+    you_have_not_card: 'Sizda hozircha hech qanday karta mavjud emas',
+    purchase: 'Sotib olish',
+    you_have_not_subscription: 'Sizda hozircha hech qanday obuna mavjud emas',
 }

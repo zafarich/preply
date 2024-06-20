@@ -2,11 +2,14 @@
     <div class="info-card">
         <div class="flex justify-between items-center mb-4">
             <div class="font-semibold text-base items-center">
-                Mening kartalarim
+                {{ $t('my_cards') }}
             </div>
             <!-- <div class="font-semibold text-base money-text">20 000 so'm</div> -->
-            <q-btn no-caps color="primary" @click="() => (paymentModal = true)"
-                >Karta qo'shish</q-btn
+            <q-btn
+                no-caps
+                color="primary"
+                @click="() => (paymentModal = true)"
+                >{{ $t('add_card') }}</q-btn
             >
         </div>
 
@@ -36,7 +39,7 @@
         </div>
 
         <h1 v-else class="text-center font-semibold text-base text-gray-400">
-            Sizda hozircha hech qanday karta mavjud emas
+            {{ $t('you_have_not_card') }}
         </h1>
     </div>
 
