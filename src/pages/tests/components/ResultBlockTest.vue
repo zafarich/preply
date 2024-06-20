@@ -3,8 +3,6 @@ import { useTestStore } from 'src/stores/test'
 
 const testStore = useTestStore()
 
-const emit = defineEmits(['returnListItemColor'])
-
 const returnListItemColor = (item, answer, cIndex) => {
     if (item.is_correct && cIndex == item.correct_answer) {
         return 'bg-green text-white !border-0'

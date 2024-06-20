@@ -4,8 +4,6 @@ import { computed } from 'vue'
 
 const testStore = useTestStore()
 
-const emit = defineEmits(['returnListItemColor'])
-
 const returnListItemColor = (item, answer, cIndex) => {
     if (item.is_correct && cIndex == item.correct_answer) {
         return 'bg-green text-white !border-0'
@@ -28,7 +26,7 @@ const getCorrectAnswersCount = computed(() => {
 
 <template>
     <div class="font-bold text-xl my-4">
-        {{ testStore.test_results?.test_type.title }}
+        {{ testStore.test_results?.test_variant.title }}
     </div>
     <div class="flex justify-start items-center mb-8 text-lg">
         <div class="mr-2">To'g'ri javoblar soni :</div>
@@ -37,8 +35,8 @@ const getCorrectAnswersCount = computed(() => {
 
     <div
         class="mb-8 question-wrap"
-        v-for="(item, bIndex) in testStore.test_results.results"
-        :key="bIndex"
+        v-for="(item, index) in testStore.test_results.results"
+        :key="index"
     >
         <div class="question-text">
             {{ item.order_number + 1 }} {{ item.question }}

@@ -41,6 +41,7 @@ export const useTestStore = defineStore('test', () => {
         )
         return sum
     })
+
     async function getVariants(params) {
         const res = await api.getVariants(params)
         return res?.results
@@ -105,7 +106,7 @@ export const useTestStore = defineStore('test', () => {
         })
 
         const data = {
-            variant_id: test.value?.variant_id,
+            result_id: test_response.value?.id,
             answers: answers,
         }
 

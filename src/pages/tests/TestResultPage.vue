@@ -13,6 +13,7 @@ import { useTestStore } from 'src/stores/test'
 import ResultBlockTest from './components/ResultBlockTest.vue'
 import ResultBySubjectTest from './components/ResultBySubjectTest.vue'
 import { TEST_TYPES } from 'src/utils/constants'
+import ResultByVariantTest from './components/ResultByVariantTest.vue'
 
 const testStore = useTestStore()
 </script>
@@ -23,6 +24,7 @@ const testStore = useTestStore()
         <ResultBySubjectTest
             v-else-if="testStore.test_type === TEST_TYPES.BY_SUBJECTS"
         />
+        <ResultByVariantTest v-else />
     </div>
 </template>
 
