@@ -30,7 +30,16 @@ const getCorrectAnswersCount = computed(() => {
 
 const getUnmarkedAnswersCount = computed(() => {
     const count = testStore.test_results.results.reduce(
-        (partialCount, a) => (partialCount + !a.user_answer ? 1 : 0),
+        (partialCount, a) => partialCount + (!a.user_answer ? 1 : 0),
+        0,
+    )
+    return count
+})
+
+const getFalsyAnswersCount = computed(() => {
+    const count = testStore.test_results.results.reduce(
+        (partialCount, a) =>
+            partialCount + (a.user_answer && !a.is_correct ? 1 : 0),
         0,
     )
     return count
@@ -54,10 +63,7 @@ const getUnmarkedAnswersCount = computed(() => {
     <div class="flex justify-start items-center text-lg">
         <div class="bg-red-500 h-[20px] w-[20px] rounded-full mr-2"></div>
         <div class="mr-2">Noto'g'ri javoblar -</div>
-        <div>
-            {{ testStore.test_results.results.length - getCorrectAnswersCount }}
-            ta
-        </div>
+        <div>{{ getFalsyAnswersCount }} ta</div>
     </div>
 
     <div class="flex justify-start items-center text-lg mb-5">
