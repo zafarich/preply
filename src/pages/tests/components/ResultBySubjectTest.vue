@@ -61,7 +61,7 @@ const getUnmarkedAnswersCount = computed(() => {
     </div>
 
     <div class="flex justify-start items-center text-lg mb-5">
-        <div class="bg-orange-500 h-[20px] w-[20px] rounded-full mr-2"></div>
+        <div class="bg-gray-500 h-[20px] w-[20px] rounded-full mr-2"></div>
         <div class="mr-2">Belgilanmagan savollar -</div>
         <div>{{ getUnmarkedAnswersCount }} ta</div>
     </div>
@@ -90,7 +90,7 @@ const getUnmarkedAnswersCount = computed(() => {
                     :class="{
                         '!border-red-500': !answer.is_correct,
                         '!border-green-500': answer.is_correct,
-                        '!border-orange-500': !answer.user_answer,
+                        '!border-gray-500': !answer.user_answer,
                     }"
                 >
                     {{ index + 1 }}
