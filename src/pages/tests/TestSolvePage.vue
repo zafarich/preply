@@ -264,46 +264,50 @@ async function confirmEndTest() {
             </div>
         </div>
 
-        <div class="flex justify-between items-center mt-6">
+        <div class="flex justify-between items-center mt-10">
             <div>
                 <q-btn
                     v-if="test_store.active_index > 0"
+                    align="around"
                     @click="
                         testStore.changeTestField({
                             active_index: test_store.active_index - 1,
                         })
                     "
-                    :label="$t('previous')"
                     no-caps
+                    class="text-base"
                     color="primary"
                     icon="chevron_left"
-                    outline
-                    flat
-                />
+                >
+                    {{ $t('previous') }}
+                </q-btn>
             </div>
             <div v-if="test_store.active_index < questions?.length - 1">
                 <q-btn
+                    align="around"
                     @click="
                         testStore.changeTestField({
                             active_index: test_store.active_index + 1,
                         })
                     "
-                    :label="$t('next')"
                     no-caps
+                    class="text-base"
                     color="primary"
                     icon-right="chevron_right"
-                    flat
-                />
+                >
+                    {{ $t('next') }}
+                </q-btn>
             </div>
         </div>
 
-        <div class="mt-10">
+        <div class="mt-32">
             <q-btn
                 @click="() => (endTestModal = true)"
                 :label="$t('finish')"
                 no-caps
                 color="warning"
                 class="full-width"
+                size="lg"
             />
         </div>
         <NotifyTestModal @confirmBack="confirmBack" />

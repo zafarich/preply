@@ -49,6 +49,8 @@ export const useTestStore = defineStore('test', () => {
 
     function changeTestField(data) {
         test.value = { ...test.value, ...data }
+        console.log('test.value', test.value)
+        console.log('data', data)
         LocalStorage.set('test', test.value)
     }
 
@@ -82,10 +84,10 @@ export const useTestStore = defineStore('test', () => {
         test_response.value = res
         questions.value = res.questions
 
-        LocalStorage.set('test_response', { ...res, type: TEST_TYPES.SINGLE })
-        changeTestField({ type: TEST_TYPES.SINGLE })
-        test_type.value = TEST_TYPES.SINGLE
-        LocalStorage.set('test_type', TEST_TYPES.SINGLE)
+        LocalStorage.set('test_response', { ...res, type: TEST_TYPES.VARIANT })
+        changeTestField({ type: TEST_TYPES.VARIANT })
+        test_type.value = TEST_TYPES.VARIANT
+        LocalStorage.set('test_type', TEST_TYPES.VARIANT)
         LocalStorage.set('questions', questions.value)
 
         return res

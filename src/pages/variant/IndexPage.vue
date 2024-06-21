@@ -51,7 +51,7 @@ async function startTest() {
     if (selected_variant.value) {
         $q.loading.show()
         testStore.changeTestField({
-            type: 'single',
+            type: TEST_TYPES.VARIANT,
             variant_id: selected_variant.value,
         })
         await testStore.startVariantTest({ variant_id: selected_variant.value })
@@ -69,8 +69,6 @@ async function startTest() {
     }
 }
 </script>
-
-
 
 <template>
     <div>
