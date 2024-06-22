@@ -6,6 +6,7 @@ import BottomMenu from 'src/components/common/BottomMenu.vue'
 import TheHeader from 'src/components/common/TheHeader.vue'
 
 import { useTestStore } from 'src/stores/test'
+import GlobalLoading from 'src/components/GlobalLoading.vue'
 
 const router = useRouter()
 const route = useRouter()
@@ -25,5 +26,6 @@ onMounted(() => {
         <TheHeader />
         <router-view />
         <BottomMenu />
+        <GlobalLoading />
     </div>
 </template>

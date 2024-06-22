@@ -1,5 +1,5 @@
 <script setup>
-import { computed, onMounted, ref } from 'vue-demi'
+import { onMounted, ref } from 'vue-demi'
 import { useI18n } from 'vue-i18n'
 import { useRouter, useRoute } from 'vue-router'
 import { useQuasar } from 'quasar'
@@ -11,36 +11,37 @@ import { TEST_TYPES } from 'src/utils/constants'
 
 const router = useRouter()
 const route = useRoute()
-const { t } = useI18n()
-const $q = useQuasar()
 
 import { useReferencesStore } from 'src/stores/references'
-const referencesStore = useReferencesStore()
+import { useTestStore } from 'src/stores/test'
+import { storeToRefs } from 'pinia'
+import { useMainStore } from 'src/stores/main'
 
-const test_type = ref(TEST_TYPES.BLOCK)
+const referencesStore = useReferencesStore()
+const testStore = useTestStore()
+const mainStore = useMainStore()
+
+const { test_type } = storeToRefs(testStore)
 
 onMounted(() => {
-    if (route.query?.test_type === TEST_TYPES.VARIANT) {
-        test_type.value = TEST_TYPES.VARIANT
-        router.replace({ query: { test_type: TEST_TYPES.VARIANT } })
-    } else if (route.query?.test_type === TEST_TYPES.BLOCK) {
-        test_type.value = TEST_TYPES.BLOCK
-        router.replace({ query: { test_type: TEST_TYPES.BLOCK } })
-    } else {
-        test_type.value = TEST_TYPES.BY_SUBJECTS
-        router.replace({ query: { test_type: TEST_TYPES.BY_SUBJECTS } })
-    }
-
     fetchData()
 })
 
 async function fetchData() {
+    mainStore.changeSiteLoader(true)
+
     await Promise.allSettled([
         referencesStore.getSubjects({
             is_main_for_block: true,
         }),
         referencesStore.getSubjects({ page: 1 }),
     ])
+
+    mainStore.changeSiteLoader(false)
+}
+
+function changeTestType(value) {
+    testStore.setTestType(value)
 }
 </script>
 <template>
@@ -54,40 +55,32 @@ async function fetchData() {
                 no-caps
                 outlined
             >
-                <q-route-tab
-                    :to="{ query: { test_type: TEST_TYPES.BY_SUBJECTS } }"
-                    :name="TEST_TYPES.BY_SUBJECTS"
-                    exact
-                    replace
+                <q-tab
+                    @click="changeTestType(TEST_TYPES.BY_SUBJECTS)"
                     :label="$t('by_science')"
+                    :name="TEST_TYPES.BY_SUBJECTS"
                 />
-                <q-route-tab
-                    :to="{ query: { test_type: TEST_TYPES.BLOCK } }"
-                    :name="TEST_TYPES.BLOCK"
-                    exact
-                    replacew
+                <q-tab
+                    @click="changeTestType(TEST_TYPES.BLOCK)"
                     :label="$t('by_block')"
+                    :name="TEST_TYPES.BLOCK"
                 />
-                <q-route-tab
-                    :to="{ query: { test_type: TEST_TYPES.VARIANT } }"
-                    :name="TEST_TYPES.VARIANT"
-                    exact
-                    replacew
+                <q-tab
+                    @click="changeTestType(TEST_TYPES.VARIANT)"
                     :label="$t('by_variant')"
+                    :name="TEST_TYPES.VARIANT"
                 />
             </q-tabs>
 
-            <div>
-                <ScienceList
-                    v-if="test_type === TEST_TYPES.BY_SUBJECTS"
-                    :subjects="referencesStore.main_subjects"
-                />
-                <BlockTestStart v-else-if="test_type === TEST_TYPES.BLOCK" />
-                <VariantTest
-                    v-else-if="test_type === TEST_TYPES.VARIANT"
-                    :subjects="referencesStore.subjects"
-                />
-            </div>
+            <ScienceList
+                v-if="test_type === TEST_TYPES.BY_SUBJECTS"
+                :subjects="referencesStore.main_subjects"
+            />
+            <BlockTestStart v-else-if="test_type === TEST_TYPES.BLOCK" />
+            <VariantTest
+                v-else-if="test_type === TEST_TYPES.VARIANT"
+                :subjects="referencesStore.subjects"
+            />
         </div>
     </div>
 </template>

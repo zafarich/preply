@@ -1,24 +1,33 @@
 <script setup>
+import { useTestStore } from 'src/stores/test'
+import { useRouter } from 'vue-router'
+
+const testStore = useTestStore()
+
+const router = useRouter()
+
 const props = defineProps({
     testTypes: {
         type: Array,
         default: () => [],
     },
 })
+
+function selectTest(value) {
+    testStore.setTestType(value)
+    router.push({ name: 'tests' })
+}
 </script>
 <template>
     <div class="grid 768:grid-cols-3 gap-4">
-        <router-link
+        <div
             v-for="testType in testTypes"
             :key="testType.id"
-            :to="{
-                name: 'tests',
-                query: { test_type: testType.unique_name },
-            }"
+            @click="selectTest(testType.unique_name)"
             class="test-type-item"
         >
             <div class="title-test-type">{{ testType.title }}</div>
-        </router-link>
+        </div>
     </div>
 </template>
 

@@ -16,8 +16,8 @@ import { useQuasar } from 'quasar'
 
 const { t } = useI18n()
 const userStore = useUserStore()
-const mainStore = useMainStore()
 const referencesStore = useReferencesStore()
+const mainStore = useMainStore()
 
 const testTypes = ref([])
 const subjects = ref([])
@@ -30,33 +30,60 @@ onMounted(async () => {
 })
 
 async function fetchData() {
-    $q.loading.show({
-        spinnerSize: 40,
-        backgroundColor: 'black',
-    })
-    testTypes.value = await referencesStore.getTestTypes()
-    subjects.value = await referencesStore.getSubjects({
+    mainStore.changeSiteLoader(true)
+
+    const testTypesPromise = referencesStore.getTestTypes()
+    const subjectsPromise = referencesStore.getSubjects({
         page: 1,
         is_main_for_block: true,
     })
-    banners.value = await referencesStore.getBanners()
-    await referencesStore.getSelection()
-    $q.loading.hide()
+    const bannersPromise = referencesStore.getBanners()
+    const selectionPromise = referencesStore.getSelection()
+
+    const results = await Promise.allSettled([
+        testTypesPromise,
+        subjectsPromise,
+        bannersPromise,
+        selectionPromise,
+    ])
+    console.log('results', results)
+
+    results.forEach((result, index) => {
+        if (result.status === 'fulfilled') {
+            switch (index) {
+                case 0:
+                    testTypes.value = result.value
+                    break
+                case 1:
+                    subjects.value = result.value
+                    break
+                case 2:
+                    banners.value = result.value
+                    break
+                case 3:
+                    break
+            }
+        } else {
+            console.error(`Promise ${index} was rejected:`, result.reason)
+        }
+    })
+
+    mainStore.changeSiteLoader(false)
 }
 </script>
 <template>
     <div>
-        <div class="mb-8">
+        <div class="mb-8" v-if="banners">
             <Banner :banners="banners" />
         </div>
-        <div class="mb-8">
+        <div class="mb-8" v-if="testTypes">
             <TestTypes :test-types="testTypes" />
         </div>
-        <div class="mb-8">
+        <div class="mb-8" v-if="subjects">
             <PopularScience :subjects="subjects" />
         </div>
 
-        <div class="mb-8">
+        <div class="mb-8" v-if="referencesStore.selections">
             <div class="font-semibold text-xl mb-6">
                 {{ $t('international_certificates') }}
             </div>

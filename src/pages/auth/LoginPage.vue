@@ -69,7 +69,10 @@ import validate from 'src/utils/validate'
 import { useQuasar } from 'quasar'
 import { useRoute, useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
+import { useMainStore } from 'src/stores/main'
+
 const userStore = useUserStore()
+const mainStore = useMainStore()
 
 const route = useRoute()
 const router = useRouter()
@@ -98,6 +101,8 @@ const submitForm = async () => {
     resetValidation()
     const hasError = !(await formRef.value.validate())
     if (hasError) return resetValidation(5000)
+
+    mainStore.changeSiteLoader(true)
     try {
         await userStore.login({
             phone: phone.value.replace(/\s/g, ''),
@@ -123,6 +128,8 @@ const submitForm = async () => {
             message: $tranlate('user_not_found'),
         })
     }
+
+    mainStore.changeSiteLoader(false)
 }
 </script>
 

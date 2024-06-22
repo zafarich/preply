@@ -296,7 +296,7 @@ async function confirmEndTest() {
             </div>
         </div>
 
-        <div class="mt-32">
+        <div class="mt-20">
             <q-btn
                 @click="() => (endTestModal = true)"
                 :label="$t('finish')"

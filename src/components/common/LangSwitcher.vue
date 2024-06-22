@@ -1,6 +1,6 @@
 <script setup>
 import { useAttrs, ref } from 'vue-demi'
-import { useMainStore } from 'stores/main'
+import { useLangStore } from 'stores/lang.store'
 import BaseImg from 'components/UI/BaseImg.vue'
 import { debounce } from 'quasar'
 import { useUserStore } from 'src/stores/user'
@@ -20,7 +20,7 @@ const props = defineProps({
     },
 })
 
-const mainStore = useMainStore()
+const mainStore = useLangStore()
 const userStore = useUserStore()
 
 const router = useRouter()

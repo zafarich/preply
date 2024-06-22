@@ -3,7 +3,7 @@ import { defineStore } from 'pinia'
 import { LocalStorage } from 'quasar'
 import { ref, computed } from 'vue-demi'
 import { getTokenFromCache, setTokenToCache } from 'src/utils/auth'
-import { useMainStore } from './main'
+import { useLangStore } from './lang.store'
 
 export const useUserStore = defineStore('user', () => {
     const token = ref(getTokenFromCache())
@@ -48,7 +48,7 @@ export const useUserStore = defineStore('user', () => {
 
         const res2 = await getMe()
 
-        useMainStore().setLanguage(res2.language)
+        useLangStore().setLanguage(res2.language)
         updateUserData(res2)
 
         return res

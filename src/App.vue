@@ -1,18 +1,19 @@
 <script setup>
-import { onBeforeMount } from "vue-demi";
-import { useMainStore } from "stores/main";
-const mainStore = useMainStore();
+import { onBeforeMount } from 'vue-demi'
+import { useLangStore } from 'stores/lang.store'
+
+const langStore = useLangStore()
 
 onBeforeMount(() => {
-  mainStore.setLanguage();
-});
+    langStore.setLanguage()
+})
 </script>
 
 <template>
-  <router-view />
+    <router-view />
 </template>
 <style>
-@import "tailwindcss/base";
-@import "tailwindcss/components";
-@import "tailwindcss/utilities";
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 </style>

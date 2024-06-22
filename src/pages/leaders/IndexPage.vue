@@ -5,18 +5,26 @@ import LeaderTable from 'src/components/LeaderTable.vue'
 import { useUserStore } from 'src/stores/user'
 import { useReferencesStore } from 'src/stores/references'
 import { onMounted, watch } from 'vue'
+import { useMainStore } from 'src/stores/main'
 
 const region = ref('')
 const district = ref('')
 const science = ref('')
 const page = ref(1)
+
 const usersStore = useUserStore()
 const referenceStore = useReferencesStore()
+const mainStore = useMainStore()
 
 onMounted(async () => {
-    await referenceStore.getRegions()
-    await referenceStore.getSubjects({ is_main_for_block: true })
-    await fetchLeaders()
+    mainStore.changeSiteLoader(true)
+    await Promise.allSettled([
+        referenceStore.getRegions(),
+        referenceStore.getSubjects({ is_main_for_block: true }),
+        fetchLeaders(),
+    ])
+
+    mainStore.changeSiteLoader(false)
 })
 
 watch(

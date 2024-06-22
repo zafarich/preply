@@ -11,8 +11,10 @@ import MySubscriptions from './components/MySubscriptions.vue'
 import PaymentHistory from './components/PaymentHistory.vue'
 import UserEditModal from 'src/components/modals/UserEditModal.vue'
 import { useUserStore } from 'src/stores/user'
+import { useMainStore } from 'src/stores/main'
 
 const modalStore = useModalStore()
+const mainStore = useMainStore()
 const { paymentModal, userEditModal } = storeToRefs(modalStore)
 const billingStore = useBillingStore()
 const userStore = useUserStore()
@@ -20,11 +22,15 @@ const userStore = useUserStore()
 const tabs = ref('my_cards')
 
 onMounted(async () => {
+    mainStore.changeSiteLoader(true)
+
     await Promise.allSettled([
         billingStore.getTariffs(),
         userStore.getMe(),
         billingStore.getSubscriptions({ page: 1, page_size: 1000 }),
     ])
+
+    mainStore.changeSiteLoader(false)
 })
 
 const onChange = async (data) => {

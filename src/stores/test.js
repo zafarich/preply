@@ -20,7 +20,7 @@ export const useTestStore = defineStore('test', () => {
         test_type: {},
     }
 
-    const test_type = ref(LocalStorage.getItem('test_type') || '')
+    const test_type = ref(LocalStorage.getItem('test_type') || TEST_TYPES.BLOCK)
 
     const test_response = ref(LocalStorage.getItem('test_response') || null)
     const questions = ref(LocalStorage.getItem('questions') || [])
@@ -41,6 +41,11 @@ export const useTestStore = defineStore('test', () => {
         )
         return sum
     })
+
+    function setTestType(value) {
+        LocalStorage.set('test_type', value)
+        test_type.value = value
+    }
 
     async function getVariants(params) {
         const res = await api.getVariants(params)
@@ -214,6 +219,7 @@ export const useTestStore = defineStore('test', () => {
         resetStore,
         endBlockTest,
         test_type,
+        setTestType,
         endVariantTest,
         getResultDetail,
     }
