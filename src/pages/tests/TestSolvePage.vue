@@ -13,12 +13,8 @@ import EndTestModal from 'src/components/modals/EndTestModal.vue'
 
 const router = useRouter()
 const route = useRoute()
-const { t } = useI18n()
 const $q = useQuasar()
 
-const s1 = route.query?.s1
-
-import { useReferencesStore } from 'src/stores/references'
 import { useTestStore } from 'src/stores/test'
 import { useModalStore } from 'src/stores/modal'
 import { storeToRefs } from 'pinia'

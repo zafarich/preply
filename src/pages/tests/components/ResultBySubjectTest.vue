@@ -72,20 +72,7 @@ const getFalsyAnswersCount = computed(() => {
         <div>{{ getUnmarkedAnswersCount }} ta</div>
     </div>
 
-    <!-- <div class="subjects-top-slider" v-if="testStore.test_results?.results">
-        <swiper :slides-per-view="'auto'" :space-between="10">
-            <div
-                v-for="(answer, index) in testStore.test_results?.results"
-                :key="answer.id"
-                class="subject-slider-item mr-1 mb-2"
-            >
-                {{ answer.order_number + 1 }}
-            </div>
-        </swiper>
-        <div>Jami: {{ testStore.getOverallBall }} ball</div>
-    </div> -->
     <div class="questions-top-slider p-0 mb-10">
-        <!-- <swiper :slides-per-view="'auto'" :space-between="5"> -->
         <div class="flex flex-wrap gap-2">
             <div
                 v-for="(answer, index) in testStore.test_results?.results"
@@ -103,7 +90,6 @@ const getFalsyAnswersCount = computed(() => {
                 </button>
             </div>
         </div>
-        <!-- </swiper> -->
     </div>
 
     <div

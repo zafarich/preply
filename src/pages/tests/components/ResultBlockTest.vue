@@ -17,7 +17,6 @@ const returnListItemColor = (item, answer, cIndex) => {
 
 <template>
     <div class="subjects-top-slider" v-if="testStore.test_results?.results">
-        <!-- <swiper :slides-per-view="'auto'" :space-between="10"> -->
         <div
             v-for="(subject, index) in testStore.test_results?.results"
             :class="{ _active: isActiveTopSlider === index }"
@@ -26,7 +25,6 @@ const returnListItemColor = (item, answer, cIndex) => {
         >
             {{ subject.subject.title }} : {{ subject.score }} ball
         </div>
-        <!-- </swiper> -->
         <div>Jami: {{ testStore.getOverallBall }} ball</div>
     </div>
 

@@ -10,7 +10,7 @@ const returnListItemColor = (item, answer, cIndex) => {
     } else if (!item.is_correct && cIndex == item.user_answer) {
         return 'bg-red text-white !border-0'
     } else if (!item.is_correct && cIndex == item.correct_answer) {
-        return 'bg-warning text-white !border-0'
+        return 'bg-green text-white !border-0'
     }
     return ''
 }
@@ -22,15 +22,69 @@ const getCorrectAnswersCount = computed(() => {
     )
     return count
 })
+
+const getUnmarkedAnswersCount = computed(() => {
+    const count = testStore.test_results.results.reduce(
+        (partialCount, a) => partialCount + (!a.user_answer ? 1 : 0),
+        0,
+    )
+    return count
+})
+
+const getFalsyAnswersCount = computed(() => {
+    const count = testStore.test_results.results.reduce(
+        (partialCount, a) =>
+            partialCount + (a.user_answer && !a.is_correct ? 1 : 0),
+        0,
+    )
+    return count
+})
 </script>
 
 <template>
     <div class="font-bold text-xl my-4">
         {{ testStore.test_results?.test_variant.title }}
     </div>
-    <div class="flex justify-start items-center mb-8 text-lg">
-        <div class="mr-2">To'g'ri javoblar soni :</div>
+    <div class="flex justify-start items-center text-lg">
+        <div class="mr-2">Savollar soni -</div>
+        <div>{{ testStore.test_results.results.length }} ta</div>
+    </div>
+    <div class="flex justify-start items-center text-lg">
+        <div class="bg-green-500 h-[20px] w-[20px] rounded-full mr-2"></div>
+        <div class="mr-2">To'g'ri javoblar -</div>
         <div>{{ getCorrectAnswersCount }} ta</div>
+    </div>
+
+    <div class="flex justify-start items-center text-lg">
+        <div class="bg-red-500 h-[20px] w-[20px] rounded-full mr-2"></div>
+        <div class="mr-2">Noto'g'ri javoblar -</div>
+        <div>{{ getFalsyAnswersCount }} ta</div>
+    </div>
+
+    <div class="flex justify-start items-center text-lg mb-5">
+        <div class="bg-gray-500 h-[20px] w-[20px] rounded-full mr-2"></div>
+        <div class="mr-2">Belgilanmagan savollar -</div>
+        <div>{{ getUnmarkedAnswersCount }} ta</div>
+    </div>
+
+    <div class="questions-top-slider p-0 mb-10">
+        <div class="flex flex-wrap gap-2">
+            <div
+                v-for="(answer, index) in testStore.test_results?.results"
+                :key="index"
+            >
+                <button
+                    class="question-slider-item border-4"
+                    :class="{
+                        '!border-red-500': !answer.is_correct,
+                        '!border-green-500': answer.is_correct,
+                        '!border-gray-500': !answer.user_answer,
+                    }"
+                >
+                    {{ index + 1 }}
+                </button>
+            </div>
+        </div>
     </div>
 
     <div
