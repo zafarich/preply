@@ -3,4 +3,5 @@ export const TEST_TYPES = {
     SCIENCE: 'certificate',
     VARIANT: 'variant',
     BY_SUBJECTS: 'by_subjects',
+    BY_SELECTIONS: 'by_selections',
 }

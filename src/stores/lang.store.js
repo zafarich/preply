@@ -64,17 +64,13 @@ export const useLangStore = defineStore('language', () => {
 
         !lang && (lang = 'ru')
 
-        console.log('lang1', lang)
         try {
             langList[`../../node_modules/quasar/lang/${lang}.mjs`]().then(
                 (lang) => {
-                    console.log('laninside', lang.default)
                     Quasar.lang.set(lang.default)
                 },
             )
-        } catch (err) {
-            console.log('langerr', err)
-        }
+        } catch (err) {}
         i18n.global.locale.value = lang
         localStorage.setItem('locale', lang)
     }

@@ -1,33 +1,65 @@
 <script setup>
+import { TEST_TYPES } from 'src/utils/constants'
+import StartBySelectionsModal from 'src/components/modals/StartBySelectionsModal.vue'
 import BaseImg from 'src/components/UI/BaseImg.vue'
+import { useModalStore } from 'src/stores/modal'
+import { storeToRefs } from 'pinia'
+import { useMainStore } from 'src/stores/main'
+import { useTestStore } from 'src/stores/test'
+import { useRouter } from 'vue-router'
+import { ref } from 'vue'
+
+const router = useRouter()
+
+const modalStore = useModalStore()
+const mainStore = useMainStore()
+const testStore = useTestStore()
+
+const { startBySelectionModal } = storeToRefs(modalStore)
 
 const props = defineProps({
     subjects: {
         type: Array,
-        default: () => [
-            // {
-            //     title: 'IELTS',
-            //     image: 'ielts.png',
-            // },
-            // {
-            //     title: 'TOEFL',
-            //     image: 'toefl.png',
-            // },
-            // {
-            //     title: 'CEFR',
-            //     image: 'cefr.png',
-            // },
-        ],
+        default: () => [],
     },
 })
+
+const selectedTest = ref(null)
+
+const openModal = (unique_name) => {
+    selectedTest.value = unique_name
+    startBySelectionModal.value = true
+}
+
+const startTest = async () => {
+    mainStore.changeSiteLoader(true)
+    testStore.changeTestField({
+        type: TEST_TYPES.BY_SELECTIONS,
+    })
+
+    await testStore.startBySelectionTest({
+        selection: selectedTest.value,
+    })
+
+    startBySelectionModal.value = false
+
+    router.push({
+        name: 'tests.solving',
+        query: {
+            test_type: TEST_TYPES.BY_SELECTIONS,
+        },
+    })
+
+    mainStore.changeSiteLoader(false)
+}
 </script>
 <template>
     <div class="grid grid-cols-3 gap-4">
-        <router-link
+        <div
             v-for="subject in subjects"
             :key="subject.title"
-            :to="{ name: 'variant', params: { id: subject.id } }"
             class="tests-item"
+            @click="openModal(subject.unique_name)"
         >
             <div>
                 <BaseImg width="70px" height="70px" :src="subject.image" />
@@ -35,8 +67,9 @@ const props = defineProps({
             <div>
                 {{ subject.title }}
             </div>
-        </router-link>
+        </div>
     </div>
+    <StartBySelectionsModal @start-test="startTest" />
 </template>
 
 <style lang="scss">

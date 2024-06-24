@@ -3,7 +3,6 @@ import { Swiper, SwiperSlide } from 'swiper/vue'
 import 'swiper/css'
 
 import { computed, onMounted, onUnmounted, ref } from 'vue-demi'
-import { useI18n } from 'vue-i18n'
 import { useRouter, useRoute } from 'vue-router'
 import { useQuasar } from 'quasar'
 import { TEST_TYPES } from 'src/utils/constants'
@@ -17,10 +16,12 @@ const $q = useQuasar()
 
 import { useTestStore } from 'src/stores/test'
 import { useModalStore } from 'src/stores/modal'
+import { useMainStore } from 'src/stores/main'
 import { storeToRefs } from 'pinia'
 
 const testStore = useTestStore()
 const modalStore = useModalStore()
+const mainStore = useMainStore()
 
 const { notifyTestModal, endTestModal } = storeToRefs(modalStore)
 
@@ -131,7 +132,7 @@ function selectAnswer(index, question_index) {
 }
 
 async function confirmEndTest() {
-    $q.loading.show()
+    mainStore.changeSiteLoader(true)
 
     const test_type = route.query.test_type
 
@@ -144,11 +145,13 @@ async function confirmEndTest() {
         await testStore.endVariantTest()
     } else if (test_type == TEST_TYPES.BY_SUBJECTS) {
         await testStore.endBySubjectTest()
+    } else if (test_type === TEST_TYPES.BY_SELECTIONS) {
+        await testStore.endBySelectionTest()
     }
 
     res = await testStore.getResultDetail()
 
-    $q.loading.hide()
+    mainStore.changeSiteLoader(true)
 
     if (res?.id) {
         testStore.resetStore()

@@ -203,6 +203,67 @@ export const useTestStore = defineStore('test', () => {
         return res
     }
 
+    async function startBySelectionTest(payload) {
+        const res = await api.startBySelectionTest(payload)
+
+        test_response.value = res
+        questions.value = res.questions
+
+        LocalStorage.set('test_response', {
+            ...res,
+            type: TEST_TYPES.BY_SELECTIONS,
+        })
+        changeTestField({ type: TEST_TYPES.BY_SELECTIONS })
+        test_type.value = TEST_TYPES.BY_SELECTIONS
+        LocalStorage.set('test_type', TEST_TYPES.BY_SELECTIONS)
+
+        LocalStorage.set('questions', questions.value)
+
+        return res
+    }
+
+    async function endBySelectionTest() {
+        const solved_questions = questions.value.filter(
+            (item) => item.selected_answer,
+        )
+
+        const answers = []
+
+        solved_questions.forEach((item) => {
+            answers.push({
+                order_number: item.order_number,
+                user_answer: item.selected_answer,
+            })
+        })
+
+        const data = {
+            result_id: test_response.value?.id,
+            answers,
+        }
+
+        const res = await api.endBySelectionTest(data)
+        return res
+    }
+
+    async function startBySelectionTest(payload) {
+        const res = await api.startBySelectionTest(payload)
+
+        test_response.value = res
+        questions.value = res.questions
+
+        LocalStorage.set('test_response', {
+            ...res,
+            type: TEST_TYPES.BY_SELECTIONS,
+        })
+        changeTestField({ type: TEST_TYPES.BY_SELECTIONS })
+        test_type.value = TEST_TYPES.BY_SELECTIONS
+        LocalStorage.set('test_type', TEST_TYPES.BY_SELECTIONS)
+
+        LocalStorage.set('questions', questions.value)
+
+        return res
+    }
+
     return {
         getVariants,
         changeTestField,
@@ -220,6 +281,8 @@ export const useTestStore = defineStore('test', () => {
         endBlockTest,
         test_type,
         setTestType,
+        startBySelectionTest,
+        endBySelectionTest,
         endVariantTest,
         getResultDetail,
     }

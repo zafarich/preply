@@ -9,20 +9,21 @@ import { useTestStore } from 'src/stores/test'
 import { useRouter } from 'vue-router'
 import { TEST_TYPES } from 'src/utils/constants'
 import { useModalStore } from 'src/stores/modal'
+import { useMainStore } from 'src/stores/main'
 import { storeToRefs } from 'pinia'
+
 const modalStore = useModalStore()
+const referenceStore = useReferencesStore()
+const testStore = useTestStore()
+const mainStore = useMainStore()
 
 const { startModal } = storeToRefs(modalStore)
-
 const router = useRouter()
 const { t } = useI18n()
 const data = ref({
     s1: '',
     s2: '',
 })
-const loading = ref(false)
-const referenceStore = useReferencesStore()
-const testStore = useTestStore()
 
 onMounted(async () => {
     await referenceStore.getSubjects({ is_main_for_block: true })
@@ -45,7 +46,7 @@ const openModal = () => {
 }
 
 const startTest = async () => {
-    loading.value = true
+    mainStore.changeSiteLoader(true)
     testStore.changeTestField({
         type: 'block',
     })
@@ -66,7 +67,7 @@ const startTest = async () => {
     nextTick(() => {
         startModal.value = false
     })
-    loading.value = false
+    mainStore.changeSiteLoader(false)
 }
 </script>
 <template>

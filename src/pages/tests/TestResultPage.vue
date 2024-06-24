@@ -1,19 +1,10 @@
 <script setup>
-import { useI18n } from 'vue-i18n'
-import { useRouter, useRoute } from 'vue-router'
-import { useQuasar } from 'quasar'
-import 'swiper/css'
-
-const router = useRouter()
-const route = useRoute()
-const { t } = useI18n()
-const $q = useQuasar()
-
 import { useTestStore } from 'src/stores/test'
 import ResultBlockTest from './components/ResultBlockTest.vue'
 import ResultBySubjectTest from './components/ResultBySubjectTest.vue'
 import { TEST_TYPES } from 'src/utils/constants'
 import ResultByVariantTest from './components/ResultByVariantTest.vue'
+import ResultBySelections from './components/ResultBySelections.vue'
 
 const testStore = useTestStore()
 </script>
@@ -24,7 +15,12 @@ const testStore = useTestStore()
         <ResultBySubjectTest
             v-else-if="testStore.test_type === TEST_TYPES.BY_SUBJECTS"
         />
-        <ResultByVariantTest v-else />
+        <ResultByVariantTest
+            v-else-if="testStore.test_type == TEST_TYPES.VARIANT"
+        />
+        <ResultBySelections
+            v-else-if="testStore.test_type == TEST_TYPES.BY_SELECTIONS"
+        />
     </div>
 </template>
 

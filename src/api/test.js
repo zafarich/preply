@@ -59,3 +59,19 @@ export async function endBySubjectTest(payload) {
     )
     return data
 }
+
+export async function startBySelectionTest(payload) {
+    const { data } = await api.post(
+        url + 'test-solving/start_by_selection_test/',
+        payload,
+    )
+    return data
+}
+
+export async function endBySelectionTest(payload) {
+    const { data } = await api.post(
+        url + 'test-solving/end_by_selection_test/',
+        payload,
+    )
+    return data
+}
