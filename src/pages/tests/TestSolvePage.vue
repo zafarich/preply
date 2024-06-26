@@ -197,12 +197,16 @@ async function confirmEndTest() {
                 </div>
             </div>
             <div class="subjects-top-slider" v-if="is_visible_subjects">
-                <swiper :slides-per-view="'auto'" :space-between="10">
+                <swiper
+                    :slides-per-view="'auto'"
+                    :space-between="10"
+                    :speed="500"
+                >
                     <!-- :class="{ _active: isActiveTopSlider === index }" -->
                     <swiper-slide
                         v-for="(subject, index) in testStore.test_response
                             ?.block_test_subjects"
-                        :key="subject.id"
+                        :key="index"
                         class="subject-slider-item"
                     >
                         {{ subject.title }}
