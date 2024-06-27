@@ -64,9 +64,9 @@ const startTest = async () => {
             <div>
                 <BaseImg width="70px" height="70px" :src="subject.image" />
             </div>
-            <div>
+            <!-- <div>
                 {{ subject.title }}
-            </div>
+            </div> -->
         </div>
     </div>
     <StartBySelectionsModal @start-test="startTest" />

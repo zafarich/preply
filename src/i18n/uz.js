@@ -3,6 +3,7 @@ export default {
     test_types: 'Test Turlari',
     popular_sciences: 'Ommabop fanlar',
     all: 'barchasi',
+    All: 'Barchasi',
     block_tests: 'Blok Testlar',
     leaders: 'Liderlar',
     province: 'Viloyat',

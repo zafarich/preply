@@ -30,6 +30,7 @@ onMounted(async () => {
 watch(
     () => region.value + science.value + district.value,
     async () => {
+        page.value = 1
         await fetchLeaders()
     },
 )
@@ -57,11 +58,11 @@ const fetchLeaders = async () => {
                 <q-btn outline color="primary" no-caps :label="$t('monthly')" />
             </div>
             <div class="mb-3">
-                <q-btn outline color="primary" no-caps :label="$t('all')" />
+                <q-btn outline color="primary" no-caps :label="$t('All')" />
             </div>
         </div>
 
-        <div class="grid grid-cols-2 gap-4 mb-4">
+        <div class="grid grid-cols-1 gap-4 mb-4">
             <BaseSelect
                 v-model="region"
                 outlined
@@ -73,7 +74,7 @@ const fetchLeaders = async () => {
                 option-value="id"
             />
             <!-- v-model="district" -->
-            <BaseSelect
+            <!-- <BaseSelect
                 outlined
                 :placeholder="$t('district')"
                 :options="[
@@ -82,7 +83,7 @@ const fetchLeaders = async () => {
                     'Qoraqalpog\'iston respublikasi',
                     'Andijon',
                 ]"
-            />
+            /> -->
         </div>
 
         <div class="mb-6">
@@ -98,13 +99,21 @@ const fetchLeaders = async () => {
             />
         </div>
         <div v-if="usersStore.leaders.results.length > 0">
-            <LeaderTable :items="usersStore.leaders.results" />
+            <LeaderTable
+                :items="usersStore.leaders.results"
+                :page="page"
+                :page_size="usersStore.page_size"
+            />
 
             <div class="flex justify-center my-5">
                 <q-pagination
                     v-model="page"
                     @update:model-value="fetchLeaders"
-                    :max="Math.ceil(usersStore.leaders.count / 10)"
+                    :max="
+                        Math.ceil(
+                            usersStore.leaders.count / usersStore.page_size,
+                        )
+                    "
                     :max-pages="10"
                     boundary-numbers
                     direction-links

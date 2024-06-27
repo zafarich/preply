@@ -15,6 +15,8 @@ export const useUserStore = defineStore('user', () => {
         results: [],
     })
 
+    const page_size = 10
+
     const userVerifyCards = computed(() => {
         return userCards.value.filter((item) => item.verify === true)
     })
@@ -36,7 +38,7 @@ export const useUserStore = defineStore('user', () => {
     }
 
     async function getLeaders(params) {
-        const res = await api.getLeaders({ ...params, page_size: 10 })
+        const res = await api.getLeaders({ ...params, page_size: page_size })
         leaders.value = res
         return res
     }
@@ -86,5 +88,6 @@ export const useUserStore = defineStore('user', () => {
         isAuth,
         register,
         userVerifyCards,
+        page_size,
     }
 })

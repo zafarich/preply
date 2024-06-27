@@ -7,11 +7,49 @@ const props = defineProps({
         type: Array,
         default: [],
     },
+    page: {
+        type: Number,
+        default: 1,
+    },
+    page_size: {
+        type: Number,
+        default: 5,
+    },
 })
 </script>
 <template>
     <div class="leaders-list-home">
         <div>
+            <table>
+                <thead>
+                    <th>#</th>
+                    <th>{{ $t('student') }}</th>
+                    <th>{{ $t('Umumiy') }}</th>
+                    <th>{{ $t('accuracy') }} ( % )</th>
+                </thead>
+
+                <tbody>
+                    <tr v-for="(item, index) in items" :key="index">
+                        <!-- {{
+                            item
+                        }} -->
+                        <td>{{ (page - 1) * page_size + index + 1 }}</td>
+                        <td>
+                            <div class="flex items-center">
+                                <div>
+                                    <div class="fio">
+                                        {{ item.first_name }}
+                                        {{ item.last_name }}
+                                    </div>
+                                    <div class="city">{{ item.region }}</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>{{ item.score_sum.toFixed(1) }}</td>
+                        <td>{{ item.accuracy_avg }}%</td>
+                    </tr>
+                </tbody>
+            </table>
             <!-- <div class="three-rating-box">
                 <div class="three-rating__item">
                     <div class="position-number">2</div>
@@ -61,32 +99,6 @@ const props = defineProps({
                     </div>
                 </div>
             </div> -->
-
-            <table>
-                <thead>
-                    <th>#</th>
-                    <th>{{ $t('student') }}</th>
-                    <th>{{ $t('accuracy') }} ( % )</th>
-                </thead>
-
-                <tbody>
-                    <tr v-for="(item, index) in items" :key="index">
-                        <!-- {{
-                            item
-                        }} -->
-                        <td>4</td>
-                        <td>
-                            <div class="flex items-center">
-                                <div>
-                                    <div class="fio">{{ item.full_name }}</div>
-                                    <div class="city">{{ item.region }}</div>
-                                </div>
-                            </div>
-                        </td>
-                        <td>100%</td>
-                    </tr>
-                </tbody>
-            </table>
         </div>
     </div>
 </template>

@@ -20,6 +20,14 @@ const returnListItemColor = (item, answer, cIndex) => {
     return ''
 }
 
+const returnBorderColor = (item) => {
+    if (item.is_correct) {
+        return '!border-green-500'
+    } else if (!item.is_correct && !!item.user_answer) {
+        return '!border-red-500'
+    } else return '!border-gray-500'
+}
+
 const getCorrectAnswersCount = computed(() => {
     const count = testStore.test_results.results.reduce(
         (partialCount, a) => (partialCount + a.is_correct ? 1 : 0),
@@ -80,11 +88,7 @@ const getFalsyAnswersCount = computed(() => {
             >
                 <button
                     class="question-slider-item border-4"
-                    :class="{
-                        '!border-red-500': !answer.is_correct,
-                        '!border-green-500': answer.is_correct,
-                        '!border-gray-500': !answer.user_answer,
-                    }"
+                    :class="returnBorderColor(answer)"
                 >
                     {{ index + 1 }}
                 </button>

@@ -13,6 +13,7 @@
         :option-label="optionLabel"
         :option-value="optionValue"
         :model-value="modelValue"
+        behavior="menu"
     >
         <template v-if="selected && modelValue" #selected>
             {{ t(modelValue?.label || '') }}
@@ -34,6 +35,15 @@
         </template>
         <template v-if="option" #option="item">
             <slot name="option" v-bind="item" />
+        </template>
+        <template v-slot:append>
+            <q-icon
+                v-if="modelValue != ''"
+                name="close"
+                @click.stop.prevent="emit('update:modelValue', '')"
+                class="cursor-pointer"
+                size="xs"
+            />
         </template>
     </q-select>
 </template>
@@ -82,6 +92,7 @@ defineProps({
         type: String,
     },
 })
+
 const emit = defineEmits(['update:modelValue'])
 
 const { t } = useI18n()

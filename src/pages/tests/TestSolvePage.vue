@@ -151,12 +151,11 @@ async function confirmEndTest() {
 
     res = await testStore.getResultDetail()
 
-    mainStore.changeSiteLoader(true)
-
     if (res?.id) {
         testStore.resetStore()
         router.replace({ name: 'test.result', params: { id: res.id } })
     }
+    mainStore.changeSiteLoader(true)
 }
 </script>
 <template>
