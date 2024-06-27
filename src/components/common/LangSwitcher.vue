@@ -38,7 +38,7 @@ const changeLang = async (lang) => {
     console.log('lang', lang)
     mainStore.setLanguage(lang)
     const language =
-        lang === 'uz-Latn' ? 'uz' : lang === 'uz-Cyrl' ? 'kr' : 'ru'
+        lang === 'uz-Latn' ? 'uz' : lang === 'uz-Cyrl' ? 'qr' : 'ru'
 
     if (getTokenFromCache()) await userStore.updateUser({ language })
 
