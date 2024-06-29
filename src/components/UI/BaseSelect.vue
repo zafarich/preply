@@ -115,8 +115,10 @@ function change(v) {
             color: $dark;
         }
     }
-    .field__native {
-        min-height: 48px;
+    .q-field__control,
+    .q-field--auto-height,
+    .q-field__native {
+        min-height: 48px !important;
     }
 
     .q-field__marginal {
