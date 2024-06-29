@@ -1,64 +1,20 @@
-<script setup>
-import { ref } from 'vue-demi'
-import BaseSelect from 'src/components/UI/BaseSelect.vue'
-import LeaderTable from 'src/components/LeaderTable.vue'
-import { useUserStore } from 'src/stores/user'
-import { useReferencesStore } from 'src/stores/references'
-import { onMounted, watch } from 'vue'
-import { useMainStore } from 'src/stores/main'
-
-const region = ref('')
-const district = ref('')
-const science = ref('')
-const page = ref(1)
-
-const usersStore = useUserStore()
-const referenceStore = useReferencesStore()
-const mainStore = useMainStore()
-
-onMounted(async () => {
-    mainStore.changeSiteLoader(true)
-    await Promise.allSettled([
-        referenceStore.getRegions(),
-        referenceStore.getSubjects({ is_main_for_block: true }),
-        fetchLeaders(),
-    ])
-
-    mainStore.changeSiteLoader(false)
-})
-
-watch(
-    () => region.value + science.value + district.value,
-    async () => {
-        page.value = 1
-        await fetchLeaders()
-    },
-)
-
-const fetchLeaders = async () => {
-    await usersStore.getLeaders({
-        page: page.value,
-        region: region.value,
-        district: district.value,
-    })
-}
-</script>
 <template>
     <div>
         <div class="text-bold mt-6 mb-6 text-xl">{{ $t('leaders') }}</div>
 
         <div class="flex justify-between mb-4">
-            <div class="mb-3">
-                <q-btn color="primary" no-caps :label="$t('daily')" />
-            </div>
-            <div class="mb-3">
-                <q-btn outline color="primary" no-caps :label="$t('weekly')" />
-            </div>
-            <div class="mb-3">
-                <q-btn outline color="primary" no-caps :label="$t('monthly')" />
-            </div>
-            <div class="mb-3">
-                <q-btn outline color="primary" no-caps :label="$t('All')" />
+            <div
+                class="mb-3"
+                v-for="(item, index) in DAILY_FILTERS"
+                :key="index"
+            >
+                <q-btn
+                    :outline="by_time !== item.value"
+                    @click="filterByTime(item.value)"
+                    color="primary"
+                    no-caps
+                    :label="$t(item.label)"
+                />
             </div>
         </div>
 
@@ -73,17 +29,6 @@ const fetchLeaders = async () => {
                 option-label="title"
                 option-value="id"
             />
-            <!-- v-model="district" -->
-            <!-- <BaseSelect
-                outlined
-                :placeholder="$t('district')"
-                :options="[
-                    'Toshkent',
-                    'Buxoro',
-                    'Qoraqalpog\'iston respublikasi',
-                    'Andijon',
-                ]"
-            /> -->
         </div>
 
         <div class="mb-6">
@@ -128,5 +73,78 @@ const fetchLeaders = async () => {
         </div>
     </div>
 </template>
+
+<script setup>
+import { ref } from 'vue-demi'
+import BaseSelect from 'src/components/UI/BaseSelect.vue'
+import LeaderTable from 'src/components/LeaderTable.vue'
+import { useUserStore } from 'src/stores/user'
+import { useReferencesStore } from 'src/stores/references'
+import { onMounted, watch } from 'vue'
+import { useMainStore } from 'src/stores/main'
+import { LEADERS_FILTER_TIME } from 'src/utils/constants'
+
+const region = ref('')
+const district = ref('')
+const science = ref('')
+const page = ref(1)
+const by_time = ref('all')
+
+const DAILY_FILTERS = [
+    {
+        value: LEADERS_FILTER_TIME.ALL,
+        label: 'All',
+    },
+    {
+        value: LEADERS_FILTER_TIME.DAILY,
+        label: 'daily',
+    },
+    {
+        value: LEADERS_FILTER_TIME.WEEKLY,
+        label: 'weekly',
+    },
+    {
+        value: LEADERS_FILTER_TIME.MONTHLY,
+        label: 'monthly',
+    },
+]
+
+const usersStore = useUserStore()
+const referenceStore = useReferencesStore()
+const mainStore = useMainStore()
+
+onMounted(async () => {
+    mainStore.changeSiteLoader(true)
+    await Promise.allSettled([
+        referenceStore.getRegions(),
+        referenceStore.getSubjects({ is_main_for_block: true }),
+        fetchLeaders(),
+    ])
+
+    mainStore.changeSiteLoader(false)
+})
+
+watch(
+    () => region.value + science.value + district.value,
+    async () => {
+        page.value = 1
+        await fetchLeaders()
+    },
+)
+
+const fetchLeaders = async () => {
+    await usersStore.getLeaders({
+        page: page.value,
+        region: region.value,
+        district: district.value,
+        by_time: by_time.value,
+    })
+}
+
+const filterByTime = async (value) => {
+    by_time.value = value
+    await fetchLeaders()
+}
+</script>
 
 <style></style>

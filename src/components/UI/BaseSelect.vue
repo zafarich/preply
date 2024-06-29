@@ -115,6 +115,13 @@ function change(v) {
             color: $dark;
         }
     }
+    .field__native {
+        min-height: 48px;
+    }
+
+    .q-field__marginal {
+        height: 48px;
+    }
     .placeholder {
         color: #cecece;
         font-size: 16px;

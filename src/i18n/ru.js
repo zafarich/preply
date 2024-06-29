@@ -3,6 +3,7 @@ export default {
     test_types: 'Типы Тестов',
     popular_sciences: 'Популярная наука',
     all: 'все',
+    All: 'Все',
     block_tests: 'Блочные тесты',
     leaders: 'Лидеры',
     province: 'Провинция',
