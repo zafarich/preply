@@ -60,6 +60,9 @@ export const useTestStore = defineStore('test', () => {
     }
 
     function setSelectedAnswer(index, question_index) {
+        console.log('index', index)
+        console.log('question_index', question_index)
+        console.log('question.value', questions.value[question_index])
         questions.value[question_index].selected_answer = index
         LocalStorage.set('questions', questions.value)
     }

@@ -138,5 +138,10 @@ function change(v) {
         color: #000;
         text-align: center;
     }
+
+    .disabled,
+    [disabled] {
+        opacity: 1 !important;
+    }
 }
 </style>

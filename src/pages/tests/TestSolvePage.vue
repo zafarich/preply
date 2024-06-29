@@ -61,16 +61,6 @@ const questions = computed(() => {
     return testStore.questions
 })
 
-const isActiveTopSlider = computed(() => {
-    if (active_test.value.order_number < 30) return 0
-    else if (
-        active_test.value.order_number >= 30 &&
-        active_test.value.order_number
-    )
-        return 1
-    else 2
-})
-
 const active_test = computed(() => {
     return testStore.questions?.[test_store.value.active_index]
 })
@@ -128,6 +118,7 @@ async function fetchTest() {
 }
 
 function selectAnswer(index, question_index) {
+    console.log('selectAnser', index, question_index)
     testStore.setSelectedAnswer(index, question_index)
 }
 
@@ -246,7 +237,6 @@ async function confirmEndTest() {
             <div class="question-text">
                 {{ active_test?.order_number + 1 }}. {{ active_test?.question }}
             </div>
-
             <div class="variants-wrap">
                 <button
                     v-for="(answer, index) in active_test?.answers"

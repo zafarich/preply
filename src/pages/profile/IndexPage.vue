@@ -77,12 +77,7 @@ const onChange = async (data) => {
                                     {{ userStore.userData.last_name }}
                                 </div>
                             </div>
-                            <div class="info-item">
-                                <div class="key">ID</div>
-                                <div class="value">
-                                    {{ userStore.userData.id }}
-                                </div>
-                            </div>
+
                             <div class="info-item">
                                 <div class="key">{{ $t('place') }}</div>
                                 <div class="value">

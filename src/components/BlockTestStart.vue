@@ -33,6 +33,8 @@ watch(
     () => data.value.s1,
     async (newValue) => {
         data.value.s2 = ''
+        console.log('called')
+        referenceStore.setSubMainSubject([])
         if (newValue) {
             await referenceStore.getSubjects({ parent_subjects: newValue })
         }

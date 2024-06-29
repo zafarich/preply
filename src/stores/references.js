@@ -11,6 +11,10 @@ export const useReferencesStore = defineStore('references', () => {
     let test_types = ref([])
     let selections = ref([])
 
+    function setSubMainSubject(value) {
+        sub_main_subjects.value = value
+    }
+
     async function getRegions() {
         const res = await api.loadRegions()
         regions.value = res.results
@@ -64,6 +68,7 @@ export const useReferencesStore = defineStore('references', () => {
         regions,
         districts,
         selections,
+        setSubMainSubject,
         getSelection,
         getRegions,
         getDistricts,
