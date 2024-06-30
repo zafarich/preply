@@ -80,4 +80,9 @@ export default {
     you_have_not_card: 'Sizda hozircha hech qanday karta mavjud emas',
     purchase: 'Sotib olish',
     you_have_not_subscription: 'Sizda hozircha hech qanday obuna mavjud emas',
+    //
+    correct_answers: "To'g'ri javoblar",
+    wrong_answers: "Noto'g'ri javoblar",
+    unmarked_anwers: 'Belgilanmagan savollar',
+    answers_count: 'Savollar soni',
 }

@@ -32,7 +32,7 @@ onMounted(() => {
 })
 
 async function fetchVariants() {
-    variants.value = await testStore.getVariants({
+    variants.value = await testStore.FETCH_VARIANTS({
         page: 1,
         subject: subject_id,
     })
@@ -50,10 +50,7 @@ function goToSolveTest(variant) {
 async function startTest() {
     if (selected_variant.value) {
         $q.loading.show()
-        testStore.changeTestField({
-            type: TEST_TYPES.VARIANT,
-            variant_id: selected_variant.value,
-        })
+
         await testStore.START_TEST(TEST_TYPES.VARIANT, {
             variant_id: selected_variant.value,
         })

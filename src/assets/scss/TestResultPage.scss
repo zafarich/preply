@@ -21,31 +21,27 @@
     }
 }
 
-.question-wrap {
-    .question-text {
-        margin-top: 16px;
-        font-size: 18px;
-        font-weight: bold;
+
+
+
+.answers {
+    padding: 8px 12px 20px;
+
+
+
+    .answer-item {
+        padding: 20px 30px;
+        font-size: 16px;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #333;
+        font-weight: 500;
+        border: 4px solid $gray-5;
+        border-radius: 10px;
+
     }
 
-    .variants-wrap {
-        margin-top: 24px;
-
-        .variant-item {
-            padding: 12px 24px;
-            border-radius: 10px;
-            border: 2px solid $gray-5;
-            width: 100%;
-            display: block;
-            text-align: left;
-            margin-bottom: 10px;
-            font-size: 16px;
-            // background-color: #f4f4f4;
-        }
-
-        ._selected {
-            // background-color: $;
-            border: 2px solid #ffcf26;
-        }
-    }
 }

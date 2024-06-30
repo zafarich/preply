@@ -97,9 +97,6 @@ const openModal = () => {
 
 const startTest = async () => {
     mainStore.changeSiteLoader(true)
-    testStore.changeTestField({
-        type: 'block',
-    })
 
     await testStore.START_TEST(TEST_TYPES.BLOCK, {
         subjects: [data.value.s1, data.value.s2],

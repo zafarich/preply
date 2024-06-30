@@ -21,7 +21,7 @@ const referencesStore = useReferencesStore()
 const testStore = useTestStore()
 const mainStore = useMainStore()
 
-const { EXAM_TYPE } = storeToRefs(testStore)
+const { GET_TEST_TYPE } = storeToRefs(testStore)
 
 onMounted(() => {
     fetchData()
@@ -41,7 +41,7 @@ async function fetchData() {
 }
 
 function changeTestType(value) {
-    testStore.setTestType(value)
+    testStore.SET_TEST_TYPE(value)
 }
 </script>
 <template>
@@ -51,7 +51,7 @@ function changeTestType(value) {
             <q-tabs
                 active-color="primary"
                 class="base-tab mb-6"
-                v-model="EXAM_TYPE"
+                v-model="GET_TEST_TYPE"
                 no-caps
                 outlined
             >
@@ -73,12 +73,12 @@ function changeTestType(value) {
             </q-tabs>
 
             <ScienceList
-                v-if="EXAM_TYPE === TEST_TYPES.BY_SUBJECTS"
+                v-if="GET_TEST_TYPE === TEST_TYPES.BY_SUBJECTS"
                 :subjects="referencesStore.main_subjects"
             />
-            <BlockTestStart v-else-if="EXAM_TYPE === TEST_TYPES.BLOCK" />
+            <BlockTestStart v-else-if="GET_TEST_TYPE === TEST_TYPES.BLOCK" />
             <VariantTest
-                v-else-if="EXAM_TYPE === TEST_TYPES.VARIANT"
+                v-else-if="GET_TEST_TYPE === TEST_TYPES.VARIANT"
                 :subjects="referencesStore.subjects"
             />
         </div>

@@ -79,4 +79,9 @@ export default {
     you_have_not_card: 'Sizde házirshe hesh qanday karta joq',
     purchase: 'Satıp alıw',
     you_have_not_subscription: 'Sizde házirshe hesh qanday jazılıw joq',
+    //
+    correct_answers: ' Tuwrı juwaplar',
+    wrong_answers: ' Nadurıs juwaplar',
+    unmarked_anwers: 'Belgilenmagan sorawlar',
+    answers_count: 'Sorawlar sanı',
 }

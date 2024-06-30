@@ -14,7 +14,7 @@ const props = defineProps({
 })
 
 function selectTest(value) {
-    testStore.setTestType(value)
+    testStore.SET_TEST_TYPE(value)
     router.push({ name: 'tests' })
 }
 </script>

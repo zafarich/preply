@@ -81,17 +81,10 @@ const routes = [
         path: '/lb',
         component: () => import('layouts/BottomMenuLayout.vue'),
         children: [
-        {
+            {
                 path: 'test-result/:id',
                 name: 'test.result',
                 component: () => import('pages/tests/TestResultPage.vue'),
-                meta: { middlewares: [auth] },
-            },
-            {
-                path: 'test-result-questions',
-                name: 'test.result.questions',
-                component: () =>
-                    import('pages/tests/TestResultQuestionsPage.vue'),
                 meta: { middlewares: [auth] },
             },
         ],

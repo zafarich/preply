@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="test-solve">
         <div class="test-solve-header">
             <div class="flex items-center top-wrap justify-between px-3 py-1.5">
                 <div>
@@ -30,20 +30,15 @@
                         {{ formatTime(remainingTime) }}
                     </div>
                 </div>
-
-                <div v-if="is_visible_variant_title" class="font-semibold">
-                    {{ test_variant?.title }}
-                </div>
             </div>
             <div class="subjects-top-slider" v-if="is_visible_subjects">
                 <swiper
                     :slides-per-view="'auto'"
                     :space-between="10"
-                    :speed="500"
+                    :speed="100"
                 >
-                    <!-- :class="{ _active: isActiveTopSlider === index }" -->
                     <swiper-slide-
-                        v-for="(subject, index) in testStore.EXAM
+                        v-for="(subject, index) in testStore.GET_TESTS
                             ?.block_test_subjects"
                         :key="index"
                         class="subject-slider-item"
@@ -52,19 +47,24 @@
                     </swiper-slide->
                 </swiper>
             </div>
-            <!-- {{ active_test }} -->
-            {{ testStore.ACTIVE_INDEX }}
             <div class="questions-top-slider">
-                <swiper :slides-per-view="'auto'" :space-between="5">
+                <swiper
+                    :speed="100"
+                    :slides-per-view="'auto'"
+                    :space-between="5"
+                >
                     <swiper-slide
-                        v-for="(question, index) in testStore.PROBLEMS"
+                        v-for="(
+                            question, index
+                        ) in testStore.GET_TEST_QUESTIONS"
                         :key="index"
                         ><button
-                            @click="testStore.changeActiveIndex(index)"
+                            @click="testStore.SELECT_TEST(index)"
                             class="question-slider-item"
                             :class="{
                                 _selected: question?.selected_answer >= 0,
-                                _active: index == testStore.ACTIVE_INDEX,
+                                _active:
+                                    index == testStore.GET_ACTIVE_TEST_INDEX,
                             }"
                         >
                             {{ index + 1 }}
@@ -114,10 +114,12 @@
         <div class="flex justify-between items-center mt-10">
             <div>
                 <q-btn
-                    v-if="testStore.ACTIVE_INDEX > 0"
+                    v-if="testStore.GET_ACTIVE_TEST_INDEX > 0"
                     align="around"
                     @click="
-                        testStore.changeActiveIndex(testStore.ACTIVE_INDEX - 1)
+                        testStore.SELECT_TEST(
+                            testStore.GET_ACTIVE_TEST_INDEX - 1,
+                        )
                     "
                     no-caps
                     class="text-base"
@@ -127,11 +129,18 @@
                     {{ $t('previous') }}
                 </q-btn>
             </div>
-            <div v-if="testStore.ACTIVE_INDEX < testStore.PROBLEMS?.length - 1">
+            <div
+                v-if="
+                    testStore.GET_ACTIVE_TEST_INDEX <
+                    testStore.GET_TEST_QUESTIONS?.length - 1
+                "
+            >
                 <q-btn
                     align="around"
                     @click="
-                        testStore.changeActiveIndex(testStore.ACTIVE_INDEX + 1)
+                        testStore.SELECT_TEST(
+                            testStore.GET_ACTIVE_TEST_INDEX + 1,
+                        )
                     "
                     no-caps
                     class="text-base"
@@ -164,15 +173,12 @@ import 'swiper/css'
 
 import { computed, onMounted, onUnmounted, ref } from 'vue-demi'
 import { useRouter, useRoute } from 'vue-router'
-import { useQuasar } from 'quasar'
 import { TEST_TYPES } from 'src/utils/constants'
 
 import NotifyTestModal from './components/NotifyTestModal.vue'
 import EndTestModal from 'src/components/modals/EndTestModal.vue'
 
 const router = useRouter()
-const route = useRoute()
-const $q = useQuasar()
 
 import { useTestStore } from 'src/stores/test'
 import { useModalStore } from 'src/stores/modal'
@@ -186,46 +192,31 @@ const mainStore = useMainStore()
 const { notifyTestModal, endTestModal } = storeToRefs(modalStore)
 
 async function confirmBack() {
-    const test_type = route.query.test_type
-
     await testStore.END_TEST()
-
-    testStore.resetStore()
+    testStore.RESET_TEST_STORE()
 
     router.replace({ name: 'home' })
 }
 
 let timer
-const remainingTime = ref(3 * 60 * 60)
+const remainingTime = ref(testStore.GET_TEST_TIME)
 const warningTimePeriod = 3 * 60
 
-const test_variant = ref(null)
-const test_store = computed(() => testStore.test)
-
-const is_visible_variant_title = computed(() => {
-    return testStore.EXAM_TYPE === TEST_TYPES.VARIANT
-})
 const is_visible_subjects = computed(() => {
-    return testStore.EXAM_TYPE !== TEST_TYPES.BLOCK
-})
-const questions = computed(() => {
-    return testStore.questions
-})
-
-const active_test = computed(() => {
-    return testStore.questions?.[test_store.value.active_index]
+    return testStore.GET_TEST_TYPE !== TEST_TYPES.BLOCK
 })
 
 const updateRemainingTime = () => {
-    if (testStore.EXAM.started_at) {
+    if (testStore.GET_TESTS.started_at) {
         const currentTime = new Date()
         const timeDiff =
             currentTime.getTime() -
-            new Date(testStore.EXAM.started_at).getTime()
+            new Date(testStore.GET_TESTS.started_at).getTime()
         remainingTime.value = Math.max(
             0,
-            3 * 60 * 60 - Math.floor(timeDiff / 1000),
+            testStore.GET_TEST_TIME - Math.floor(timeDiff / 1000),
         )
+
         if (remainingTime.value <= 0) {
             confirmEndTest()
             clearInterval(timer)
@@ -234,7 +225,6 @@ const updateRemainingTime = () => {
 }
 
 onMounted(async () => {
-    await fetchTest()
     timer = setInterval(updateRemainingTime, 1000)
 })
 
@@ -257,20 +247,8 @@ const formatTime = (seconds) => {
     return `${hours}:${mins}:${secs}`
 }
 
-async function fetchTest() {
-    let res = testStore.test_response
-    if (!test_store.value?.loaded) {
-        testStore.changeTestField({
-            loaded: true,
-        })
-    }
-
-    test_variant.value = res?.test_variant
-}
-
 function selectAnswer(index, question_index) {
-    console.log('selectAnser', index, question_index)
-    testStore.setSelectedAnswer(index, question_index)
+    testStore.SELECT_ANSWER(index, question_index)
 }
 
 async function confirmEndTest() {
@@ -278,10 +256,10 @@ async function confirmEndTest() {
 
     await testStore.END_TEST()
 
-    let res = await testStore.getResultDetail()
+    let res = await testStore.FETCH_TEST_RESULT()
 
     if (res?.id) {
-        testStore.resetStore()
+        testStore.RESET_TEST_STORE()
         router.replace({ name: 'test.result', params: { id: res.id } })
     }
     mainStore.changeSiteLoader(true)

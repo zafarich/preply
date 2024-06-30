@@ -33,9 +33,6 @@ const openModal = (unique_name) => {
 
 const startTest = async () => {
     mainStore.changeSiteLoader(true)
-    testStore.changeTestField({
-        type: TEST_TYPES.BY_SELECTIONS,
-    })
 
     await testStore.START_TEST(TEST_TYPES.BY_SELECTIONS, {
         selection: selectedTest.value,

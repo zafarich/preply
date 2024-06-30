@@ -80,4 +80,9 @@ export default {
     you_have_not_card: 'У вас еще нет карты',
     purchase: 'Купить',
     you_have_not_subscription: 'У вас еще нет подписки',
+    //
+    correct_answers: 'Правильные ответы',
+    wrong_answers: 'Неправильные ответы',
+    unmarked_anwers: 'Неотмеченные вопросы',
+    answers_count: 'Количество вопросов',
 }

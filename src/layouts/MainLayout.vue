@@ -13,10 +13,10 @@ const route = useRouter()
 const testStore = useTestStore()
 
 onMounted(() => {
-    if (testStore.EXAM_TYPE?.length && route.name !== 'tests.solving') {
+    // console.log('GET_TESTSPTYPE', typeof testStore.GET_TEST_TYPE)
+    if (!!testStore.GET_TESTS && route.name !== 'tests.solving') {
         router.push({
             name: 'tests.solving',
-            query: { s1: testStore.test?.variant_id },
         })
     }
 })

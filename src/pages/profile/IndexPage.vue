@@ -44,10 +44,7 @@ const onChange = async (data) => {
                 <div class="">
                     <div class="flex justify-center mt-4 mb-4">
                         <div class="avatar">
-                            <img
-                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQu_r1Z91AaWpSXXoHKASTdGIwqU43_-O8niWO9Cw8uYTJnfksBq6YPjM4SaxMMzNlSza0&usqp=CAU"
-                                alt=""
-                            />
+                            <img src="icons/user-icon.svg" alt="" />
                         </div>
                     </div>
 
