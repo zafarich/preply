@@ -25,7 +25,7 @@ function close() {
 }
 
 async function confirmBack() {
-    await testStore.endVariantTest()
+    await testStore.END_TEST()
     testStore.resetStore()
     router.go(-1)
 }

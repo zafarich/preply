@@ -1,0 +1,61 @@
+{
+    "id": 159,
+    "test_variant": {
+        "id": 125,
+        "title": "1-variant (Ingliz tili)",
+        "subject": {
+            "id": 5,
+            "image": "https://tartib-sohibi.uz:9443/media/subjects/%D0%9E%D0%BD%D0%B0_%D1%82%D0%B8%D0%BB%D0%B8_%D0%B2%D0%B0_%D0%B0%D0%B4%D0%B0%D0%B1%D0%B8%D0%B5%D1%82_EZGNA1C.png",
+            "category": null,
+            "title": "Английский",
+            "description": ""
+        }
+    },
+    "user": {
+        "id": 30,
+        "first_name": "Fazliddin",
+        "last_name": "Xakimov",
+        "full_name": null,
+        "is_premium": false,
+        "is_free_attempts_left": true,
+        "region": null
+    },
+    "is_solved": false,
+    "started_at": "2024-06-30T12:28:26.802306+05:00",
+    "questions": [
+        {
+            "question": "Lorem ipsum",
+            "question_image": null,
+            "order_number": 0,
+            "answers": [
+                "6.0",
+                "8.0",
+                "12.0",
+                "4.0"
+            ]
+        },
+        {
+            "question": "Lorem ipsum",
+            "question_image": "https://tartib-sohibi.uz:9443/media/tests-questions-images/pyuFo503QYiyGxyqLw6vqQ.png",
+            "order_number": 1,
+            "answers": [
+                "8.0",
+                "4.0",
+                "6.0",
+                "12.0"
+            ]
+        },
+        {
+            "question": "Lorem ipsum",
+            "question_image": null,
+            "order_number": 2,
+            "answers": [
+                "4.0",
+                "8.0",
+                "6.0",
+                "12.0"
+            ]
+        }
+    ],
+    "block_test_subjects": []
+}

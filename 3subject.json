@@ -1,0 +1,513 @@
+{
+    "id": 160,
+    "test_variant": null,
+    "user": {
+        "id": 30,
+        "first_name": "Fazliddin",
+        "last_name": "Xakimov",
+        "full_name": null,
+        "is_premium": false,
+        "is_free_attempts_left": true,
+        "region": null
+    },
+    "is_solved": false,
+    "started_at": "2024-06-30T12:29:08.988103+05:00",
+    "questions": [
+        {
+            "question": "Maxovik tekis tezlanuvchan harakat qilib 4 s da chastotasini 10 s-1 dan 25 s-1 gacha yetkazdi. Maxovik shu vaqt ichida necha marta aylangan? ",
+            "question_image": null,
+            "order_number": 33,
+            "answers": [
+                "60",
+                "80",
+                "70",
+                "50"
+            ]
+        },
+        {
+            "question": "Jismning harakat qonuni x=5+10t-t2  (m) ko’rinishga ega. Jism tezligi nolga teng bo’lguncha qancha yo’l bosib o’tadi?(m)",
+            "question_image": null,
+            "order_number": 27,
+            "answers": [
+                "32",
+                "15",
+                "25",
+                "30"
+            ]
+        },
+        {
+            "question": "Massasi 1 t bo’lgan avtomobil dvigatelining 500 N tortish kuchi tasirida joyidan qo’zg’alib, 30 smda qanday (m) yo’l o’tadi? Qarshilik kuchini hisobga olmang.                                                                               ",
+            "question_image": null,
+            "order_number": 28,
+            "answers": [
+                "125",
+                "450",
+                "600",
+                "225"
+            ]
+        },
+        {
+            "question": "Maxovik tekis tezlanuvchan harakat qilib 4 s da chastotasini 10 s-1 dan 25 s-1 gacha yetkazdi. Maxovik shu vaqt ichida necha marta aylangan? ",
+            "question_image": null,
+            "order_number": 29,
+            "answers": [
+                "50",
+                "80",
+                "60",
+                "70"
+            ]
+        },
+        {
+            "question": "O’zgarmas bir xil kuch tasirida harakatlanayotgan ikki jismning harakat tenglamalari x1=6+2t2 va x2=8+6t2 ko’rinishlarga ega. Jismlarning massalari bir-biridan necha marta farq qiladi?",
+            "question_image": null,
+            "order_number": 30,
+            "answers": [
+                "3",
+                "5",
+                "2",
+                "4"
+            ]
+        },
+        {
+            "question": "To’p  180 m balandlikdan erkin tashlab yuborildi. To’p har safar yerga urilishidan so’ng tezligini 50% ni  yo’qotadigan  bo’lsa uning toki to’xtagunga qadar bosib o’tgan yo’lini toping(m) ",
+            "question_image": null,
+            "order_number": 31,
+            "answers": [
+                "300",
+                "320",
+                "240",
+                "460"
+            ]
+        },
+        {
+            "question": "Radiusi 50sm, massasi 100g bo’lgan metal sharcha gorizontal tekislikda 3 Hz chastota bilan tekis harakat qilyapti. Chastotani 5 Hz ga yetkazish uchun qanday ish bajarish kerak. (J)  π2=10  ",
+            "question_image": null,
+            "order_number": 32,
+            "answers": [
+                "6",
+                "0,8",
+                "10",
+                "8"
+            ]
+        },
+        {
+            "question": "Suvning zichligi  necha gradus haroratda maksimal qiymatga erishadi (0C). ",
+            "question_image": null,
+            "order_number": 0,
+            "answers": [
+                "4",
+                "100",
+                "2",
+                "0"
+            ]
+        },
+        {
+            "question": "Sportchi boshlang’ich  4 m/s tezlik bilan  8 s da tezligini 72 km/h ga yetkazdi. Sportchining shu vaqt ichidagi bosib o’tgan masofasini toping?(m)",
+            "question_image": null,
+            "order_number": 1,
+            "answers": [
+                "88",
+                "96",
+                "84",
+                "104"
+            ]
+        },
+        {
+            "question": "Tekis tezlanuvchan harakat qilayotgan jismning .................................................... birlik vaqt ichida bosib o‘tadigan masofasi",
+            "question_image": null,
+            "order_number": 2,
+            "answers": [
+                "birlik vaqt ichidagi tezlik o‘zgarishi o'zgarmas saqlanadi",
+                "birlik vaqt ichidagi tezligi o'zgarmas saqlanadi",
+                "bosib o'tadigan masofasi chiziqli ortadi",
+                "o'zgarmaydi"
+            ]
+        },
+        {
+            "question": "Mushuk 2 m/s , sichqon 6 km/h tezlik bilan harakatlanadi. Mushukning tezligi sichqonning tezligidan necha (km/h) ga ortiq?",
+            "question_image": null,
+            "order_number": 3,
+            "answers": [
+                "1,6",
+                "1,2",
+                "1,8",
+                "1,4"
+            ]
+        },
+        {
+            "question": "Agar jism erkin tushishning oxirgi sekundida 75 m yo`l bosgan bo`lsa unung yerga urulishdagi  tezligi (m/s) qanday ?",
+            "question_image": null,
+            "order_number": 4,
+            "answers": [
+                "70",
+                "80.0",
+                "90",
+                "45"
+            ]
+        },
+        {
+            "question": " 295 N kuch ta’sirida massasi 55 kg bo’lgan jismni qo’zg’aluvchan blok yordamida 3 m balandlikka ko’tarildi. Blokning foydali ish koeffitsiyenti nimaga teng (%)? ",
+            "question_image": null,
+            "order_number": 5,
+            "answers": [
+                "83",
+                "93",
+                "55",
+                "90"
+            ]
+        },
+        {
+            "question": "Massasi 4 kg bo’lgan jismning tezligi har 3 s davomida 7,5 m/s ga o’zgarmoqda. Jismga tasir etuvchi kuchning modulini toping (N)",
+            "question_image": null,
+            "order_number": 6,
+            "answers": [
+                "10",
+                "12",
+                "14",
+                "8"
+            ]
+        },
+        {
+            "question": "O’zgarmas bir xil kuch tasirida harakatlanayotgan ikki jismning harakat tenglamalari x1=6+2t2 va x2=8+6t2 ko’rinishlarga ega. Jismlarning massalari bir-biridan necha marta farq qiladi?",
+            "question_image": null,
+            "order_number": 7,
+            "answers": [
+                "5",
+                "3",
+                "2",
+                "4"
+            ]
+        },
+        {
+            "question": "Daryo bo’yida joylashgan ikki shahar orasidagi masofa 120 km ga teng. Kater oqim bo’yicha harakatlanganda, shu masofani 2 soatda, oqimga qarshi esa 4 soatda bosib o’tadi. Katerning turg’un suvdagi tezligini aniqlang (km/h)? ",
+            "question_image": null,
+            "order_number": 8,
+            "answers": [
+                "30",
+                "45",
+                "35",
+                "25"
+            ]
+        },
+        {
+            "question": "Gidravlik pressning kichik porsheniga 196 N kuch qo’yilgan. Bu kuch ta’sirida u bir yurishda 25 sm pastga tushdi. Natijada katta porshen 5 mm ko’tarildi. Katta porshenga qanday bosim kuchi (N) o’tkazilganligini aniqlang.",
+            "question_image": null,
+            "order_number": 9,
+            "answers": [
+                "9800.0",
+                "8900.0",
+                "9600.0",
+                "9200.0"
+            ]
+        },
+        {
+            "question": "Ikki jism bir nuqtadan bir aylanada bir tomonga harakat boshladi. Birinchisining aylanish davri 5 s , ikkinchisiniki esa 3 s bo’lsa harakat boshlangandan qanday eng qisqa vaqtdan so’ng jismlar yana bir nuqtada bo’ladi?(s)",
+            "question_image": null,
+            "order_number": 10,
+            "answers": [
+                "8",
+                "6,5",
+                "7,5",
+                "8,3"
+            ]
+        },
+        {
+            "question": "Bikrligi 1000 N/m bo’lgan prujina uzunliklarining nisbati 2:5:3 nisbatda bo’lgan 3 qismga bo’lindi. Uzunligi katta bo’lgan prujinaning bikrligini toping(N/m).  ",
+            "question_image": null,
+            "order_number": 11,
+            "answers": [
+                "2000",
+                "600",
+                "2400",
+                "2500"
+            ]
+        },
+        {
+            "question": "Gaz boshlang’ich  6 litr hajmdan 4 litr hajmgacha siqilganda bosim 2·105 Pa ga ortgan bo’lsa, boshlang’ich bosimni toping(105 Pa).                                                                          ",
+            "question_image": null,
+            "order_number": 12,
+            "answers": [
+                "4",
+                "3",
+                "2",
+                "5"
+            ]
+        },
+        {
+            "question": "Radiusi 25 sm bo’lgan disk 12,56 m/s tezlik bilan harakatlanyapti. 0,04 sekund  ichida qanday burchakka buriladi (rad)? =3,14. ",
+            "question_image": null,
+            "order_number": 13,
+            "answers": [
+                "",
+                "",
+                "",
+                ""
+            ]
+        },
+        {
+            "question": "Radiusi 50sm, massasi 100g bo’lgan metal sharcha gorizontal tekislikda 3 Hz chastota bilan tekis harakat qilyapti. Chastotani 5 Hz ga yetkazish uchun qanday ish bajarish kerak. (J)  π2=10  ",
+            "question_image": null,
+            "order_number": 14,
+            "answers": [
+                "0,8",
+                "8",
+                "6",
+                "10"
+            ]
+        },
+        {
+            "question": "Esayotgan shamol vertikal devorga 93,6 Pa bosim ko’rsatayotgan bo’lsa, shamolning tezligi toping (m/s)?   P0= 105 Pa , ῤh=1,3 kg/m3 T0=273K ",
+            "question_image": null,
+            "order_number": 15,
+            "answers": [
+                "12.0",
+                "14.0",
+                "10.0",
+                "8.4"
+            ]
+        },
+        {
+            "question": "m1 massali jism erkin tushish tezlanishi g1 bo’lgan planetada P og’ilikka, m2 massali jism erkin tushish tezlanishi g2 bo’lgan planetada P og’irlikka ega. Ular bir-biriga bog’lanib uchinchi planetada tortilganda ham og’irligi P bo’lsa g3 nimaga teng ?",
+            "question_image": null,
+            "order_number": 16,
+            "answers": [
+                "g1 g2/ g1g2       ",
+                " ( g1g2 )/g1 g2                    ",
+                "g1/g1g2",
+                "g2/ g1g2 "
+            ]
+        },
+        {
+            "question": "Agar nasos motorining quvvati 10 kW, qurilmaning FIK 72% bo’lsa, 1,5 soatda chuqurligi 1200 m bo’lgan quduqdan necha tonna neft chiqarishi mumkin?",
+            "question_image": null,
+            "order_number": 17,
+            "answers": [
+                "43,5",
+                "0,58",
+                "3,24",
+                "58,2"
+            ]
+        },
+        {
+            "question": "Temperaturasi 300 K va bosimi 1,6·105 Pa bo’lgan kislorod gazining zichligini (kg/m3) toping.",
+            "question_image": null,
+            "order_number": 18,
+            "answers": [
+                "16,8",
+                "6,08",
+                "2,05",
+                "7,41"
+            ]
+        },
+        {
+            "question": "Aylanayotgan g’ildirak gardishidagi nuqtalar to’la tezlanishining vektori shu nuqtalar chiziqli tezligining vektori bilan 60gradus  burchak tashkil qilgan paytdagi normal tezlanishining tangensial tezlanishdan necha marta kattaligini toping. ",
+            "question_image": null,
+            "order_number": 19,
+            "answers": [
+                "0,5",
+                "2",
+                "1,73",
+                "0,8"
+            ]
+        },
+        {
+            "question": "O’t o’chirgich har sekundda 20 m/s tezlik bilan 0,2 kg ko’pik chiqaradi. To’la o’to’chirgichning og’irligi  20 N. Odam o’to’chirgichni ishning boshlang’ich momentida vertikal holatda qo’zg’altirmasdan tutib turishi uchun qancha kuch  (N) sarflashi kerak?",
+            "question_image": null,
+            "order_number": 20,
+            "answers": [
+                "22,3",
+                "18,5",
+                "24.0",
+                "20.4"
+            ]
+        },
+        {
+            "question": "Poyezd stansiyasidan tekis tezlanuvchan yura boshlab 1 km masofada tezligi 1 m/s ga yetdi. Yo’lning ikkinchi kilometrida uning tezligi (m/s) qancha ortadi? ",
+            "question_image": null,
+            "order_number": 21,
+            "answers": [
+                "0,21",
+                "0,69",
+                "0,41",
+                "12"
+            ]
+        },
+        {
+            "question": "Mototsiklchi 70m radiusli aylana yoyi bo’ylab burilayotganda vertikalga nisbatan 30 gradus  burchakka og’gan bo’lsa, uning tezligi qanday bo’lgan (m/s)? ",
+            "question_image": null,
+            "order_number": 22,
+            "answers": [
+                "40",
+                "45",
+                "20",
+                "35"
+            ]
+        },
+        {
+            "question": "To’p  180 m balandlikdan erkin tashlab yuborildi. To’p har safar yerga urilishidan so’ng tezligini 50% ni  yo’qotadigan  bo’lsa uning toki to’xtagunga qadar bosib o’tgan yo’lini toping(m) ",
+            "question_image": null,
+            "order_number": 23,
+            "answers": [
+                "460",
+                "320",
+                "300",
+                "240"
+            ]
+        },
+        {
+            "question": "Massasi 2 va 1 kg massali silindrlar qo’zg’almas blok orqali vaznsiz ipga osilgan. Bunda birinchi silindrning  2% qismi suvga botganda muvozanat vujudga kelgan. Silindrning zichligini toping (kg/m3).",
+            "question_image": null,
+            "order_number": 24,
+            "answers": [
+                "40",
+                "100",
+                "80",
+                "20"
+            ]
+        },
+        {
+            "question": "Poyezd tormoz bera boshlagan paytdan 2/3 min vaqt o’tgach 0,4 km masofani o’tib to’xtadi. Harakatni tekis o’zgaruvchan deb hisoblab, poyezdning tormozlanishdan avvalgi tezligi (m/s) va tormozlanishini (m/s2) toping. ",
+            "question_image": null,
+            "order_number": 25,
+            "answers": [
+                "22;-0,5",
+                "20;-0,5",
+                "20;-1",
+                "22;-1"
+            ]
+        },
+        {
+            "question": "Yer sirtidan 2R masofada erkin tushish tezlanishi qanchaga kamayadi?",
+            "question_image": null,
+            "order_number": 26,
+            "answers": [
+                "4g/9     ",
+                "g/2",
+                "g/9      ",
+                "8g/9"
+            ]
+        },
+        {
+            "question": "Gaz boshlang’ich  6 litr hajmdan 4 litr hajmgacha siqilganda bosim 2·105 Pa ga ortgan bo’lsa, boshlang’ich bosimni toping(105 Pa).                                                                          ",
+            "question_image": null,
+            "order_number": 34,
+            "answers": [
+                "5",
+                "2",
+                "4",
+                "3"
+            ]
+        },
+        {
+            "question": "m1 massali jism erkin tushish tezlanishi g1 bo’lgan planetada P og’ilikka, m2 massali jism erkin tushish tezlanishi g2 bo’lgan planetada P og’irlikka ega. Ular bir-biriga bog’lanib uchinchi planetada tortilganda ham og’irligi P bo’lsa g3 nimaga teng ?",
+            "question_image": null,
+            "order_number": 35,
+            "answers": [
+                " ( g1g2 )/g1 g2                    ",
+                "g1 g2/ g1g2       ",
+                "g1/g1g2",
+                "g2/ g1g2 "
+            ]
+        },
+        {
+            "question": "Massasi 4 kg bo’lgan jismning tezligi har 3 s davomida 7,5 m/s ga o’zgarmoqda. Jismga tasir etuvchi kuchning modulini toping (N)",
+            "question_image": null,
+            "order_number": 36,
+            "answers": [
+                "14",
+                "8",
+                "10",
+                "12"
+            ]
+        },
+        {
+            "question": "Agar jism erkin tushishning oxirgi sekundida 75 m yo`l bosgan bo`lsa unung yerga urulishdagi  tezligi (m/s) qanday ?",
+            "question_image": null,
+            "order_number": 37,
+            "answers": [
+                "90",
+                "80.0",
+                "45",
+                "70"
+            ]
+        },
+        {
+            "question": "Mushuk 2 m/s , sichqon 6 km/h tezlik bilan harakatlanadi. Mushukning tezligi sichqonning tezligidan necha (km/h) ga ortiq?",
+            "question_image": null,
+            "order_number": 38,
+            "answers": [
+                "1,4",
+                "1,8",
+                "1,2",
+                "1,6"
+            ]
+        },
+        {
+            "question": "Agar nasos motorining quvvati 10 kW, qurilmaning FIK 72% bo’lsa, 1,5 soatda chuqurligi 1200 m bo’lgan quduqdan necha tonna neft chiqarishi mumkin?",
+            "question_image": null,
+            "order_number": 39,
+            "answers": [
+                "58,2",
+                "3,24",
+                "43,5",
+                "0,58"
+            ]
+        },
+        {
+            "question": "Suvning zichligi  necha gradus haroratda maksimal qiymatga erishadi (0C). ",
+            "question_image": null,
+            "order_number": 40,
+            "answers": [
+                "4",
+                "0",
+                "100",
+                "2"
+            ]
+        },
+        {
+            "question": "Massasi 2 va 1 kg massali silindrlar qo’zg’almas blok orqali vaznsiz ipga osilgan. Bunda birinchi silindrning  2% qismi suvga botganda muvozanat vujudga kelgan. Silindrning zichligini toping (kg/m3).",
+            "question_image": null,
+            "order_number": 41,
+            "answers": [
+                "80",
+                "40",
+                "20",
+                "100"
+            ]
+        },
+        {
+            "question": "Poyezd tormoz bera boshlagan paytdan 2/3 min vaqt o’tgach 0,4 km masofani o’tib to’xtadi. Harakatni tekis o’zgaruvchan deb hisoblab, poyezdning tormozlanishdan avvalgi tezligi (m/s) va tormozlanishini (m/s2) toping. ",
+            "question_image": null,
+            "order_number": 42,
+            "answers": [
+                "20;-0,5",
+                "22;-0,5",
+                "20;-1",
+                "22;-1"
+            ]
+        },
+        {
+            "question": " 295 N kuch ta’sirida massasi 55 kg bo’lgan jismni qo’zg’aluvchan blok yordamida 3 m balandlikka ko’tarildi. Blokning foydali ish koeffitsiyenti nimaga teng (%)? ",
+            "question_image": null,
+            "order_number": 43,
+            "answers": [
+                "83",
+                "90",
+                "55",
+                "93"
+            ]
+        },
+        {
+            "question": "Ikki jism bir nuqtadan bir aylanada bir tomonga harakat boshladi. Birinchisining aylanish davri 5 s , ikkinchisiniki esa 3 s bo’lsa harakat boshlangandan qanday eng qisqa vaqtdan so’ng jismlar yana bir nuqtada bo’ladi?(s)",
+            "question_image": null,
+            "order_number": 44,
+            "answers": [
+                "8,3",
+                "8",
+                "7,5",
+                "6,5"
+            ]
+        }
+    ],
+    "block_test_subjects": []
+}

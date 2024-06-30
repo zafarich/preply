@@ -24,7 +24,9 @@ const props = defineProps({
 const selectId = ref(null)
 
 const startTest = async (id) => {
-    await testStore.startBySubjectTest({ subject_id: selectId.value })
+    await testStore.START_TEST(TEST_TYPES.BY_SUBJECTS, {
+        subject_id: selectId.value,
+    })
 
     router.push({
         name: 'tests.solving',

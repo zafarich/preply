@@ -1,3 +1,51 @@
+<template>
+    <div>
+        <div class="block-module mb-6">
+            <div class="text-lg mb-4">Asosiy fanlarni tanlang</div>
+            <div>
+                <div class="mb-6">
+                    <BaseSelect
+                        v-model="data.s1"
+                        emit-value
+                        map-options
+                        outlined
+                        :placeholder="$t('first_subject')"
+                        :options="referenceStore.main_subjects"
+                        option-label="title"
+                        option-value="id"
+                    />
+                </div>
+                <div>
+                    <!-- {{ data.s2 }} -->
+                    <BaseSelect
+                        v-model="data.s2"
+                        emit-value
+                        map-options
+                        outlined
+                        :disabled="!!data.s1"
+                        :placeholder="$t('second_subject')"
+                        :options="referenceStore.sub_main_subjects"
+                        option-label="title"
+                        option-value="id"
+                    />
+                </div>
+            </div>
+        </div>
+
+        <q-btn
+            @click="openModal"
+            color="primary"
+            class="full-width button-md"
+            no-caps
+            :loading="loading"
+            :disable="data.s1 && data.s2"
+            >{{ $t('start') }}</q-btn
+        >
+
+        <StartTestModal @startTest="startTest" />
+    </div>
+</template>
+
 <script setup>
 import { ref, onMounted, watch, nextTick } from 'vue-demi'
 import { useI18n } from 'vue-i18n'
@@ -53,7 +101,7 @@ const startTest = async () => {
         type: 'block',
     })
 
-    await testStore.startBlockTest({
+    await testStore.START_TEST(TEST_TYPES.BLOCK, {
         subjects: [data.value.s1, data.value.s2],
     })
 
@@ -72,53 +120,6 @@ const startTest = async () => {
     mainStore.changeSiteLoader(false)
 }
 </script>
-<template>
-    <div>
-        <div class="block-module mb-6">
-            <div class="text-lg mb-4">Asosiy fanlarni tanlang</div>
-            <div>
-                <div class="mb-6">
-                    <BaseSelect
-                        v-model="data.s1"
-                        emit-value
-                        map-options
-                        outlined
-                        :placeholder="$t('first_subject')"
-                        :options="referenceStore.main_subjects"
-                        option-label="title"
-                        option-value="id"
-                    />
-                </div>
-                <div>
-                    <!-- {{ data.s2 }} -->
-                    <BaseSelect
-                        v-model="data.s2"
-                        emit-value
-                        map-options
-                        outlined
-                        :disabled="!!data.s1"
-                        :placeholder="$t('second_subject')"
-                        :options="referenceStore.sub_main_subjects"
-                        option-label="title"
-                        option-value="id"
-                    />
-                </div>
-            </div>
-        </div>
-
-        <q-btn
-            @click="openModal"
-            color="primary"
-            class="full-width button-md"
-            no-caps
-            :loading="loading"
-            :disable="data.s1 && data.s2"
-            >{{ $t('start') }}</q-btn
-        >
-
-        <StartTestModal @startTest="startTest" />
-    </div>
-</template>
 
 <style lang="scss">
 .block-module {

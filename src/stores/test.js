@@ -30,6 +30,16 @@ export const useTestStore = defineStore('test', () => {
         },
     )
 
+    const EXAM = ref(LocalStorage.getItem('EXAM') || null)
+    const EXAM_RESULT = ref(LocalStorage.getItem('EXAM_RESULT' || null))
+    const PROBLEMS = ref(LocalStorage.getItem('PROBLEMS') || null)
+    const EXAM_TYPE = ref(LocalStorage.getItem('EXAM_TYPE' || null))
+    const ACTIVE_INDEX = ref(LocalStorage.getItem('ACTIVE_INDEX' || 0))
+
+    const GET_ACTIVE_TEST = computed(() => {
+        return PROBLEMS.value[ACTIVE_INDEX.value]
+    })
+
     const test_results = ref(
         LocalStorage.getItem('test_results') || { ...defualt_test_result },
     )
@@ -42,9 +52,18 @@ export const useTestStore = defineStore('test', () => {
         return sum
     })
 
+    function changeActiveIndex(index) {
+        LocalStorage.setItem('ACTIVE_INDEX', index)
+        ACTIVE_INDEX.value = index
+    }
+
+    function HISAY() {
+        console.log('HISAY')
+    }
+
     function setTestType(value) {
-        LocalStorage.set('test_type', value)
-        test_type.value = value
+        EXAM_TYPE.value = value
+        LocalStorage.setItem('EXAM_TYPE', value)
     }
 
     async function getVariants(params) {
@@ -54,17 +73,13 @@ export const useTestStore = defineStore('test', () => {
 
     function changeTestField(data) {
         test.value = { ...test.value, ...data }
-        console.log('test.value', test.value)
-        console.log('data', data)
+
         LocalStorage.set('test', test.value)
     }
 
     function setSelectedAnswer(index, question_index) {
-        console.log('index', index)
-        console.log('question_index', question_index)
-        console.log('question.value', questions.value[question_index])
-        questions.value[question_index].selected_answer = index
-        LocalStorage.set('questions', questions.value)
+        PROBLEMS.value[question_index].selected_answer = index
+        LocalStorage.set('PROBLEMS', PROBLEMS.value)
     }
 
     function resetStore() {
@@ -78,71 +93,44 @@ export const useTestStore = defineStore('test', () => {
     }
 
     async function getResultDetail() {
-        const res = await api.getTestResultDetail(test_response.value?.id)
+        const res = await api.getTestResultDetail(EXAM.value?.id)
 
-        test_results.value = res
-        LocalStorage.set('test_results', res)
-
-        return res
-    }
-
-    async function startVariantTest(payload) {
-        const res = await api.startVariantTest(payload)
-
-        test_response.value = res
-        questions.value = res.questions
-
-        LocalStorage.set('test_response', { ...res, type: TEST_TYPES.VARIANT })
-        changeTestField({ type: TEST_TYPES.VARIANT })
-        test_type.value = TEST_TYPES.VARIANT
-        LocalStorage.set('test_type', TEST_TYPES.VARIANT)
-        LocalStorage.set('questions', questions.value)
+        EXAM_RESULT.value = res
+        LocalStorage.set('EXAM_RESULT', res)
 
         return res
     }
 
-    async function endVariantTest() {
-        const solved_questions = questions.value.filter(
-            (item) => item.selected_answer,
-        )
+    async function START_TEST(type, payload) {
+        let res
 
-        const answers = []
-
-        solved_questions.forEach((item) => {
-            answers.push({
-                order_number: item.order_number,
-                user_answer: item.selected_answer,
-            })
-        })
-
-        const data = {
-            result_id: test_response.value?.id,
-            answers: answers,
+        if (type === TEST_TYPES.BLOCK) {
+            res = await api.startBlockTest(payload)
+        } else if (type === TEST_TYPES.BY_SUBJECTS) {
+            res = await api.startBySubjectTest(payload)
+        } else if (type === TEST_TYPES.VARIANT) {
+            res = await api.startVariantTest(payload)
+        } else if (type === TEST_TYPES.BY_SELECTIONS) {
+            res = await api.startBySelectionTest(payload)
         }
 
-        const res = await api.endVariantTest(data)
-        console.log('ress', res)
-        return res
-    }
+        EXAM.value = res
+        PROBLEMS.value = res.questions
+        ACTIVE_INDEX.value = 0
 
-    async function startBlockTest(payload) {
-        const res = await api.startBlockTest(payload)
+        LocalStorage.set('EXAM', { ...res, type: type })
+        LocalStorage.set('EXAM_TYPE', type)
+        LocalStorage.set('PROBLEMS', res.questions)
+        LocalStorage.set('ACTIVE_INDEX', 0)
 
-        test_response.value = res
-        questions.value = res.questions
-
-        LocalStorage.set('test_response', { ...res, type: TEST_TYPES.BLOCK })
-        changeTestField({ type: TEST_TYPES.BLOCK })
-        test_type.value = TEST_TYPES.BLOCK
-        LocalStorage.set('test_type', TEST_TYPES.BLOCK)
-
-        LocalStorage.set('questions', questions.value)
+        changeTestField({ type: type })
+        test_type.value = type
 
         return res
     }
 
-    async function endBlockTest() {
-        const solved_questions = questions.value.filter(
+    async function END_TEST() {
+        const solved_questions = PROBLEMS.value.filter(
             (item) => item.selected_answer,
         )
 
@@ -160,133 +148,45 @@ export const useTestStore = defineStore('test', () => {
             answers,
         }
 
-        const res = await api.endBlockTest(data)
-        return res
-    }
+        let res
 
-    async function startBySubjectTest(payload) {
-        const res = await api.startBySubjectTest(payload)
-
-        test_response.value = res
-        questions.value = res.questions
-
-        LocalStorage.set('test_response', {
-            ...res,
-            type: TEST_TYPES.BY_SUBJECTS,
-        })
-        changeTestField({ type: TEST_TYPES.BY_SUBJECTS })
-        test_type.value = TEST_TYPES.BY_SUBJECTS
-        LocalStorage.set('test_type', TEST_TYPES.BY_SUBJECTS)
-
-        LocalStorage.set('questions', questions.value)
-
-        return res
-    }
-
-    async function endBySubjectTest() {
-        const solved_questions = questions.value.filter(
-            (item) => item.selected_answer,
-        )
-
-        const answers = []
-
-        solved_questions.forEach((item) => {
-            answers.push({
-                order_number: item.order_number,
-                user_answer: item.selected_answer,
-            })
-        })
-
-        const data = {
-            result_id: test_response.value?.id,
-            answers,
+        if (EXAM_TYPE.value === TEST_TYPES.BLOCK) {
+            res = await api.endBlockTest(data)
+        } else if (EXAM_TYPE.value === TEST_TYPES.BY_SUBJECTS) {
+            res = await api.endBySubjectTest(data)
+        } else if (EXAM_TYPE.value === TEST_TYPES.VARIANT) {
+            res = await api.endVariantTest(data)
+        } else if (EXAM_TYPE.value === TEST_TYPES.BY_SELECTIONS) {
+            res = await api.endBySelectionTest(data)
         }
-
-        const res = await api.endBySubjectTest(data)
-        return res
-    }
-
-    async function startBySelectionTest(payload) {
-        const res = await api.startBySelectionTest(payload)
-
-        test_response.value = res
-        questions.value = res.questions
-
-        LocalStorage.set('test_response', {
-            ...res,
-            type: TEST_TYPES.BY_SELECTIONS,
-        })
-        changeTestField({ type: TEST_TYPES.BY_SELECTIONS })
-        test_type.value = TEST_TYPES.BY_SELECTIONS
-        LocalStorage.set('test_type', TEST_TYPES.BY_SELECTIONS)
-
-        LocalStorage.set('questions', questions.value)
-
-        return res
-    }
-
-    async function endBySelectionTest() {
-        const solved_questions = questions.value.filter(
-            (item) => item.selected_answer,
-        )
-
-        const answers = []
-
-        solved_questions.forEach((item) => {
-            answers.push({
-                order_number: item.order_number,
-                user_answer: item.selected_answer,
-            })
-        })
-
-        const data = {
-            result_id: test_response.value?.id,
-            answers,
-        }
-
-        const res = await api.endBySelectionTest(data)
-        return res
-    }
-
-    async function startBySelectionTest(payload) {
-        const res = await api.startBySelectionTest(payload)
-
-        test_response.value = res
-        questions.value = res.questions
-
-        LocalStorage.set('test_response', {
-            ...res,
-            type: TEST_TYPES.BY_SELECTIONS,
-        })
-        changeTestField({ type: TEST_TYPES.BY_SELECTIONS })
-        test_type.value = TEST_TYPES.BY_SELECTIONS
-        LocalStorage.set('test_type', TEST_TYPES.BY_SELECTIONS)
-
-        LocalStorage.set('questions', questions.value)
 
         return res
     }
 
     return {
+        EXAM,
+        EXAM_RESULT,
+        EXAM_TYPE,
+        PROBLEMS,
+        ACTIVE_INDEX,
+        GET_ACTIVE_TEST,
+        changeActiveIndex,
+        START_TEST,
+        END_TEST,
+
         getVariants,
         changeTestField,
         test,
-        endBySubjectTest,
+
         test_response,
         test_results,
-        startVariantTest,
         setSelectedAnswer,
         getOverallBall,
         questions,
-        startBlockTest,
-        startBySubjectTest,
         resetStore,
-        endBlockTest,
         test_type,
         setTestType,
-        startBySelectionTest,
-        endBySelectionTest,
-        endVariantTest,
         getResultDetail,
+        HISAY,
     }
 })

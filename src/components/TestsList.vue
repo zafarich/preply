@@ -37,7 +37,7 @@ const startTest = async () => {
         type: TEST_TYPES.BY_SELECTIONS,
     })
 
-    await testStore.startBySelectionTest({
+    await testStore.START_TEST(TEST_TYPES.BY_SELECTIONS, {
         selection: selectedTest.value,
     })
 

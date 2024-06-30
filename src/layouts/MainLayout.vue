@@ -13,7 +13,7 @@ const route = useRouter()
 const testStore = useTestStore()
 
 onMounted(() => {
-    if (testStore.test.type?.length && route.name !== 'tests.solving') {
+    if (testStore.EXAM_TYPE?.length && route.name !== 'tests.solving') {
         router.push({
             name: 'tests.solving',
             query: { s1: testStore.test?.variant_id },
