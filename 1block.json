@@ -1,899 +1,14 @@
 {
-    "id": 158,
+    "id": 200,
     "test_variant": null,
-    "user": {
-        "id": 30,
-        "first_name": "Fazliddin",
-        "last_name": "Xakimov",
-        "full_name": null,
-        "is_premium": false,
-        "is_free_attempts_left": true,
-        "region": null
+    "test_type": {
+        "id": 3,
+        "unique_name": "block",
+        "subjects_count": 2,
+        "count_of_questions_per_subject": 30,
+        "title": "Блок тест",
+        "description": "Ru"
     },
-    "is_solved": false,
-    "started_at": "2024-06-30T12:25:36.442000+05:00",
-    "questions": [
-        {
-            "question": " Miloddan avalgi 138-126-yillar Issiqko’l, Farg’ona va Xorazim tabiatini, aholisi va xo’jaligini kim o’rgandi? ",
-            "question_image": null,
-            "order_number": 0,
-            "answers": [
-                "Hasn Ali Masudiy ",
-                "Chjan –Syan ",
-                "Syuan –Szan",
-                "Abu Isoq Istahriy"
-            ]
-        },
-        {
-            "question": " O’rta Osiyoda iyun oyining oxirida chekka janubiy qismlarida kun shimolga nisbatan necha kun soat qisqa bo’ladi? ",
-            "question_image": null,
-            "order_number": 1,
-            "answers": [
-                "1 soat 20 minut ",
-                "1 soat 11 minut ",
-                "1 soat 10 minut ",
-                "1 soat 50 minut "
-            ]
-        },
-        {
-            "question": " Yer osti suvlarning gidrosferadagi ulushi ? ",
-            "question_image": null,
-            "order_number": 2,
-            "answers": [
-                "0.017",
-                "0.025",
-                "0.016",
-                "0.015"
-            ]
-        },
-        {
-            "question": " 2019 yilda Mamlakatimizda shahar aholisining salmog’i qancha % ni tashkil etgan? ",
-            "question_image": null,
-            "order_number": 3,
-            "answers": [
-                "0.531",
-                "0.505",
-                "0.5",
-                "0.56"
-            ]
-        },
-        {
-            "question": " XXasr boshida mamlakatimiz hududida shaharlar soni qancha bo’lgan ? ",
-            "question_image": null,
-            "order_number": 4,
-            "answers": [
-                "21 dan ortiq ",
-                "50 ga yaqin ",
-                "35 dan ortiq",
-                "20 ga yaqin "
-            ]
-        },
-        {
-            "question": "O’rta Osiyo o’lkasidagi qaysi erada o’rmonlar yoqolib ketgan? ",
-            "question_image": null,
-            "order_number": 5,
-            "answers": [
-                "paleozoy",
-                "kaynazoy ",
-                "neogen ",
-                "mezazoy"
-            ]
-        },
-        {
-            "question": " Mamlakatimizdagi shaharlar bo’ysinuviga ko’ra necha toifaga bo’linadi?",
-            "question_image": null,
-            "order_number": 6,
-            "answers": [
-                "2.0",
-                "7.0",
-                "4.0",
-                "3.0"
-            ]
-        },
-        {
-            "question": " Tubqarag’ay burni O’rta Osiyoning qaysi qismiga to’g’ri keladi va nechanchi gradusda joylashgan? ",
-            "question_image": null,
-            "order_number": 7,
-            "answers": [
-                "sharqiy 85,6 Ouz",
-                "sharqiy  50,3 Ouz",
-                " shimoliy 53,8 O uz",
-                "janubiy 34 Ouz "
-            ]
-        },
-        {
-            "question": " Qaysi qatorda qadimgi shaharlar keltirilgan? ",
-            "question_image": null,
-            "order_number": 8,
-            "answers": [
-                "Qo’qon, Axsikent, Buxoro, Samarqand ",
-                "Samarqand, Xiva, Uchquduq, Nukus ",
-                "Buxoro, Andijon, Xiva, Keles ",
-                "Qo’qon, Xiva, Samarqand, Toshkent "
-            ]
-        },
-        {
-            "question": " Mamlakatimiz aholisining soni bo’yicha jahonda nechanchi o’rinda turadi? ",
-            "question_image": null,
-            "order_number": 9,
-            "answers": [
-                " 44 o’rinda",
-                " 114 o’rinda",
-                " 48 o’rinda",
-                " 36 o’rinda"
-            ]
-        },
-        {
-            "question": " Dengiz sathidan 1000 metr baland joylarda qanday dehqonchilik qilinadi? ",
-            "question_image": null,
-            "order_number": 10,
-            "answers": [
-                " obikor dehqonchilik",
-                "sug’orma dehqonchilik ",
-                "cho’l dehqonchiligi ",
-                "lalmikor dehqonchilik"
-            ]
-        },
-        {
-            "question": "Aholi soniga ko’ra juda yirik shaharlarni belgilang? ",
-            "question_image": null,
-            "order_number": 11,
-            "answers": [
-                "Fargona, Namangan ",
-                "Buxoro, Samarqand ",
-                "Samarqand, Namangan ",
-                "Nukus, Andijon "
-            ]
-        },
-        {
-            "question": " XXasr boshida mamlakatimiz hududida shaharlar soni qancha bo’lgan ? ",
-            "question_image": null,
-            "order_number": 12,
-            "answers": [
-                "20 ga yaqin ",
-                "50 ga yaqin ",
-                "35 dan ortiq",
-                "21 dan ortiq "
-            ]
-        },
-        {
-            "question": " Temir yo’llar zichligi eng yuqori hududni aniqlang? ",
-            "question_image": null,
-            "order_number": 13,
-            "answers": [
-                "Quyi Amudaryo",
-                "Zarafshon ",
-                "Mirzacho’l",
-                " Farg’ona "
-            ]
-        },
-        {
-            "question": " Neftning issiqlik koeffitsenti qanchaga teng? ",
-            "question_image": null,
-            "order_number": 14,
-            "answers": [
-                "1.9",
-                "1.0",
-                "1.5",
-                "0.5"
-            ]
-        },
-        {
-            "question": " Paleozoy erasining birinchi yarmida sodir bo’lgan kaledon tog’ hosil bo’lishi bosqichida Qozog’iston past tog’larning g’arbiy qismlari va qaysi tog’ ko’tarilgan? ",
-            "question_image": null,
-            "order_number": 15,
-            "answers": [
-                "G’arbiy Tyansha",
-                "Shimoliy Tyanshan ",
-                "Mug’ojar",
-                " Janubiy Tyanshan "
-            ]
-        },
-        {
-            "question": "Mamlakatimizdagi umr davomiyligi kimlarda yuqori? ",
-            "question_image": null,
-            "order_number": 16,
-            "answers": [
-                " yoshlarda ",
-                "erkaklarda",
-                " teng",
-                "ayollarda "
-            ]
-        },
-        {
-            "question": " Yurtimizda aholi zichligi qanday?(1km2ga) ",
-            "question_image": null,
-            "order_number": 17,
-            "answers": [
-                " 48 kishidan ortiq ",
-                " 44 kishidan ortiq ",
-                " 70 kishidan ortiq ",
-                " 36 kishidan ortiq "
-            ]
-        },
-        {
-            "question": "Kaynozoy erasining qaysi davrida dengiz qayta bostirib kelgan, tog’lar yemirilib pasayib qolgan? ",
-            "question_image": null,
-            "order_number": 18,
-            "answers": [
-                "devon ",
-                " perm",
-                "silur",
-                "paleogen"
-            ]
-        },
-        {
-            "question": "Yurtimizning turli xalqaro tashkilotlarga a’zoligi,diplomatik aloqalar o’rnatishi qanday omil sanaladi? ",
-            "question_image": null,
-            "order_number": 19,
-            "answers": [
-                " siyosiy geografik o’rin",
-                " iqtisodiy ",
-                "tabiiy sharoit ",
-                " inson omili"
-            ]
-        },
-        {
-            "question": " O’rta Osiyoning shimoli-g’arbiy chegarasi qayerdan boshlanadi? ",
-            "question_image": null,
-            "order_number": 20,
-            "answers": [
-                "Kaspiy dengizidan ",
-                "Ayritov yaqinidan ",
-                "Qora irtish daryosi bo’yidan ",
-                "Emba daryosini quyar joyidan janubroqdan "
-            ]
-        },
-        {
-            "question": "723,4 ming nafar chaqaloq nechanchi yilda tug’ligan? ",
-            "question_image": null,
-            "order_number": 21,
-            "answers": [
-                "1997.0",
-                "1993.0",
-                "1991.0",
-                "2001.0"
-            ]
-        },
-        {
-            "question": " Quyidagi qaysi tog’da volfram konlar bor? ",
-            "question_image": null,
-            "order_number": 22,
-            "answers": [
-                " Nurota",
-                "Tyanshan ",
-                "Farg’ona ",
-                "Qurama "
-            ]
-        },
-        {
-            "question": "Mamlakatimizdagi umr davomiyligi kimlarda yuqori? ",
-            "question_image": null,
-            "order_number": 23,
-            "answers": [
-                "ayollarda ",
-                " yoshlarda ",
-                "erkaklarda",
-                " teng"
-            ]
-        },
-        {
-            "question": "O’zbekistonning janubiy qismidan Amudaryo oqib o’tadi  bu qanday geografik o’rin? ",
-            "question_image": null,
-            "order_number": 24,
-            "answers": [
-                " iqtisodiy ",
-                "tabiiy",
-                "anklav o’rin ",
-                "siyosiy "
-            ]
-        },
-        {
-            "question": "Mamlakat GESlaridan yiliga qancha elektr –energiyasi olinmoqda? ",
-            "question_image": null,
-            "order_number": 25,
-            "answers": [
-                "4,1mlrd kvatt/h ",
-                " 3,9mlrd kvatt/h ",
-                " 12 mlrd kvatt/h ",
-                "5mlrd kvatt/h "
-            ]
-        },
-        {
-            "question": " Quyidagi qaysi tog’da volfram konlar bor? ",
-            "question_image": null,
-            "order_number": 26,
-            "answers": [
-                "Farg’ona ",
-                "Qurama ",
-                "Tyanshan ",
-                " Nurota"
-            ]
-        },
-        {
-            "question": " Mamlakatimizda ishlab chiqarilayotgan elektr energiyani necha % IES larga togri keladi? ",
-            "question_image": null,
-            "order_number": 27,
-            "answers": [
-                "0.9",
-                "0.72",
-                "0.8",
-                "0.65"
-            ]
-        },
-        {
-            "question": " Quyosh radiatsiyasining yer yuzasida taqsimlanishi nimaga bog’liq? ",
-            "question_image": null,
-            "order_number": 28,
-            "answers": [
-                "geografik kenglikka ",
-                "geografik o’ringa",
-                "tabiat zonasiga ",
-                "iqlim mintaqasiga"
-            ]
-        },
-        {
-            "question": " O’rta Osiyoning shimoliy chekkasida 22-dekabrda quyosh nurining tushish burchagi necha gradus? ",
-            "question_image": null,
-            "order_number": 29,
-            "answers": [
-                "32.5",
-                "59.8",
-                "79.8",
-                "12.8"
-            ]
-        },
-        {
-            "question": "Sintaktik usul bilan yasalgan so‘zlar qatorini aniqlang.",
-            "question_image": null,
-            "order_number": 30,
-            "answers": [
-                "tinchliksevar, muzyorar",
-                "hammasi",
-                "sergul, karnaygul",
-                "har doim, har kim"
-            ]
-        },
-        {
-            "question": "Qaysi qatordagi daraja-miqdor holining asosi shakldoshlik xususiyatiga ega?",
-            "question_image": null,
-            "order_number": 31,
-            "answers": [
-                "U aravaning Nuriddin minganini ko‘rib xiyla yengil tortdi.",
-                "Bir boshing uchun muncha harakat qilmasang!",
-                "Umr kechirmoq uchun bundan yaxshi sharoit bo‘ladimi?",
-                "Ba’zida sen yig‘gan bolingdan to‘ygunimcha yeyman."
-            ]
-        },
-        {
-            "question": "Tutarmen ko‘zki ko‘zki orazingni,Ki derlar: «oqqan ariqqa oqar suv» Baytda qanday badiiy san’at bor?",
-            "question_image": null,
-            "order_number": 32,
-            "answers": [
-                "irsoli masal",
-                " tarse",
-                "talmeh",
-                "kitobat"
-            ]
-        },
-        {
-            "question": "Faqat yasama so‘zlar berilgan qatorni aniqlang.",
-            "question_image": null,
-            "order_number": 33,
-            "answers": [
-                "tilshunos, yozuv, ilmli",
-                "bug‘doy, pishiq, akam",
-                "yurtim, faxrli, bog‘cha",
-                "suvloq, o‘yinchoq, qo‘riqchi"
-            ]
-        },
-        {
-            "question": "Qo‘ziqorin, tuyaqush, qizilishton, har bir kabi so‘zlar so‘zning tuzilish jihatdan qanday turiga mansub?",
-            "question_image": null,
-            "order_number": 34,
-            "answers": [
-                "qo‘shma",
-                "juft",
-                "takroriy",
-                "sodda"
-            ]
-        },
-        {
-            "question": "Qasyi qatorda bo‘g‘in ko‘chirish qoidasi buzilgan?",
-            "question_image": null,
-            "order_number": 35,
-            "answers": [
-                "trak-tor, da-raxt, qi-zil",
-                "ton-gi, pi-shloq, bed-ana",
-                "ham-ma, mak-tab, te-a-tr",
-                "bo-la-lar, chi-roy-li"
-            ]
-        },
-        {
-            "question": "Ravish so‘z turkumiga oid so‘zlarni aniqlang.",
-            "question_image": null,
-            "order_number": 36,
-            "answers": [
-                "kuz, uyqu, havo, foyda",
-                "chiroyli, uzun, buyuk, shirin",
-                "mardlarcha, ohista, ertalab, bugun",
-                "biz, hech kim, bari, har narsa"
-            ]
-        },
-        {
-            "question": "Sintaktik usul bilan yasalgan so‘zlar qatorini aniqlang.",
-            "question_image": null,
-            "order_number": 37,
-            "answers": [
-                "tinchliksevar, muzyorar",
-                "hammasi",
-                "har doim, har kim",
-                "sergul, karnaygul"
-            ]
-        },
-        {
-            "question": "Orttirma nisbatdagi fe’lni aniqlang.",
-            "question_image": null,
-            "order_number": 38,
-            "answers": [
-                "aytishdi",
-                "ayttirdi",
-                "aytildi",
-                "orttirma nisbat yo‘q."
-            ]
-        },
-        {
-            "question": "Qaysi javobda paronimlar berilmagan?",
-            "question_image": null,
-            "order_number": 39,
-            "answers": [
-                "nufus-nufuz",
-                "oxur-axir-oxir",
-                "iztirob-istirob",
-                "zirak-ziyrak"
-            ]
-        },
-        {
-            "question": "Tarixning barcha bosqichlarida ular dunyoga o‘zining borligini goh mardlik, jasorat bilan, goh tadbir-u oqilalik bilan bildirib, tanilib, tan oldirib kelganlar. Yasama so‘zlar soni nechta?",
-            "question_image": null,
-            "order_number": 40,
-            "answers": [
-                "4.0",
-                "6.0",
-                "7.0",
-                "5.0"
-            ]
-        },
-        {
-            "question": "Qaysi qatordagi daraja-miqdor holining asosi shakldoshlik xususiyatiga ega?",
-            "question_image": null,
-            "order_number": 41,
-            "answers": [
-                "Ba’zida sen yig‘gan bolingdan to‘ygunimcha yeyman.",
-                "Bir boshing uchun muncha harakat qilmasang!",
-                "U aravaning Nuriddin minganini ko‘rib xiyla yengil tortdi.",
-                "Umr kechirmoq uchun bundan yaxshi sharoit bo‘ladimi?"
-            ]
-        },
-        {
-            "question": "Bulbul sayrar, chumchuq chirqillar, xabar berar asl zotidan. Gap qanday bo‘laklardan tuzilgan?",
-            "question_image": null,
-            "order_number": 42,
-            "answers": [
-                " ega-ega-kesim-kesim-kesim-hol",
-                "ega-kesim-ega-kesim-kesim-aniqlovchi-to‘ldiruvchi",
-                " ega-aniqlovchi-to‘ldiruvchi-kesim-kesim",
-                "ega-kesim-ega-kesim-kesim-aniqlovchi"
-            ]
-        },
-        {
-            "question": "Maqsad ma’nosidagi qo‘shma gap qaysi qatorda berilgan?",
-            "question_image": null,
-            "order_number": 43,
-            "answers": [
-                "Bu jasoratga sizni deb qo‘l urdim.",
-                "“Barchangizga omad!” deb tilak bildirishdi.",
-                "Sizni gaplarimga tushundi, deb o‘ylabman.",
-                "Gul bargalari uchishadi, tushmayin deb qo‘lingga"
-            ]
-        },
-        {
-            "question": "Yasama ravish qatnashgan gapni toping.",
-            "question_image": null,
-            "order_number": 44,
-            "answers": [
-                "Mashina sekinlab, to‘planganlarning oldida to‘xtadi.",
-                "Shu asnoda ular yo‘lga tushdilar.",
-                "Har kungi g‘urbat Tolibni ezdi.",
-                " Kunduzi uxlaydi, kechasi ishlaydi."
-            ]
-        },
-        {
-            "question": "Qasyi qatorda bo‘g‘in ko‘chirish qoidasi buzilgan?",
-            "question_image": null,
-            "order_number": 45,
-            "answers": [
-                "trak-tor, da-raxt, qi-zil",
-                "bo-la-lar, chi-roy-li",
-                "ton-gi, pi-shloq, bed-ana",
-                "ham-ma, mak-tab, te-a-tr"
-            ]
-        },
-        {
-            "question": "«Oygul bilan Baxtiyor» ertak-dostonidagi ortiqcha obrazni belgilang.",
-            "question_image": null,
-            "order_number": 46,
-            "answers": [
-                "Jayhun baliq",
-                "Qul Darxon",
-                "sandiq",
-                "bahaybat odam"
-            ]
-        },
-        {
-            "question": "Yasama so‘z qaysi qatorda berilgan?",
-            "question_image": null,
-            "order_number": 47,
-            "answers": [
-                "ixtirochi",
-                "ishni",
-                "kiyingan",
-                "oqish"
-            ]
-        },
-        {
-            "question": "Munozara janrining eng qadimgi namunasi qaysi qatorda berilgan?",
-            "question_image": null,
-            "order_number": 48,
-            "answers": [
-                "«O‘q va Yoy» munozarasi",
-                "«Qish va Bahor» munozarasi",
-                "«Bang va Chog‘ir» munozarasi",
-                "«Boz va Bulbul» munozarasi"
-            ]
-        },
-        {
-            "question": "Qozoq adabiyoti namoyondasi Abayning xalqni ilm-ma’rifatga, madaniyatga da’vat etuvchi asari nomi qaysi javobda berilgan?",
-            "question_image": null,
-            "order_number": 49,
-            "answers": [
-                "«Turnalar»",
-                "«Qirq qiz»",
-                "«Mangu buloq»",
-                " «Naqliya so‘zlar»"
-            ]
-        },
-        {
-            "question": "Mirkarim Osim tarjimalari berilgan qatorni aniqlang.",
-            "question_image": null,
-            "order_number": 50,
-            "answers": [
-                "«Maskarad», «Bog‘chasaroy fontani»",
-                "«Manas», «Qirqqiz»",
-                "«Tinch don», «Hayot bo‘stoni»",
-                "«Hamlet», «Otello»"
-            ]
-        },
-        {
-            "question": "Maqsad ma’nosidagi qo‘shma gap qaysi qatorda berilgan?",
-            "question_image": null,
-            "order_number": 51,
-            "answers": [
-                "Bu jasoratga sizni deb qo‘l urdim.",
-                "Sizni gaplarimga tushundi, deb o‘ylabman.",
-                "“Barchangizga omad!” deb tilak bildirishdi.",
-                "Gul bargalari uchishadi, tushmayin deb qo‘lingga"
-            ]
-        },
-        {
-            "question": "Shart mayli shaklidagi fe’llar …kerak … so‘zi bilan qo‘llanilganda qanday ma’no anglashiladi?",
-            "question_image": null,
-            "order_number": 52,
-            "answers": [
-                "shart",
-                "gumon",
-                "aniqlik",
-                "istak"
-            ]
-        },
-        {
-            "question": "Qaysi asarda aynan inson qiyofasini yo‘qotib, hayvonsifat kimsaga aylangan yovuz xonning hayvon saqlanadigan joyda qo‘lga olinishi tasvirlanadi?",
-            "question_image": null,
-            "order_number": 53,
-            "answers": [
-                "«Oygul bilan Baxtiyor»",
-                "«Rustamxon»",
-                "«Kuntug‘mish»",
-                "«Ravshan»"
-            ]
-        },
-        {
-            "question": "Yasama ravish berilgan javobni toping.",
-            "question_image": null,
-            "order_number": 54,
-            "answers": [
-                "olg‘a, atay, jo‘rtaga",
-                "hozir, yayov, piyoda",
-                "astoydil, ertalab, aslo",
-                "noiloj, mardlarcha, yillab, erkakchasiga"
-            ]
-        },
-        {
-            "question": "Yasama ravish berilgan javobni toping.",
-            "question_image": null,
-            "order_number": 55,
-            "answers": [
-                "astoydil, ertalab, aslo",
-                "olg‘a, atay, jo‘rtaga",
-                "noiloj, mardlarcha, yillab, erkakchasiga",
-                "hozir, yayov, piyoda"
-            ]
-        },
-        {
-            "question": "Nelardan so‘zlar kaftimdagi xarita. Ma’no ko‘chish turini aniqlang.",
-            "question_image": null,
-            "order_number": 56,
-            "answers": [
-                "sinekdoxa",
-                "metafora",
-                "metanimiya",
-                " vazifadoshlik"
-            ]
-        },
-        {
-            "question": "Qaysi javobda paronimlar berilmagan?",
-            "question_image": null,
-            "order_number": 57,
-            "answers": [
-                "iztirob-istirob",
-                "oxur-axir-oxir",
-                "zirak-ziyrak",
-                "nufus-nufuz"
-            ]
-        },
-        {
-            "question": "Munozara janrining eng qadimgi namunasi qaysi qatorda berilgan?",
-            "question_image": null,
-            "order_number": 58,
-            "answers": [
-                "«O‘q va Yoy» munozarasi",
-                "«Qish va Bahor» munozarasi",
-                "«Bang va Chog‘ir» munozarasi",
-                "«Boz va Bulbul» munozarasi"
-            ]
-        },
-        {
-            "question": "Mirkarim Osim tarjimalari berilgan qatorni aniqlang.",
-            "question_image": null,
-            "order_number": 59,
-            "answers": [
-                "«Maskarad», «Bog‘chasaroy fontani»",
-                "«Manas», «Qirqqiz»",
-                "«Hamlet», «Otello»",
-                "«Tinch don», «Hayot bo‘stoni»"
-            ]
-        },
-        {
-            "question": " Eng yangi viloyatga bo’ysunadigan shaharni aniqlang? ",
-            "question_image": null,
-            "order_number": 60,
-            "answers": [
-                "Norin",
-                "Shaxriston ",
-                "Xiva",
-                "Kitob"
-            ]
-        },
-        {
-            "question": " Quyidagi qaysi tog’da volfram konlar bor? ",
-            "question_image": null,
-            "order_number": 61,
-            "answers": [
-                "Tyanshan ",
-                "Farg’ona ",
-                "Qurama ",
-                " Nurota"
-            ]
-        },
-        {
-            "question": " 1959-yilda O’zbekiston aholisi qancha bo’lgan? ",
-            "question_image": null,
-            "order_number": 62,
-            "answers": [
-                "6.4",
-                "8.1",
-                "6.3",
-                "11.8"
-            ]
-        },
-        {
-            "question": "Ishchi shaharchasi o’rnidan barpo bo’lgan shaharchani belgilang? ",
-            "question_image": null,
-            "order_number": 63,
-            "answers": [
-                "Quvasoy ",
-                "Zafarobod",
-                "Denov ",
-                "Bekobod "
-            ]
-        },
-        {
-            "question": " Qanday tuzilgan xaritalarda yo’nalishlarni aniqlash qulay, biroq maydonlar va masofalarni tasvirlashda xatoliklarga yo’l qoyiladi? ",
-            "question_image": null,
-            "order_number": 64,
-            "answers": [
-                "teng maydonli yoki teng xajmli andozalarda ",
-                "bunday andozada xarita tuzilmaydi ",
-                "ixtiyoriy andozalarda ",
-                "teng burchakli andozalarda "
-            ]
-        },
-        {
-            "question": " 2019 yilda Mamlakatimizda shahar aholisining salmog’i qancha % ni tashkil etgan? ",
-            "question_image": null,
-            "order_number": 65,
-            "answers": [
-                "0.505",
-                "0.5",
-                "0.56",
-                "0.531"
-            ]
-        },
-        {
-            "question": " Yer osti suvlarning gidrosferadagi ulushi ? ",
-            "question_image": null,
-            "order_number": 66,
-            "answers": [
-                "0.016",
-                "0.025",
-                "0.015",
-                "0.017"
-            ]
-        },
-        {
-            "question": " 2018-yil ma’lumoti bo’yicha 142 000 aholisi mavjud bo’lgan shahar nomi berilgan qatorni aniqlang? ",
-            "question_image": null,
-            "order_number": 67,
-            "answers": [
-                "Chirchiq",
-                "Termiz ",
-                " Urganch",
-                "Angren "
-            ]
-        },
-        {
-            "question": "Mamlakat GESlaridan yiliga qancha elektr –energiyasi olinmoqda? ",
-            "question_image": null,
-            "order_number": 68,
-            "answers": [
-                "5mlrd kvatt/h ",
-                "4,1mlrd kvatt/h ",
-                " 3,9mlrd kvatt/h ",
-                " 12 mlrd kvatt/h "
-            ]
-        },
-        {
-            "question": "Mamlakatimizdagi umr davomiyligi kimlarda yuqori? ",
-            "question_image": null,
-            "order_number": 69,
-            "answers": [
-                " yoshlarda ",
-                "erkaklarda",
-                "ayollarda ",
-                " teng"
-            ]
-        },
-        {
-            "question": "Qaysi qatordagi daraja-miqdor holining asosi shakldoshlik xususiyatiga ega?",
-            "question_image": null,
-            "order_number": 70,
-            "answers": [
-                "Umr kechirmoq uchun bundan yaxshi sharoit bo‘ladimi?",
-                "U aravaning Nuriddin minganini ko‘rib xiyla yengil tortdi.",
-                "Ba’zida sen yig‘gan bolingdan to‘ygunimcha yeyman.",
-                "Bir boshing uchun muncha harakat qilmasang!"
-            ]
-        },
-        {
-            "question": "Qo‘ziqorin, tuyaqush, qizilishton, har bir kabi so‘zlar so‘zning tuzilish jihatdan qanday turiga mansub?",
-            "question_image": null,
-            "order_number": 71,
-            "answers": [
-                "takroriy",
-                "sodda",
-                "qo‘shma",
-                "juft"
-            ]
-        },
-        {
-            "question": "Qozoq adabiyoti namoyondasi Abayning xalqni ilm-ma’rifatga, madaniyatga da’vat etuvchi asari nomi qaysi javobda berilgan?",
-            "question_image": null,
-            "order_number": 72,
-            "answers": [
-                " «Naqliya so‘zlar»",
-                "«Qirq qiz»",
-                "«Turnalar»",
-                "«Mangu buloq»"
-            ]
-        },
-        {
-            "question": "Yasama so‘z qaysi qatorda berilgan?",
-            "question_image": null,
-            "order_number": 73,
-            "answers": [
-                "ishni",
-                "ixtirochi",
-                "kiyingan",
-                "oqish"
-            ]
-        },
-        {
-            "question": "Nelardan so‘zlar kaftimdagi xarita. Ma’no ko‘chish turini aniqlang.",
-            "question_image": null,
-            "order_number": 74,
-            "answers": [
-                "metanimiya",
-                "sinekdoxa",
-                " vazifadoshlik",
-                "metafora"
-            ]
-        },
-        {
-            "question": "Munozara janrining eng qadimgi namunasi qaysi qatorda berilgan?",
-            "question_image": null,
-            "order_number": 75,
-            "answers": [
-                "«Boz va Bulbul» munozarasi",
-                "«Bang va Chog‘ir» munozarasi",
-                "«Qish va Bahor» munozarasi",
-                "«O‘q va Yoy» munozarasi"
-            ]
-        },
-        {
-            "question": "Shart mayli shaklidagi fe’llar …kerak … so‘zi bilan qo‘llanilganda qanday ma’no anglashiladi?",
-            "question_image": null,
-            "order_number": 76,
-            "answers": [
-                "shart",
-                "gumon",
-                "istak",
-                "aniqlik"
-            ]
-        },
-        {
-            "question": "«Oq olmalar», «Chaman» nomli asarlar muallifi kim?",
-            "question_image": null,
-            "order_number": 77,
-            "answers": [
-                "Saida Zunnunova",
-                "Halima Xudoyberdiyeva",
-                "Oybek",
-                "Shuhrat "
-            ]
-        },
-        {
-            "question": "Ibora ma’nosi xato berilgan qatorni toping.",
-            "question_image": null,
-            "order_number": 78,
-            "answers": [
-                "qovog‘i osilmoq – xafa bo‘lmoq",
-                "qulog‘i ding bo‘lmoq – hurpaymoq",
-                "bir yoqadan bosh chiqarib – ahil bo‘lib",
-                "do‘ppisi yarimta – beg‘am"
-            ]
-        },
-        {
-            "question": "Quyidagi gaplarning qay birida ham yuklama, ham bog‘lovchi mavjud?",
-            "question_image": null,
-            "order_number": 79,
-            "answers": [
-                "Bilasizmi, siz va biz bitta ariqdan suv ichamiz-a.",
-                " Yig‘ilgan xaloyiq suron bilan yangi shahar tomon qo‘zg‘aldi.",
-                "Gulnoz shundan keyin uch marta xat yozdi, lekin javob kelmadi.",
-                "Hali xabaring yo‘qmi? Asrora opam kasalxonadalar-ku!"
-            ]
-        }
-    ],
     "block_test_subjects": [
         {
             "id": 10,
@@ -904,6 +19,1235 @@
             "id": 8,
             "image": "subjects/Она_тили_ва_адабиет_uRjNJEs.png",
             "title": "Узбекский язык и литература"
+        }
+    ],
+    "score": 0.0,
+    "is_solved": true,
+    "started_at": "2024-07-01T19:26:18.763881+05:00",
+    "finished_at": "2024-07-01T19:26:24.254485+05:00",
+    "results": [
+        {
+            "subject": {
+                "id": 10,
+                "image": "subjects/Тарих_fBkPXa7.png",
+                "title": "История"
+            },
+            "score": 0.0,
+            "items": [
+                {
+                    "question": "Aholi soniga ko’ra juda yirik shaharlarni belgilang? ",
+                    "order_number": 0,
+                    "is_correct": false,
+                    "user_answer": "2",
+                    "correct_answer": "3",
+                    "answers": [
+                        "Fargona, Namangan ",
+                        "Samarqand, Namangan ",
+                        "Buxoro, Samarqand ",
+                        "Nukus, Andijon "
+                    ]
+                },
+                {
+                    "question": "O’rta Osiyo yer yuzasining tuzilishiga ko’ra necha qismga bolinadi? ",
+                    "order_number": 1,
+                    "is_correct": false,
+                    "user_answer": "3",
+                    "correct_answer": "0",
+                    "answers": [
+                        "3 qism",
+                        "6 qism",
+                        "9 qism",
+                        "2 qism"
+                    ]
+                },
+                {
+                    "question": " Mamlakatimizdagi shaharlar bo’ysinuviga ko’ra necha toifaga bo’linadi?",
+                    "order_number": 2,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "3",
+                    "answers": [
+                        "7.0",
+                        "4.0",
+                        "2.0",
+                        "3.0"
+                    ]
+                },
+                {
+                    "question": "Mamlakat GESlaridan yiliga qancha elektr –energiyasi olinmoqda? ",
+                    "order_number": 3,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "0",
+                    "answers": [
+                        "5mlrd kvatt/h ",
+                        " 3,9mlrd kvatt/h ",
+                        "4,1mlrd kvatt/h ",
+                        " 12 mlrd kvatt/h "
+                    ]
+                },
+                {
+                    "question": "Mamlakatda ishlab chiqarilayotgan elektr energiyaning deyarli yarmi qaysi viloyatga to’g’ri keladi? ",
+                    "order_number": 4,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "1",
+                    "answers": [
+                        "Navoiy",
+                        " Toshkent ",
+                        "Sirdaryo",
+                        "Qashqadaryo "
+                    ]
+                },
+                {
+                    "question": " Dengiz sathidan 1000 metr baland joylarda qanday dehqonchilik qilinadi? ",
+                    "order_number": 5,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "3",
+                    "answers": [
+                        " obikor dehqonchilik",
+                        "cho’l dehqonchiligi ",
+                        "sug’orma dehqonchilik ",
+                        "lalmikor dehqonchilik"
+                    ]
+                },
+                {
+                    "question": "Ishchi shaharchasi o’rnidan barpo bo’lgan shaharchani belgilang? ",
+                    "order_number": 6,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "3",
+                    "answers": [
+                        "Zafarobod",
+                        "Quvasoy ",
+                        "Denov ",
+                        "Bekobod "
+                    ]
+                },
+                {
+                    "question": "O’rta Osiyo o’lkasidagi qaysi erada o’rmonlar yoqolib ketgan? ",
+                    "order_number": 7,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "3",
+                    "answers": [
+                        "neogen ",
+                        "kaynazoy ",
+                        "paleozoy",
+                        "mezazoy"
+                    ]
+                },
+                {
+                    "question": " Tubqarag’ay burni O’rta Osiyoning qaysi qismiga to’g’ri keladi va nechanchi gradusda joylashgan? ",
+                    "order_number": 8,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "0",
+                    "answers": [
+                        "sharqiy  50,3 Ouz",
+                        "janubiy 34 Ouz ",
+                        " shimoliy 53,8 O uz",
+                        "sharqiy 85,6 Ouz"
+                    ]
+                },
+                {
+                    "question": " Sokolov-Sarbay konidan nima qazib olinadi? ",
+                    "order_number": 9,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "1",
+                    "answers": [
+                        "fosforit",
+                        "temir ",
+                        "gaz ",
+                        "oltingurgut"
+                    ]
+                },
+                {
+                    "question": " Dengiz sathidan 1000 metr baland joylarda qanday dehqonchilik qilinadi? ",
+                    "order_number": 10,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "3",
+                    "answers": [
+                        " obikor dehqonchilik",
+                        "cho’l dehqonchiligi ",
+                        "sug’orma dehqonchilik ",
+                        "lalmikor dehqonchilik"
+                    ]
+                },
+                {
+                    "question": "Mamlakatimizda qancha qishloq va ovullar mavjud? ",
+                    "order_number": 11,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "2",
+                    "answers": [
+                        "12 ming ",
+                        "18 ming ",
+                        "11 ming ",
+                        "15ming "
+                    ]
+                },
+                {
+                    "question": "Kaynozoy erasining qaysi davrida dengiz qayta bostirib kelgan, tog’lar yemirilib pasayib qolgan? ",
+                    "order_number": 12,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "0",
+                    "answers": [
+                        "paleogen",
+                        " perm",
+                        "devon ",
+                        "silur"
+                    ]
+                },
+                {
+                    "question": " Temir yo’llar zichligi eng yuqori hududni aniqlang? ",
+                    "order_number": 13,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "3",
+                    "answers": [
+                        "Zarafshon ",
+                        "Quyi Amudaryo",
+                        "Mirzacho’l",
+                        " Farg’ona "
+                    ]
+                },
+                {
+                    "question": " Quyosh radiatsiyasining yer yuzasida taqsimlanishi nimaga bog’liq? ",
+                    "order_number": 14,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "3",
+                    "answers": [
+                        "iqlim mintaqasiga",
+                        "geografik o’ringa",
+                        "tabiat zonasiga ",
+                        "geografik kenglikka "
+                    ]
+                },
+                {
+                    "question": "Yurtimizning turli xalqaro tashkilotlarga a’zoligi,diplomatik aloqalar o’rnatishi qanday omil sanaladi? ",
+                    "order_number": 15,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "1",
+                    "answers": [
+                        "tabiiy sharoit ",
+                        " siyosiy geografik o’rin",
+                        " inson omili",
+                        " iqtisodiy "
+                    ]
+                },
+                {
+                    "question": " Eng yangi viloyatga bo’ysunadigan shaharni aniqlang? ",
+                    "order_number": 16,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "1",
+                    "answers": [
+                        "Kitob",
+                        "Xiva",
+                        "Norin",
+                        "Shaxriston "
+                    ]
+                },
+                {
+                    "question": " Mintaqa vaqti qabul qilinmagan hududni belgilang? ",
+                    "order_number": 17,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "0",
+                    "answers": [
+                        " Qatar",
+                        "Butan",
+                        "Iroq",
+                        "Pokiston"
+                    ]
+                },
+                {
+                    "question": " Miloddan avalgi 138-126-yillar Issiqko’l, Farg’ona va Xorazim tabiatini, aholisi va xo’jaligini kim o’rgandi? ",
+                    "order_number": 18,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "1",
+                    "answers": [
+                        "Hasn Ali Masudiy ",
+                        "Chjan –Syan ",
+                        "Syuan –Szan",
+                        "Abu Isoq Istahriy"
+                    ]
+                },
+                {
+                    "question": " Paleozoy erasining birinchi yarmida sodir bo’lgan kaledon tog’ hosil bo’lishi bosqichida Qozog’iston past tog’larning g’arbiy qismlari va qaysi tog’ ko’tarilgan? ",
+                    "order_number": 19,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "2",
+                    "answers": [
+                        " Janubiy Tyanshan ",
+                        "G’arbiy Tyansha",
+                        "Shimoliy Tyanshan ",
+                        "Mug’ojar"
+                    ]
+                },
+                {
+                    "question": " Yer osti suvlarning gidrosferadagi ulushi ? ",
+                    "order_number": 20,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "3",
+                    "answers": [
+                        "0.015",
+                        "0.016",
+                        "0.025",
+                        "0.017"
+                    ]
+                },
+                {
+                    "question": "Mamlakatimizda qancha qishloq va ovullar mavjud? ",
+                    "order_number": 21,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "1",
+                    "answers": [
+                        "18 ming ",
+                        "11 ming ",
+                        "12 ming ",
+                        "15ming "
+                    ]
+                },
+                {
+                    "question": " O’rta Osiyoning shimoliy chekkasida 22-dekabrda quyosh nurining tushish burchagi necha gradus? ",
+                    "order_number": 22,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "3",
+                    "answers": [
+                        "79.8",
+                        "32.5",
+                        "59.8",
+                        "12.8"
+                    ]
+                },
+                {
+                    "question": " Xarita andozalari necha xil boladi? ",
+                    "order_number": 23,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "2",
+                    "answers": [
+                        "2 xil ",
+                        "4 xil ",
+                        "3 xil ",
+                        "1 xil "
+                    ]
+                },
+                {
+                    "question": " O’rta Osiyodagi tog’lar Paleozoy erasining oxirgi va mezazoy erasining boshlarida bu tog’lar qanday ko’rinishga ega boldi? ",
+                    "order_number": 24,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "3",
+                    "answers": [
+                        "baland tog’lar ",
+                        "past tog’lar ",
+                        "yassi tekisliklar ",
+                        " yassi tog’lar "
+                    ]
+                },
+                {
+                    "question": " Tiklanmaydigan boyliklardan oqilona foydalanishning asosiy shartlari nechta? ",
+                    "order_number": 25,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "0",
+                    "answers": [
+                        "5.0",
+                        "6.0",
+                        "7.0",
+                        "4.0"
+                    ]
+                },
+                {
+                    "question": " Quyidagi qaysi tog’da volfram konlar bor? ",
+                    "order_number": 26,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "0",
+                    "answers": [
+                        " Nurota",
+                        "Farg’ona ",
+                        "Qurama ",
+                        "Tyanshan "
+                    ]
+                },
+                {
+                    "question": "Mamlakatimizdagi umr davomiyligi kimlarda yuqori? ",
+                    "order_number": 27,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "1",
+                    "answers": [
+                        " teng",
+                        "ayollarda ",
+                        " yoshlarda ",
+                        "erkaklarda"
+                    ]
+                },
+                {
+                    "question": " 1959-yilda O’zbekiston aholisi qancha bo’lgan? ",
+                    "order_number": 28,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "3",
+                    "answers": [
+                        "6.4",
+                        "11.8",
+                        "6.3",
+                        "8.1"
+                    ]
+                },
+                {
+                    "question": "O’rta Osiyo o’lkasidagi qaysi erada o’rmonlar yoqolib ketgan? ",
+                    "order_number": 29,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "3",
+                    "answers": [
+                        "kaynazoy ",
+                        "paleozoy",
+                        "neogen ",
+                        "mezazoy"
+                    ]
+                }
+            ]
+        },
+        {
+            "subject": {
+                "id": 8,
+                "image": "subjects/Она_тили_ва_адабиет_uRjNJEs.png",
+                "title": "Узбекский язык и литература"
+            },
+            "score": 0.0,
+            "items": [
+                {
+                    "question": "«Oygul bilan Baxtiyor» ertak-dostonidagi ortiqcha obrazni belgilang.",
+                    "order_number": 30,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "1",
+                    "answers": [
+                        "Qul Darxon",
+                        "bahaybat odam",
+                        "Jayhun baliq",
+                        "sandiq"
+                    ]
+                },
+                {
+                    "question": "Faqat yasama so‘zlar berilgan qatorni aniqlang.",
+                    "order_number": 31,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "3",
+                    "answers": [
+                        "tilshunos, yozuv, ilmli",
+                        "bug‘doy, pishiq, akam",
+                        "yurtim, faxrli, bog‘cha",
+                        "suvloq, o‘yinchoq, qo‘riqchi"
+                    ]
+                },
+                {
+                    "question": "«Sohibqiron» dramasida «qish faslida ochilgan chechakdek ular» deyilganda kimga ta’rif beriladi?",
+                    "order_number": 32,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "2",
+                    "answers": [
+                        "Rum lashkarlariga",
+                        "Buqalamunga ",
+                        "Sarbadorlarga",
+                        "3 ta mullavachchaga"
+                    ]
+                },
+                {
+                    "question": "Chingiz Aytmatovning «Oq kema» qissasidagi oq kema nimaning ramzi?",
+                    "order_number": 33,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "2",
+                    "answers": [
+                        "erk va qudrat",
+                        "ezgulik",
+                        "to‘kislik",
+                        "muloyimlik"
+                    ]
+                },
+                {
+                    "question": "Bulbul sayrar, chumchuq chirqillar, xabar berar asl zotidan. Gap qanday bo‘laklardan tuzilgan?",
+                    "order_number": 34,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "0",
+                    "answers": [
+                        "ega-kesim-ega-kesim-kesim-aniqlovchi-to‘ldiruvchi",
+                        " ega-ega-kesim-kesim-kesim-hol",
+                        " ega-aniqlovchi-to‘ldiruvchi-kesim-kesim",
+                        "ega-kesim-ega-kesim-kesim-aniqlovchi"
+                    ]
+                },
+                {
+                    "question": "Qozoq adabiyoti namoyondasi Abayning xalqni ilm-ma’rifatga, madaniyatga da’vat etuvchi asari nomi qaysi javobda berilgan?",
+                    "order_number": 35,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "1",
+                    "answers": [
+                        "«Mangu buloq»",
+                        " «Naqliya so‘zlar»",
+                        "«Qirq qiz»",
+                        "«Turnalar»"
+                    ]
+                },
+                {
+                    "question": "Ravish so‘z turkumiga oid so‘zlarni aniqlang.",
+                    "order_number": 36,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "3",
+                    "answers": [
+                        "chiroyli, uzun, buyuk, shirin",
+                        "biz, hech kim, bari, har narsa",
+                        "kuz, uyqu, havo, foyda",
+                        "mardlarcha, ohista, ertalab, bugun"
+                    ]
+                },
+                {
+                    "question": "Mirkarim Osim tarjimalari berilgan qatorni aniqlang.",
+                    "order_number": 37,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "1",
+                    "answers": [
+                        "«Maskarad», «Bog‘chasaroy fontani»",
+                        "«Tinch don», «Hayot bo‘stoni»",
+                        "«Manas», «Qirqqiz»",
+                        "«Hamlet», «Otello»"
+                    ]
+                },
+                {
+                    "question": "Qaysi javobda paronimlar berilmagan?",
+                    "order_number": 38,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "0",
+                    "answers": [
+                        "iztirob-istirob",
+                        "zirak-ziyrak",
+                        "oxur-axir-oxir",
+                        "nufus-nufuz"
+                    ]
+                },
+                {
+                    "question": "Maqsad ma’nosidagi qo‘shma gap qaysi qatorda berilgan?",
+                    "order_number": 39,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "0",
+                    "answers": [
+                        "Gul bargalari uchishadi, tushmayin deb qo‘lingga",
+                        "Bu jasoratga sizni deb qo‘l urdim.",
+                        "Sizni gaplarimga tushundi, deb o‘ylabman.",
+                        "“Barchangizga omad!” deb tilak bildirishdi."
+                    ]
+                },
+                {
+                    "question": "«Oq olmalar», «Chaman» nomli asarlar muallifi kim?",
+                    "order_number": 40,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "1",
+                    "answers": [
+                        "Oybek",
+                        "Halima Xudoyberdiyeva",
+                        "Saida Zunnunova",
+                        "Shuhrat "
+                    ]
+                },
+                {
+                    "question": "Bulbul sayrar, chumchuq chirqillar, xabar berar asl zotidan. Gap qanday bo‘laklardan tuzilgan?",
+                    "order_number": 41,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "1",
+                    "answers": [
+                        "ega-kesim-ega-kesim-kesim-aniqlovchi",
+                        "ega-kesim-ega-kesim-kesim-aniqlovchi-to‘ldiruvchi",
+                        " ega-ega-kesim-kesim-kesim-hol",
+                        " ega-aniqlovchi-to‘ldiruvchi-kesim-kesim"
+                    ]
+                },
+                {
+                    "question": "Yasama so‘z qaysi qatorda berilgan?",
+                    "order_number": 42,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "2",
+                    "answers": [
+                        "ishni",
+                        "kiyingan",
+                        "ixtirochi",
+                        "oqish"
+                    ]
+                },
+                {
+                    "question": "Tarixning barcha bosqichlarida ular dunyoga o‘zining borligini goh mardlik, jasorat bilan, goh tadbir-u oqilalik bilan bildirib, tanilib, tan oldirib kelganlar. Yasama so‘zlar soni nechta?",
+                    "order_number": 43,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "3",
+                    "answers": [
+                        "7.0",
+                        "4.0",
+                        "6.0",
+                        "5.0"
+                    ]
+                },
+                {
+                    "question": "Sintaktik usul bilan yasalgan so‘zlar qatorini aniqlang.",
+                    "order_number": 44,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "2",
+                    "answers": [
+                        "sergul, karnaygul",
+                        "har doim, har kim",
+                        "tinchliksevar, muzyorar",
+                        "hammasi"
+                    ]
+                },
+                {
+                    "question": "Ibora ma’nosi xato berilgan qatorni toping.",
+                    "order_number": 45,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "0",
+                    "answers": [
+                        "do‘ppisi yarimta – beg‘am",
+                        "qovog‘i osilmoq – xafa bo‘lmoq",
+                        "qulog‘i ding bo‘lmoq – hurpaymoq",
+                        "bir yoqadan bosh chiqarib – ahil bo‘lib"
+                    ]
+                },
+                {
+                    "question": "Qaysi javobda paronimlar berilmagan?",
+                    "order_number": 46,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "2",
+                    "answers": [
+                        "nufus-nufuz",
+                        "oxur-axir-oxir",
+                        "iztirob-istirob",
+                        "zirak-ziyrak"
+                    ]
+                },
+                {
+                    "question": "«Oq olmalar», «Chaman» nomli asarlar muallifi kim?",
+                    "order_number": 47,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "0",
+                    "answers": [
+                        "Halima Xudoyberdiyeva",
+                        "Shuhrat ",
+                        "Saida Zunnunova",
+                        "Oybek"
+                    ]
+                },
+                {
+                    "question": "Sof ko‘makchi qatnashgan qatorni aniqlang.",
+                    "order_number": 48,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "3",
+                    "answers": [
+                        "Gapirishdan avval o‘ylab ko‘rish lozim",
+                        "Muxbirimiz telefon orqali xabar berdi",
+                        "Gap futbol o‘yini ustida ketardi.",
+                        " Barchasidan qovun soz, paykal uzra dumalar"
+                    ]
+                },
+                {
+                    "question": "«Sohibqiron» dramasida «qish faslida ochilgan chechakdek ular» deyilganda kimga ta’rif beriladi?",
+                    "order_number": 49,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "1",
+                    "answers": [
+                        "3 ta mullavachchaga",
+                        "Sarbadorlarga",
+                        "Rum lashkarlariga",
+                        "Buqalamunga "
+                    ]
+                },
+                {
+                    "question": "Tutarmen ko‘zki ko‘zki orazingni,Ki derlar: «oqqan ariqqa oqar suv» Baytda qanday badiiy san’at bor?",
+                    "order_number": 50,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "0",
+                    "answers": [
+                        "irsoli masal",
+                        " tarse",
+                        "kitobat",
+                        "talmeh"
+                    ]
+                },
+                {
+                    "question": "Ism sanaladigan so‘zlar qatorini aniqlang.",
+                    "order_number": 51,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "1",
+                    "answers": [
+                        "bormoq, qizil, kimdir, sholi, bug‘doy",
+                        "o‘g‘lon, pushti, poya, borish, men",
+                        "taq-tuq, evoh, albatta, yoki, -chi",
+                        "har bir, hech kim, har vaqt, har lahza"
+                    ]
+                },
+                {
+                    "question": "Orttirma nisbatdagi fe’lni aniqlang.",
+                    "order_number": 52,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "0",
+                    "answers": [
+                        "ayttirdi",
+                        "aytildi",
+                        "aytishdi",
+                        "orttirma nisbat yo‘q."
+                    ]
+                },
+                {
+                    "question": "Nelardan so‘zlar kaftimdagi xarita. Ma’no ko‘chish turini aniqlang.",
+                    "order_number": 53,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "3",
+                    "answers": [
+                        "metanimiya",
+                        " vazifadoshlik",
+                        "metafora",
+                        "sinekdoxa"
+                    ]
+                },
+                {
+                    "question": "Shart mayli shaklidagi fe’llar …kerak … so‘zi bilan qo‘llanilganda qanday ma’no anglashiladi?",
+                    "order_number": 54,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "1",
+                    "answers": [
+                        "shart",
+                        "gumon",
+                        "aniqlik",
+                        "istak"
+                    ]
+                },
+                {
+                    "question": "Qaysi qatordagi daraja-miqdor holining asosi shakldoshlik xususiyatiga ega?",
+                    "order_number": 55,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "2",
+                    "answers": [
+                        "U aravaning Nuriddin minganini ko‘rib xiyla yengil tortdi.",
+                        "Bir boshing uchun muncha harakat qilmasang!",
+                        "Ba’zida sen yig‘gan bolingdan to‘ygunimcha yeyman.",
+                        "Umr kechirmoq uchun bundan yaxshi sharoit bo‘ladimi?"
+                    ]
+                },
+                {
+                    "question": "Faqat yasama so‘zlar berilgan qatorni aniqlang.",
+                    "order_number": 56,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "3",
+                    "answers": [
+                        "bug‘doy, pishiq, akam",
+                        "yurtim, faxrli, bog‘cha",
+                        "tilshunos, yozuv, ilmli",
+                        "suvloq, o‘yinchoq, qo‘riqchi"
+                    ]
+                },
+                {
+                    "question": "Quyidagi gaplarning qay birida ham yuklama, ham bog‘lovchi mavjud?",
+                    "order_number": 57,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "3",
+                    "answers": [
+                        "Hali xabaring yo‘qmi? Asrora opam kasalxonadalar-ku!",
+                        " Yig‘ilgan xaloyiq suron bilan yangi shahar tomon qo‘zg‘aldi.",
+                        "Gulnoz shundan keyin uch marta xat yozdi, lekin javob kelmadi.",
+                        "Bilasizmi, siz va biz bitta ariqdan suv ichamiz-a."
+                    ]
+                },
+                {
+                    "question": "Qaysi asarda aynan inson qiyofasini yo‘qotib, hayvonsifat kimsaga aylangan yovuz xonning hayvon saqlanadigan joyda qo‘lga olinishi tasvirlanadi?",
+                    "order_number": 58,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "0",
+                    "answers": [
+                        "«Oygul bilan Baxtiyor»",
+                        "«Kuntug‘mish»",
+                        "«Ravshan»",
+                        "«Rustamxon»"
+                    ]
+                },
+                {
+                    "question": "Qo‘ziqorin, tuyaqush, qizilishton, har bir kabi so‘zlar so‘zning tuzilish jihatdan qanday turiga mansub?",
+                    "order_number": 59,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "0",
+                    "answers": [
+                        "qo‘shma",
+                        "takroriy",
+                        "sodda",
+                        "juft"
+                    ]
+                }
+            ]
+        },
+        {
+            "subject": {
+                "id": 10,
+                "image": "https://tartib-sohibi.uz:9443/media/subjects/%D0%A2%D0%B0%D1%80%D0%B8%D1%85_fBkPXa7.png",
+                "title": "История",
+                "description": "История"
+            },
+            "score": 0.0,
+            "items": [
+                {
+                    "question": "  Kaspiy bo’yidagi past tog’lar va balandliklar qaysi burmalanishda ko’tarilgan?",
+                    "order_number": 60,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "3",
+                    "answers": [
+                        "Mezazoy ",
+                        "Gersin ",
+                        "Alp",
+                        "Kimmeriy"
+                    ]
+                },
+                {
+                    "question": " Miloddan avalgi 138-126-yillar Issiqko’l, Farg’ona va Xorazim tabiatini, aholisi va xo’jaligini kim o’rgandi? ",
+                    "order_number": 61,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "1",
+                    "answers": [
+                        "Hasn Ali Masudiy ",
+                        "Chjan –Syan ",
+                        "Abu Isoq Istahriy",
+                        "Syuan –Szan"
+                    ]
+                },
+                {
+                    "question": " XXasr boshida mamlakatimiz hududida shaharlar soni qancha bo’lgan ? ",
+                    "order_number": 62,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "2",
+                    "answers": [
+                        "50 ga yaqin ",
+                        "21 dan ortiq ",
+                        "20 ga yaqin ",
+                        "35 dan ortiq"
+                    ]
+                },
+                {
+                    "question": " Tiklanmaydigan boyliklardan oqilona foydalanishning asosiy shartlari nechta? ",
+                    "order_number": 63,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "0",
+                    "answers": [
+                        "5.0",
+                        "7.0",
+                        "6.0",
+                        "4.0"
+                    ]
+                },
+                {
+                    "question": "Ishchi shaharchasi o’rnidan barpo bo’lgan shaharchani belgilang? ",
+                    "order_number": 64,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "2",
+                    "answers": [
+                        "Denov ",
+                        "Quvasoy ",
+                        "Bekobod ",
+                        "Zafarobod"
+                    ]
+                },
+                {
+                    "question": "1948 yil qayerda kuchli zilzila bolgan? ",
+                    "order_number": 65,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "3",
+                    "answers": [
+                        "Chotqolda ",
+                        "Toshkentda",
+                        "Dushanbe ",
+                        "Ashxabod "
+                    ]
+                },
+                {
+                    "question": " 2019 yilda Mamlakatimizda shahar aholisining salmog’i qancha % ni tashkil etgan? ",
+                    "order_number": 66,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "3",
+                    "answers": [
+                        "0.5",
+                        "0.56",
+                        "0.531",
+                        "0.505"
+                    ]
+                },
+                {
+                    "question": " O’zbekiston aholisining necha % ta’lim sohasida band? ",
+                    "order_number": 67,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "2",
+                    "answers": [
+                        "0.095",
+                        "0.212",
+                        "0.082",
+                        "0.045"
+                    ]
+                },
+                {
+                    "question": " Quyosh radiatsiyasining yer yuzasida taqsimlanishi nimaga bog’liq? ",
+                    "order_number": 68,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "1",
+                    "answers": [
+                        "tabiat zonasiga ",
+                        "geografik kenglikka ",
+                        "geografik o’ringa",
+                        "iqlim mintaqasiga"
+                    ]
+                },
+                {
+                    "question": "723,4 ming nafar chaqaloq nechanchi yilda tug’ligan? ",
+                    "order_number": 69,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "1",
+                    "answers": [
+                        "1997.0",
+                        "1991.0",
+                        "1993.0",
+                        "2001.0"
+                    ]
+                }
+            ]
+        },
+        {
+            "subject": {
+                "id": 8,
+                "image": "https://tartib-sohibi.uz:9443/media/subjects/%D0%9E%D0%BD%D0%B0_%D1%82%D0%B8%D0%BB%D0%B8_%D0%B2%D0%B0_%D0%B0%D0%B4%D0%B0%D0%B1%D0%B8%D0%B5%D1%82_uRjNJEs.png",
+                "title": "Узбекский язык и литература",
+                "description": "Узбекский язык и литература"
+            },
+            "score": 0.0,
+            "items": [
+                {
+                    "question": "Sof ko‘makchi qatnashgan qatorni aniqlang.",
+                    "order_number": 70,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "2",
+                    "answers": [
+                        "Muxbirimiz telefon orqali xabar berdi",
+                        "Gap futbol o‘yini ustida ketardi.",
+                        " Barchasidan qovun soz, paykal uzra dumalar",
+                        "Gapirishdan avval o‘ylab ko‘rish lozim"
+                    ]
+                },
+                {
+                    "question": "Qozoq adabiyoti namoyondasi Abayning xalqni ilm-ma’rifatga, madaniyatga da’vat etuvchi asari nomi qaysi javobda berilgan?",
+                    "order_number": 71,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "3",
+                    "answers": [
+                        "«Qirq qiz»",
+                        "«Mangu buloq»",
+                        "«Turnalar»",
+                        " «Naqliya so‘zlar»"
+                    ]
+                },
+                {
+                    "question": "Maqsad ma’nosidagi qo‘shma gap qaysi qatorda berilgan?",
+                    "order_number": 72,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "2",
+                    "answers": [
+                        "Bu jasoratga sizni deb qo‘l urdim.",
+                        "“Barchangizga omad!” deb tilak bildirishdi.",
+                        "Gul bargalari uchishadi, tushmayin deb qo‘lingga",
+                        "Sizni gaplarimga tushundi, deb o‘ylabman."
+                    ]
+                },
+                {
+                    "question": "Ravish so‘z turkumiga oid so‘zlarni aniqlang.",
+                    "order_number": 73,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "2",
+                    "answers": [
+                        "chiroyli, uzun, buyuk, shirin",
+                        "biz, hech kim, bari, har narsa",
+                        "mardlarcha, ohista, ertalab, bugun",
+                        "kuz, uyqu, havo, foyda"
+                    ]
+                },
+                {
+                    "question": "Ibora ma’nosi xato berilgan qatorni toping.",
+                    "order_number": 74,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "3",
+                    "answers": [
+                        "qulog‘i ding bo‘lmoq – hurpaymoq",
+                        "qovog‘i osilmoq – xafa bo‘lmoq",
+                        "bir yoqadan bosh chiqarib – ahil bo‘lib",
+                        "do‘ppisi yarimta – beg‘am"
+                    ]
+                },
+                {
+                    "question": "Orttirma nisbatdagi fe’lni aniqlang.",
+                    "order_number": 75,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "0",
+                    "answers": [
+                        "ayttirdi",
+                        "aytishdi",
+                        "orttirma nisbat yo‘q.",
+                        "aytildi"
+                    ]
+                },
+                {
+                    "question": "«Sohibqiron» dramasida «qish faslida ochilgan chechakdek ular» deyilganda kimga ta’rif beriladi?",
+                    "order_number": 76,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "2",
+                    "answers": [
+                        "3 ta mullavachchaga",
+                        "Buqalamunga ",
+                        "Sarbadorlarga",
+                        "Rum lashkarlariga"
+                    ]
+                },
+                {
+                    "question": "Tarixning barcha bosqichlarida ular dunyoga o‘zining borligini goh mardlik, jasorat bilan, goh tadbir-u oqilalik bilan bildirib, tanilib, tan oldirib kelganlar. Yasama so‘zlar soni nechta?",
+                    "order_number": 77,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "3",
+                    "answers": [
+                        "7.0",
+                        "4.0",
+                        "6.0",
+                        "5.0"
+                    ]
+                },
+                {
+                    "question": "Quyidagi gaplarning qay birida ham yuklama, ham bog‘lovchi mavjud?",
+                    "order_number": 78,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "2",
+                    "answers": [
+                        " Yig‘ilgan xaloyiq suron bilan yangi shahar tomon qo‘zg‘aldi.",
+                        "Gulnoz shundan keyin uch marta xat yozdi, lekin javob kelmadi.",
+                        "Bilasizmi, siz va biz bitta ariqdan suv ichamiz-a.",
+                        "Hali xabaring yo‘qmi? Asrora opam kasalxonadalar-ku!"
+                    ]
+                },
+                {
+                    "question": "Qaysi javobda paronimlar berilmagan?",
+                    "order_number": 79,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "3",
+                    "answers": [
+                        "nufus-nufuz",
+                        "oxur-axir-oxir",
+                        "zirak-ziyrak",
+                        "iztirob-istirob"
+                    ]
+                }
+            ]
+        },
+        {
+            "subject": {
+                "id": 1,
+                "image": "https://tartib-sohibi.uz:9443/media/subjects/%D0%BC%D0%B0%D1%82%D0%B5%D0%BC%D0%B0%D1%82%D0%B8%D0%BA%D0%B0_v4BX4mr.png",
+                "title": "Математика",
+                "description": ""
+            },
+            "score": 0.0,
+            "items": [
+                {
+                    "question": "10. За  что А.Чехову присудили Пушкинскую премию?",
+                    "order_number": 80,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "2",
+                    "answers": [
+                        "«Чайка»",
+                        "«Лиса»",
+                        "за сборник «Пёстрые расказы» ",
+                        "«Хамелеон»   "
+                    ]
+                },
+                {
+                    "question": "Кем  был В.Шукшин?",
+                    "order_number": 81,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "3",
+                    "answers": [
+                        "Артист ",
+                        "Драматург",
+                        "Режиссёр",
+                        "все ответы верны    "
+                    ]
+                },
+                {
+                    "question": "Глагол – часть речи, которая обозначает:",
+                    "order_number": 82,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "3",
+                    "answers": [
+                        "признак;действие",
+                        "признак",
+                        "предмет",
+                        "действие"
+                    ]
+                },
+                {
+                    "question": "Найдите сочинительные  союзы:",
+                    "order_number": 83,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "0",
+                    "answers": [
+                        "и, а, но, или",
+                        " когда, где",
+                        "туда, куда, оттуда ",
+                        " а, но, когда"
+                    ]
+                },
+                {
+                    "question": "Найдите главные члены предложения: Я учусь в девятом классе.",
+                    "order_number": 84,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "3",
+                    "answers": [
+                        "нет главных членов",
+                        "классе.             ",
+                        "в девятом",
+                        "Я учусь.         "
+                    ]
+                },
+                {
+                    "question": "Сколько в данном отрывке стихотворения глаголов?  Весна, весна! Как высоко На крыльях ветерка, Ласкаясь к солнечным лучам,Летают облака!",
+                    "order_number": 85,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "2",
+                    "answers": [
+                        "нет глагола",
+                        "два",
+                        "Один  ",
+                        "три "
+                    ]
+                },
+                {
+                    "question": "В каком ряду имена прилагательные используются в переносном значении?",
+                    "order_number": 86,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "0",
+                    "answers": [
+                        "Золотой человек, драгоценный совет, ледяной взгляд.",
+                        "Медвежья лапа, хрустальная ваза, ледяная горка.",
+                        "Золотое  кольцо",
+                        "Золотое  кольцо, медвежья услуга, волчий голод "
+                    ]
+                },
+                {
+                    "question": "Союз - это:",
+                    "order_number": 87,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "2",
+                    "answers": [
+                        "вспомогательное слово",
+                        "самостоятельная часть речи",
+                        "служебная часть речи",
+                        "глагол"
+                    ]
+                },
+                {
+                    "question": "Предлог - это:",
+                    "order_number": 88,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "0",
+                    "answers": [
+                        " служебная часть речи;",
+                        "простое слово",
+                        "самостоятельная часть речи",
+                        " вспомогательное слово"
+                    ]
+                },
+                {
+                    "question": "Найдите сложноподчинённое  предложение:",
+                    "order_number": 89,
+                    "is_correct": false,
+                    "user_answer": null,
+                    "correct_answer": "0",
+                    "answers": [
+                        "С горы виднелся вид, который казался чудным.",
+                        "Чудесный вид, видимый  с горы",
+                        "С горы виднелся чудесный вид",
+                        "Вид горы чудесный"
+                    ]
+                }
+            ]
         }
     ]
 }
