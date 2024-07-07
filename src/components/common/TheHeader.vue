@@ -1,5 +1,14 @@
 <script setup>
+import { useUserStore } from 'src/stores/user'
 import LangSwitcher from './LangSwitcher.vue'
+import { useRouter } from 'vue-router'
+
+const userStore = useUserStore()
+const router = useRouter()
+
+const goToProfile = () => {
+    router.push({ name: 'profile' })
+}
 </script>
 <template>
     <div>
@@ -10,13 +19,36 @@ import LangSwitcher from './LangSwitcher.vue'
                 </router-link>
             </div>
             <div>
-                <q-btn color="primary" size="md" class="mr-3">
-                    <q-badge color="red" floating>4</q-badge>
+                <q-btn
+                    v-if="userStore.userData.is_premium"
+                    color="warning"
+                    size="md"
+                    outline
+                    class="mr-3"
+                >
+                    <img src="icons/premium.png" class="h-6" />
+                </q-btn>
+
+                <q-btn
+                    v-else-if="userStore.userData.remaining_free_attempts_count"
+                    color="primary"
+                    size="md"
+                    class="mr-3"
+                >
+                    <q-badge color="red" floating>{{
+                        userStore.userData.remaining_free_attempts_count
+                    }}</q-badge>
                     <img src="icons/rendo-icon.png" class="w-5 h-5" />
                 </q-btn>
-                <!-- <q-btn color="warning" size="md" class="mr-3">
+                <q-btn
+                    v-else
+                    color="warning"
+                    size="md"
+                    class="mr-3"
+                    @click="goToProfile"
+                >
                     <img src="icons/white-warning.png" class="w-6 h-6" />
-                </q-btn> -->
+                </q-btn>
 
                 <LangSwitcher />
             </div>

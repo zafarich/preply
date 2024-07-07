@@ -12,3 +12,6 @@ export const LEADERS_FILTER_TIME = {
     WEEKLY: 'per_week',
     MONTHLY: 'per_month',
 }
+
+export const MAX_ATTEMTS_COUNT = 1000
+export const ALLOWED_ATTEMTS = 3
