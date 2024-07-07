@@ -2,6 +2,8 @@
 import { ref, onMounted } from 'vue-demi'
 import BaseImg from 'src/components/UI/BaseImg.vue'
 
+const baseUrl = import.meta.env.VITE_BASE_URL
+
 const props = defineProps({
     items: {
         type: Array,
@@ -36,6 +38,18 @@ const props = defineProps({
                         <td>{{ (page - 1) * page_size + index + 1 }}</td>
                         <td>
                             <div class="flex items-center">
+                                <img
+                                    v-if="item.image"
+                                    :src="`${item.image}`"
+                                    class="w-10 h-10 rounded-full mr-2"
+                                />
+                                <img
+                                    v-else
+                                    src="icons/user-icon.svg"
+                                    alt=""
+                                    class="w-10 rounded-full mr-2"
+                                />
+
                                 <div>
                                     <div class="fio">
                                         {{ item.first_name }}

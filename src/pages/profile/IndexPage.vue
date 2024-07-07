@@ -28,9 +28,9 @@
                             <div class="avatar">
                                 <img
                                     v-if="userStore.userData.image"
-                                    :src="`${baseUrl}${userStore.userData.image}`"
+                                    :src="`${userStore.userData.image}`"
                                     alt="Image"
-                                    class="object-cover"
+                                    class="object-cover w-full h-full"
                                 />
                                 <img
                                     v-else
