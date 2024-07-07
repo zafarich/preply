@@ -34,6 +34,7 @@ const goToProfile = () => {
                     color="primary"
                     size="md"
                     class="mr-3"
+                    @click="goToProfile"
                 >
                     <q-badge color="red" floating>{{
                         userStore.userData.remaining_free_attempts_count
