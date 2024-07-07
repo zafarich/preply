@@ -9,6 +9,7 @@ import { useModalStore } from 'src/stores/modal'
 import VariantNotifyStartModal from 'src/pages/variant/components/VariantStartNotifyModal.vue'
 import { storeToRefs } from 'pinia'
 import { TEST_TYPES } from 'src/utils/constants'
+import { useUserStore } from 'src/stores/user'
 
 const router = useRouter()
 const route = useRoute()
@@ -18,7 +19,9 @@ const $q = useQuasar()
 const referencesStore = useReferencesStore()
 const testStore = useTestStore()
 const modalStore = useModalStore()
-const { variantNotifyStartModal } = storeToRefs(modalStore)
+const userStore = useUserStore()
+const { variantNotifyStartModal, buySubscriptionModal } =
+    storeToRefs(modalStore)
 
 const subject_id = route.params.id
 const subject = ref(null)
@@ -48,6 +51,12 @@ function goToSolveTest(variant) {
 }
 
 async function startTest() {
+    if (!userStore.userData.is_free_attempts_left) {
+        variantNotifyStartModal.value = false
+        buySubscriptionModal.value = true
+        return
+    }
+
     if (selected_variant.value) {
         $q.loading.show()
 

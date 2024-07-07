@@ -59,13 +59,15 @@ import { TEST_TYPES } from 'src/utils/constants'
 import { useModalStore } from 'src/stores/modal'
 import { useMainStore } from 'src/stores/main'
 import { storeToRefs } from 'pinia'
+import { useUserStore } from 'src/stores/user'
 
 const modalStore = useModalStore()
 const referenceStore = useReferencesStore()
 const testStore = useTestStore()
 const mainStore = useMainStore()
+const userStore = useUserStore()
 
-const { startModal } = storeToRefs(modalStore)
+const { startModal, buySubscriptionModal } = storeToRefs(modalStore)
 const router = useRouter()
 const { t } = useI18n()
 const data = ref({
@@ -96,6 +98,12 @@ const openModal = () => {
 }
 
 const startTest = async () => {
+    if (!userStore.userData.is_free_attempts_left) {
+        startModal.value = false
+        buySubscriptionModal.value = true
+        return
+    }
+
     mainStore.changeSiteLoader(true)
 
     await testStore.START_TEST(TEST_TYPES.BLOCK, {

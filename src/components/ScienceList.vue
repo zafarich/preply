@@ -7,12 +7,14 @@ import { TEST_TYPES } from 'src/utils/constants'
 import StartTestModal from 'src/components/modals/StartTestModal.vue'
 import { useModalStore } from 'src/stores/modal'
 import { storeToRefs } from 'pinia'
+import { useUserStore } from 'src/stores/user'
 
 const router = useRouter()
 const testStore = useTestStore()
 const modalStore = useModalStore()
+const userStore = useUserStore()
 
-const { startModal } = storeToRefs(modalStore)
+const { startModal, buySubscriptionModal } = storeToRefs(modalStore)
 
 const props = defineProps({
     subjects: {
@@ -24,6 +26,12 @@ const props = defineProps({
 const selectId = ref(null)
 
 const startTest = async (id) => {
+    if (!userStore.userData.is_free_attempts_left) {
+        startModal.value = false
+        buySubscriptionModal.value = true
+        return
+    }
+
     await testStore.START_TEST(TEST_TYPES.BY_SUBJECTS, {
         subject_id: selectId.value,
     })

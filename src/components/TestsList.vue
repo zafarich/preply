@@ -8,14 +8,16 @@ import { useMainStore } from 'src/stores/main'
 import { useTestStore } from 'src/stores/test'
 import { useRouter } from 'vue-router'
 import { ref } from 'vue'
+import { useUserStore } from 'src/stores/user'
 
 const router = useRouter()
 
 const modalStore = useModalStore()
 const mainStore = useMainStore()
 const testStore = useTestStore()
+const userStore = useUserStore()
 
-const { startBySelectionModal } = storeToRefs(modalStore)
+const { startBySelectionModal, buySubscriptionModal } = storeToRefs(modalStore)
 
 const props = defineProps({
     subjects: {
@@ -32,6 +34,12 @@ const openModal = (unique_name) => {
 }
 
 const startTest = async () => {
+    if (!userStore.userData.is_free_attempts_left) {
+        startBySelectionModal.value = false
+        buySubscriptionModal.value = true
+        return
+    }
+
     mainStore.changeSiteLoader(true)
 
     await testStore.START_TEST(TEST_TYPES.BY_SELECTIONS, {

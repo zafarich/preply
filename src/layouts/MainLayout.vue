@@ -1,3 +1,13 @@
+<template>
+    <div class="main-layout">
+        <TheHeader />
+        <router-view />
+        <BottomMenu />
+        <GlobalLoading />
+        <BuySubscriptionModal />
+    </div>
+</template>
+
 <script setup>
 import { onMounted } from 'vue'
 import { useRouter } from 'vue-router'
@@ -7,6 +17,7 @@ import TheHeader from 'src/components/common/TheHeader.vue'
 
 import { useTestStore } from 'src/stores/test'
 import GlobalLoading from 'src/components/GlobalLoading.vue'
+import BuySubscriptionModal from 'src/components/modals/BuySubscriptionModal.vue'
 
 const router = useRouter()
 const route = useRouter()
@@ -21,11 +32,3 @@ onMounted(() => {
     }
 })
 </script>
-<template>
-    <div class="main-layout">
-        <TheHeader />
-        <router-view />
-        <BottomMenu />
-        <GlobalLoading />
-    </div>
-</template>
