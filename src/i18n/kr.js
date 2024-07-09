@@ -84,4 +84,7 @@ export default {
     wrong_answers: ' Nadurıs juwaplar',
     unmarked_anwers: 'Belgilenmagan sorawlar',
     answers_count: 'Sorawlar sanı',
+
+    select_main_subjects: 'Tiykarǵı pánlerdi saylań',
+    must_be_select_first_subject: 'Aldın birinshi pánni saylań! ',
 }

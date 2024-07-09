@@ -85,4 +85,8 @@ export default {
     wrong_answers: "Noto'g'ri javoblar",
     unmarked_anwers: 'Belgilanmagan savollar',
     answers_count: 'Savollar soni',
+
+
+    select_main_subjects: 'Asosiy fanlarni tanlang', 
+    must_be_select_first_subject: 'Avval birinchi fanni tanlang!'
 }

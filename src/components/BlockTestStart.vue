@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="block-module mb-6">
-            <div class="text-lg mb-4">Asosiy fanlarni tanlang</div>
+            <div class="text-lg mb-4">{{ $t('select_main_subjects') }}</div>
             <div>
                 <div class="mb-6">
                     <BaseSelect
@@ -12,13 +12,18 @@
                         :placeholder="$t('first_subject')"
                         :options="referenceStore.main_subjects"
                         option-label="title"
+                        :error="firstIsSelect"
                         option-value="id"
                     />
+                    <span v-if="firstIsSelect" class="text-red mt-1">
+                        {{ $t('must_be_select_first_subject') }}
+                    </span>
                 </div>
                 <div>
                     <!-- {{ data.s2 }} -->
                     <BaseSelect
                         v-model="data.s2"
+                        class="tracking-widest"
                         emit-value
                         map-options
                         outlined
@@ -27,6 +32,7 @@
                         :options="referenceStore.sub_main_subjects"
                         option-label="title"
                         option-value="id"
+                        @click="checkFirstSelected"
                     />
                 </div>
             </div>
@@ -75,6 +81,8 @@ const data = ref({
     s2: '',
 })
 
+const firstIsSelect = ref(false)
+
 onMounted(async () => {
     await referenceStore.getSubjects({ is_main_for_block: true })
 })
@@ -83,13 +91,19 @@ watch(
     () => data.value.s1,
     async (newValue) => {
         data.value.s2 = ''
-        console.log('called')
+        firstIsSelect.value = false
         referenceStore.setSubMainSubject([])
         if (newValue) {
             await referenceStore.getSubjects({ parent_subjects: newValue })
         }
     },
 )
+
+const checkFirstSelected = () => {
+    if (data.value.s1) {
+        firstIsSelect.value = false
+    } else firstIsSelect.value = true
+}
 
 const openModal = () => {
     if (data.value.s1 && data.value.s2) {

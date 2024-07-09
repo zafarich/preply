@@ -85,4 +85,7 @@ export default {
     wrong_answers: 'Неправильные ответы',
     unmarked_anwers: 'Неотмеченные вопросы',
     answers_count: 'Количество вопросов',
+
+    select_main_subjects: 'Выбрать основные предметы',
+    must_be_select_first_subject: 'Сначала выберите первый предмет!',
 }
