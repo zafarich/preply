@@ -1,21 +1,25 @@
 <template>
     <div>
-        <div class="text-bold mt-6 mb-6 text-xl">{{ $t('leaders') }}</div>
+        <div class="text-bold mt-6 mb-6 text-xl text-center">
+            {{ $t('leaders') }}
+        </div>
 
-        <div class="flex justify-between mb-4">
-            <div
-                class="mb-3"
+        <q-btn class="w-full mb-4 py-3" color="blue" no-caps>
+            <span class="text-lg mr-2"> Share with others</span>
+            <q-icon name="eva-share-outline" color="white" size="sm" />
+        </q-btn>
+
+        <div class="flex justify-between mb-4 gap-2">
+            <q-btn
+                class="mb-3 grow"
                 v-for="(item, index) in DAILY_FILTERS"
                 :key="index"
-            >
-                <q-btn
-                    :outline="by_time !== item.value"
-                    @click="filterByTime(item.value)"
-                    color="primary"
-                    no-caps
-                    :label="$t(item.label)"
-                />
-            </div>
+                :outline="by_time !== item.value"
+                @click="filterByTime(item.value)"
+                color="primary"
+                no-caps
+                :label="$t(item.label)"
+            />
         </div>
 
         <div class="grid grid-cols-1 gap-4 mb-4">

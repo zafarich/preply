@@ -8,7 +8,6 @@ import { useLangStore } from './lang.store'
 export const useUserStore = defineStore('user', () => {
     const token = ref(getTokenFromCache())
     const isAuth = computed(() => !!token.value)
-    const all_count = ref(0)
     const userCards = ref([])
     const userData = ref(LocalStorage.getItem('userData') || {})
     const leaders = ref({

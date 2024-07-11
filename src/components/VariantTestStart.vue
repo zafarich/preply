@@ -10,13 +10,16 @@
                         map-options
                         outlined
                         placeholder="Fanni tanlang"
+                        :error="firstIsSelect"
                         :options="subjects"
                         option-label="title"
                         option-value="id"
                     />
+                    <span v-if="firstIsSelect" class="text-red mt-1">
+                        Avval fanni tanlang
+                    </span>
                 </div>
                 <div>
-                    <!-- {{ data.s2 }} -->
                     <BaseSelect
                         v-model="data.s2"
                         emit-value
@@ -27,6 +30,7 @@
                         :options="variants"
                         option-label="title"
                         option-value="id"
+                        @click="checkFirstSelected"
                     />
                 </div>
             </div>
@@ -78,13 +82,19 @@ const data = ref({
     s2: '',
 })
 const variants = ref([])
-
+const firstIsSelect = ref(false)
 const props = defineProps({
     subjects: {
         type: Array,
         default: () => [],
     },
 })
+
+const checkFirstSelected = () => {
+    if (data.value.s1) {
+        firstIsSelect.value = false
+    } else firstIsSelect.value = true
+}
 
 async function fetchVariants(subject_id) {
     const response = await testStore.FETCH_VARIANTS({

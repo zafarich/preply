@@ -21,7 +21,7 @@ const props = defineProps({
 </script>
 <template>
     <div class="leaders-list-home">
-        <div class="three-rating-box">
+        <div class="three-rating-box" v-if="page == 1">
             <div class="three-rating__item" v-if="items[1]">
                 <div class="position-number">2</div>
                 <div class="profile-circle">
