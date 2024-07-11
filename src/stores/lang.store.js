@@ -31,7 +31,7 @@ export const useLangStore = defineStore('language', () => {
             value: 'uz-Cyrl',
             label: 'Qoraqalpoqcha',
             shortName: 'QR',
-            icon: '/images/lang/uz.png',
+            icon: '/images/lang/qr.png',
         },
     ]
 

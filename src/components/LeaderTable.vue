@@ -21,20 +21,91 @@ const props = defineProps({
 </script>
 <template>
     <div class="leaders-list-home">
-        <div>
-            <table>
-                <thead>
-                    <th>#</th>
-                    <th>{{ $t('student') }}</th>
-                    <th>{{ $t('Umumiy') }}</th>
-                    <th>{{ $t('accuracy') }} ( % )</th>
-                </thead>
+        <div class="three-rating-box">
+            <div class="three-rating__item" v-if="items[1]">
+                <div class="position-number">2</div>
+                <div class="profile-circle">
+                    <img
+                        v-if="items[1].image"
+                        :src="`${items[1].image}`"
+                        class="profile-img"
+                    />
+                    <img
+                        v-else
+                        src="icons/user-icon.svg"
+                        alt=""
+                        class="profile-img"
+                    />
+                </div>
+                <div class="text-center">
+                    <div class="text-username">
+                        {{ items[1].first_name }} {{ items[1].last_name }}
+                    </div>
+                    <div>{{ items[1].score_sum.toFixed(1) }}</div>
+                </div>
+            </div>
+            <div class="three-rating__item" v-if="items[0]">
+                <div class="position-number">1</div>
+                <img class="crown-img" src="/icons/crown.png" alt="" />
+                <div class="profile-circle">
+                    <img
+                        v-if="items[0].image"
+                        :src="`${items[0].image}`"
+                        class="profile-img"
+                    />
+                    <img
+                        v-else
+                        src="icons/user-icon.svg"
+                        alt=""
+                        class="profile-img"
+                    />
+                </div>
+                <div class="text-center">
+                    <div class="text-username">
+                        {{ items[0].first_name }} {{ items[0].last_name }}
+                    </div>
+                    <div>{{ items[0].score_sum.toFixed(1) }}</div>
+                </div>
+            </div>
+            <div class="three-rating__item" v-if="items[2]">
+                <div class="position-number">3</div>
+                <div class="profile-circle">
+                    <img
+                        v-if="items[2].image"
+                        :src="`${items[2].image}`"
+                        class="profile-img"
+                    />
+                    <img
+                        v-else
+                        src="icons/user-icon.svg"
+                        alt=""
+                        class="profile-img"
+                    />
+                </div>
+                <div class="text-center">
+                    <div class="text-username">
+                        {{ items[2].first_name }} {{ items[2].last_name }}
+                    </div>
+                    <div>{{ items[0].score_sum.toFixed(1) }}</div>
+                </div>
+            </div>
+        </div>
 
-                <tbody>
-                    <tr v-for="(item, index) in items" :key="index">
+        <table>
+            <thead>
+                <th>#</th>
+                <th>{{ $t('student') }}</th>
+                <th>{{ $t('Umumiy') }}</th>
+                <th>{{ $t('accuracy') }} ( % )</th>
+            </thead>
+
+            <tbody>
+                <template v-for="(item, index) in items" :key="index">
+                    <tr v-if="!(page === 1 && index < 3)">
                         <!-- {{
                             item
                         }} -->
+
                         <td>{{ (page - 1) * page_size + index + 1 }}</td>
                         <td>
                             <div class="flex items-center">
@@ -62,58 +133,9 @@ const props = defineProps({
                         <td>{{ item.score_sum.toFixed(1) }}</td>
                         <td>{{ item.accuracy_avg }}%</td>
                     </tr>
-                </tbody>
-            </table>
-            <!-- <div class="three-rating-box">
-                <div class="three-rating__item">
-                    <div class="position-number">2</div>
-                    <div class="profile-circle">
-                        <img
-                            class="profile-img"
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_1bpO0XDD8fbmRvnbnkCoQNFFoH3AqofVTg&usqp=CAU"
-                            alt=""
-                        />
-                    </div>
-                    <div class="text-center">
-                        <div class="text-username">@khasan</div>
-                        <div>4542 pts</div>
-                    </div>
-                </div>
-                <div class="three-rating__item">
-                    <div class="position-number">1</div>
-                    <img
-                        class="crown-img"
-                        src="/images/icons/crown.png"
-                        alt=""
-                    />
-                    <div class="profile-circle">
-                        <img
-                            class="profile-img"
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT85_hgbSWovX-31r0_mHGwL8_HO4-2-Y-J4Z3cUjzEvF2YIm9ILGgoRS_lAEnmZrjQm30&usqp=CAU"
-                            alt=""
-                        />
-                    </div>
-                    <div class="text-center">
-                        <div class="text-username">@zafaric</div>
-                        <div>4542 pts</div>
-                    </div>
-                </div>
-                <div class="three-rating__item">
-                    <div class="position-number">3</div>
-                    <div class="profile-circle">
-                        <img
-                            class="profile-img"
-                            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQu_r1Z91AaWpSXXoHKASTdGIwqU43_-O8niWO9Cw8uYTJnfksBq6YPjM4SaxMMzNlSza0&usqp=CAU"
-                            alt=""
-                        />
-                    </div>
-                    <div class="text-center">
-                        <div class="text-username">@abbos</div>
-                        <div>4542 pts</div>
-                    </div>
-                </div>
-            </div> -->
-        </div>
+                </template>
+            </tbody>
+        </table>
     </div>
 </template>
 

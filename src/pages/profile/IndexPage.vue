@@ -2,22 +2,39 @@
     <div>
         <div class="profile-top">
             <div class="profile-left">
-                <div class="">
+                <div class="info-card my-4">
                     <div
-                        class="info-card my-4 flex justify-start no-wrap gap-6"
+                        class="flex justify-between gap-2 items-center pb-2 border-b border-gray-2"
                     >
+                        <div class="font-semibold text-base">
+                            {{ $t('user_data') }}
+                        </div>
+
+                        <q-btn color="primary" size="xs" outline>
+                            <q-icon
+                                name="eva-edit"
+                                class="py-1"
+                                color="primary"
+                                size="xs"
+                                @click="() => (userEditModal = true)"
+                            />
+                        </q-btn>
+                    </div>
+                    <div class="flex justify-start no-wrap gap-6 pt-4">
                         <div class="relative">
-                            <div class="absolute left-[110px]">
-                                <button
-                                    class="rounded-full border cursor-pointer bg-white p-1.5"
+                            <div class="absolute left-[86px] top-[82px]">
+                                <q-btn
+                                    class="rounded-full border cursor-pointer bg-white p-2"
                                     @click="openFilePicker"
+                                    outline
+                                    color="primary"
                                 >
                                     <q-icon
                                         color="primary"
                                         name="eva-edit"
                                         size="xs"
                                     />
-                                </button>
+                                </q-btn>
                                 <input
                                     ref="fileInputRef"
                                     type="file"
@@ -40,104 +57,89 @@
                                 />
                             </div>
                         </div>
-                        <div class="w-full">
-                            <div
-                                class="flex justify-center gap-2 items-center mb-4"
-                            >
-                                <div class="font-semibold text-base">
-                                    {{ $t('user_data') }}
+                        <div class="info-wrap w-full">
+                            <div class="info-item">
+                                <div class="key">{{ $t('name') }}</div>
+                                <div class="value">
+                                    {{ userStore.userData.first_name }}
                                 </div>
-                                <q-btn
-                                    flat
-                                    color="primary"
-                                    no-caps
-                                    @click="() => (userEditModal = true)"
-                                >
-                                    <q-icon name="eva-edit" size="sm" />
-                                </q-btn>
                             </div>
-                            <div class="info-wrap mb-2">
-                                <div class="info-item">
-                                    <div class="key">{{ $t('name') }}</div>
-                                    <div class="value">
-                                        {{ userStore.userData.first_name }}
-                                    </div>
+                            <div class="info-item">
+                                <div class="key">
+                                    {{ $t('surname') }}
                                 </div>
-                                <div class="info-item">
-                                    <div class="key">{{ $t('surname') }}</div>
-                                    <div class="value">
-                                        {{ userStore.userData.last_name }}
-                                    </div>
+                                <div class="value">
+                                    {{ userStore.userData.last_name }}
                                 </div>
-                                <div class="info-item">
-                                    <div class="key">Obuna</div>
-                                    <div class="value">
-                                        <q-badge
-                                            v-if="userStore.userData.is_premium"
-                                            color="warning"
-                                            no-caps
-                                            size="sm"
-                                        >
-                                            <q-icon
-                                                name="eva-checkmark"
-                                                color="white"
-                                            />
-                                        </q-badge>
-                                        <q-badge
-                                            v-else
-                                            color="red"
-                                            no-caps
-                                            size="sm"
-                                        >
-                                            <q-icon
-                                                name="eva-close"
-                                                color="white"
-                                            />
-                                        </q-badge>
-                                    </div>
+                            </div>
+                            <div class="info-item">
+                                <div class="key">Obuna</div>
+                                <div class="value">
+                                    <q-badge
+                                        v-if="userStore.userData.is_premium"
+                                        color="warning"
+                                        no-caps
+                                        size="sm"
+                                    >
+                                        <q-icon
+                                            name="eva-checkmark"
+                                            color="white"
+                                        />
+                                    </q-badge>
+                                    <q-badge
+                                        v-else
+                                        color="red"
+                                        no-caps
+                                        size="sm"
+                                    >
+                                        <q-icon
+                                            name="eva-close"
+                                            color="white"
+                                        />
+                                    </q-badge>
                                 </div>
+                            </div>
 
-                                <!-- <div class="info-item">
+                            <!-- <div class="info-item">
                                     <div class="key">{{ $t('place') }}</div>
                                     <div class="value">
                                         {{ userStore.userData.region }}
                                     </div>
                                 </div> -->
-                            </div>
                         </div>
                     </div>
+                </div>
 
-                    <q-tabs
-                        active-color="primary"
-                        class="base-tab mb-6"
-                        v-model="tabs"
-                        no-caps
-                        outlined
-                    >
-                        <q-tab
-                            name="my_cards"
-                            exact
-                            replace
-                            :label="$t('my_cards')"
-                        />
-                        <q-tab
-                            name="my_subscriptions"
-                            exact
-                            replacew
-                            :label="$t('my_subscriptions')"
-                        />
-                        <!-- <q-tab
+                <q-tabs
+                    active-color="primary"
+                    class="base-tab mb-6"
+                    v-model="tabs"
+                    no-caps
+                    outlined
+                >
+                    <q-tab
+                        name="my_cards"
+                        exact
+                        replace
+                        :label="$t('my_cards')"
+                    />
+                    <q-tab
+                        name="my_subscriptions"
+                        exact
+                        replacew
+                        :label="$t('my_subscriptions')"
+                    />
+                    <!-- <q-tab
                             name="payment_history"
                             exact
                             replacew
                             :label="$t('payment_history')"
                         /> -->
-                    </q-tabs>
+                </q-tabs>
 
-                    <MyCards v-if="tabs === 'my_cards'" />
-                    <MySubscriptions v-else-if="tabs === 'my_subscriptions'" />
-                    <PaymentHistory v-else-if="tabs === 'payment_history'" />
-                </div>
+                <MyCards v-if="tabs === 'my_cards'" />
+                <MySubscriptions v-else-if="tabs === 'my_subscriptions'" />
+                <PaymentHistory v-else-if="tabs === 'payment_history'" />
             </div>
         </div>
     </div>

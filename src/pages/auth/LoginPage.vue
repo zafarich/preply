@@ -30,6 +30,7 @@
                         :label="$t('Password')"
                         :dense="false"
                         @keyup.enter="submitForm"
+                        class="password-field"
                     >
                         <template v-slot:append>
                             <q-icon

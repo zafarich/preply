@@ -14,6 +14,7 @@
         :option-value="optionValue"
         :model-value="modelValue"
         behavior="menu"
+        :error-label="errorLabel"
     >
         <template v-if="selected && modelValue" #selected>
             {{ t(modelValue?.label || '') }}
@@ -51,7 +52,6 @@
 <script setup>
 import { useAttrs } from 'vue-demi'
 import { useI18n } from 'vue-i18n'
-
 const attrs = useAttrs()
 
 // const props =
@@ -89,6 +89,9 @@ defineProps({
         type: String,
     },
     optionValue: {
+        type: String,
+    },
+    errorLabel: {
         type: String,
     },
 })

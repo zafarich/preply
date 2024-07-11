@@ -52,8 +52,7 @@ function changeTestType(value) {
                 active-color="primary"
                 class="base-tab mb-6"
                 v-model="GET_TEST_TYPE"
-                no-caps
-                outlined
+               
             >
                 <q-tab
                     @click="changeTestType(TEST_TYPES.BY_SUBJECTS)"

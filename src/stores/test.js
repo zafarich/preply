@@ -3,6 +3,7 @@ import { defineStore } from 'pinia'
 import { LocalStorage } from 'quasar'
 import { ref, computed } from 'vue-demi'
 import { TEST_TYPES } from 'src/utils/constants'
+import { useUserStore } from './user'
 
 export const useTestStore = defineStore(
     'test',
@@ -118,6 +119,8 @@ export const useTestStore = defineStore(
             } else if (test_type.value === TEST_TYPES.BY_SELECTIONS) {
                 res = await api.endBySelectionTest(data)
             }
+
+            await useUserStore().getMe()
 
             return res
         }
