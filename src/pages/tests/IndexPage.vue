@@ -6,7 +6,7 @@ import { useQuasar } from 'quasar'
 
 import ScienceList from 'src/components/ScienceList.vue'
 import BlockTestStart from 'src/components/BlockTestStart.vue'
-import VariantTest from 'src/components/VariantTest.vue'
+import VariantTestStart from 'src/components/VariantTestStart.vue'
 import { TEST_TYPES } from 'src/utils/constants'
 
 const router = useRouter()
@@ -77,7 +77,7 @@ function changeTestType(value) {
                 :subjects="referencesStore.main_subjects"
             />
             <BlockTestStart v-else-if="GET_TEST_TYPE === TEST_TYPES.BLOCK" />
-            <VariantTest
+            <VariantTestStart
                 v-else-if="GET_TEST_TYPE === TEST_TYPES.VARIANT"
                 :subjects="referencesStore.subjects"
             />
