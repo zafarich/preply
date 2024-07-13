@@ -18,38 +18,42 @@ const goToProfile = () => {
                     <img src="/images/logo_s_1.png" alt="" />
                 </router-link>
             </div>
-            <div>
-                <q-btn
-                    v-if="userStore.userData.is_premium"
-                    color="warning"
-                    size="md"
-                    outline
-                    class="mr-3"
-                >
-                    <img src="icons/premium.png" class="h-6" />
-                </q-btn>
+            <div class="flex justify-between items-center">
+                <div v-if="userStore.userData.is_premium">
+                    <q-btn
+                        v-if="userStore.userData.is_premium"
+                        color="warning"
+                        size="md"
+                        outline
+                        class="mr-3"
+                    >
+                        <img src="icons/premium.png" class="h-6" />
+                    </q-btn>
 
-                <q-btn
-                    v-else-if="userStore.userData.remaining_free_attempts_count"
-                    color="primary"
-                    size="md"
-                    class="mr-3"
-                    @click="goToProfile"
-                >
-                    <q-badge color="red" floating>{{
-                        userStore.userData.remaining_free_attempts_count
-                    }}</q-badge>
-                    <img src="icons/rendo-icon.png" class="w-5 h-5" />
-                </q-btn>
-                <q-btn
-                    v-else
-                    color="warning"
-                    size="md"
-                    class="mr-3"
-                    @click="goToProfile"
-                >
-                    <img src="icons/white-warning.png" class="w-6 h-6" />
-                </q-btn>
+                    <q-btn
+                        v-else-if="
+                            userStore.userData.remaining_free_attempts_count
+                        "
+                        color="primary"
+                        size="md"
+                        class="mr-3"
+                        @click="goToProfile"
+                    >
+                        <q-badge color="red" floating>{{
+                            userStore.userData.remaining_free_attempts_count
+                        }}</q-badge>
+                        <img src="icons/rendo-icon.png" class="w-5 h-5" />
+                    </q-btn>
+                    <q-btn
+                        v-else
+                        color="warning"
+                        size="md"
+                        class="mr-3"
+                        @click="goToProfile"
+                    >
+                        <img src="icons/white-warning.png" class="w-6 h-6" />
+                    </q-btn>
+                </div>
 
                 <LangSwitcher />
             </div>

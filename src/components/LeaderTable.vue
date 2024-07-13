@@ -95,7 +95,7 @@ const props = defineProps({
             <thead>
                 <th>#</th>
                 <th>{{ $t('student') }}</th>
-                <th>{{ $t('Umumiy') }}</th>
+                <th>{{ $t('common') }}</th>
                 <th>{{ $t('accuracy') }} ( % )</th>
             </thead>
 

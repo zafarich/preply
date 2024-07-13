@@ -5,7 +5,7 @@
         </div>
 
         <q-btn class="w-full mb-4 py-3" color="blue" no-caps>
-            <span class="text-lg mr-2"> Share with others</span>
+            <span class="text-lg mr-2"> {{ $t('share_with_others') }}</span>
             <q-icon name="eva-share-outline" color="white" size="sm" />
         </q-btn>
 

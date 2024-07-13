@@ -86,7 +86,12 @@ export default {
     unmarked_anwers: 'Belgilanmagan savollar',
     answers_count: 'Savollar soni',
 
-
-    select_main_subjects: 'Asosiy fanlarni tanlang', 
-    must_be_select_first_subject: 'Avval birinchi fanni tanlang!'
+    select_main_subjects: 'Asosiy fanlarni tanlang',
+    must_be_select_first_subject: 'Avval birinchi fanni tanlang!',
+    common: 'Umumiy',
+    share_with_others: 'Boshqalar bilan ulashish',
+    select_subject: 'Fanni tanlang',
+    first_select_subject: 'Avval fanni tanlang',
+    select_variant: 'Variantni tanlang',
+    select_variant_test: 'Variant testni tanlang',
 }

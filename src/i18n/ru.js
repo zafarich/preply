@@ -88,4 +88,10 @@ export default {
 
     select_main_subjects: 'Выбрать основные предметы',
     must_be_select_first_subject: 'Сначала выберите первый предмет!',
+    common: 'Общий',
+    share_with_others: 'Поделитесь с другими',
+    select_subject: 'Выберите наука',
+    first_select_subject: 'Сначала выберите наука',
+    select_variant: 'Выберите вариант',
+    select_variant_test: 'Выберите вариант теста',
 }

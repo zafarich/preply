@@ -112,7 +112,7 @@
 
                 <q-tabs
                     active-color="primary"
-                    class="base-tab mb-6"
+                    class="base-tab mb-3"
                     v-model="tabs"
                     no-caps
                     outlined
@@ -174,7 +174,6 @@ const fileInputRef = ref('')
 const image = ref('')
 
 const openFilePicker = () => {
-    // Trigger click on hidden file input
     fileInputRef.value.click()
 }
 

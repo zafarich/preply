@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="block-module mb-6">
-            <div class="text-lg mb-4">Variant testni tanlang</div>
+            <div class="text-lg mb-4">{{ $t('select_variant_test') }}</div>
             <div>
                 <div class="mb-6">
                     <BaseSelect
@@ -9,14 +9,14 @@
                         emit-value
                         map-options
                         outlined
-                        placeholder="Fanni tanlang"
+                        :placeholder="$t('select_subject')"
                         :error="firstIsSelect"
                         :options="subjects"
                         option-label="title"
                         option-value="id"
                     />
                     <span v-if="firstIsSelect" class="text-red mt-1">
-                        Avval fanni tanlang
+                        {{ $t('first_select_subject') }}
                     </span>
                 </div>
                 <div>
@@ -26,7 +26,7 @@
                         map-options
                         outlined
                         :disabled="!!data.s1"
-                        placeholder="Variantni tanlang"
+                        :placeholder="$t('select_variant')"
                         :options="variants"
                         option-label="title"
                         option-value="id"
