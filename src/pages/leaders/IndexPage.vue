@@ -4,7 +4,7 @@
             {{ $t('leaders') }}
         </div>
 
-        <q-btn class="w-full mb-4 py-3" color="blue" no-caps>
+        <q-btn class="w-full mb-4 py-3" color="blue" no-caps @click="sharePage">
             <span class="text-lg mr-2"> {{ $t('share_with_others') }}</span>
             <q-icon name="eva-share-outline" color="white" size="sm" />
         </q-btn>
@@ -47,7 +47,10 @@
                 option-value="id"
             />
         </div>
-        <div v-if="usersStore.leaders.results.length > 0">
+        <div
+            v-if="usersStore.leaders.results.length > 0"
+            ref="contentToCapture"
+        >
             <LeaderTable
                 :items="usersStore.leaders.results"
                 :page="page"
@@ -87,6 +90,14 @@ import { useReferencesStore } from 'src/stores/references'
 import { onMounted, watch } from 'vue'
 import { useMainStore } from 'src/stores/main'
 import { LEADERS_FILTER_TIME } from 'src/utils/constants'
+import html2canvas from 'html2canvas'
+import { useQuasar } from 'quasar'
+import axios from 'axios'
+import { useI18n } from 'vue-i18n'
+
+const { t: $translate } = useI18n()
+const contentToCapture = ref(null)
+const $q = useQuasar()
 
 const region = ref('')
 const district = ref('')
@@ -148,6 +159,50 @@ const fetchLeaders = async () => {
 const filterByTime = async (value) => {
     by_time.value = value
     await fetchLeaders()
+}
+const sharePage = async () => {
+    try {
+        if (contentToCapture.value) {
+            const canvas = await html2canvas(contentToCapture.value)
+            const imageUrl = canvas.toDataURL('image/png')
+
+            // Convert the data URL to a Blob
+            const blob = await (await fetch(imageUrl)).blob()
+            const formData = new FormData()
+            formData.append('image', blob)
+
+            // Upload the image to Imgur
+            const response = await axios.post(
+                'https://api.imgur.com/3/image',
+                formData,
+                {
+                    headers: {
+                        Authorization: '003f7b9cc422411',
+                    },
+                },
+            )
+
+            if (response.data.success) {
+                const imgurUrl = response.data.data.link
+                const telegramUrl = `https://telegram.me/share/url?url=${encodeURIComponent(imgurUrl)}&text=${encodeURIComponent('Check out this screenshot!')}`
+
+                // Open the Telegram share URL in a new window/tab
+                window.open(telegramUrl, '_blank')
+            } else {
+                console.error('Failed to upload image to Imgur')
+            }
+        }
+    } catch (error) {
+        console.error('Error capturing screenshot or uploading image:', error)
+        $q.notify({
+            color: 'red-5',
+            textColor: 'white',
+            position: 'top',
+
+            icon: 'warning',
+            message: $translate('try_again_later'),
+        })
+    }
 }
 </script>
 

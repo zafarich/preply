@@ -94,4 +94,5 @@ export default {
     first_select_subject: 'Сначала выберите наука',
     select_variant: 'Выберите вариант',
     select_variant_test: 'Выберите вариант теста',
+    try_again_later: 'Произошла ошибка. Повторите попытку позже',
 }

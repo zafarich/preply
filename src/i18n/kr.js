@@ -94,4 +94,5 @@ export default {
     first_select_subject: 'Aldın pánni saylań',
     select_variant: 'variantni saylań',
     select_variant_test: 'variant testti saylań',
+    try_again_later: ' Qátelik júz berdi. Keyin urınıp kóriń',
 }

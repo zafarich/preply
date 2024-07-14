@@ -94,4 +94,5 @@ export default {
     first_select_subject: 'Avval fanni tanlang',
     select_variant: 'Variantni tanlang',
     select_variant_test: 'Variant testni tanlang',
+    try_again_later: "Xatolik yuz berdi. Keyinroq urinib ko'ring",
 }
