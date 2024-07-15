@@ -198,7 +198,6 @@ const sharePage = async () => {
             color: 'red-5',
             textColor: 'white',
             position: 'top',
-
             icon: 'warning',
             message: $translate('try_again_later'),
         })
