@@ -56,7 +56,7 @@ export const useReferencesStore = defineStore('references', () => {
 
     async function getSelection(params) {
         const res = await api.getSelection(params)
-        selections.value = [...res.results]
+        // selections.value = [...res.results]
         return res
     }
 

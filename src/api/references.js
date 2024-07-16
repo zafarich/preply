@@ -32,6 +32,6 @@ export async function getBanners() {
 }
 
 export async function getSelection(params) {
-    const { data } = await api(url + 'selections/')
+    const { data } = await api(url + 'selections/', { params })
     return data
 }

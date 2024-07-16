@@ -178,13 +178,12 @@ import { TEST_TYPES } from 'src/utils/constants'
 import NotifyTestModal from './components/NotifyTestModal.vue'
 import EndTestModal from 'src/components/modals/EndTestModal.vue'
 
-const router = useRouter()
-
 import { useTestStore } from 'src/stores/test'
 import { useModalStore } from 'src/stores/modal'
 import { useMainStore } from 'src/stores/main'
 import { storeToRefs } from 'pinia'
 
+const router = useRouter()
 const testStore = useTestStore()
 const modalStore = useModalStore()
 const mainStore = useMainStore()

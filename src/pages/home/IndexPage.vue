@@ -22,6 +22,7 @@ const mainStore = useMainStore()
 const testTypes = ref([])
 const subjects = ref([])
 const banners = ref([])
+const languageSelections = ref([])
 
 const $q = useQuasar()
 
@@ -38,7 +39,7 @@ async function fetchData() {
         is_main_for_block: true,
     })
     const bannersPromise = referencesStore.getBanners()
-    const selectionPromise = referencesStore.getSelection()
+    const selectionPromise = referencesStore.getSelection({ for_english: true })
 
     const results = await Promise.allSettled([
         testTypesPromise,
@@ -46,7 +47,6 @@ async function fetchData() {
         bannersPromise,
         selectionPromise,
     ])
-    console.log('results', results)
 
     results.forEach((result, index) => {
         if (result.status === 'fulfilled') {
@@ -61,6 +61,8 @@ async function fetchData() {
                     banners.value = result.value
                     break
                 case 3:
+                    languageSelections.value = result.value
+                case 4:
                     break
             }
         } else {
@@ -83,11 +85,11 @@ async function fetchData() {
             <PopularScience :subjects="subjects" />
         </div>
 
-        <div class="mb-8" v-if="referencesStore.selections">
+        <div class="mb-8" v-if="languageSelections.results">
             <div class="font-semibold text-xl mb-6">
                 {{ $t('international_certificates') }}
             </div>
-            <TestsList :subjects="referencesStore.selections" />
+            <TestsList :subjects="languageSelections.results" />
         </div>
     </div>
 </template>

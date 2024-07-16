@@ -54,6 +54,7 @@ export const useTestStore = defineStore(
         }
 
         function SELECT_ANSWER(index, question_index) {
+            console.log('selectedanserver')
             test_questions.value[question_index].selected_answer = index
         }
 

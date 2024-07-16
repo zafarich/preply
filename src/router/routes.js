@@ -77,6 +77,13 @@ const routes = [
             },
         ],
     },
+
+    {
+        path: '/test-solve',
+        name: 'test-solve',
+        component: () => import('pages/tests/TestScrollPage.vue'),
+    },
+
     {
         path: '/lb',
         component: () => import('layouts/BottomMenuLayout.vue'),
