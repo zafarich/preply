@@ -73,6 +73,8 @@ export const useTestStore = defineStore(
         async function START_TEST(type, payload) {
             let res
 
+            console.log('payload', payload)
+
             if (type === TEST_TYPES.BLOCK) {
                 res = await api.startBlockTest(payload)
             } else if (type === TEST_TYPES.BY_SUBJECTS) {

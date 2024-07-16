@@ -132,7 +132,7 @@ const startTest = async () => {
     mainStore.changeSiteLoader(true)
     $q.loading.show()
     await testStore.START_TEST(TEST_TYPES.VARIANT, {
-        variant_id: data.s2,
+        variant_id: data.value.s2,
     })
 
     $q.loading.hide()

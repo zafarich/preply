@@ -133,7 +133,7 @@ const goToLink = (index) => {
 
 const getCorrectAnswersCount = computed(() => {
     const count = testStore.GET_TEST_RESULTS.results.reduce(
-        (partialCount, a) => (partialCount + a.is_correct ? 1 : 0),
+        (partialCount, a) => partialCount + (a.is_correct ? 1 : 0),
         0,
     )
     return count
