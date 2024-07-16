@@ -15,20 +15,6 @@
                 </button>
             </div>
             <div>
-                <!-- <div class="mb-8">
-                    <div class="flex justify-center mb-5">
-                        <img src="/images/icons/warning_circle.png" alt="" />
-                    </div>
-
-                    <div class="font-semibold text-lg mb-2 text-center">
-                        Ogohlantirish
-                    </div>
-                    <div class="font-medium mb-2 text-center">
-                        Testni yakunlashni tavsiya qilamiz. Oraqaga qaytishni
-                        tasdiqlashingiz bilan ushbu test bekor qilinadi
-                    </div>
-                </div> -->
-
                 <div class="answers p-0 my-10">
                     <div class="flex flex-wrap gap-2 justify-center">
                         <div
@@ -75,7 +61,9 @@ const close = () => {
 }
 const goToLink = (index) => {
     close()
-    emits('goToLink', index)
+    setTimeout(() => {
+        emits('goToLink', index)
+    }, 10)
 }
 
 const isHaveSelectedAnser = (question) => {

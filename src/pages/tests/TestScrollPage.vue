@@ -29,10 +29,45 @@
                     </div>
                 </div>
             </div>
-            <div class="font-medium text-center my-3 text-lg">Variant Test</div>
-            <div class="flex flex-col justify-between gap-2 font-medium mb-20">
-                <div>Matematika</div>
-                <div>Fizika</div>
+            <div class="font-medium text-center mt-3 mb-5 text-xl">
+                {{ getTestTypeTitle }}
+            </div>
+            <div class="font-medium text-lg mb-10">
+                <div v-if="testStore.GET_TEST_TYPE === TEST_TYPES.VARIANT">
+                    <div>
+                        {{ testStore.GET_TESTS.test_variant.subject.title }}
+                    </div>
+                    <div>
+                        {{ testStore.GET_TESTS.test_variant.title }}
+                    </div>
+                </div>
+                <div v-else-if="testStore.GET_TEST_TYPE === TEST_TYPES.BLOCK">
+                    <q-badge
+                        outline
+                        color="primary"
+                        v-for="(subject, index) in testStore.GET_TESTS
+                            .block_test_subjects"
+                        :key="index"
+                        class="text-lg"
+                    >
+                        {{ index + 1 }}. {{ subject.title }}
+                    </q-badge>
+                </div>
+                <div
+                    v-else-if="
+                        testStore.GET_TEST_TYPE === TEST_TYPES.BY_SUBJECTS
+                    "
+                >
+                    <q-badge
+                        outline
+                        color="primary"
+                        v-for="(subject, index) in testStore.GET_TESTS
+                            .block_test_subjects"
+                        :key="index"
+                        :label="subject.title"
+                        class="text-lg"
+                    />
+                </div>
             </div>
 
             <div
@@ -41,7 +76,7 @@
                 :key="index"
                 :id="`question_${question.order_number}`"
             >
-                <div class="question-text" @click="goToLink(1)">
+                <div class="question-text">
                     {{ question.order_number + 1 }}.
                     {{ question.question }}
                 </div>
@@ -122,6 +157,18 @@ async function confirmBack() {
 
     router.replace({ name: 'home' })
 }
+
+const getTestTypeTitle = computed(() => {
+    if (testStore.GET_TEST_TYPE === TEST_TYPES.VARIANT) {
+        return 'Variant Test'
+    } else if (testStore.GET_TEST_TYPE === TEST_TYPES.BLOCK) {
+        return 'Blok Test'
+    } else if (testStore.GET_TEST_TYPE === TEST_TYPES.BY_SELECTIONS) {
+        return 'Mavzulashtirilgan test'
+    } else if (testStore.GET_TEST_TYPE === TEST_TYPES.BY_SUBJECTS) {
+        return 'Mock Test'
+    }
+})
 
 let timer
 const remainingTime = ref(testStore.GET_TEST_TIME)
@@ -228,11 +275,8 @@ async function confirmEndTest() {
     }
 
     .question-wrap {
-        margin-bottom: 30px;
-        border: 3px solid $gray-5;
+        margin-bottom: 40px;
 
-        padding: 15px;
-        border-radius: 20px;
         .question-text {
             margin-top: 16px;
             font-size: 18px;

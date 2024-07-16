@@ -125,12 +125,7 @@ const startTest = async () => {
     })
 
     router.push({
-        name: 'tests.solving',
-        query: {
-            test_type: TEST_TYPES.BLOCK,
-            s1: data.value.s1,
-            s2: data.value.s2,
-        },
+        name: 'test-solve',
     })
 
     nextTick(() => {
