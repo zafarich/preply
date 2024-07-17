@@ -10,7 +10,7 @@
                         map-options
                         outlined
                         :placeholder="$t('first_subject')"
-                        :options="referenceStore.main_subjects"
+                        :options="mainSubjects"
                         option-label="title"
                         :error="firstIsSelect"
                         option-value="id"
@@ -73,6 +73,13 @@ const testStore = useTestStore()
 const mainStore = useMainStore()
 const userStore = useUserStore()
 
+const props = defineProps({
+    mainSubjects: {
+        type: Array,
+        default: [],
+    },
+})
+
 const { startModal, buySubscriptionModal } = storeToRefs(modalStore)
 const router = useRouter()
 const { t } = useI18n()
@@ -82,10 +89,6 @@ const data = ref({
 })
 
 const firstIsSelect = ref(false)
-
-onMounted(async () => {
-    await referenceStore.getSubjects({ is_main_for_block: true })
-})
 
 watch(
     () => data.value.s1,
@@ -126,11 +129,6 @@ const startTest = async () => {
 
     router.push({
         name: 'tests.solving',
-        query: {
-            test_type: TEST_TYPES.BLOCK,
-            s1: data.value.s1,
-            s2: data.value.s2,
-        },
     })
 
     nextTick(() => {

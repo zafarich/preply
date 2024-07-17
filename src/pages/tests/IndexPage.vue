@@ -4,31 +4,12 @@
         <div>
             <div class="grid grid-cols-2 gap-3 mb-8">
                 <q-btn
+                    v-for="(testType, index) in testTypesList"
+                    :key="index"
                     class="flex-grow"
-                    @click="changeTestType(TEST_TYPES.BY_SUBJECTS)"
-                    :label="$t('by_science')"
-                    :outline="GET_TEST_TYPE !== TEST_TYPES.BY_SUBJECTS"
-                    color="primary"
-                />
-                <q-btn
-                    class="flex-grow"
-                    @click="changeTestType(TEST_TYPES.BLOCK)"
-                    :label="$t('by_block')"
-                    :outline="GET_TEST_TYPE !== TEST_TYPES.BLOCK"
-                    color="primary"
-                />
-                <q-btn
-                    class="flex-grow"
-                    @click="changeTestType(TEST_TYPES.VARIANT)"
-                    :label="$t('by_variant')"
-                    :outline="GET_TEST_TYPE !== TEST_TYPES.VARIANT"
-                    color="primary"
-                />
-                <q-btn
-                    class="flex-grow"
-                    @click="changeTestType(TEST_TYPES.BY_SELECTIONS)"
-                    label="Mavzulashtirilgan"
-                    :outline="GET_TEST_TYPE !== TEST_TYPES.BY_SELECTIONS"
+                    @click="changeTestType(testType.key)"
+                    :label="$t(testType.name)"
+                    :outline="GET_TEST_TYPE !== testType.key"
                     color="primary"
                 />
             </div>
@@ -37,7 +18,10 @@
                 v-if="GET_TEST_TYPE === TEST_TYPES.BY_SUBJECTS"
                 :subjects="referencesStore.main_subjects"
             />
-            <BlockTestStart v-else-if="GET_TEST_TYPE === TEST_TYPES.BLOCK" />
+            <BlockTestStart
+                v-else-if="GET_TEST_TYPE === TEST_TYPES.BLOCK"
+                :main-subjects="referencesStore.main_subjects"
+            />
 
             <TestsList
                 v-else-if="GET_TEST_TYPE === TEST_TYPES.BY_SELECTIONS"
@@ -64,6 +48,25 @@ import { TEST_TYPES } from 'src/utils/constants'
 
 const router = useRouter()
 const route = useRoute()
+
+const testTypesList = ref([
+    {
+        name: 'by_science',
+        key: TEST_TYPES.BY_SUBJECTS,
+    },
+    {
+        name: 'by_block',
+        key: TEST_TYPES.BLOCK,
+    },
+    {
+        name: 'by_variant',
+        key: TEST_TYPES.VARIANT,
+    },
+    {
+        name: 'Mavzulashtirilgan',
+        key: TEST_TYPES.BY_SELECTIONS,
+    },
+])
 
 import { useReferencesStore } from 'src/stores/references'
 import { useTestStore } from 'src/stores/test'
