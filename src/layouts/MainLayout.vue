@@ -25,9 +25,9 @@ const testStore = useTestStore()
 
 onMounted(() => {
     // console.log('GET_TESTSPTYPE', typeof testStore.GET_TEST_TYPE)
-    if (!!testStore.GET_TESTS && route.name !== 'tests.solving') {
+    if (!!testStore.GET_TESTS && route.name !== 'test-solve') {
         router.push({
-            name: 'tests.solving',
+            name: 'test-solve',
         })
     }
 })

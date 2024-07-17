@@ -188,6 +188,8 @@ const testStore = useTestStore()
 const modalStore = useModalStore()
 const mainStore = useMainStore()
 
+const showIcon = ref(false)
+
 const { notifyTestModal, endTestModal } = storeToRefs(modalStore)
 
 async function confirmBack() {

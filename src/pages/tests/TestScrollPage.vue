@@ -1,5 +1,5 @@
 <template>
-    <div id="test-scroll-page">
+    <div id="test-scroll-page" class="relative">
         <div class="result-page">
             <div class="result-page-header">
                 <div class="confirmBack">
@@ -32,7 +32,7 @@
             <div class="font-medium text-center mt-3 mb-5 text-xl">
                 {{ getTestTypeTitle }}
             </div>
-            <div class="font-medium text-lg mb-10">
+            <div class="font-medium text-lg mb-10" v-if="testStore.GET_TESTS">
                 <div v-if="testStore.GET_TEST_TYPE === TEST_TYPES.VARIANT">
                     <div>
                         {{ testStore.GET_TESTS.test_variant.subject.title }}
@@ -126,6 +126,15 @@
             :questions="testStore.test_questions"
             @goToLink="goToLink"
         />
+
+        <div
+            class="fixed bottom-14 right-4 border rounded-full p-3 bg-orange-500 cursor-pointer"
+            @click="scrollToTop"
+            id="scrollIcon"
+            v-if="showIcon"
+        >
+            <img src="/images/icons/to-top-icon.svg" class="w-4 h-4" />
+        </div>
     </div>
 </template>
 
@@ -147,6 +156,8 @@ const router = useRouter()
 const testStore = useTestStore()
 const modalStore = useModalStore()
 const mainStore = useMainStore()
+
+const showIcon = ref(false)
 
 const { notifyTestModal, endTestModal, solveInfoModal } =
     storeToRefs(modalStore)
@@ -198,11 +209,31 @@ const updateRemainingTime = () => {
 
 onMounted(async () => {
     timer = setInterval(updateRemainingTime, 1000)
+
+    window.addEventListener('scroll', () => {
+        const scrollIcon = document.getElementById('scrollIcon')
+        const scrollTop =
+            window.pageYOffset || document.documentElement.scrollTop
+
+        if (scrollTop > 500) {
+            showIcon.value = true
+        } else {
+            showIcon.value = false
+        }
+        // }
+    })
 })
 
 onUnmounted(() => {
     clearInterval(timer)
 })
+
+const scrollToTop = () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+    })
+}
 
 const goToLink = (index) => {
     const element = document.getElementById(`question_${index}`)

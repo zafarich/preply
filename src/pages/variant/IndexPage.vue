@@ -68,11 +68,7 @@ async function startTest() {
 
         variantNotifyStartModal.value = false
         router.push({
-            name: 'tests.solving',
-            query: {
-                s1: selected_variant.value,
-                test_type: TEST_TYPES.VARIANT,
-            },
+            name: 'test-solve',
         })
     }
 }

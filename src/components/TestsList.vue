@@ -49,10 +49,7 @@ const startTest = async () => {
     startBySelectionModal.value = false
 
     router.push({
-        name: 'tests.solving',
-        query: {
-            test_type: TEST_TYPES.BY_SELECTIONS,
-        },
+        name: 'test-solve',
     })
 
     mainStore.changeSiteLoader(false)
