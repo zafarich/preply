@@ -37,7 +37,7 @@ const startTest = async (id) => {
     })
 
     router.push({
-        name: 'tests.solving',
+        name: 'test-solve',
         query: {
             test_type: TEST_TYPES.BY_SUBJECTS,
         },

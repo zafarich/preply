@@ -128,7 +128,7 @@ const startTest = async () => {
     })
 
     router.push({
-        name: 'tests.solving',
+        name: 'test-solve',
     })
 
     nextTick(() => {
