@@ -1,7 +1,10 @@
 <template>
     <div class="main-layout">
         <TheHeader />
-        <router-view />
+        <div class="app-container">
+            <router-view />
+        </div>
+        <Footer v-if="isShowFooter" />
         <BottomMenu />
         <GlobalLoading />
         <BuySubscriptionModal />
@@ -10,18 +13,24 @@
 
 <script setup>
 import { onMounted } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 
+import Footer from 'src/components/Footer.vue'
 import BottomMenu from 'src/components/common/BottomMenu.vue'
 import TheHeader from 'src/components/common/TheHeader.vue'
 
 import { useTestStore } from 'src/stores/test'
 import GlobalLoading from 'src/components/GlobalLoading.vue'
 import BuySubscriptionModal from 'src/components/modals/BuySubscriptionModal.vue'
+import { computed } from 'vue'
 
 const router = useRouter()
-const route = useRouter()
+const route = useRoute()
 const testStore = useTestStore()
+
+const isShowFooter = computed(() => {
+    return route.name == 'home'
+})
 
 onMounted(() => {
     // console.log('GET_TESTSPTYPE', typeof testStore.GET_TEST_TYPE)

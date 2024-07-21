@@ -1,4 +1,3 @@
-div
 <script setup>
 import { storeToRefs } from 'pinia'
 import BaseModal from 'src/components/UI/BaseModal.vue'
@@ -92,10 +91,10 @@ const close = () => {
         <q-form @submit="submitButton">
             <div v-if="currentStep === 1">
                 <div class="flex justify-center items-center mb-4">
-                    <span class="border rounded-lg h-[47px] mr-2">
+                    <span class="border rounded-lg mr-2">
                         <img src="images/icons/humo.svg" />
                     </span>
-                    <span class="border rounded-lg h-[47px]">
+                    <span class="border rounded-lg">
                         <img src="images/icons/uzcard.svg" />
                     </span>
                 </div>

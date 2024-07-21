@@ -5,12 +5,12 @@
             <div>
                 <div class="mb-6">
                     <BaseSelect
-                        v-model="data.s1"
+                        v-model="selectedSubject"
                         emit-value
                         map-options
                         outlined
-                        :placeholder="$t('first_subject')"
-                        :options="mainSubjects"
+                        placeholder="Fan"
+                        :options="subjects"
                         option-label="title"
                         :error="firstIsSelect"
                         option-value="id"
@@ -20,16 +20,15 @@
                     </span>
                 </div>
                 <div>
-                    <!-- {{ data.s2 }} -->
                     <BaseSelect
-                        v-model="data.s2"
+                        v-model="subjectSelection"
                         class="tracking-widest"
                         emit-value
                         map-options
                         outlined
-                        :disabled="!!data.s1"
-                        :placeholder="$t('second_subject')"
-                        :options="referenceStore.sub_main_subjects"
+                        :disabled="!!selectedSubject"
+                        placeholder="Mavzulashtirilgan test"
+                        :options="subjectSelectionsList.results"
                         option-label="title"
                         option-value="id"
                         @click="checkFirstSelected"
@@ -44,7 +43,7 @@
             class="full-width button-md"
             no-caps
             :loading="loading"
-            :disable="data.s1 && data.s2"
+            :disable="selectedSubject && subjectSelection"
             >{{ $t('start') }}</q-btn
         >
 
@@ -74,36 +73,39 @@ const mainStore = useMainStore()
 const userStore = useUserStore()
 
 const props = defineProps({
-    mainSubjects: {
+    subjects: {
         type: Array,
         default: [],
     },
 })
 
+const selectedSubject = ref('')
+const subjectSelection = ref('')
+const subjectSelectionsList = ref({
+    results: [],
+})
+
 const { startModal, buySubscriptionModal } = storeToRefs(modalStore)
 const router = useRouter()
 const { t } = useI18n()
-const data = ref({
-    s1: '',
-    s2: '',
-})
 
 const firstIsSelect = ref(false)
 
 watch(
-    () => data.value.s1,
+    () => selectedSubject.value,
     async (newValue) => {
-        data.value.s2 = ''
+        subjectSelection.value = ''
         firstIsSelect.value = false
-        referenceStore.setSubMainSubject([])
         if (newValue) {
-            await referenceStore.getSubjects({ parent_subjects: newValue })
+            subjectSelectionsList.value = await referenceStore.getSelection({
+                subject: newValue,
+            })
         }
     },
 )
 
 const checkFirstSelected = () => {
-    if (data.value.s1) {
+    if (selectedSubject.value) {
         firstIsSelect.value = false
     } else firstIsSelect.value = true
 }
@@ -120,7 +122,7 @@ const openModal = () => {
         return
     }
 
-    if (data.value.s1 && data.value.s2) {
+    if (selectedSubject.value && subjectSelection) {
         startModal.value = true
     }
 }
@@ -128,8 +130,8 @@ const openModal = () => {
 const startTest = async () => {
     mainStore.changeSiteLoader(true)
 
-    await testStore.START_TEST(TEST_TYPES.BLOCK, {
-        subjects: [data.value.s1, data.value.s2],
+    await testStore.START_TEST(TEST_TYPES.BY_SELECTIONS, {
+        selection: subjectSelection.value,
     })
 
     router.push({

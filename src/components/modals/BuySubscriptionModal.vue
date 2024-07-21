@@ -2,6 +2,7 @@
 import { storeToRefs } from 'pinia'
 import BaseModal from 'src/components/UI/BaseModal.vue'
 import { useModalStore } from 'src/stores/modal'
+import { useTestStore } from 'src/stores/test'
 import { useRouter } from 'vue-router'
 
 const modalStore = useModalStore()
@@ -14,7 +15,9 @@ const close = () => {
 }
 
 const goToPurchase = () => {
+    useTestStore().RESET_TEST_STORE()
     router.push({ name: 'profile' })
+    buySubscriptionModal.value = false
 }
 </script>
 

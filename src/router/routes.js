@@ -75,13 +75,13 @@ const routes = [
                 component: () => import('pages/tests/TestSolvePage.vue'),
                 meta: { middlewares: [auth] },
             },
-        ],
-    },
 
-    {
-        path: '/test-solve',
-        name: 'test-solve',
-        component: () => import('pages/tests/TestScrollPage.vue'),
+            {
+                path: '/test-solve',
+                name: 'test-solve',
+                component: () => import('pages/tests/TestScrollPage.vue'),
+            },
+        ],
     },
 
     {

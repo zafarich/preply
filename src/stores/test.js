@@ -4,6 +4,7 @@ import { LocalStorage } from 'quasar'
 import { ref, computed } from 'vue-demi'
 import { TEST_TYPES } from 'src/utils/constants'
 import { useUserStore } from './user'
+import { useModalStore } from './modal'
 
 export const useTestStore = defineStore(
     'test',
@@ -13,6 +14,8 @@ export const useTestStore = defineStore(
         const test_questions = ref([])
         const test_type = ref(TEST_TYPES.BLOCK)
         const active_index = ref(0)
+        // const isEndLimit = ref(!useUserStore().userData.is_premium)
+        const isEndLimit = ref(false)
 
         const GET_TESTS = computed(() => {
             return tests.value
@@ -54,8 +57,22 @@ export const useTestStore = defineStore(
         }
 
         function SELECT_ANSWER(index, question_index) {
-            console.log('selectedanserver')
-            test_questions.value[question_index].selected_answer = index
+            // console.log('selectedanserver')
+            const countOfSolvedQuestions = test_questions.value.filter(
+                (question) => question.selected_answer,
+            ).length
+
+            if (
+                countOfSolvedQuestions >= 10 &&
+                !useUserStore().userData.is_premium
+            ) {
+                useModalStore().changeBuySubscriptionModal(true)
+                isEndLimit.value = true
+            } else {
+                test_questions.value[question_index].selected_answer = index
+            }
+
+            console.log('countOfSolvedQuestions', countOfSolvedQuestions)
         }
 
         function RESET_TEST_STORE() {
@@ -73,8 +90,6 @@ export const useTestStore = defineStore(
 
         async function START_TEST(type, payload) {
             let res
-
-            console.log('payload', payload)
 
             if (type === TEST_TYPES.BLOCK) {
                 res = await api.startBlockTest(payload)
@@ -134,6 +149,7 @@ export const useTestStore = defineStore(
             test_results,
             active_index,
             test_type,
+            isEndLimit,
 
             GET_TESTS,
             GET_TEST_RESULTS,

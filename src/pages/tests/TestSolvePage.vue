@@ -84,6 +84,7 @@
                 {{ testStore.GET_ACTIVE_TEST?.order_number + 1 }}.
                 {{ testStore.GET_ACTIVE_TEST?.question }}
             </div>
+
             <div class="variants-wrap">
                 <button
                     v-for="(answer, index) in testStore.GET_ACTIVE_TEST

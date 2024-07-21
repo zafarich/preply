@@ -8,11 +8,13 @@ import StartTestModal from 'src/components/modals/StartTestModal.vue'
 import { useModalStore } from 'src/stores/modal'
 import { storeToRefs } from 'pinia'
 import { useUserStore } from 'src/stores/user'
+import { useMainStore } from 'src/stores/main'
 
 const router = useRouter()
 const testStore = useTestStore()
 const modalStore = useModalStore()
 const userStore = useUserStore()
+const mainStore = useMainStore()
 
 const { startModal, buySubscriptionModal } = storeToRefs(modalStore)
 
@@ -26,12 +28,7 @@ const props = defineProps({
 const selectId = ref(null)
 
 const startTest = async (id) => {
-    if (!userStore.userData.is_free_attempts_left) {
-        startModal.value = false
-        buySubscriptionModal.value = true
-        return
-    }
-
+    mainStore.changeSiteLoader(true)
     await testStore.START_TEST(TEST_TYPES.BY_SUBJECTS, {
         subject_id: selectId.value,
     })
@@ -46,9 +43,22 @@ const startTest = async (id) => {
     nextTick(() => {
         startModal.value = false
     })
+
+    mainStore.changeSiteLoader(false)
 }
 
 const selectSubject = (id) => {
+    if (!userStore.userData.is_free_attempts_left) {
+        startModal.value = false
+        buySubscriptionModal.value = true
+        return
+    }
+
+    if (testStore.isEndLimit) {
+        modalStore.changeBuySubscriptionModal(true)
+        return
+    }
+
     selectId.value = id
     nextTick(() => {
         startModal.value = true

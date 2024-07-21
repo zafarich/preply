@@ -14,6 +14,10 @@ export const useModalStore = defineStore('modal', () => {
     const buySubscriptionModal = ref(false)
     const solveInfoModal = ref(false)
 
+    function changeBuySubscriptionModal(value) {
+        buySubscriptionModal.value = value
+    }
+
     return {
         variantNotifyStartModal,
         endTestModal,
@@ -25,6 +29,7 @@ export const useModalStore = defineStore('modal', () => {
         subscriptionModal,
         startBySelectionModal,
         buySubscriptionModal,
+        changeBuySubscriptionModal,
         solveInfoModal,
     }
 })

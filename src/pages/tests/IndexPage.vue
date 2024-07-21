@@ -23,9 +23,9 @@
                 :main-subjects="referencesStore.main_subjects"
             />
 
-            <TestsList
+            <SelectionTestStart
                 v-else-if="GET_TEST_TYPE === TEST_TYPES.BY_SELECTIONS"
-                :subjects="selections.results"
+                :subjects="referencesStore.subjects"
             />
             <VariantTestStart
                 v-else-if="GET_TEST_TYPE === TEST_TYPES.VARIANT"
@@ -40,7 +40,7 @@ import { onMounted, ref } from 'vue-demi'
 import { useI18n } from 'vue-i18n'
 import { useRouter, useRoute } from 'vue-router'
 import { useQuasar } from 'quasar'
-import TestsList from 'src/components/TestsList.vue'
+import SelectionTestStart from 'src/components/SelectionTestStart.vue'
 import ScienceList from 'src/components/ScienceList.vue'
 import BlockTestStart from 'src/components/BlockTestStart.vue'
 import VariantTestStart from 'src/components/VariantTestStart.vue'

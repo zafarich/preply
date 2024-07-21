@@ -41,6 +41,7 @@
                         {{ testStore.GET_TESTS.test_variant.title }}
                     </div>
                 </div>
+
                 <div v-else-if="testStore.GET_TEST_TYPE === TEST_TYPES.BLOCK">
                     <q-badge
                         outline
@@ -80,6 +81,10 @@
                     {{ question.order_number + 1 }}.
                     {{ question.question }}
                 </div>
+                <div class="my-4" v-if="question.question_image">
+                    <img :src="question.question_image" />
+                </div>
+
                 <div class="variants-wrap">
                     <button
                         class="variant-item"

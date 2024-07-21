@@ -46,17 +46,22 @@ async function fetchSubject() {
 }
 
 function goToSolveTest(variant) {
-    selected_variant.value = variant?.id
-    variantNotifyStartModal.value = true
-}
-
-async function startTest() {
     if (!userStore.userData.is_free_attempts_left) {
         variantNotifyStartModal.value = false
         buySubscriptionModal.value = true
         return
     }
 
+    if (testStore.isEndLimit) {
+        modalStore.changeBuySubscriptionModal(true)
+        return
+    }
+
+    selected_variant.value = variant?.id
+    variantNotifyStartModal.value = true
+}
+
+async function startTest() {
     if (selected_variant.value) {
         $q.loading.show()
 
