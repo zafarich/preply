@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-[#333] text-lg py-4 app-container text-white">
+    <div class="bg-[#333] py-4 app-container text-white">
         <img src="/images/logo_s_1.png" alt="" class="h-10 mb-10" />
 
         <div class="flex justify-between items-center py-3 border-b">
