@@ -26,6 +26,7 @@ function selectTest(value) {
             @click="selectTest(testType.unique_name)"
             class="test-type-item"
         >
+            <img src="/icons/education-cap.png" class="h-7" />
             <div class="title-test-type">{{ testType.title }}</div>
         </div>
     </div>

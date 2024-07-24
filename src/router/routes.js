@@ -39,7 +39,7 @@ const routes = [
             {
                 path: 'profile',
                 name: 'profile',
-                component: () => import('pages/profile/IndexPage.vue'),
+                component: () => import('pages/profile/new-profile.vue'),
                 meta: { middlewares: [auth] },
             },
         ],

@@ -1,3 +1,23 @@
+<template>
+    <div>
+        <div class="mb-8" v-if="banners">
+            <Banner :banners="banners" />
+        </div>
+        <div class="mb-8" v-if="testTypes">
+            <TestTypes :test-types="testTypes" />
+        </div>
+        <div class="mb-8" v-if="subjects">
+            <PopularScience :subjects="subjects" />
+        </div>
+
+        <div class="mb-8" v-if="languageSelections.results">
+            <div class="font-semibold text-xl mb-6">
+                {{ $t('international_certificates') }}
+            </div>
+            <TestsList :subjects="languageSelections.results" />
+        </div>
+    </div>
+</template>
 <script setup>
 import { onMounted, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -73,25 +93,4 @@ async function fetchData() {
     mainStore.changeSiteLoader(false)
 }
 </script>
-<template>
-    <div>
-        <div class="mb-8" v-if="banners">
-            <Banner :banners="banners" />
-        </div>
-        <div class="mb-8" v-if="testTypes">
-            <TestTypes :test-types="testTypes" />
-        </div>
-        <div class="mb-8" v-if="subjects">
-            <PopularScience :subjects="subjects" />
-        </div>
-
-        <div class="mb-8" v-if="languageSelections.results">
-            <div class="font-semibold text-xl mb-6">
-                {{ $t('international_certificates') }}
-            </div>
-            <TestsList :subjects="languageSelections.results" />
-        </div>
-    </div>
-</template>
-
 <style lang="scss" src="src/assets/scss/Home.scss"></style>

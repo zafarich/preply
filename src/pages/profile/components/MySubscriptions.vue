@@ -1,5 +1,5 @@
 <template>
-    <div class="info-card">
+    <div class="pt-5">
         <div class="flex justify-between items-center mb-4">
             <div class="font-semibold text-base items-center">
                 {{ $t('my_subscriptions') }}
@@ -10,7 +10,8 @@
                 no-caps
                 color="primary"
                 @click="() => (subscriptionModal = true)"
-                >{{ $t('purchase') }}</q-btn
+            >
+                {{ $t('purchase') }}</q-btn
             >
         </div>
 
