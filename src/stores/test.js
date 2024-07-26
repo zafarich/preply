@@ -17,6 +17,8 @@ export const useTestStore = defineStore(
         // const isEndLimit = ref(!useUserStore().userData.is_premium)
         const isEndLimit = ref(false)
 
+        const errorSubsType = ref('')
+
         const GET_TESTS = computed(() => {
             return tests.value
         })
@@ -90,20 +92,29 @@ export const useTestStore = defineStore(
 
         async function START_TEST(type, payload) {
             let res
+            try {
+                if (type === TEST_TYPES.BLOCK) {
+                    console.log('blocktest')
+                    res = await api.startBlockTest(payload)
+                } else if (type === TEST_TYPES.BY_SUBJECTS) {
+                    res = await api.startBySubjectTest(payload)
+                } else if (type === TEST_TYPES.VARIANT) {
+                    res = await api.startVariantTest(payload)
+                } else if (type === TEST_TYPES.BY_SELECTIONS) {
+                    res = await api.startBySelectionTest(payload)
+                }
 
-            if (type === TEST_TYPES.BLOCK) {
-                res = await api.startBlockTest(payload)
-            } else if (type === TEST_TYPES.BY_SUBJECTS) {
-                res = await api.startBySubjectTest(payload)
-            } else if (type === TEST_TYPES.VARIANT) {
-                res = await api.startVariantTest(payload)
-            } else if (type === TEST_TYPES.BY_SELECTIONS) {
-                res = await api.startBySelectionTest(payload)
+                if (!res.error) {
+                    tests.value = res
+                    test_questions.value = res.questions
+                    active_index.value = 0
+                } else {
+                    errorSubsType.value = res.error
+                    useModalStore().changeBuySubscriptionModal(true)
+                }
+            } catch (error) {
+                console.log('errorrr', error)
             }
-
-            tests.value = res
-            test_questions.value = res.questions
-            active_index.value = 0
 
             return res
         }
@@ -150,6 +161,7 @@ export const useTestStore = defineStore(
             active_index,
             test_type,
             isEndLimit,
+            errorSubsType,
 
             GET_TESTS,
             GET_TEST_RESULTS,

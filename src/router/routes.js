@@ -39,7 +39,25 @@ const routes = [
             {
                 path: 'profile',
                 name: 'profile',
-                component: () => import('pages/profile/new-profile.vue'),
+                component: () => import('pages/profile/IndexPage.vue'),
+                meta: { middlewares: [auth] },
+            },
+            {
+                path: 'about-us',
+                name: 'about-us',
+                component: () => import('pages/about-us/index.vue'),
+                meta: { middlewares: [auth] },
+            },
+            {
+                path: 'vacancy',
+                name: 'vacancy',
+                component: () => import('pages/vacancy/index.vue'),
+                meta: { middlewares: [auth] },
+            },
+            {
+                path: 'contact-us',
+                name: 'contact-us',
+                component: () => import('pages/contact-us/index.vue'),
                 meta: { middlewares: [auth] },
             },
         ],

@@ -147,18 +147,20 @@ const startTest = async () => {
 
     mainStore.changeSiteLoader(true)
     $q.loading.show()
-    await testStore.START_TEST(TEST_TYPES.VARIANT, {
+
+    const response = await testStore.START_TEST(TEST_TYPES.VARIANT, {
         variant_id: data.value.s2,
     })
 
     $q.loading.hide()
-    variantNotifyStartModal.value = false
-    router.push({
-        name: 'test-solve',
-        query: {
-            test_type: TEST_TYPES.VARIANT,
-        },
-    })
+    if (!response.error) {
+        router.push({
+            name: 'test-solve',
+            query: {
+                test_type: TEST_TYPES.VARIANT,
+            },
+        })
+    }
 
     nextTick(() => {
         variantNotifyStartModal.value = false

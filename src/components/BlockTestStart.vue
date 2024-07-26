@@ -128,13 +128,15 @@ const openModal = () => {
 const startTest = async () => {
     mainStore.changeSiteLoader(true)
 
-    await testStore.START_TEST(TEST_TYPES.BLOCK, {
+    const response = await testStore.START_TEST(TEST_TYPES.BLOCK, {
         subjects: [data.value.s1, data.value.s2],
     })
 
-    router.push({
-        name: 'test-solve',
-    })
+    if (!response.error) {
+        router.push({
+            name: 'test-solve',
+        })
+    }
 
     nextTick(() => {
         startModal.value = false

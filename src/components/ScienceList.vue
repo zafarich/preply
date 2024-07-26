@@ -29,21 +29,17 @@ const selectId = ref(null)
 
 const startTest = async (id) => {
     mainStore.changeSiteLoader(true)
-    await testStore.START_TEST(TEST_TYPES.BY_SUBJECTS, {
+    const response = await testStore.START_TEST(TEST_TYPES.BY_SUBJECTS, {
         subject_id: selectId.value,
     })
 
-    router.push({
-        name: 'test-solve',
-        query: {
-            test_type: TEST_TYPES.BY_SUBJECTS,
-        },
-    })
+    if (!response.error) {
+        router.push({
+            name: 'test-solve',
+        })
+    }
 
-    nextTick(() => {
-        startModal.value = false
-    })
-
+    startModal.value = false
     mainStore.changeSiteLoader(false)
 }
 

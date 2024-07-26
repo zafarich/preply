@@ -10,6 +10,26 @@
             </div>
         </div>
 
+        <div
+            class="py-3 flex justify-between items-center border-b cursor-pointer"
+            @click="toAboutUs"
+        >
+            О нас
+        </div>
+        <div
+            class="py-3 flex justify-between items-center border-b cursor-pointer"
+            @click="toContactUs"
+        >
+            Для сотрудничества с нами
+        </div>
+
+        <div
+            class="py-3 flex justify-between items-center border-b cursor-pointer"
+            @click="toVacancies"
+        >
+            Вакансии
+        </div>
+
         <div class="py-3 flex justify-between items-center border-b">
             <div>Мы принимаем к оплате</div>
             <div class="flex justify-center items-center">
@@ -45,8 +65,24 @@
             />
         </div>
 
-        <div class="text-center text-sm py-3 my-3">
+        <div class="text-center text-sm py-3">
             ©2024 EXBMBA, Barcha huquqlar himoyalangan.
         </div>
     </div>
 </template>
+
+<script setup>
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+const toAboutUs = () => {
+    router.push({ name: 'about-us' })
+}
+const toContactUs = () => {
+    router.push({ name: 'contact-us' })
+}
+const toVacancies = () => {
+    router.push({ name: 'vacancy' })
+}
+</script>

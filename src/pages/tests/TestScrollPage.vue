@@ -29,9 +29,18 @@
                     </div>
                 </div>
             </div>
-            <div class="font-medium text-center mt-3 mb-5 text-xl">
-                {{ getTestTypeTitle }}
+            <div class="flex justify-between items-center mt-3 mb-5">
+                <div class="font-medium text-center text-xl">
+                    {{ getTestTypeTitle }}
+                </div>
+                <q-btn
+                    @click="downloadPdf(testStore.GET_TESTS.pdf_file)"
+                    color="primary"
+                    label="Скачать"
+                    no-caps
+                />
             </div>
+
             <div class="font-medium text-lg mb-10" v-if="testStore.GET_TESTS">
                 <div v-if="testStore.GET_TEST_TYPE === TEST_TYPES.VARIANT">
                     <div>
@@ -43,31 +52,28 @@
                 </div>
 
                 <div v-else-if="testStore.GET_TEST_TYPE === TEST_TYPES.BLOCK">
-                    <q-badge
-                        outline
-                        color="primary"
+                    <div
+                        class="w-full text-lg border border-primary rounded-10 text-center py-1.5 mb-1.5"
                         v-for="(subject, index) in testStore.GET_TESTS
                             .block_test_subjects"
                         :key="index"
-                        class="text-lg"
                     >
                         {{ index + 1 }}. {{ subject.title }}
-                    </q-badge>
+                    </div>
                 </div>
                 <div
                     v-else-if="
                         testStore.GET_TEST_TYPE === TEST_TYPES.BY_SUBJECTS
                     "
                 >
-                    <q-badge
-                        outline
-                        color="primary"
+                    <div
+                        class="w-full text-lg border border-primary rounded-10 text-center py-1.5 mb-1.5"
                         v-for="(subject, index) in testStore.GET_TESTS
                             .block_test_subjects"
                         :key="index"
-                        :label="subject.title"
-                        class="text-lg"
-                    />
+                    >
+                        {{ subject.title }}
+                    </div>
                 </div>
             </div>
 
@@ -147,7 +153,7 @@
 import { computed, onMounted, onUnmounted, ref } from 'vue-demi'
 import { useRouter } from 'vue-router'
 import { TEST_TYPES } from 'src/utils/constants'
-
+import { api } from 'src/boot/axios'
 import NotifyTestModal from './components/NotifyTestModal.vue'
 import EndTestModal from 'src/components/modals/EndTestModal.vue'
 
@@ -209,6 +215,25 @@ const updateRemainingTime = () => {
             confirmEndTest()
             clearInterval(timer)
         }
+    }
+}
+
+const downloadPdf = async (pdfUrl) => {
+    try {
+        const response = await api.get(pdfUrl, {
+            responseType: 'blob',
+        })
+
+        const url = window.URL.createObjectURL(new Blob([response.data]))
+        const link = document.createElement('a')
+        link.href = url
+        link.setAttribute('download', 'your-pdf-file.pdf') // You can set the file name here
+        document.body.appendChild(link)
+        link.click()
+        link.remove()
+        window.URL.revokeObjectURL(url)
+    } catch (error) {
+        console.error('Error downloading the PDF file:', error)
     }
 }
 
@@ -307,6 +332,7 @@ async function confirmEndTest() {
             padding: 15px 15px;
             margin: 0 -12px;
             border-bottom: 1px solid $gray-5;
+            z-index: 99;
         }
     }
 
