@@ -1,18 +1,3 @@
-<script setup>
-import { computed, onMounted, ref } from 'vue-demi'
-import { useI18n } from 'vue-i18n'
-import { useRouter, useRoute } from 'vue-router'
-import { useQuasar } from 'quasar'
-
-const router = useRouter()
-const route = useRoute()
-const { t } = useI18n()
-const $q = useQuasar()
-
-const route_name_start = computed(() => {
-    return route.name.split('.')?.[0]
-})
-</script>
 <template>
     <div class="bottom-menu">
         <q-btn
@@ -42,16 +27,39 @@ const route_name_start = computed(() => {
             :label="$t('leaders')"
         />
         <q-btn
+            class="relative flex flex-col"
             :to="{ name: 'profile' }"
             :color="route_name_start === 'profile' ? 'primary' : ''"
             flat
-            icon="eva-person-outline"
             no-caps
-            :label="$t('profile')"
-        />
+        >
+            <q-icon name="eva-person-outline" />
+            <div>
+                {{ $t('profile') }}
+            </div>
+            <img
+                src="/icons/user-check.png"
+                class="h-6 w-6 absolute top-0 right-0"
+            />
+        </q-btn>
     </div>
 </template>
 
+<script setup>
+import { computed, onMounted, ref } from 'vue-demi'
+import { useI18n } from 'vue-i18n'
+import { useRouter, useRoute } from 'vue-router'
+import { useQuasar } from 'quasar'
+
+const router = useRouter()
+const route = useRoute()
+const { t } = useI18n()
+const $q = useQuasar()
+
+const route_name_start = computed(() => {
+    return route.name.split('.')?.[0]
+})
+</script>
 <style lang="scss">
 .bottom-menu {
     position: fixed;
