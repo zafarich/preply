@@ -19,14 +19,16 @@ function selectTest(value) {
 }
 </script>
 <template>
-    <div class="grid 768:grid-cols-3 gap-4">
+    <div class="grid 768:grid-cols-2 gap-4">
         <div
             v-for="testType in testTypes"
             :key="testType.id"
             @click="selectTest(testType.unique_name)"
             class="test-type-item"
         >
-            <img src="/icons/education-cap.png" class="h-7" />
+            <img v-if="testType.image" :src="testType.image" class="h-7" />
+            <img v-else src="/icons/education-cap.png" class="h-7" />
+
             <div class="title-test-type">{{ testType.title }}</div>
         </div>
     </div>
