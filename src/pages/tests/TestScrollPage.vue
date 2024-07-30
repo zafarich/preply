@@ -36,9 +36,11 @@
                 <q-btn
                     @click="downloadPdf(testStore.GET_TESTS.pdf_file)"
                     color="primary"
-                    label="Скачать"
                     no-caps
-                />
+                >
+                    <q-icon name="eva-download-outline" size="xs"></q-icon>
+                    <span class="ml-1"> Скачать </span>
+                </q-btn>
             </div>
 
             <div class="font-medium text-lg mb-10" v-if="testStore.GET_TESTS">

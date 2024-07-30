@@ -78,6 +78,7 @@ const submitButton = async () => {
 
 const close = () => {
     paymentModal.value = false
+    currentStep.value = 1
 }
 </script>
 

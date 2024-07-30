@@ -6,8 +6,6 @@
             </div>
             <!-- <div class="font-semibold text-base money-text">20 000 so'm</div> -->
             <q-btn no-caps color="primary" @click="() => (paymentModal = true)">
-                <q-icon name="eva-plus-outline" />
-
                 {{ $t('add') }}</q-btn
             >
         </div>
@@ -20,18 +18,27 @@
                 bordered
                 v-for="(card, index) in userStore.userVerifyCards"
                 :key="index"
-                class="mb-4 p-4"
+                class="plastic-card"
             >
-                <div class="flex justify-between items-center mb-8">
+                <div class="flex justify-between items-center mb-5">
                     <div>
-                        {{ card.card_number }}
+                        <img src="/images/chip.png" class="h-9" />
                     </div>
                     <div class="cursor-pointer" @click="handleDelete(card.id)">
                         <img src="/images/icons/trash.svg" class="h-5" />
                     </div>
                 </div>
-                <div>
-                    {{ card.expire }}
+                <div class="mb-4 flex justify-between items-center">
+                    <span class="font-bold">Karta raqami :</span>
+                    <span class="tracking-wide">
+                        {{ formatCardNumber(card.card_number) }}
+                    </span>
+                </div>
+                <div class="flex justify-between items-center">
+                    <span class="font-bold">Amal qilish muddati: </span>
+                    <span class="tracking-wide">
+                        {{ card.expire }}
+                    </span>
                 </div>
             </q-card>
         </div>
@@ -110,4 +117,26 @@ const confirmDelete = async () => {
     await userStore.getMe()
     showDeleteModal.value = false
 }
+
+function formatCardNumber(cardNumber) {
+    // Remove all non-digit and non-asterisk characters
+    const cleaned = cardNumber.replace(/[^0-9*]/g, '')
+
+    // Format the number into XXXX XXXX XXXX XXXX
+    const formatted = cleaned.replace(/(.{4})(?=.)/g, '$1 ')
+
+    return formatted.trim()
+}
 </script>
+
+<style lang="scss">
+.plastic-card {
+    // background-color: #808080;
+    // background-image: linear-gradient(to right, #727171, #d7d7d7);
+    border: none;
+    background-color: #e5e7eb;
+    border-radius: 20px;
+    margin-bottom: 16px;
+    padding: 20px;
+}
+</style>

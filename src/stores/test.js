@@ -154,6 +154,12 @@ export const useTestStore = defineStore(
             return res
         }
 
+        async function GET_MY_RESULTS(params) {
+            const res = await api.getMyResults(params)
+
+            console.log('GETMYRESULTS', res)
+        }
+
         return {
             tests,
             test_questions,
@@ -179,6 +185,7 @@ export const useTestStore = defineStore(
             FETCH_VARIANTS,
             SELECT_ANSWER,
             RESET_TEST_STORE,
+            GET_MY_RESULTS,
         }
     },
 

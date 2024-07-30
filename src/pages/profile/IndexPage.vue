@@ -161,12 +161,14 @@ import PaymentHistory from './components/PaymentHistory.vue'
 import UserEditModal from 'src/components/modals/UserEditModal.vue'
 import { useUserStore } from 'src/stores/user'
 import { useMainStore } from 'src/stores/main'
+import { useTestStore } from 'src/stores/test'
 
 const modalStore = useModalStore()
 const mainStore = useMainStore()
 const { paymentModal, userEditModal } = storeToRefs(modalStore)
 const billingStore = useBillingStore()
 const userStore = useUserStore()
+const testStore = useTestStore()
 const baseUrl = import.meta.env.VITE_BASE_URL
 
 const tabs = ref('my_cards')
@@ -190,6 +192,7 @@ onMounted(async () => {
     mainStore.changeSiteLoader(true)
 
     await Promise.allSettled([
+        testStore.GET_MY_RESULTS(),
         billingStore.getTariffs(),
         userStore.getMe(),
         billingStore.getSubscriptions({ page: 1, page_size: 1000 }),
