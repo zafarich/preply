@@ -36,6 +36,27 @@
                     />
                 </div>
             </div>
+            <div class="text-lg mb-4 mt-8 pt-5 border-t">Majburiy fanlar:</div>
+            <div class="flex justify-between items-center">
+                <q-badge
+                    rounded
+                    class="py-2 px-4"
+                    color="secondary"
+                    label="1. Matematika"
+                />
+                <q-badge
+                    rounded
+                    class="py-2 px-4"
+                    color="secondary"
+                    label="2. Ona tili"
+                />
+                <q-badge
+                    rounded
+                    class="py-2 px-4"
+                    color="secondary"
+                    label="3. Ingliz tili"
+                />
+            </div>
         </div>
 
         <q-btn
