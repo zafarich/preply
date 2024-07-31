@@ -14,10 +14,16 @@ export const useTestStore = defineStore(
         const test_questions = ref([])
         const test_type = ref(TEST_TYPES.BLOCK)
         const active_index = ref(0)
+
         // const isEndLimit = ref(!useUserStore().userData.is_premium)
         const isEndLimit = ref(false)
 
         const errorSubsType = ref('')
+
+        const myResults = ref({
+            count: 0,
+            results: [],
+        })
 
         const GET_TESTS = computed(() => {
             return tests.value
@@ -73,8 +79,6 @@ export const useTestStore = defineStore(
             } else {
                 test_questions.value[question_index].selected_answer = index
             }
-
-            console.log('countOfSolvedQuestions', countOfSolvedQuestions)
         }
 
         function RESET_TEST_STORE() {
@@ -156,8 +160,9 @@ export const useTestStore = defineStore(
 
         async function GET_MY_RESULTS(params) {
             const res = await api.getMyResults(params)
-
-            console.log('GETMYRESULTS', res)
+            myResults.value.count = res.count
+            myResults.value.results = [...res.results]
+            return res
         }
 
         return {
@@ -168,6 +173,7 @@ export const useTestStore = defineStore(
             test_type,
             isEndLimit,
             errorSubsType,
+            myResults,
 
             GET_TESTS,
             GET_TEST_RESULTS,

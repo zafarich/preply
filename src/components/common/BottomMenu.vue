@@ -37,10 +37,10 @@
             <div>
                 {{ $t('profile') }}
             </div>
-            <img
+            <!-- <img
                 src="/icons/user-check.png"
                 class="h-6 w-6 absolute top-0 right-0"
-            />
+            /> -->
         </q-btn>
     </div>
 </template>

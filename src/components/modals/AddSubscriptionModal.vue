@@ -54,6 +54,7 @@ const close = () => {
         :model-value="subscriptionModal"
         @close="close"
         class="warning-modal"
+        id="add-subs-modal"
     >
         <div>
             <div class="row items-center q-pb-none">
@@ -64,8 +65,18 @@ const close = () => {
                 </button>
             </div>
             <div>
-                <div class="mb-4">
-                    <BaseSelect
+                <div class="font-bold text-md mb-4">
+                    {{ $t('Tarifni tanlang') }}:
+                </div>
+                <div class="mb-4" v-for="(item, index) in billingStore.tariffs">
+                    <div class="flex justify-start gap-2">
+                        <q-radio dense v-model="tariff" :val="item.id" />
+                        <div>
+                            {{ item.name }}
+                        </div>
+                    </div>
+
+                    <!-- <BaseSelect
                         v-model="tariff"
                         emit-value
                         map-options
@@ -74,10 +85,10 @@ const close = () => {
                         :options="billingStore.tariffs"
                         option-label="name"
                         option-value="id"
-                    />
+                    /> -->
                 </div>
 
-                <div class="font-bold text-md mb-1">
+                <div class="font-bold text-md mt-6 mb-4">
                     {{ $t('select_card') }}:
                 </div>
                 <q-card

@@ -8,6 +8,7 @@
         <BottomMenu />
         <GlobalLoading />
         <BuySubscriptionModal />
+        <PremiumPeriodModal />
     </div>
 </template>
 
@@ -23,6 +24,7 @@ import { useTestStore } from 'src/stores/test'
 import GlobalLoading from 'src/components/GlobalLoading.vue'
 import BuySubscriptionModal from 'src/components/modals/BuySubscriptionModal.vue'
 import { computed } from 'vue'
+import PremiumPeriodModal from 'src/components/modals/PremiumPeriodModal.vue'
 
 const router = useRouter()
 const route = useRoute()

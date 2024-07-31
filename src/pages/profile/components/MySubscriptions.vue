@@ -24,15 +24,24 @@
                 bordered
                 v-for="(subscription, index) in billingStore.subscriptions"
                 :key="index"
-                class="mb-4 p-4"
+                class="subs-card"
             >
-                <div class="flex justify-between items-center mb-8">
-                    <div class="text-lg font-bold">
+                <div
+                    class="flex justify-between items-center font-semibold mb-4"
+                >
+                    <div>Obuna:</div>
+                    <q-badge color="warning py-1">
                         {{ subscription.tariff.name }}
-                    </div>
+                    </q-badge>
                 </div>
-                <div>
-                    <span class="font-bold">Tugash sanasi: </span
+                <div
+                    class="flex justify-between items-center font-semibold mb-4"
+                >
+                    <div>Narxi:</div>
+                    <div>{{ priceFormat(subscription.tariff.price) }} sum</div>
+                </div>
+                <div class="flex justify-between items-center font-semibold">
+                    <span>Tugash sanasi: </span
                     ><span>{{ formatDate(subscription.expire_date) }}</span>
                 </div>
             </q-card>
@@ -50,9 +59,19 @@ import { storeToRefs } from 'pinia'
 import { useBillingStore } from 'src/stores/billing'
 import { useUserStore } from 'src/stores/user'
 import { formatDate } from 'src/utils/helpers'
+import { priceFormat } from 'src/utils/helpers'
 
 const modalStore = useModalStore()
 const userStore = useUserStore()
 const billingStore = useBillingStore()
 const { subscriptionModal } = storeToRefs(modalStore)
 </script>
+
+<style lang="scss">
+.subs-card {
+    margin-bottom: 16px;
+    padding: 16px;
+    border-radius: 18px;
+    box-shadow: 0px 1px 4px 0px rgba(79, 68, 54, 0.05);
+}
+</style>

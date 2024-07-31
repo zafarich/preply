@@ -20,3 +20,26 @@ export const TEST_ERROR_TYPES = {
     PRIME_SUBS_IS_NOT_EXIST: 'prime_subscribe_is_not_exists',
     PREMIUM_SUBS_IS_NOT_EXIST: 'premium_status_is_not_exists',
 }
+
+export const TEST_TYPE_LIST = [
+    {
+        key: 'block',
+        text: 'Blok Test',
+    },
+    {
+        key: 'certificate',
+        text: 'Sertificate Test',
+    },
+    {
+        key: 'variant',
+        text: 'Variant Test',
+    },
+    {
+        key: 'by_subjects',
+        text: 'Fan Test',
+    },
+    {
+        key: 'by_selections',
+        text: 'Mavzulashtirilgan Test',
+    },
+]

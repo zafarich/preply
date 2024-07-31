@@ -103,6 +103,19 @@ export function round(num) {
     return Math.round((+num + Number.EPSILON) * 100) / 100
 }
 
+export function priceFormat(price) {
+    if (price) {
+        let strPrice = price.toString()
+        let strArr = []
+        while (strPrice.length > 3) {
+            strArr.push(strPrice.slice(strPrice.length - 3, strPrice.length))
+            strPrice = strPrice.slice(0, strPrice.length - 3)
+        }
+        strArr.push(strPrice)
+        return strArr.reverse().join(' ')
+    }
+}
+
 export function onFileRejected(error) {
     if (error?.[0].failedPropValidation === 'max-file-size') {
         Notify.create({

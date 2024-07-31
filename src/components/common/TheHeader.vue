@@ -2,12 +2,21 @@
 import { useUserStore } from 'src/stores/user'
 import LangSwitcher from './LangSwitcher.vue'
 import { useRouter } from 'vue-router'
+import { useModalStore } from 'src/stores/modal'
+import { storeToRefs } from 'pinia'
 
 const userStore = useUserStore()
 const router = useRouter()
+const modalStore = useModalStore()
+
+const { periodPremiumModal } = storeToRefs(modalStore)
 
 const goToProfile = () => {
     router.push({ name: 'profile' })
+}
+
+const showPremiumPeriodModal = () => {
+    periodPremiumModal.value = true
 }
 </script>
 <template>
@@ -26,6 +35,7 @@ const goToProfile = () => {
                         size="md"
                         outline
                         class="mr-3"
+                        @click="showPremiumPeriodModal"
                     >
                         <img src="icons/premium.png" class="h-6" />
                     </q-btn>

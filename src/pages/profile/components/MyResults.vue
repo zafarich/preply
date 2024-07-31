@@ -1,0 +1,125 @@
+<template>
+    <div>
+        <q-table
+            flat
+            bordered
+            :rows="results"
+            :columns="columns"
+            row-key="score"
+            hide-bottom=""
+            :pagination.sync="pagination"
+        >
+            <template v-slot:body-cell-score="props">
+                <q-td :props="props">
+                    {{ props.row.score }}
+                </q-td>
+            </template>
+
+            <template v-slot:body-cell-test_type="props">
+                <q-td :props="props">
+                    {{ getTestTypeText(props.row.test_type_unique_name) }}
+                </q-td>
+            </template>
+
+            <template v-slot:body-cell-duration="props">
+                <q-td :props="props">
+                    {{
+                        calculateDuration(
+                            props.row.started_at,
+                            props.row.finished_at,
+                        )
+                    }}
+                </q-td>
+            </template>
+        </q-table>
+        <div class="q-pa-lg flex flex-center">
+            <q-pagination
+                v-model="current"
+                color="primary"
+                :max="pagesNumber"
+                :max-pages="6"
+                boundary-numbers
+            />
+        </div>
+    </div>
+</template>
+
+<script setup>
+import { TEST_TYPE_LIST } from 'src/utils/constants'
+import {} from 'vue'
+import { ref, computed, watch } from 'vue'
+import { useTestStore } from 'src/stores/test'
+
+const testStore = useTestStore()
+const props = defineProps({
+    count: {
+        type: Number,
+        default: [],
+    },
+    results: {
+        type: Array,
+        default: [],
+    },
+})
+
+const columns = [
+    {
+        label: 'Test Turi',
+        name: 'test_type',
+        align: 'left',
+    },
+
+    {
+        name: 'duration',
+        align: 'center',
+        label: 'Vaqti',
+        field: 'duration',
+    },
+    {
+        label: 'Natija',
+        name: 'score',
+        align: 'right',
+    },
+]
+
+const current = ref(1)
+const pageSize = ref(5)
+
+const pagination = computed(() => ({
+    page: current.value,
+    rowsPerPage: pageSize.value,
+}))
+
+watch(
+    () => current.value,
+    () => {
+        testStore.GET_MY_RESULTS({
+            page_size: pageSize.value,
+            page: current.value,
+        })
+    },
+)
+
+const pagesNumber = computed(() => {
+    return Math.ceil(props.count / pageSize.value)
+})
+
+const getTestTypeText = (key) => {
+    const testType = TEST_TYPE_LIST.find((type) => type.key === key)
+    console.log('testType', testType)
+    return testType ? testType.text : key
+}
+
+const calculateDuration = (start, end) => {
+    const startDate = new Date(start)
+    const endDate = new Date(end)
+    const diff = endDate.getTime() - startDate.getTime()
+
+    const hours = Math.floor(diff / (1000 * 60 * 60))
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
+
+    return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`
+}
+</script>
+
+<style lang="scss"></style>

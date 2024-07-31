@@ -70,6 +70,8 @@ export const useUserStore = defineStore('user', () => {
     async function getMe() {
         const res = await api.getMe()
         userCards.value = [...res.cards]
+        updateUserData(res)
+
         return res
     }
 

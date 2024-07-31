@@ -13,6 +13,7 @@ export const useModalStore = defineStore('modal', () => {
     const startBySelectionModal = ref(false)
     const buySubscriptionModal = ref(false)
     const solveInfoModal = ref(false)
+    const periodPremiumModal = ref(false)
 
     function changeBuySubscriptionModal(value) {
         buySubscriptionModal.value = value
@@ -20,6 +21,7 @@ export const useModalStore = defineStore('modal', () => {
 
     return {
         variantNotifyStartModal,
+        periodPremiumModal,
         endTestModal,
         userEditModal,
         startModal,
