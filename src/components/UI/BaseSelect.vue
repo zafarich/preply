@@ -1,14 +1,14 @@
 <template>
     <q-select
         class="base-select"
-        hide-bottom-space
         dropdown-icon="keyboard_arrow_down"
         transition-show="jump-up"
         transition-hide="jump-down"
-        :transition-duration="50"
+        hide-bottom-space
         lazy-rules="ondemand"
         v-bind="attrs"
         options-dense
+        clearable
         @update:model-value="change"
         :option-label="optionLabel"
         :option-value="optionValue"
@@ -37,7 +37,7 @@
         <template v-if="option" #option="item">
             <slot name="option" v-bind="item" />
         </template>
-        <template v-slot:append>
+        <!-- <template v-slot:append>
             <q-icon
                 v-if="modelValue != ''"
                 name="close"
@@ -45,7 +45,7 @@
                 class="cursor-pointer"
                 size="xs"
             />
-        </template>
+        </template> -->
     </q-select>
 </template>
 
