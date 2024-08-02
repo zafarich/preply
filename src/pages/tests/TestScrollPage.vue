@@ -177,9 +177,8 @@ const { notifyTestModal, endTestModal, solveInfoModal } =
 
 async function confirmBack() {
     await testStore.END_TEST()
-    testStore.RESET_TEST_STORE()
-
     router.replace({ name: 'home' })
+    testStore.RESET_TEST_STORE()
 }
 
 const getTestTypeTitle = computed(() => {

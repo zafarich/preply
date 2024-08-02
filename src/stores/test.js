@@ -25,6 +25,12 @@ export const useTestStore = defineStore(
             results: [],
         })
 
+        function RESET_TEST_STORE() {
+            tests.value = null
+            test_questions.value = []
+            active_index.value = 0
+        }
+
         const GET_TESTS = computed(() => {
             return tests.value
         })
@@ -79,12 +85,6 @@ export const useTestStore = defineStore(
             } else {
                 test_questions.value[question_index].selected_answer = index
             }
-        }
-
-        function RESET_TEST_STORE() {
-            tests.value = null
-            test_questions.value = []
-            active_index.value = 0
         }
 
         async function FETCH_TEST_RESULT() {
