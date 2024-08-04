@@ -28,7 +28,7 @@ const showPremiumPeriodModal = () => {
                 </router-link>
             </div>
             <div class="flex justify-between items-center">
-                <div v-if="userStore.userData.is_premium">
+                <div v-if="userStore.token && userStore.userData.id">
                     <q-btn
                         v-if="userStore.userData.is_premium"
                         color="warning"
@@ -37,23 +37,9 @@ const showPremiumPeriodModal = () => {
                         class="mr-3"
                         @click="showPremiumPeriodModal"
                     >
-                        <img src="icons/premium.png" class="h-6" />
+                        <img src="/icons/premium.png" class="h-6" />
                     </q-btn>
 
-                    <q-btn
-                        v-else-if="
-                            userStore.userData.remaining_free_attempts_count
-                        "
-                        color="primary"
-                        size="md"
-                        class="mr-3"
-                        @click="goToProfile"
-                    >
-                        <q-badge color="red" floating>{{
-                            userStore.userData.remaining_free_attempts_count
-                        }}</q-badge>
-                        <img src="icons/rendo-icon.png" class="w-5 h-5" />
-                    </q-btn>
                     <q-btn
                         v-else
                         color="warning"
@@ -61,7 +47,7 @@ const showPremiumPeriodModal = () => {
                         class="mr-3"
                         @click="goToProfile"
                     >
-                        <img src="icons/white-warning.png" class="w-6 h-6" />
+                        <img src="/icons/white-warning.png" class="w-6 h-6" />
                     </q-btn>
                 </div>
 

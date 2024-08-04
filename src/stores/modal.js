@@ -14,9 +14,14 @@ export const useModalStore = defineStore('modal', () => {
     const buySubscriptionModal = ref(false)
     const solveInfoModal = ref(false)
     const periodPremiumModal = ref(false)
+    const logoutModal = ref(false)
 
     function changeBuySubscriptionModal(value) {
         buySubscriptionModal.value = value
+    }
+
+    function changeLogoutModal(value) {
+        logoutModal.value = value
     }
 
     return {
@@ -33,5 +38,6 @@ export const useModalStore = defineStore('modal', () => {
         buySubscriptionModal,
         changeBuySubscriptionModal,
         solveInfoModal,
+        logoutModal,
     }
 })

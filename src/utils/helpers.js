@@ -1,4 +1,3 @@
-import { getTokenFromCache } from './auth'
 import { date, scroll, Notify } from 'quasar'
 import { i18n } from 'src/boot/i18n'
 const { t } = i18n.global

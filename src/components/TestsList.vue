@@ -29,11 +29,6 @@ const props = defineProps({
 const selectedTest = ref(null)
 
 const openModal = (unique_name) => {
-    if (!userStore.userData.is_free_attempts_left) {
-        buySubscriptionModal.value = true
-        return
-    }
-
     if (testStore.isEndLimit) {
         modalStore.changeBuySubscriptionModal(true)
         return
@@ -44,12 +39,6 @@ const openModal = (unique_name) => {
 }
 
 const startTest = async () => {
-    if (!userStore.userData.is_free_attempts_left) {
-        startBySelectionModal.value = false
-        buySubscriptionModal.value = true
-        return
-    }
-
     if (testStore.isEndLimit) {
         modalStore.changeBuySubscriptionModal(true)
         return

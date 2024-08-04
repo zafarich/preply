@@ -1,18 +1,18 @@
 import { boot } from 'quasar/wrappers'
 import axios from 'axios'
-import { getTokenFromCache, removeTokenFromCache } from 'src/utils/auth'
 import { getServerError } from 'src/utils/helpers'
 import { useUserStore } from 'src/stores/user'
 import { Notify } from 'quasar'
+import { getTokenFromCache } from 'src/utils/auth'
 
 const api = axios.create({ baseURL: process.env.BASE_URL })
 
-export default boot(({ app, route, router }) => {
+export default boot(({ app, route, router, store }) => {
     const userStore = useUserStore()
-
     api.interceptors.request.use(
         (config) => {
             const token = getTokenFromCache()
+
             if (token) config.headers.Authorization = 'Bearer ' + token
 
             let lang = localStorage.getItem('locale')
@@ -37,7 +37,6 @@ export default boot(({ app, route, router }) => {
             return response
         },
         async (error) => {
-            console.log('errorrr', error.response)
             let message = getServerError(error, 'errorMessage')
             const status = error?.response?.status
             if ('pass' in error?.config) {
@@ -45,7 +44,7 @@ export default boot(({ app, route, router }) => {
             }
 
             if (status === 401) {
-                removeTokenFromCache()
+                userStore.logoutProfile()
                 router.push({ name: 'login' })
                 return { data: { result: null, error: true } }
             } else if (status?.toString()?.slice(0, 1) === 5) {

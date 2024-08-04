@@ -38,7 +38,14 @@
                     class="flex justify-between items-center font-semibold mb-4"
                 >
                     <div>Narxi:</div>
-                    <div>{{ priceFormat(subscription.tariff.price) }} sum</div>
+                    <div>
+                        {{
+                            priceFormat(
+                                Math.ceil(subscription.tariff.price / 100),
+                            )
+                        }}
+                        sum
+                    </div>
                 </div>
                 <div class="flex justify-between items-center font-semibold">
                     <span>Tugash sanasi: </span

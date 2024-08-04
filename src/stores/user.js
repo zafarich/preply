@@ -1,94 +1,118 @@
 import * as api from 'src/api/user'
 import { defineStore } from 'pinia'
-import { LocalStorage } from 'quasar'
+
 import { ref, computed } from 'vue-demi'
-import { getTokenFromCache, setTokenToCache } from 'src/utils/auth'
 import { useLangStore } from './lang.store'
+import {
+    getTokenFromCache,
+    removeTokenFromCache,
+    setTokenToCache,
+} from 'src/utils/auth'
 
-export const useUserStore = defineStore('user', () => {
-    const token = ref(getTokenFromCache())
-    const isAuth = computed(() => !!token.value)
-    const userCards = ref([])
-    const userData = ref(LocalStorage.getItem('userData') || {})
-    const leaders = ref({
-        results: [],
-    })
+export const useUserStore = defineStore(
+    'user',
 
-    const page_size = 10
+    () => {
+        const token = ref(getTokenFromCache())
+        const userCards = ref([])
+        const userData = ref({})
+        const leaders = ref({
+            results: [],
+        })
 
-    const userVerifyCards = computed(() => {
-        return userCards.value.filter((item) => item.verify === true)
-    })
+        const everyDay = ref('222')
 
-    function setUserData(data) {
-        userData.value = data
-        LocalStorage.set('userData', data)
-    }
+        const page_size = 10
 
-    function removeUserData(data) {
-        userData.value = {}
-        LocalStorage.set('userData', {})
-    }
+        const userVerifyCards = computed(() => {
+            return userCards.value.filter((item) => item.verify === true)
+        })
 
-    function updateUserData(payload) {
-        const newUserData = { ...userData.value, ...payload }
-        userData.value = { ...newUserData }
-        LocalStorage.set('userData', userData.value)
-    }
-
-    async function getLeaders(params) {
-        const res = await api.getLeaders({ ...params, page_size: page_size })
-        leaders.value = res
-        return res
-    }
-    async function login(payload) {
-        const res = await api.login(payload)
-        if (res && res.access) {
-            setTokenToCache(res.access)
+        function setUserData(data) {
+            userData.value = data
         }
 
-        const res2 = await getMe()
+        function updateUserData(payload) {
+            const newUserData = { ...userData.value, ...payload }
+            userData.value = { ...newUserData }
+        }
 
-        useLangStore().setLanguage(res2.language)
-        updateUserData(res2)
+        async function getLeaders(params) {
+            const res = await api.getLeaders({
+                ...params,
+                page_size: page_size,
+            })
+            leaders.value = res
+            return res
+        }
+        async function login(payload) {
+            const res = await api.login(payload)
+            if (res && res.access) {
+                setTokenToCache(res.access)
+                token.value = res.access
+            }
 
-        return res
-    }
+            console.log('hi', res.access)
 
-    async function register(payload) {
-        const res = await api.register(payload)
-        return res
-    }
+            const res2 = await getMe()
 
-    async function updateUser(data) {
-        const res = await api.updateUser(userData.value.id, data)
-        const res2 = await getMe()
+            useLangStore().setLanguage(res2.language)
+            updateUserData(res2)
 
-        updateUserData(res2)
-    }
+            return res
+        }
 
-    async function getMe() {
-        const res = await api.getMe()
-        userCards.value = [...res.cards]
-        updateUserData(res)
+        async function register(payload) {
+            const res = await api.register(payload)
+            return res
+        }
 
-        return res
-    }
+        async function updateUser(data) {
+            const res = await api.updateUser(userData.value.id, data)
+            const res2 = await getMe()
 
-    return {
-        getLeaders,
-        login,
-        updateUser,
-        userData,
-        setUserData,
-        removeUserData,
-        updateUserData,
-        getMe,
-        userCards,
-        leaders,
-        isAuth,
-        register,
-        userVerifyCards,
-        page_size,
-    }
-})
+            updateUserData(res2)
+        }
+
+        async function getMe() {
+            const res = await api.getMe()
+            userCards.value = [...res.cards]
+            updateUserData(res)
+
+            return res
+        }
+
+        async function logoutProfile() {
+            userData.value = {}
+            token.value = ''
+            removeTokenFromCache()
+            userCards.value = []
+            leaders.value = []
+        }
+
+        function sayhay() {
+            console.log('sayHay')
+        }
+        return {
+            userData,
+            everyDay,
+            token,
+            userCards,
+            page_size,
+            leaders,
+            userVerifyCards,
+            login,
+            getLeaders,
+            updateUser,
+            setUserData,
+            updateUserData,
+            sayhay,
+            getMe,
+            register,
+            logoutProfile,
+        }
+    },
+    {
+        persist: true,
+    },
+)

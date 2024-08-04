@@ -46,12 +46,6 @@ async function fetchSubject() {
 }
 
 function goToSolveTest(variant) {
-    if (!userStore.userData.is_free_attempts_left) {
-        variantNotifyStartModal.value = false
-        buySubscriptionModal.value = true
-        return
-    }
-
     if (testStore.isEndLimit) {
         modalStore.changeBuySubscriptionModal(true)
         return

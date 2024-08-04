@@ -36,15 +36,10 @@
                 <q-btn
                     @click="downloadPdf(testStore.GET_TESTS.pdf_file)"
                     color="primary"
-                    class="w-32"
                     no-caps
                 >
-                    <div v-if="!loadingDownlaod">
-                        <q-icon name="eva-download-outline" size="xs"></q-icon>
-                        <span class="ml-1"> Скачать </span>
-                    </div>
-
-                    <q-spinner v-else color="white" />
+                    <q-icon name="eva-download-outline" size="xs"></q-icon>
+                    <span class="ml-1"> Скачать </span>
                 </q-btn>
             </div>
 
@@ -59,7 +54,6 @@
                 </div>
 
                 <div v-else-if="testStore.GET_TEST_TYPE === TEST_TYPES.BLOCK">
-                    <div class="mb-4 font-bold">Asosiy Fanlar</div>
                     <div
                         class="w-full text-lg border border-primary rounded-10 text-center py-1.5 mb-1.5"
                         v-for="(subject, index) in testStore.GET_TESTS
@@ -67,23 +61,6 @@
                         :key="index"
                     >
                         {{ index + 1 }}. {{ subject.title }}
-                    </div>
-
-                    <div class="mb-4 mt-5 font-bold">Majburiy Fanlar</div>
-                    <div
-                        class="w-full text-lg border border-primary rounded-10 text-center py-1.5 mb-1.5"
-                    >
-                        Matematika
-                    </div>
-                    <div
-                        class="w-full text-lg border border-primary rounded-10 text-center py-1.5 mb-1.5"
-                    >
-                        Ona tili
-                    </div>
-                    <div
-                        class="w-full text-lg border border-primary rounded-10 text-center py-1.5 mb-1.5"
-                    >
-                        Ingliz tili
                     </div>
                 </div>
                 <div
@@ -242,11 +219,8 @@ const updateRemainingTime = () => {
     }
 }
 
-const loadingDownlaod = ref(false)
-
 const downloadPdf = async (pdfUrl) => {
     try {
-        loadingDownlaod.value = true
         const response = await api.get(pdfUrl, {
             responseType: 'blob',
         })
@@ -262,7 +236,6 @@ const downloadPdf = async (pdfUrl) => {
     } catch (error) {
         console.error('Error downloading the PDF file:', error)
     }
-    loadingDownlaod.value = false
 }
 
 onMounted(async () => {

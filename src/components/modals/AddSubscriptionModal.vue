@@ -4,10 +4,11 @@ import BaseModal from 'src/components/UI/BaseModal.vue'
 import { useModalStore } from 'src/stores/modal'
 import BaseSelect from 'src/components/UI/BaseSelect.vue'
 import { useBillingStore } from 'src/stores/billing'
-import { onMounted } from 'vue'
+import { computed, onMounted } from 'vue'
 import { ref } from 'vue'
 import { useUserStore } from 'src/stores/user'
 import { useQuasar } from 'quasar'
+import { priceFormat } from 'src/utils/helpers'
 
 const modalStore = useModalStore()
 const { subscriptionModal } = storeToRefs(modalStore)
@@ -47,6 +48,10 @@ const addSubscribe = async () => {
 const close = () => {
     subscriptionModal.value = false
 }
+
+const getSum = (item) => {
+    return priceFormat(Math.ceil(item.price / 100))
+}
 </script>
 
 <template>
@@ -68,11 +73,18 @@ const close = () => {
                 <div class="font-bold text-md mb-4">
                     {{ $t('Tarifni tanlang') }}:
                 </div>
-                <div class="mb-4" v-for="(item, index) in billingStore.tariffs">
-                    <div class="flex justify-start gap-2">
+                <div
+                    class="mb-4"
+                    v-for="(item, index) in billingStore.tariffs"
+                    :key="index"
+                >
+                    <div class="flex justify-start flex-nowrap gap-2">
                         <q-radio dense v-model="tariff" :val="item.id" />
-                        <div>
-                            {{ item.name }}
+                        <div class="flex justify-between items-center w-full">
+                            <div>
+                                {{ item.name }}
+                            </div>
+                            <div>{{ getSum(item) }} {{ $t('sum') }}</div>
                         </div>
                     </div>
 

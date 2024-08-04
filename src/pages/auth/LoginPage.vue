@@ -1,63 +1,69 @@
 <template>
     <div class="login-page">
-        <div>
-            <!-- <BackPanel :title="$t('personal_cabinet')" /> -->
+        <div class="app-container">
+            <div class="text-lg text-center py-5">
+                <div class="font-bold">Xush Kelibsiz!</div>
 
-            <div class="app-container">
-                <div
-                    class="text-lg font-medium text-center py-5 tracking-widenfont-bold"
-                >
-                    <!-- {{ $t('Welcome') }} -->
+                <div class="font-medium mt-4">
                     {{ $t('login') }}
                 </div>
+            </div>
+            <div>
+                <div class="font-medium mb-2">{{ $t('phone') }} :</div>
 
-                <q-form ref="formRef" @submit="submitForm">
-                    <!-- type="tel" -->
-                    <q-input
-                        v-model="phone"
-                        type="tel"
-                        mask="+### ## ### ## ##"
-                        :label="$t('phone')"
-                        :rules="[validate?.required, validate?.phone_number]"
-                        :dense="false"
-                    >
-                        <!-- <template #prepend> +998 </template> -->
-                    </q-input>
-                    <q-input
-                        v-model="password"
-                        :type="isPwd ? 'password' : 'text'"
-                        :rules="[validate.password]"
-                        :label="$t('Password')"
-                        :dense="false"
-                        @keyup.enter="submitForm"
-                        class="password-field"
-                    >
-                        <template v-slot:append>
-                            <q-icon
-                                :name="isPwd ? 'visibility_off' : 'visibility'"
-                                class="cursor-pointer"
-                                @click="isPwd = !isPwd"
-                            />
-                        </template>
-                    </q-input>
+                <input
+                    v-model="phone"
+                    class="base-input w-full text-base"
+                    :class="{ 'base-input__error': v$.phone.$error }"
+                    type="tel"
+                    v-maska="'+998 ## ### ## ##'"
+                    :label="$t('phone')"
+                />
 
-                    <q-btn
-                        class="full-width mt-6"
-                        color="primary"
-                        no-caps
-                        type="submit"
-                        :label="$t('Continue')"
-                    />
-                    <div class="text-center mt-10">
-                        {{ $t('dont_have_account') }}
-                        <router-link
-                            class="text-primary"
-                            :to="{ name: 'register' }"
-                        >
-                            {{ $t('registering') }}</router-link
-                        >
-                    </div>
-                </q-form>
+                <div class="text-red mt-1.5" v-if="v$.phone.$error">
+                    <span v-if="v$.phone.required.$invalid">
+                        Maydon to'ldirilishi shart
+                    </span>
+                </div>
+            </div>
+
+            <div class="relative mt-4">
+                <div class="font-medium mb-2">{{ $t('Password') }} :</div>
+                <input
+                    v-model="password"
+                    :type="isPwd ? 'password' : 'text'"
+                    :class="{ 'base-input__error': v$.password.$error }"
+                    :label="$t('Password')"
+                    @keyup.enter="submitForm"
+                    class="base-input w-full text-base !pr-10 tracking-widest"
+                />
+
+                <q-icon
+                    :name="isPwd ? 'eva-eye-outline' : 'eva-eye-off-outline'"
+                    class="cursor-pointer absolute right-4 top-[41px]"
+                    @click="togglePassword"
+                    size="xs"
+                />
+
+                <div class="text-red mt-1.5" v-if="v$.password.$error">
+                    <span v-if="v$.password.required.$invalid">
+                        Maydon to'ldirilishi shart
+                    </span>
+                </div>
+            </div>
+            <q-btn
+                class="full-width mt-8"
+                color="primary"
+                no-caps
+                type="submit"
+                :label="$t('Continue')"
+                @click="submitForm"
+            />
+            <div class="text-center mt-10 text-base">
+                {{ $t('dont_have_account') }}
+                <router-link class="text-primary" :to="{ name: 'register' }">
+                    {{ $t('registering') }}</router-link
+                >
             </div>
         </div>
     </div>
@@ -66,7 +72,8 @@
 <script setup>
 import { ref, onMounted } from 'vue-demi'
 import { useUserStore } from 'src/stores/user'
-import validate from 'src/utils/validate'
+import useVuelidate from '@vuelidate/core'
+import { required, minLength, email } from '@vuelidate/validators'
 import { useQuasar } from 'quasar'
 import { useRoute, useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
@@ -75,33 +82,32 @@ import { useMainStore } from 'src/stores/main'
 const userStore = useUserStore()
 const mainStore = useMainStore()
 
-const route = useRoute()
 const router = useRouter()
 const phone = ref('+998 ')
 const password = ref('')
-const formRef = ref('')
-const pwd = ref('')
+const isPwd = ref(false)
 
 const { t: $tranlate } = useI18n()
 
 const $q = useQuasar()
 
-let resetTimeout = 0
-function resetValidation(timeout = 0) {
-    clearTimeout(resetTimeout)
-    resetTimeout = setTimeout(() => {
-        formRef.value.resetValidation()
-    }, timeout)
+const rules = {
+    phone: { required, minLength: minLength(17) },
+    password: { required },
 }
 
-function phoneFocus() {
-    if (!phone.length) phone.value = '+998'
+const v$ = useVuelidate(rules, { phone, password })
+
+const togglePassword = () => {
+    isPwd.value = !isPwd.value
 }
 
 const submitForm = async () => {
-    resetValidation()
-    const hasError = !(await formRef.value.validate())
-    if (hasError) return resetValidation(5000)
+    const isFormCorrect = await v$.value.$validate()
+
+    if (!isFormCorrect) {
+        return
+    }
 
     mainStore.changeSiteLoader(true)
     try {
@@ -137,7 +143,6 @@ const submitForm = async () => {
 <style lang="scss" scoped>
 .login-page {
     display: flex;
-    height: 100vh;
     align-content: space-between;
     flex-wrap: wrap;
     & > div {

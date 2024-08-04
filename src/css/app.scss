@@ -440,3 +440,21 @@ ul {
 .q-loading__backdrop {
     opacity: 1;
 }
+
+
+
+.base-input {
+    border: 1px solid rgb(214, 210, 210);
+    border-radius: 16px;
+    padding: 8px 10px;
+
+    &:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        outline: none;
+    }
+
+    &__error {
+        border: 1px solid red;
+    }
+}

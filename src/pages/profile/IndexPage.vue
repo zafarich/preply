@@ -9,38 +9,31 @@
                         {{ $t('user_data') }}
                     </div>
 
-                    <q-btn color="primary" size="xs" outline>
-                        <q-icon
-                            name="eva-edit"
-                            class="py-1"
-                            color="primary"
+                    <div>
+                        <q-btn
+                            outline
+                            color="negative"
                             size="xs"
-                            @click="() => (userEditModal = true)"
-                        />
-                    </q-btn>
+                            class="mr-2 h-8"
+                            @click="() => (logoutModal = true)"
+                        >
+                            <div class="cursor-pointer">
+                                <img src="/icons/logout.png" class="w-5 h-5" />
+                            </div>
+                        </q-btn>
+                        <q-btn color="primary" size="xs" outline class="h-8">
+                            <q-icon
+                                name="eva-edit"
+                                class="py-1"
+                                color="primary"
+                                size="xs"
+                                @click="() => (userEditModal = true)"
+                            />
+                        </q-btn>
+                    </div>
                 </div>
                 <div class="flex justify-start no-wrap gap-6 pt-4">
                     <div class="relative">
-                        <div class="absolute left-[86px] top-[82px]">
-                            <q-btn
-                                class="rounded-full border cursor-pointer bg-white p-2"
-                                @click="openFilePicker"
-                                outline
-                                color="primary"
-                            >
-                                <q-icon
-                                    color="primary"
-                                    name="eva-edit"
-                                    size="xs"
-                                />
-                            </q-btn>
-                            <input
-                                ref="fileInputRef"
-                                type="file"
-                                style="display: none"
-                                @change="handleFileInputChange"
-                            />
-                        </div>
                         <div class="avatar">
                             <img
                                 v-if="userStore.userData.image"
@@ -91,13 +84,6 @@
                                 </q-badge>
                             </div>
                         </div>
-
-                        <!-- <div class="info-item">
-                                    <div class="key">{{ $t('place') }}</div>
-                                    <div class="value">
-                                        {{ userStore.userData.region }}
-                                    </div>
-                                </div> -->
                     </div>
                 </div>
             </div>
@@ -138,6 +124,7 @@
     <PaymentModal />
     <AddSubscriptionModal />
     <UserEditModal @on-change="onChange" v-bind="userStore.userData" />
+    <LogoutModal />
 </template>
 <script setup>
 import { storeToRefs } from 'pinia'
@@ -155,10 +142,12 @@ import UserEditModal from 'src/components/modals/UserEditModal.vue'
 import { useUserStore } from 'src/stores/user'
 import { useMainStore } from 'src/stores/main'
 import { useTestStore } from 'src/stores/test'
+import LogoutModal from './components/LogoutModal.vue'
 
 const modalStore = useModalStore()
 const mainStore = useMainStore()
-const { periodPremiumModal, userEditModal } = storeToRefs(modalStore)
+const { periodPremiumModal, userEditModal, logoutModal } =
+    storeToRefs(modalStore)
 
 const showPremiumPeriodModal = () => {
     periodPremiumModal.value = true
@@ -172,19 +161,6 @@ const baseUrl = import.meta.env.VITE_BASE_URL
 const tabs = ref('my_cards')
 const fileInputRef = ref('')
 const image = ref('')
-
-const openFilePicker = () => {
-    fileInputRef.value.click()
-}
-
-const handleFileInputChange = (event) => {
-    image.value = event.target.files[0]
-
-    const formData = new FormData()
-
-    formData.append('image', image.value)
-    userStore.updateUser(formData)
-}
 
 onMounted(async () => {
     mainStore.changeSiteLoader(true)

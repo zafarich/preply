@@ -4,7 +4,6 @@ import { useLangStore } from 'stores/lang.store'
 import BaseImg from 'components/UI/BaseImg.vue'
 import { debounce } from 'quasar'
 import { useUserStore } from 'src/stores/user'
-import { getTokenFromCache } from 'src/utils/auth'
 import { useRouter } from 'vue-router'
 
 const attrs = useAttrs()
@@ -40,7 +39,7 @@ const changeLang = async (lang) => {
     const language =
         lang === 'uz-Latn' ? 'uz' : lang === 'uz-Cyrl' ? 'qr' : 'ru'
 
-    if (getTokenFromCache()) await userStore.updateUser({ language })
+    if (userStore.token) await userStore.updateUser({ language })
 
     router.go()
 }

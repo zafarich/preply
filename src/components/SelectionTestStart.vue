@@ -111,12 +111,6 @@ const checkFirstSelected = () => {
 }
 
 const openModal = () => {
-    if (!userStore.userData.is_free_attempts_left) {
-        startModal.value = false
-        buySubscriptionModal.value = true
-        return
-    }
-
     if (testStore.isEndLimit) {
         modalStore.changeBuySubscriptionModal(true)
         return

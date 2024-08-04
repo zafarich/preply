@@ -117,12 +117,6 @@ watch(
 )
 
 const openModal = () => {
-    if (!userStore.userData.is_free_attempts_left) {
-        variantNotifyStartModal.value = false
-        buySubscriptionModal.value = true
-        return
-    }
-
     if (testStore.isEndLimit) {
         modalStore.changeBuySubscriptionModal(true)
         return
@@ -134,16 +128,7 @@ const openModal = () => {
 }
 
 const startTest = async () => {
-    if (!userStore.userData.is_free_attempts_left) {
-        variantNotifyStartModal.value = false
-        buySubscriptionModal.value = true
-        return
-    }
-
-    if (testStore.isEndLimit) {
-        modalStore.changeBuySubscriptionModal(true)
-        return
-    }
+   
 
     mainStore.changeSiteLoader(true)
     $q.loading.show()
