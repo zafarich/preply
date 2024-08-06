@@ -1,59 +1,3 @@
-<script setup>
-import { storeToRefs } from 'pinia'
-import BaseModal from 'src/components/UI/BaseModal.vue'
-import { useModalStore } from 'src/stores/modal'
-import BaseSelect from 'src/components/UI/BaseSelect.vue'
-import { useBillingStore } from 'src/stores/billing'
-import { computed, onMounted } from 'vue'
-import { ref } from 'vue'
-import { useUserStore } from 'src/stores/user'
-import { useQuasar } from 'quasar'
-import { priceFormat } from 'src/utils/helpers'
-
-const modalStore = useModalStore()
-const { subscriptionModal } = storeToRefs(modalStore)
-
-const billingStore = useBillingStore()
-const userStore = useUserStore()
-
-const $q = useQuasar()
-
-const tariff = ref('')
-const seletedCard = ref('')
-const loading = ref(false)
-
-const addSubscribe = async () => {
-    try {
-        loading.value = true
-        const res = await billingStore.createSubscription({
-            tariff: tariff.value,
-            card: seletedCard.value,
-        })
-        await billingStore.paySubscription(res.id)
-        await billingStore.getSubscriptions({ page_size: 1000 })
-        subscriptionModal.value = false
-    } catch (error) {
-        $q.notify({
-            color: 'red-5',
-            textColor: 'white',
-            position: 'top',
-            icon: 'warning',
-            message: error.response.data.error.message,
-        })
-    }
-
-    loading.value = false
-}
-
-const close = () => {
-    subscriptionModal.value = false
-}
-
-const getSum = (item) => {
-    return priceFormat(Math.ceil(item.price / 100))
-}
-</script>
-
 <template>
     <BaseModal
         :model-value="subscriptionModal"
@@ -79,7 +23,7 @@ const getSum = (item) => {
                     :key="index"
                 >
                     <div class="flex justify-start flex-nowrap gap-2">
-                        <q-radio dense v-model="tariff" :val="item.id" />
+                        <q-radio dense v-model="tariff" :val="item" />
                         <div class="flex justify-between items-center w-full">
                             <div>
                                 {{ item.name }}
@@ -87,17 +31,43 @@ const getSum = (item) => {
                             <div>{{ getSum(item) }} {{ $t('sum') }}</div>
                         </div>
                     </div>
+                </div>
+                <div
+                    v-if="tariff"
+                    class="flex items-center p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400"
+                    role="alert"
+                >
+                    <svg
+                        class="flex-shrink-0 inline w-4 h-4 me-3"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                    >
+                        <path
+                            d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"
+                        />
+                    </svg>
+                    <div v-if="tariff.unique_name === 'premium'">
+                        {{ $t('premium_info') }}
+                    </div>
+                    <div v-else-if="(tariff.unique_name = 'prime')">
+                        {{ $t('prime_info') }}
+                    </div>
+                </div>
 
-                    <!-- <BaseSelect
-                        v-model="tariff"
-                        emit-value
-                        map-options
+                <div
+                    class="font-bold text-md mt-6 mb-4"
+                    v-if="tariff && tariff.unique_name == 'prime'"
+                >
+                    <q-input
+                        v-model="quantity"
+                        type="number"
+                        :min="1"
+                        :label="$t('prime_test_count')"
                         outlined
-                        :placeholder="$t('select_rate')"
-                        :options="billingStore.tariffs"
-                        option-label="name"
-                        option-value="id"
-                    /> -->
+                        class="no-spin-buttons"
+                    />
                 </div>
 
                 <div class="font-bold text-md mt-6 mb-4">
@@ -148,7 +118,80 @@ const getSum = (item) => {
         </div>
     </BaseModal>
 </template>
+<script setup>
+import { storeToRefs } from 'pinia'
+import BaseModal from 'src/components/UI/BaseModal.vue'
+import { useModalStore } from 'src/stores/modal'
+import BaseSelect from 'src/components/UI/BaseSelect.vue'
+import { useBillingStore } from 'src/stores/billing'
+import { computed, onMounted } from 'vue'
+import { ref } from 'vue'
+import { useUserStore } from 'src/stores/user'
+import { useQuasar } from 'quasar'
+import { priceFormat } from 'src/utils/helpers'
+
+const modalStore = useModalStore()
+const { subscriptionModal } = storeToRefs(modalStore)
+
+const billingStore = useBillingStore()
+const userStore = useUserStore()
+
+const $q = useQuasar()
+
+const tariff = ref('')
+const quantity = ref(1)
+const seletedCard = ref('')
+const loading = ref(false)
+
+const addSubscribe = async () => {
+    loading.value = true
+    try {
+        const exportData = {
+            tariff: tariff.value.id,
+            card: seletedCard.value,
+        }
+
+        if (tariff.value.unique_name == 'prime') {
+            console.log('hi')
+            exportData.quantity = quantity.value
+        }
+
+        console.log("'tarif'", tariff.value)
+
+        const res = await billingStore.createSubscription(exportData)
+        await billingStore.paySubscription(res.id)
+        await billingStore.getSubscriptions({ page_size: 1000 })
+        subscriptionModal.value = false
+    } catch (error) {
+        $q.notify({
+            color: 'red-5',
+            textColor: 'white',
+            position: 'top',
+            icon: 'warning',
+            message: error.response.data.error.message,
+        })
+    }
+
+    loading.value = false
+}
+
+const close = () => {
+    subscriptionModal.value = false
+}
+
+const getSum = (item) => {
+    return priceFormat(Math.ceil(item.price / 100))
+}
+</script>
 
 <style>
-/* Your component styles here */
+.no-spin-buttons input::-webkit-outer-spin-button,
+.no-spin-buttons input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.no-spin-buttons input[type='number'] {
+    -moz-appearance: textfield; /* Firefox */
+}
 </style>

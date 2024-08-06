@@ -1,20 +1,3 @@
-<script setup>
-import { ref } from 'vue-demi'
-import { useI18n } from 'vue-i18n'
-
-import BaseSelect from 'src/components/UI/BaseSelect.vue'
-
-import BlockTestStart from 'src/components/BlockTestStart.vue'
-
-const { t } = useI18n()
-const data = ref({
-    s1: '',
-    s2: '',
-    s3: '',
-    s4: '',
-    s5: '',
-})
-</script>
 <template>
     <div>
         <div class="text-bold mt-6 mb-6 text-xl">
@@ -24,6 +7,10 @@ const data = ref({
         <BlockTestStart />
     </div>
 </template>
+
+<script setup>
+import BlockTestStart from 'src/components/BlockTestStart.vue'
+</script>
 
 <style lang="scss">
 .block-module {

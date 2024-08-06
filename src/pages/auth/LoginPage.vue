@@ -2,7 +2,7 @@
     <div class="login-page">
         <div class="app-container">
             <div class="text-lg text-center py-5">
-                <div class="font-bold">Xush Kelibsiz!</div>
+                <div class="font-bold">{{ $t('success_welcome') }}!</div>
 
                 <div class="font-medium mt-4">
                     {{ $t('login') }}
@@ -22,7 +22,7 @@
 
                 <div class="text-red mt-1.5" v-if="v$.phone.$error">
                     <span v-if="v$.phone.required.$invalid">
-                        Maydon to'ldirilishi shart
+                        {{ $t('rules.required') }}
                     </span>
                 </div>
             </div>
@@ -47,7 +47,7 @@
 
                 <div class="text-red mt-1.5" v-if="v$.password.$error">
                     <span v-if="v$.password.required.$invalid">
-                        Maydon to'ldirilishi shart
+                        {{ $t('rules.required') }}
                     </span>
                 </div>
             </div>

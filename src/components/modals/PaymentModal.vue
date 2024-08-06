@@ -1,3 +1,86 @@
+<template>
+    <BaseModal
+        :model-value="paymentModal"
+        @close="close"
+        class="warning-modal"
+        id="payment-modal"
+    >
+        <q-form @submit="submitButton">
+            <div v-if="currentStep === 1">
+                <div class="flex justify-center items-center mb-4">
+                    <span class="border rounded-lg mr-2">
+                        <img src="images/icons/humo.svg" />
+                    </span>
+                    <span class="border rounded-lg">
+                        <img src="images/icons/uzcard.svg" />
+                    </span>
+                </div>
+
+                <q-input
+                    :label="$t('card_number')"
+                    v-model="data.card_number"
+                    mask="#### #### #### ####"
+                    :dense="false"
+                    :rules="[
+                        (val) =>
+                            (val && val.length === 19) ||
+                            $t('enter_the_correct_format'),
+                    ]"
+                />
+
+                <q-input
+                    v-model="data.expire"
+                    :label="$t('card_expire_in')"
+                    mask="##/##"
+                    :dense="false"
+                    :rules="[
+                        (val) =>
+                            (val && val.length === 5) ||
+                            $t('enter_the_correct_format'),
+                    ]"
+                />
+                <q-checkbox
+                    v-model="data.recurrent"
+                    :label="$t('remember')"
+                    size="sm"
+                />
+            </div>
+            <div v-else-if="currentStep === 2">
+                <q-input
+                    v-model="sms_code"
+                    :label="$t('sms_code')"
+                    mask="######"
+                    :dense="false"
+                    :rules="[
+                        (val) =>
+                            (val && val.length === 6) ||
+                            $t('error_confirmation_code'),
+                    ]"
+                />
+            </div>
+
+            <div class="mt-6">
+                <div class="grid grid-cols-2 gap-4">
+                    <button
+                        v-close-popup
+                        class="px-5 w-full h-10 text-base rounded-xl bg-f1f2f4"
+                    >
+                        {{ $t('shut_down') }}
+                    </button>
+                    <!-- @click="submitButton" -->
+                    <q-btn
+                        :loading="loading"
+                        type="submit"
+                        class="px-5 w-full h-10 text-base text-white rounded-xl bg-primary"
+                    >
+                        {{ $t('add') }}
+                    </q-btn>
+                </div>
+            </div>
+        </q-form>
+    </BaseModal>
+</template>
+
 <script setup>
 import { storeToRefs } from 'pinia'
 import BaseModal from 'src/components/UI/BaseModal.vue'
@@ -81,86 +164,3 @@ const close = () => {
     currentStep.value = 1
 }
 </script>
-
-<template>
-    <BaseModal
-        :model-value="paymentModal"
-        @close="close"
-        class="warning-modal"
-        id="payment-modal"
-    >
-        <q-form @submit="submitButton">
-            <div v-if="currentStep === 1">
-                <div class="flex justify-center items-center mb-4">
-                    <span class="border rounded-lg mr-2">
-                        <img src="images/icons/humo.svg" />
-                    </span>
-                    <span class="border rounded-lg">
-                        <img src="images/icons/uzcard.svg" />
-                    </span>
-                </div>
-
-                <q-input
-                    :label="$t('card_number')"
-                    v-model="data.card_number"
-                    mask="#### #### #### ####"
-                    :dense="false"
-                    :rules="[
-                        (val) =>
-                            (val && val.length === 19) ||
-                            `To'g'ri formatda kiriting`,
-                    ]"
-                />
-
-                <q-input
-                    v-model="data.expire"
-                    :label="$t('card_expire_in')"
-                    mask="##/##"
-                    :dense="false"
-                    :rules="[
-                        (val) =>
-                            (val && val.length === 5) ||
-                            `To'g'ri formatda kiriting`,
-                    ]"
-                />
-                <q-checkbox
-                    v-model="data.recurrent"
-                    :label="$t('remember')"
-                    size="sm"
-                />
-            </div>
-            <div v-else-if="currentStep === 2">
-                <q-input
-                    v-model="sms_code"
-                    :label="$t('sms_code')"
-                    mask="######"
-                    :dense="false"
-                    :rules="[
-                        (val) =>
-                            (val && val.length === 6) ||
-                            `Xato tasdiqlash ko'di`,
-                    ]"
-                />
-            </div>
-
-            <div class="mt-6">
-                <div class="grid grid-cols-2 gap-4">
-                    <button
-                        v-close-popup
-                        class="px-5 w-full h-10 text-base rounded-xl bg-f1f2f4"
-                    >
-                        {{ $t('shut_down') }}
-                    </button>
-                    <!-- @click="submitButton" -->
-                    <q-btn
-                        :loading="loading"
-                        type="submit"
-                        class="px-5 w-full h-10 text-base text-white rounded-xl bg-primary"
-                    >
-                        {{ $t('add') }}
-                    </q-btn>
-                </div>
-            </div>
-        </q-form>
-    </BaseModal>
-</template>

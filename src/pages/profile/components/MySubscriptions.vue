@@ -29,7 +29,7 @@
                 <div
                     class="flex justify-between items-center font-semibold mb-4"
                 >
-                    <div>Obuna:</div>
+                    <div>{{ $t('subscription') }}:</div>
                     <q-badge color="warning py-1">
                         {{ subscription.tariff.name }}
                     </q-badge>
@@ -37,18 +37,18 @@
                 <div
                     class="flex justify-between items-center font-semibold mb-4"
                 >
-                    <div>Narxi:</div>
+                    <div>{{ $t('price') }}:</div>
                     <div>
                         {{
                             priceFormat(
                                 Math.ceil(subscription.tariff.price / 100),
                             )
                         }}
-                        sum
+                        {{ $t('sum') }}
                     </div>
                 </div>
                 <div class="flex justify-between items-center font-semibold">
-                    <span>Tugash sanasi: </span
+                    <span>{{ $t('end_date') }}: </span
                     ><span>{{ formatDate(subscription.expire_date) }}</span>
                 </div>
             </q-card>

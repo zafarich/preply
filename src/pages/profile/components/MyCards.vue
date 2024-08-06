@@ -29,13 +29,13 @@
                     </div>
                 </div>
                 <div class="mb-4 flex justify-between items-center">
-                    <span class="font-bold">Karta raqami :</span>
+                    <span class="font-bold">{{ $t('card_number') }} :</span>
                     <span class="tracking-wide">
                         {{ formatCardNumber(card.card_number) }}
                     </span>
                 </div>
                 <div class="flex justify-between items-center">
-                    <span class="font-bold">Amal qilish muddati: </span>
+                    <span class="font-bold">{{ $t('expired_in') }} : </span>
                     <span class="tracking-wide">
                         {{ card.expire }}
                     </span>
@@ -64,7 +64,7 @@
             <div>
                 <div class="mb-8">
                     <div class="font-semibold text-lg mb-2 text-center">
-                        Kartani o'chirishni xoxlaysizmi?
+                        {{ $t('are_you_want_delete_card') }}
                     </div>
                 </div>
 
@@ -73,13 +73,13 @@
                         v-close-popup
                         class="px-5 w-full h-10 text-base rounded-xl bg-f1f2f4"
                     >
-                        Yo'q
+                        {{ $t('no') }}
                     </button>
                     <button
                         @click="confirmDelete"
                         class="px-5 w-full h-10 text-base text-white rounded-xl bg-red-600"
                     >
-                        O'chirish
+                        {{ $t('delete') }}
                     </button>
                 </div>
             </div>

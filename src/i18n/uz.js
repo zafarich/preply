@@ -59,7 +59,7 @@ export default {
     passwordConfirm: 'Parolni tasdiqlang',
     Continue: 'Davom etish',
     rules: {
-        required: 'Bu maydon majburiy',
+        required: 'Maydon to`ldirilishi shart',
         passwordConfirm: 'Parollar mos emas',
         password: "Parol eng kamida 6 belgidan iborat bo'lishi kerak",
         phone: "Telefonnni to'g'ri formatda kiriting",
@@ -95,4 +95,40 @@ export default {
     select_variant: 'Variantni tanlang',
     select_variant_test: 'Variant testni tanlang',
     try_again_later: "Xatolik yuz berdi. Keyinroq urinib ko'ring",
+
+    // TODO: NEW TRANSLATES
+    are_you_sure_logout_profile:
+        'Siz haqiqatdan ham profildan chiqmoqchimisiz?',
+    exit: 'Chiqish',
+    expired_in: 'Amal qilish muddati',
+    are_you_want_delete_card: "Kartani o'chirishni xoxlaysizmi?",
+    delete: "O'chirish",
+    test_type: 'Test Turi',
+    test_period: 'Test Vaqti',
+    test_result: 'Natija',
+    subscription: 'Obuna',
+    price: 'Narxi',
+    sum: "so'm",
+    end_date: 'Tugash sanasi',
+    my_results: 'Natijalarim',
+    by_selections: 'Mavzulashtirilgan',
+    download: 'Yuklash',
+    you_have_not_subscription:
+        'Sizda { subscription_type } obuna mavjud emas. Iltimos obuna sotib oling',
+    your_subscription_end_date: 'Sizning obunangiz tugash sanasi',
+    upload_photo: 'Rasm yuklash',
+    must_at_least_sign:
+        'Eng kamida {{ signCount }} ta belgidan iborat bo`lishi kerak',
+    have_question_call_us: "Savolingiz bormi? Qo'ng'iroq qiling",
+    about_us: 'Biz haqimizda',
+    to_cooperate_with_us: 'Biz bilan hamkorlik qilish uchun',
+    vacancy: 'Vakansiyalar',
+    we_accept_payments: "Biz to'lovlarni qabul qilamiz",
+    all_rights_reserved: 'Barcha huquqlar himoyalangan',
+    premium_info:
+        '6 oy muddatga barcha testlarni yechish imkoniyati. (*Prime testlardan tashqari)',
+    prime_info:
+        '1 martalik prime (mock va blok) testlarini sotib olish imkoniyati. Yani 1ta obuna 1 marta test yechish imkoniyati.',
+    //TODO: new
+    prime_test_count: 'Soni',
 }

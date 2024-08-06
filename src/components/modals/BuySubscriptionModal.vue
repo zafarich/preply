@@ -16,8 +16,11 @@
                 <q-icon name="eva-alert-circle-outline" color="red" size="xl" />
             </div>
             <div class="font-semibold text-lg mb-2 text-center">
-                Sizda {{ getSubsType }} obuna mavjud emas. Iltimos obuna sotib
-                oling
+                {{
+                    $t('you_have_not_subscription', {
+                        subscription_type: getSubsType,
+                    })
+                }}
             </div>
             <button
                 class="px-5 w-full h-10 text-base text-white rounded-xl bg-primary mt-5"

@@ -32,7 +32,7 @@
                 >
                     <q-icon name="eva-camera-outline" size="xs" />
 
-                    <span class="ml-2"> Rasm yuklash </span>
+                    <span class="ml-2"> {{ $t('upload_photo') }} </span>
                 </q-btn>
                 <input
                     ref="fileInputRef"
@@ -49,7 +49,7 @@
                 :rules="[
                     (val) =>
                         (val && val.length > 3) ||
-                        'Eng kamida 3 ta harf bo`lishi kerak',
+                        $t('must_at_least_sign', { signCount: 3 }),
                 ]"
             />
             <q-input
@@ -59,7 +59,7 @@
                 :rules="[
                     (val) =>
                         (val && val.length > 3) ||
-                        'Eng kamida 3 ta harf bo`lishi kerak',
+                        $t('must_at_least_sign', { signCount: 3 }),
                 ]"
             />
             <div class="grid grid-cols-2 gap-4">
@@ -73,7 +73,7 @@
                     type="submit"
                     class="px-5 w-full h-10 text-base text-white rounded-xl bg-primary"
                 >
-                    {{ $t("O'zgartirish") }}
+                    {{ $t('change') }}
                 </button>
             </div>
         </q-form>
