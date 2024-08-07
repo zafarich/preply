@@ -48,13 +48,13 @@
                     rounded
                     class="py-2 px-4"
                     color="secondary"
-                    label="2. Ona tili"
+                    label="2. Tarix"
                 />
                 <q-badge
                     rounded
                     class="py-2 px-4"
                     color="secondary"
-                    label="3. Ingliz tili"
+                    label="3. Ona tili"
                 />
             </div>
         </div>
