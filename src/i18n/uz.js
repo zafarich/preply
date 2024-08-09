@@ -129,6 +129,10 @@ export default {
         '6 oy muddatga barcha testlarni yechish imkoniyati. (*Prime testlardan tashqari)',
     prime_info:
         '1 martalik prime (mock va blok) testlarini sotib olish imkoniyati. Yani 1ta obuna 1 marta test yechish imkoniyati.',
-    //TODO: new
+
     prime_test_count: 'Soni',
+    //TODO: new
+    math: 'Matematika',
+    history: 'Tarix',
+    mother_tongue: 'Ona tili',
 }

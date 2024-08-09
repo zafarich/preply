@@ -126,4 +126,7 @@ export default {
     prime_info:
         '1 retlik prime (mock hám blok) testlerin satıw alıw mümkindigi. Yani 1 obuna 1 ret test sheshіw mümkindigi.',
     prime_test_count: 'Sanı',
+    math: 'Matematika',
+    history: 'Tariyx',
+    mother_tongue: 'Ana tili',
 }
