@@ -4,7 +4,18 @@
             <Banner :banners="banners" />
         </div>
         <div class="mb-8" v-if="testTypes">
-            <TestTypes :test-types="testTypes" />
+            <TestTypes
+                :test-types="getPremiumTests"
+                :label="$t('premium_tests')"
+                :test-type="TARIFFS.PREMIUM.code"
+            />
+        </div>
+        <div class="mb-8" v-if="testTypes">
+            <TestTypes
+                :test-types="getPrimeTests"
+                :label="$t('prime_tests')"
+                :test-type="TARIFFS.PRIME.code"
+            />
         </div>
         <div class="mb-8" v-if="subjects">
             <PopularScience :subjects="subjects" />
@@ -19,7 +30,7 @@
     </div>
 </template>
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import Banner from './sections/Banner.vue'
 import TestTypes from './sections/TestTypes.vue'
@@ -32,6 +43,7 @@ import { useMainStore } from 'src/stores/main'
 import { useReferencesStore } from 'src/stores/references'
 import { useRoute, useRouter } from 'vue-router'
 import { useQuasar } from 'quasar'
+import { TARIFFS } from 'src/utils/constants'
 
 const { t } = useI18n()
 const userStore = useUserStore()
@@ -47,6 +59,18 @@ const $q = useQuasar()
 
 onMounted(async () => {
     fetchData()
+})
+
+const getPremiumTests = computed(() => {
+    return testTypes.value.filter(
+        (item) => item.tariff_unique_name == TARIFFS.PREMIUM.code,
+    )
+})
+
+const getPrimeTests = computed(() => {
+    return testTypes.value.filter(
+        (item) => item.tariff_unique_name == TARIFFS.PRIME.code,
+    )
 })
 
 async function fetchData() {

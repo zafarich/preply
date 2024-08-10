@@ -9,6 +9,10 @@
         <GlobalLoading />
         <BuySubscriptionModal />
         <PremiumPeriodModal />
+        <TariffInfoModal
+            :testType="mainStore.selectedTariffInfo"
+            :description="getTariffInfoModalDesc"
+        />
     </div>
 </template>
 
@@ -25,10 +29,26 @@ import GlobalLoading from 'src/components/GlobalLoading.vue'
 import BuySubscriptionModal from 'src/components/modals/BuySubscriptionModal.vue'
 import { computed } from 'vue'
 import PremiumPeriodModal from 'src/components/modals/PremiumPeriodModal.vue'
+import TariffInfoModal from 'src/components/modals/TariffInfoModal.vue'
+import { useMainStore } from 'src/stores/main'
+import { TARIFFS } from 'src/utils/constants'
 
 const router = useRouter()
 const route = useRoute()
 const testStore = useTestStore()
+const mainStore = useMainStore()
+
+const getTariffInfoModalLable = computed(() => {
+    return mainStore.selectedTariffInfo == TARIFFS.PREMIUM.code
+        ? TARIFFS.PREMIUM.lable
+        : TARIFFS.PRIME.lable
+})
+
+const getTariffInfoModalDesc = computed(() => {
+    return mainStore.selectedTariffInfo == TARIFFS.PREMIUM.code
+        ? TARIFFS.PREMIUM.info
+        : TARIFFS.PRIME.info
+})
 
 const isShowFooter = computed(() => {
     return route.name == 'home'

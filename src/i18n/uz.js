@@ -131,8 +131,10 @@ export default {
         '1 martalik prime (mock va blok) testlarini sotib olish imkoniyati. Yani 1ta obuna 1 marta test yechish imkoniyati.',
 
     prime_test_count: 'Soni',
-    //TODO: new
     math: 'Matematika',
     history: 'Tarix',
     mother_tongue: 'Ona tili',
+    //TODO: new
+    premium_tests: 'Premium testlar',
+    prime_tests: 'Prime testlar',
 }

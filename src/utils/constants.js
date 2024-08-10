@@ -1,3 +1,5 @@
+import { info } from 'autoprefixer'
+
 export const TEST_TYPES = {
     BLOCK: 'block',
     SCIENCE: 'certificate',
@@ -55,3 +57,16 @@ export const MANDATORY_SUBJECTS = [
         label: 'mother_tongue',
     },
 ]
+
+export const TARIFFS = {
+    PRIME: {
+        code: 'prime',
+        label: 'prime_tests',
+        info: 'prime_info',
+    },
+    PREMIUM: {
+        code: 'premium',
+        label: 'premium_tests',
+        info: 'premium_info',
+    },
+}
