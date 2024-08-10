@@ -39,7 +39,7 @@
                     no-caps
                 >
                     <q-icon name="eva-download-outline" size="xs"></q-icon>
-                    <span class="ml-1"> Скачать </span>
+                    <span class="ml-1"> {{ $t('download') }} </span>
                 </q-btn>
             </div>
 

@@ -16,7 +16,7 @@
                 <img src="/icons/premium.png" alt="" class="h-10 w-10" />
             </div>
             <div class="font-semibold text-lg mb-2 text-center">
-                Sizning obunangiz tugash sanasi:
+                {{ $t('your_subscription_end_date') }}:
             </div>
             <div class="font-medium text-gray text-center">
                 {{ userStore.userData.premium_expiration_date }}

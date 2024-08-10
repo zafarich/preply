@@ -12,13 +12,13 @@
                 <img src="/icons/logout.png" class="w-8 h-8" />
             </div>
             <div class="font-semibold text-lg mb-2 text-center">
-                Siz haqiqatdan ham profildan chiqmoqchimisiz?
+                {{ $t('are_you_sure_logout_profile') }}
             </div>
             <button
                 class="px-5 w-full h-10 text-base text-white rounded-xl bg-red mt-5"
                 @click="logout"
             >
-                Chiqish
+                {{ $t('exit') }}
             </button>
         </div>
     </BaseModal>

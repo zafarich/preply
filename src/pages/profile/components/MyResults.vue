@@ -49,6 +49,7 @@ import { TEST_TYPE_LIST } from 'src/utils/constants'
 import {} from 'vue'
 import { ref, computed, watch } from 'vue'
 import { useTestStore } from 'src/stores/test'
+import { useI18n } from 'vue-i18n'
 
 const testStore = useTestStore()
 const props = defineProps({
@@ -61,10 +62,11 @@ const props = defineProps({
         default: [],
     },
 })
+const { t: $t } = useI18n()
 
 const columns = [
     {
-        label: 'Test Turi',
+        label: $t('test_type'),
         name: 'test_type',
         align: 'left',
     },
@@ -72,11 +74,11 @@ const columns = [
     {
         name: 'duration',
         align: 'center',
-        label: 'Vaqti',
+        label: $t('test_period'),
         field: 'duration',
     },
     {
-        label: 'Natija',
+        label: $t('test_result'),
         name: 'score',
         align: 'right',
     },

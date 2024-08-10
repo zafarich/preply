@@ -43,3 +43,15 @@ export const TEST_TYPE_LIST = [
         text: 'Mavzulashtirilgan Test',
     },
 ]
+
+export const MANDATORY_SUBJECTS = [
+    {
+        label: 'math',
+    },
+    {
+        label: 'history',
+    },
+    {
+        label: 'mother_tongue',
+    },
+]

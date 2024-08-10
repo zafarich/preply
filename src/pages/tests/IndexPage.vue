@@ -63,7 +63,7 @@ const testTypesList = ref([
         key: TEST_TYPES.VARIANT,
     },
     {
-        name: 'Mavzulashtirilgan',
+        name: 'by_selections',
         key: TEST_TYPES.BY_SELECTIONS,
     },
 ])

@@ -65,7 +65,7 @@
                             </div>
                         </div>
                         <div class="info-item">
-                            <div class="key">Obuna</div>
+                            <div class="key">{{ $t('subscription') }}</div>
                             <div class="value">
                                 <q-badge
                                     v-if="userStore.userData.is_premium"
@@ -102,13 +102,12 @@
                     replace
                     :label="$t('my_subscriptions')"
                 />
-                <q-tab name="my_results" exact replace label="Natijalarim" />
-                <!-- <q-tab
-                            name="payment_history"
-                            exact
-                            replacew
-                            :label="$t('payment_history')"
-                        /> -->
+                <q-tab
+                    name="my_results"
+                    exact
+                    replace
+                    :label="$t('my_results')"
+                />
             </q-tabs>
 
             <MyCards v-if="tabs === 'my_cards'" />

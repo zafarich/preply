@@ -39,22 +39,11 @@
             <div class="text-lg mb-4 mt-8 pt-5 border-t">Majburiy fanlar:</div>
             <div class="flex justify-between items-center">
                 <q-badge
+                    v-for="(subject, index) in MANDATORY_SUBJECTS"
                     rounded
                     class="py-2 px-4"
                     color="secondary"
-                    label="1. Matematika"
-                />
-                <q-badge
-                    rounded
-                    class="py-2 px-4"
-                    color="secondary"
-                    label="2. Ona tili"
-                />
-                <q-badge
-                    rounded
-                    class="py-2 px-4"
-                    color="secondary"
-                    label="3. Ingliz tili"
+                    :label="$t(subject.label)"
                 />
             </div>
         </div>
@@ -82,7 +71,7 @@ import StartTestModal from 'src/components/modals/StartTestModal.vue'
 import { useReferencesStore } from 'src/stores/references'
 import { useTestStore } from 'src/stores/test'
 import { useRouter } from 'vue-router'
-import { TEST_TYPES } from 'src/utils/constants'
+import { MANDATORY_SUBJECTS, TEST_TYPES } from 'src/utils/constants'
 import { useModalStore } from 'src/stores/modal'
 import { useMainStore } from 'src/stores/main'
 import { storeToRefs } from 'pinia'

@@ -3,7 +3,7 @@
         <img src="/images/logo_s_1.png" alt="" class="h-10 mb-10" />
 
         <div class="flex justify-between items-center py-3 border-b">
-            <div>Возник вопрос? Звоните</div>
+            <div>{{ $t('have_question_call_us') }}</div>
             <div class="flex justify-start items-center gap-2">
                 <q-icon name="eva-phone-outline" color="" size="md" />
                 +998 88 888 88 88
@@ -14,24 +14,24 @@
             class="py-3 flex justify-between items-center border-b cursor-pointer"
             @click="toAboutUs"
         >
-            О нас
+            {{ $t('about_us') }}
         </div>
         <div
             class="py-3 flex justify-between items-center border-b cursor-pointer"
             @click="toContactUs"
         >
-            Для сотрудничества с нами
+            {{ $t('to_cooperate_with_us') }}
         </div>
 
         <div
             class="py-3 flex justify-between items-center border-b cursor-pointer"
             @click="toVacancies"
         >
-            Вакансии
+            {{ $t('vacancy') }}
         </div>
 
         <div class="py-3 flex justify-between items-center border-b">
-            <div>Мы принимаем к оплате</div>
+            <div>{{ $t('we_accept_payments') }}</div>
             <div class="flex justify-center items-center">
                 <span class="border rounded-lg mr-2">
                     <img src="images/icons/humo.svg" />
@@ -66,7 +66,7 @@
         </div>
 
         <div class="text-center text-sm py-3">
-            ©2024 EXBMBA, Barcha huquqlar himoyalangan.
+            ©2024 EXBMBA, {{ $t('all_rights_reserved') }}
         </div>
     </div>
 </template>
