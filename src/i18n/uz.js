@@ -45,7 +45,7 @@ export default {
     my_subscriptions: 'Obunalarim',
     payment_history: "To'lovlar tarixi",
     tests: 'Testlar',
-    by_science: "Fan bo'yicha",
+    by_science: 'MOCK testlari',
     by_block: 'Blok test',
     by_variant: 'Variant test',
     back: 'Orqaga',
@@ -134,7 +134,7 @@ export default {
     math: 'Matematika',
     history: 'Tarix',
     mother_tongue: 'Ona tili',
-    //TODO: new
     premium_tests: 'Premium testlar',
     prime_tests: 'Prime testlar',
+    //TODO: new
 }

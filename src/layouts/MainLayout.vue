@@ -9,10 +9,7 @@
         <GlobalLoading />
         <BuySubscriptionModal />
         <PremiumPeriodModal />
-        <TariffInfoModal
-            :testType="mainStore.selectedTariffInfo"
-            :description="getTariffInfoModalDesc"
-        />
+        <TariffInfoModal />
     </div>
 </template>
 
@@ -37,18 +34,6 @@ const router = useRouter()
 const route = useRoute()
 const testStore = useTestStore()
 const mainStore = useMainStore()
-
-const getTariffInfoModalLable = computed(() => {
-    return mainStore.selectedTariffInfo == TARIFFS.PREMIUM.code
-        ? TARIFFS.PREMIUM.lable
-        : TARIFFS.PRIME.lable
-})
-
-const getTariffInfoModalDesc = computed(() => {
-    return mainStore.selectedTariffInfo == TARIFFS.PREMIUM.code
-        ? TARIFFS.PREMIUM.info
-        : TARIFFS.PRIME.info
-})
 
 const isShowFooter = computed(() => {
     return route.name == 'home'

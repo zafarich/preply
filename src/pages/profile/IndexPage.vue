@@ -84,6 +84,24 @@
                                 </q-badge>
                             </div>
                         </div>
+
+                        <div class="info-item">
+                            <div class="key">Fayllar uchun parol</div>
+                            <div class="value flex items-center">
+                                <div
+                                    class="bg-gray-200 pl-2 rounded-md text-gray-600"
+                                >
+                                    {{ filePassword }}
+                                    <q-btn
+                                        outline
+                                        color="secondary"
+                                        @click="clickClipboard"
+                                    >
+                                        <q-icon name="eva-clipboard-outline" />
+                                    </q-btn>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -142,7 +160,11 @@ import { useUserStore } from 'src/stores/user'
 import { useMainStore } from 'src/stores/main'
 import { useTestStore } from 'src/stores/test'
 import LogoutModal from './components/LogoutModal.vue'
+import { copyToClipboard, useQuasar } from 'quasar'
+import { hashUserId } from 'src/utils/auth'
+import { computed } from 'vue'
 
+const $q = useQuasar()
 const modalStore = useModalStore()
 const mainStore = useMainStore()
 const { periodPremiumModal, userEditModal, logoutModal } =
@@ -160,6 +182,7 @@ const baseUrl = import.meta.env.VITE_BASE_URL
 const tabs = ref('my_cards')
 const fileInputRef = ref('')
 const image = ref('')
+const filePassword = ref('')
 
 onMounted(async () => {
     mainStore.changeSiteLoader(true)
@@ -170,9 +193,31 @@ onMounted(async () => {
         userStore.getMe(),
         billingStore.getSubscriptions({ page: 1, page_size: 1000 }),
     ])
-
+    filePassword.value = await hashUserId(userStore.userData.id)
     mainStore.changeSiteLoader(false)
 })
+
+const clickClipboard = async () => {
+    const compyItem = await hashUserId(userStore.userData.id)
+
+    copyToClipboard(compyItem)
+        .then(() => {
+            $q.notify({
+                type: 'positive',
+                textColor: 'white',
+                position: 'top',
+                message: 'Password copied to clipboard',
+            })
+        })
+        .catch(() => {
+            $q.notify({
+                type: 'negative',
+                textColor: 'white',
+                position: 'top',
+                message: 'Failid copied to clipboard',
+            })
+        })
+}
 
 const onChange = async (data) => {
     await userStore.updateUser(data)

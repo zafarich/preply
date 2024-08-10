@@ -3,7 +3,7 @@
         <div class="mb-8" v-if="banners">
             <Banner :banners="banners" />
         </div>
-        <div class="mb-8" v-if="testTypes">
+        <div class="mb-12" v-if="testTypes">
             <TestTypes
                 :test-types="getPremiumTests"
                 :label="$t('premium_tests')"
@@ -22,7 +22,7 @@
         </div>
 
         <div class="mb-8" v-if="languageSelections.results">
-            <div class="font-semibold text-xl mb-6">
+            <div class="text-md font-semibold mb-6">
                 {{ $t('international_certificates') }}
             </div>
             <TestsList :subjects="languageSelections.results" />

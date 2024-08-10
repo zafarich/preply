@@ -45,7 +45,7 @@ export default {
     my_subscriptions: 'Jazılıwlarim',
     payment_history: ' Tólewler tariyxı',
     tests: 'Testlar',
-    by_science: ' Pán boyınsha',
+    by_science: 'MOCK testleri',
     by_block: 'Blok test',
     by_variant: 'variant test',
     back: 'Keyin basıp',
@@ -129,4 +129,6 @@ export default {
     math: 'Matematika',
     history: 'Tariyx',
     mother_tongue: 'Ana tili',
+    premium_tests: 'Premium testlar',
+    prime_tests: 'Prime testlar',
 }

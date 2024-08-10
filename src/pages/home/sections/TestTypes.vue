@@ -15,14 +15,14 @@ const props = defineProps({
         type: String,
         required: true,
     },
-    test_type: {
+    testType: {
         type: String,
         required: true,
     },
 })
 
 const showInfoModal = () => {
-    mainStore.changeSelectedTariffInfo(props.test_type)
+    mainStore.changeSelectedTariffInfo(props.testType)
     modalStore.changeTariffInfoModal(true)
 }
 </script>

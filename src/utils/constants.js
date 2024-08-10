@@ -63,10 +63,12 @@ export const TARIFFS = {
         code: 'prime',
         label: 'prime_tests',
         info: 'prime_info',
+        icon: '/icons/prime_icon.png',
     },
     PREMIUM: {
         code: 'premium',
         label: 'premium_tests',
         info: 'premium_info',
+        icon: '/icons/premium.png',
     },
 }

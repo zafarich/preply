@@ -42,7 +42,7 @@ export const useUserStore = defineStore(
                 ...params,
                 page_size: page_size,
             })
-            leaders.value = res
+            // leaders.value = res
             return res
         }
         async function login(payload) {
@@ -87,7 +87,9 @@ export const useUserStore = defineStore(
             token.value = ''
             removeTokenFromCache()
             userCards.value = []
-            leaders.value = []
+            leaders.value = {
+                results: [],
+            }
         }
 
         function sayhay() {

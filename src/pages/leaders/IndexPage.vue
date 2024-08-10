@@ -48,8 +48,8 @@
             />
         </div>
         <div
-            v-if="usersStore.leaders.results.length > 0"
             ref="contentToCapture"
+            v-if="usersStore.leaders.results.length > 0"
         >
             <LeaderTable
                 :items="usersStore.leaders.results"

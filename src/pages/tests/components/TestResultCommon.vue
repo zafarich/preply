@@ -1,5 +1,19 @@
 <template>
-    <div class="q-pa-sm font-medium">
+    <div class="flex justify-between items-center q-pa-sm mt-5">
+        <q-btn
+            @click="downloadPdf(testStore.GET_TEST_RESULTS.pdf_file)"
+            color="primary"
+            no-caps
+        >
+            <q-icon name="eva-download-outline" size="xs"></q-icon>
+            <span class="ml-1"> Faylni Yuklash </span>
+        </q-btn>
+        <q-btn @click="dowloadResultPage" color="secondary" no-caps>
+            <q-icon name="eva-download-outline" size="xs"></q-icon>
+            <span class="ml-1"> Natijani Yuklash </span>
+        </q-btn>
+    </div>
+    <div class="q-pa-sm font-medium" ref="pdfContent">
         <div class="font-semibold text-xl my-4 text-center">
             <div>
                 {{ testStore.GET_TEST_RESULTS?.test_type.title }}
@@ -97,11 +111,17 @@
 
 <script setup>
 import { useTestStore } from 'src/stores/test'
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
+
+import html2pdf from 'html2pdf.js'
+import { useQuasar } from 'quasar'
 
 const testStore = useTestStore()
+const pdfContent = ref(null)
 
-const emit = defineEmits(['returnListItemColor'])
+const $q = useQuasar()
+
+const emit = defineEmits(['returnListItemColor', 'downloadPdf'])
 
 const returnListItemColor = (item, cIndex) => {
     if (item.is_correct && cIndex == item.correct_answer) {
@@ -120,6 +140,38 @@ const returnBorderColor = (item) => {
     } else if (!item.is_correct && !!item.user_answer) {
         return '!border-red-500'
     } else return '!border-gray-500'
+}
+
+const dowloadResultPage = () => {
+    try {
+        const options = {
+            margin: 10,
+            filename: 'my-result.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+        }
+
+        html2pdf().from(pdfContent.value).set(options).save()
+
+        $q.notify({
+            type: 'positive',
+            textColor: 'white',
+            position: 'top',
+            message: 'Result File Saved',
+        })
+    } catch (error) {
+        $q.notify({
+            type: 'negative',
+            textColor: 'white',
+            position: 'top',
+            message: 'Failed',
+        })
+    }
+}
+
+const downloadPdf = async (pdfUrl) => {
+    emit('downloadPdf', pdfUrl)
 }
 
 const goToLink = (index) => {

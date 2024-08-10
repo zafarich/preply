@@ -15,7 +15,7 @@ const props = defineProps({
 <template>
     <div class="popular-subjects">
         <div class="flex mb-6 justify-between items-center">
-            <div class="font-semibold text-xl">
+            <div class="text-md font-semibold">
                 {{ $t('popular_sciences') }}
             </div>
             <q-btn

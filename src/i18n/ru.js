@@ -45,7 +45,7 @@ export default {
     my_subscriptions: 'Мои подписки',
     payment_history: 'История платежей',
     tests: 'Тесты',
-    by_science: 'По науке',
+    by_science: 'MOCK Тесты',
     by_block: 'Блочный тест',
     by_variant: 'Вариант теста',
     back: 'Назад',
@@ -129,4 +129,6 @@ export default {
     math: 'Математика',
     history: 'История',
     mother_tongue: 'Родной язык',
+    premium_tests: 'Премиум-тесты',
+    prime_tests: 'Простые тесты',
 }

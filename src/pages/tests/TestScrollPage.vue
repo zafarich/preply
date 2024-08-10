@@ -33,14 +33,6 @@
                 <div class="font-medium text-center text-xl">
                     {{ getTestTypeTitle }}
                 </div>
-                <q-btn
-                    @click="downloadPdf(testStore.GET_TESTS.pdf_file)"
-                    color="primary"
-                    no-caps
-                >
-                    <q-icon name="eva-download-outline" size="xs"></q-icon>
-                    <span class="ml-1"> {{ $t('download') }} </span>
-                </q-btn>
             </div>
 
             <div class="font-medium text-lg mb-10" v-if="testStore.GET_TESTS">
@@ -216,25 +208,6 @@ const updateRemainingTime = () => {
             confirmEndTest()
             clearInterval(timer)
         }
-    }
-}
-
-const downloadPdf = async (pdfUrl) => {
-    try {
-        const response = await api.get(pdfUrl, {
-            responseType: 'blob',
-        })
-
-        const url = window.URL.createObjectURL(new Blob([response.data]))
-        const link = document.createElement('a')
-        link.href = url
-        link.setAttribute('download', 'your-pdf-file.pdf') // You can set the file name here
-        document.body.appendChild(link)
-        link.click()
-        link.remove()
-        window.URL.revokeObjectURL(url)
-    } catch (error) {
-        console.error('Error downloading the PDF file:', error)
     }
 }
 
