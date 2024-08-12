@@ -6,7 +6,7 @@
             alt="dropdown label"
             class="dropdown-label"
             @click="toggleDropdown"
-            v-if="!userStore.userData.image"
+            v-if="userStore.userData.image"
         />
 
         <img

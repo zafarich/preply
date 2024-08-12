@@ -1,6 +1,6 @@
 <template>
     <div class="top-header">
-        <div class="top-info">
+        <div class="top-info" v-if="referenceStore.usersCount > 0">
             <div>Sayt foydalanuvchilari soni:</div>
             <div>{{ referenceStore.usersCount }}</div>
         </div>
@@ -22,7 +22,7 @@
 <script setup>
 import { useUserStore } from 'src/stores/user'
 import LangSwitcher from './LangSwitcher.vue'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import { useModalStore } from 'src/stores/modal'
 import { storeToRefs } from 'pinia'
 import UserDropDown from '../UserDropDown.vue'
@@ -32,6 +32,7 @@ const userStore = useUserStore()
 const router = useRouter()
 const modalStore = useModalStore()
 const referenceStore = useReferencesStore()
+const route = useRoute()
 
 const { periodPremiumModal } = storeToRefs(modalStore)
 
