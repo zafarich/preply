@@ -6,6 +6,15 @@
             alt="dropdown label"
             class="dropdown-label"
             @click="toggleDropdown"
+            v-if="!userStore.userData.image"
+        />
+
+        <img
+            v-else
+            src="icons/user-icon.svg"
+            alt="dropdown label"
+            class="dropdown-label"
+            @click="toggleDropdown"
         />
 
         <!-- Dropdown content -->
@@ -15,7 +24,7 @@
                 class="dropdown-item flex justify-between items-center"
                 @click="goToProfile"
             >
-                <div>Profile</div>
+                <div>{{ $t('profile') }}</div>
                 <q-icon name="eva-person-outline" size="sm" color="primary" />
             </q-item>
             <q-item
@@ -59,7 +68,7 @@
                 class="dropdown-item text-[#c10015] flex justify-between items-center"
                 @click="() => (logoutModal = true)"
             >
-                <div>Logout</div>
+                <div>{{ $t('exit') }}</div>
 
                 <div>
                     <img src="/icons/logout.png" class="w-5 h-5" />
@@ -125,13 +134,13 @@ onBeforeUnmount(() => {
     height: 35px;
     border-radius: 50%;
     object-fit: cover;
+    border: 2px solid #4f9e91;
 }
 
 .dropdown-content {
     display: block;
     width: 220px;
     position: absolute;
-    padding: 10px 0;
     left: -520%; /* Align to the left of the dropdown container */
     box-shadow:
         0 1px 5px rgba(0, 0, 0, 0.2),
