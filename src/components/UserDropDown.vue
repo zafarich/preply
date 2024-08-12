@@ -57,7 +57,11 @@
                     color="primary"
                     no-caps
                 >
-                    {{ userStore.userData.is_prime }} ta
+                    <span v-if="userStore.userData.is_prime === true">
+                        <img src="/icons/infinity.png" class="w-3.5" />
+                    </span>
+
+                    <span v-else> {{ userStore.userData.is_prime }} ta </span>
                 </q-badge>
                 <q-badge class="py-2" v-else color="red" no-caps>
                     mavjud emas

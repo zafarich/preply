@@ -87,7 +87,13 @@
                             color="primary"
                             no-caps
                         >
-                            {{ userStore.userData.is_prime }} ta
+                            <span v-if="userStore.userData.is_prime === true">
+                                <img src="/icons/infinity.png" class="w-3.5" />
+                            </span>
+
+                            <span v-else>
+                                {{ userStore.userData.is_prime }} ta
+                            </span>
                         </q-badge>
                         <q-badge class="py-2" v-else color="red" no-caps>
                             mavjud emas
@@ -98,8 +104,12 @@
                 <div class="info-item">
                     <div class="key">Fayllar uchun parol</div>
                     <div class="value flex items-center">
-                        <div class="bg-gray-200 pl-2 rounded-md text-gray-600">
-                            {{ filePassword }}
+                        <div
+                            class="flex justify-start items-center bg-gray-200 rounded-md text-gray-600"
+                        >
+                            <div class="px-1.5 blur-[2px]">
+                                {{ filePassword }}
+                            </div>
                             <q-btn
                                 outline
                                 color="secondary"
