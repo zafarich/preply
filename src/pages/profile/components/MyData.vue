@@ -65,13 +65,13 @@
                             v-if="userStore.userData.is_premium"
                             color="primary"
                             no-caps
-                            size="sm"
-                            @click="showPremiumPeriodModal"
+                            class="py-2"
                         >
-                            <q-icon name="eva-checkmark" color="white" />
+                            {{ userStore.userData.premium_expiration_date }}
+                            gacha
                         </q-badge>
-                        <q-badge v-else color="red" no-caps size="sm">
-                            <q-icon name="eva-close" color="white" />
+                        <q-badge class="py-2" v-else color="red" no-caps>
+                            mavjud emas
                         </q-badge>
                     </div>
                 </div>
@@ -82,15 +82,15 @@
                     </div>
                     <div class="value">
                         <q-badge
-                            v-if="userStore.userData.is_premium"
+                            class="py-2"
+                            v-if="userStore.userData.is_prime"
                             color="primary"
                             no-caps
-                            size="sm"
                         >
-                            <q-icon name="eva-checkmark" color="white" />
+                            {{ userStore.userData.is_prime }} ta
                         </q-badge>
-                        <q-badge v-else color="red" no-caps size="sm">
-                            <q-icon name="eva-close" color="white" />
+                        <q-badge class="py-2" v-else color="red" no-caps>
+                            mavjud emas
                         </q-badge>
                     </div>
                 </div>

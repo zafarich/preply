@@ -9,7 +9,7 @@
                     @click="changeProfileTab(tabItem.key)"
                     :label="$t(tabItem.name)"
                     :outline="tabs !== tabItem.key"
-                    color="primary"
+                    color="secondary"
                 />
             </div>
 
@@ -27,7 +27,6 @@
     <PaymentModal />
     <AddSubscriptionModal />
     <UserEditModal @on-change="onChange" v-bind="userStore.userData" />
-    <LogoutModal />
 </template>
 <script setup>
 import PaymentModal from 'src/components/modals/PaymentModal.vue'
@@ -44,7 +43,6 @@ import UserEditModal from 'src/components/modals/UserEditModal.vue'
 import { useUserStore } from 'src/stores/user'
 import { useMainStore } from 'src/stores/main'
 import { useTestStore } from 'src/stores/test'
-import LogoutModal from './components/LogoutModal.vue'
 import { hashUserId } from 'src/utils/auth'
 
 const MyProfileList = ref([

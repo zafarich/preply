@@ -36,7 +36,7 @@ export async function getSelection(params) {
     return data
 }
 
-export async function getUserStat(params) {
+export async function getUserStats(params) {
     const { data } = await api(url + 'users-stat/', { params })
     return data
 }

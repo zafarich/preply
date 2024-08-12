@@ -10,6 +10,7 @@ export const useReferencesStore = defineStore('references', () => {
     let districts = ref([])
     let test_types = ref([])
     let selections = ref([])
+    let usersCount = ref()
 
     function setSubMainSubject(value) {
         sub_main_subjects.value = value
@@ -60,6 +61,12 @@ export const useReferencesStore = defineStore('references', () => {
         return res
     }
 
+    async function getUserStats(params) {
+        const res = await api.getUserStats(params)
+        usersCount.value = res.users_count
+        return res
+    }
+
     return {
         subjects,
         main_subjects,
@@ -68,6 +75,7 @@ export const useReferencesStore = defineStore('references', () => {
         regions,
         districts,
         selections,
+        usersCount,
         setSubMainSubject,
         getSelection,
         getRegions,
@@ -76,5 +84,6 @@ export const useReferencesStore = defineStore('references', () => {
         getBanners,
         getTestTypes,
         getSubjectById,
+        getUserStats,
     }
 })
