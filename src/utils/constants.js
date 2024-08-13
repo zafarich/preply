@@ -19,8 +19,8 @@ export const MAX_ATTEMTS_COUNT = 1000
 export const ALLOWED_ATTEMTS = 3
 
 export const TEST_ERROR_TYPES = {
-    PRIME_SUBS_IS_NOT_EXIST: 'prime_subscribe_is_not_exists',
-    PREMIUM_SUBS_IS_NOT_EXIST: 'premium_status_is_not_exists',
+    PRIME_SUBS_IS_NOT_EXIST: 'prime_status_is_not_exists',
+    PREMIUM_SUBS_IS_NOT_EXIST: 'premium_subscribe_is_not_exists',
 }
 
 export const TEST_TYPE_LIST = [

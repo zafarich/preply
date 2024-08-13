@@ -2,7 +2,7 @@
     <div>
         <div class="text-bold mt-6 mb-4 text-xl">{{ $t('tests') }}</div>
         <div>
-            <div class="grid grid-cols-2 gap-3 mb-8">
+            <div class="grid grid-cols-1 gap-3 mb-8">
                 <q-btn
                     v-for="(testType, index) in testTypesList"
                     :key="index"
@@ -10,13 +10,13 @@
                     @click="changeTestType(testType.key)"
                     :label="$t(testType.name)"
                     :outline="GET_TEST_TYPE !== testType.key"
-                    color="primary"
+                    color="secondary"
                 />
             </div>
 
             <ScienceList
                 v-if="GET_TEST_TYPE === TEST_TYPES.BY_SUBJECTS"
-                :subjects="referencesStore.main_subjects"
+                :subjects="mockSubjects"
             />
             <BlockTestStart
                 v-else-if="GET_TEST_TYPE === TEST_TYPES.BLOCK"
@@ -25,7 +25,7 @@
 
             <SelectionTestStart
                 v-else-if="GET_TEST_TYPE === TEST_TYPES.BY_SELECTIONS"
-                :subjects="referencesStore.subjects"
+                :subjects="selections.results"
             />
             <VariantTestStart
                 v-else-if="GET_TEST_TYPE === TEST_TYPES.VARIANT"
@@ -58,10 +58,10 @@ const testTypesList = ref([
         name: 'by_block',
         key: TEST_TYPES.BLOCK,
     },
-    {
-        name: 'by_variant',
-        key: TEST_TYPES.VARIANT,
-    },
+    // {
+    //     name: 'by_variant',
+    //     key: TEST_TYPES.VARIANT,
+    // },
     {
         name: 'by_selections',
         key: TEST_TYPES.BY_SELECTIONS,
@@ -77,8 +77,9 @@ const referencesStore = useReferencesStore()
 const testStore = useTestStore()
 const mainStore = useMainStore()
 
-const { GET_TEST_TYPE } = storeToRefs(testStore)
+const { GET_TEST_TYPE, test_type } = storeToRefs(testStore)
 const selections = ref([])
+const mockSubjects = ref([])
 
 onMounted(() => {
     fetchData()
@@ -91,7 +92,10 @@ async function fetchData() {
     const mainSubjectPromise = referencesStore.getSubjects({
         is_main_for_block: true,
     })
-    const selectionsPromise = referencesStore.getSelection({ is_showing: true })
+    const selectionsPromise = referencesStore.getSelection({
+        is_showing: true,
+        is_premium: true,
+    })
 
     const results = await Promise.allSettled([
         selectionsPromise,
@@ -106,6 +110,9 @@ async function fetchData() {
                     selections.value = result.value
                     break
                 case 1:
+                    mockSubjects.value = result.value
+
+                case 2:
                     break
             }
         } else {
