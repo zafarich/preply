@@ -44,6 +44,7 @@ import { useUserStore } from 'src/stores/user'
 import { useMainStore } from 'src/stores/main'
 import { useTestStore } from 'src/stores/test'
 import { hashUserId } from 'src/utils/auth'
+import { storeToRefs } from 'pinia'
 
 const MyProfileList = ref([
     {
@@ -65,12 +66,12 @@ const MyProfileList = ref([
 ])
 
 const mainStore = useMainStore()
-
 const billingStore = useBillingStore()
 const userStore = useUserStore()
 const testStore = useTestStore()
 
-const tabs = ref('my_data')
+const { profileTab: tabs } = storeToRefs(mainStore)
+
 const filePassword = ref('')
 
 onMounted(async () => {

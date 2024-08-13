@@ -1,6 +1,5 @@
 <template>
     <div class="main-layout">
-        <TopNav />
         <TheHeader />
         <div class="app-container">
             <router-view />
@@ -30,10 +29,8 @@ import { computed } from 'vue'
 import PremiumPeriodModal from 'src/components/modals/PremiumPeriodModal.vue'
 import TariffInfoModal from 'src/components/modals/TariffInfoModal.vue'
 import { useMainStore } from 'src/stores/main'
-import { TARIFFS } from 'src/utils/constants'
 import { useReferencesStore } from 'src/stores/references'
 import LogoutModal from 'src/components/modals/LogoutModal.vue'
-import TopNav from 'src/components/common/TopNav.vue'
 
 const router = useRouter()
 const route = useRoute()

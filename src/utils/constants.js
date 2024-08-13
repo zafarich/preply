@@ -72,3 +72,10 @@ export const TARIFFS = {
         icon: '/icons/premium.png',
     },
 }
+
+export const PROFILE_TABS = {
+    MY_DATA: 'my_data',
+    MY_CARDS: 'my_cards',
+    MY_SUBSCRIPTIONS: 'my_subscriptions',
+    MY_RESULTS: 'my_results',
+}

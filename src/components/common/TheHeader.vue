@@ -1,9 +1,5 @@
 <template>
     <div class="top-header">
-        <div class="top-info" v-if="referenceStore.usersCount > 0">
-            <div>Sayt foydalanuvchilari soni:</div>
-            <div>{{ referenceStore.usersCount }}</div>
-        </div>
         <header class="header">
             <div class="w-[120px]">
                 <router-link :to="{ name: 'home' }">

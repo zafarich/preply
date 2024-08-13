@@ -19,18 +19,11 @@
 
         <!-- Dropdown content -->
         <q-list bordered separator v-if="isOpen" class="dropdown-content">
-            <q-item
-                clickable
-                class="dropdown-item flex justify-between items-center"
-                @click="goToProfile"
-            >
+            <q-item clickable class="dropdown-item" @click="goToProfile">
                 <div>{{ $t('profile') }}</div>
                 <q-icon name="eva-person-outline" size="sm" color="primary" />
             </q-item>
-            <q-item
-                clickable
-                class="dropdown-item flex justify-between items-center"
-            >
+            <q-item clickable class="dropdown-item" @click="goToSubscriptions">
                 <div>Premium</div>
                 <div>
                     <q-badge
@@ -46,10 +39,7 @@
                     </q-badge>
                 </div>
             </q-item>
-            <q-item
-                clickable
-                class="dropdown-item flex justify-between items-center"
-            >
+            <q-item clickable class="dropdown-item" @click="goToSubscriptions">
                 <div>Prime</div>
                 <q-badge
                     class="py-2"
@@ -83,16 +73,20 @@
 </template>
 <script setup>
 import { storeToRefs } from 'pinia'
+import { useMainStore } from 'src/stores/main'
 import { useModalStore } from 'src/stores/modal'
 import { useUserStore } from 'src/stores/user'
+import { PROFILE_TABS } from 'src/utils/constants'
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { useRouter } from 'vue-router'
 
 const userStore = useUserStore()
 const modalStore = useModalStore()
 const router = useRouter()
+const mainStore = useMainStore()
 
 const { logoutModal } = storeToRefs(modalStore)
+const { profileTab } = storeToRefs(mainStore)
 
 const isOpen = ref(false)
 const dropdownRef = ref(null)
@@ -101,7 +95,14 @@ function toggleDropdown() {
     isOpen.value = !isOpen.value
 }
 function goToProfile() {
-    // console.log('heell')
+    closeDropdown()
+    router.push({ name: 'profile' })
+}
+
+function goToSubscriptions() {
+    profileTab.value = PROFILE_TABS.MY_SUBSCRIPTIONS
+
+    console.log('')
     closeDropdown()
     router.push({ name: 'profile' })
 }
@@ -153,9 +154,12 @@ onBeforeUnmount(() => {
     background: #fff;
     z-index: 1;
     .dropdown-item {
-        padding: 8px 16px;
+        padding: 6px 8px;
         font-weight: 500;
         cursor: pointer;
+        display: flex !important;
+        justify-content: space-between;
+        align-items: center;
     }
 }
 
