@@ -45,7 +45,7 @@ const isShowFooter = computed(() => {
 onMounted(() => {
     // console.log('GET_TESTSPTYPE', typeof testStore.GET_TEST_TYPE)
 
-    referenceStore.getUserStats()
+    // referenceStore.getUserStats()
     if (!!testStore.GET_TESTS && route.name !== 'test-solve') {
         router.push({
             name: 'test-solve',

@@ -95,6 +95,8 @@ function toggleDropdown() {
     isOpen.value = !isOpen.value
 }
 function goToProfile() {
+    profileTab.value = PROFILE_TABS.MY_DATA
+
     closeDropdown()
     router.push({ name: 'profile' })
 }
@@ -102,7 +104,6 @@ function goToProfile() {
 function goToSubscriptions() {
     profileTab.value = PROFILE_TABS.MY_SUBSCRIPTIONS
 
-    console.log('')
     closeDropdown()
     router.push({ name: 'profile' })
 }
