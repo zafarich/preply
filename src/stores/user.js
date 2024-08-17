@@ -42,7 +42,7 @@ export const useUserStore = defineStore(
                 ...params,
                 page_size: page_size,
             })
-            // leaders.value = res
+            leaders.value = res
             return res
         }
         async function login(payload) {

@@ -47,6 +47,7 @@ const changeLang = async (lang) => {
 
 <template>
     <q-btn-dropdown
+        id="lang-switcher"
         v-model="userMenu"
         v-bind="attrs"
         text-color="black"

@@ -205,4 +205,10 @@ const sharePage = async () => {
 }
 </script>
 
-<style></style>
+<style lang="scss">
+#lang-switcher {
+    .q-icon {
+        display: none !important;
+    }
+}
+</style>
