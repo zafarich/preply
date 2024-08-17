@@ -107,7 +107,13 @@ watch(
 const checkFirstSelected = () => {
     if (selectedSubject.value) {
         firstIsSelect.value = false
-    } else firstIsSelect.value = true
+    } else {
+        if (navigator.vibrate) {
+            navigator.vibrate(200)
+        }
+
+        firstIsSelect.value = true
+    }
 }
 
 const openModal = () => {

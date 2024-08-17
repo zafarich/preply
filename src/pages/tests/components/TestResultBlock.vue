@@ -6,11 +6,11 @@
             no-caps
         >
             <q-icon name="eva-download-outline" size="xs"></q-icon>
-            <span class="ml-1"> Faylni Yuklash </span>
+            <span class="ml-1"> {{ $t('download_file') }} </span>
         </q-btn>
         <q-btn @click="dowloadResultPage" color="secondary" no-caps>
             <q-icon name="eva-download-outline" size="xs"></q-icon>
-            <span class="ml-1"> Natijani Yuklash </span>
+            <span class="ml-1"> {{ $t('download_result') }} </span>
         </q-btn>
     </div>
     <div class="q-pa-sm font-medium">

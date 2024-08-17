@@ -5,6 +5,7 @@
         :model-value="modelValue"
         hide-bottom-space
         class="base-input"
+        :class="{ shake: isShaking }"
         no-error-icon
         lazy-rules="ondemand"
         :type="innerType"
@@ -48,6 +49,10 @@ const props = defineProps({
     type: {
         type: String,
         default: 'text',
+    },
+    isShaking: {
+        type: Boolean,
+        default: false,
     },
 })
 
@@ -149,6 +154,28 @@ defineExpose({
         border-bottom: 1px solid transparent !important;
     }
 }
+
+.shake {
+    animation: shake 0.5s;
+}
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-5px);
+    }
+    50% {
+        transform: translateX(5px);
+    }
+    75% {
+        transform: translateX(-5px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
 .base-input {
     .q-field__prepend {
         color: $dark !important;

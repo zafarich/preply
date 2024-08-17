@@ -43,20 +43,12 @@ const close = () => {
                     </div>
                 </div>
 
-                <div class="grid grid-cols-2 gap-4">
-                    <button
-                        v-close-popup
-                        class="px-5 w-full h-10 text-base rounded-xl bg-f1f2f4"
-                    >
-                        {{ $t('no') }}
-                    </button>
-                    <button
-                        @click="confirmEndTest"
-                        class="px-5 w-full h-10 text-base text-white rounded-xl bg-primary"
-                    >
-                        {{ $t('finish') }}
-                    </button>
-                </div>
+                <button
+                    @click="confirmEndTest"
+                    class="px-5 w-full h-10 text-base text-white rounded-xl bg-primary"
+                >
+                    {{ $t('finish') }}
+                </button>
             </div>
         </div>
     </BaseModal>

@@ -39,28 +39,19 @@ const close = () => {
                     </div>
 
                     <div class="font-semibold text-lg mb-2 text-center">
-                        Ogohlantirish
+                        {{ $t('warning') }}
                     </div>
                     <div class="font-medium mb-2 text-center">
-                        Testni yakunlashni tavsiya qilamiz. Oraqaga qaytishni
-                        tasdiqlashingiz bilan ushbu test bekor qilinadi
+                        {{ $t('warning_back_notify') }}
                     </div>
                 </div>
 
-                <div class="grid grid-cols-2 gap-4">
-                    <button
-                        v-close-popup
-                        class="px-5 w-full h-10 text-base rounded-xl bg-f1f2f4"
-                    >
-                        Bekor qilish
-                    </button>
-                    <button
-                        @click="confirmBack"
-                        class="px-5 w-full h-10 text-base text-white rounded-xl bg-primary"
-                    >
-                        Tasdiqlash
-                    </button>
-                </div>
+                <button
+                    @click="confirmBack"
+                    class="px-5 w-full h-10 text-base text-white rounded-xl bg-primary"
+                >
+                    {{ $t('confirming') }}
+                </button>
             </div>
         </div>
     </BaseModal>

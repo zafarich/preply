@@ -10,11 +10,11 @@
                 :test-type="TARIFFS.PREMIUM.code"
             />
         </div>
-        <div class="mb-8" v-if="testTypes">
+        <div class="mb-4" v-if="testTypes">
             <TestTypes
                 :test-types="getPrimeTests"
                 :label="$t('prime_tests')"
-                :test-type="TARIFFS.PRIME.code"
+                :test-type="TARIFFS.PREMIUM.code"
             />
         </div>
         <div class="mb-8" v-if="subjects">
@@ -82,7 +82,10 @@ async function fetchData() {
         is_main_for_block: true,
     })
     const bannersPromise = referencesStore.getBanners()
-    const selectionPromise = referencesStore.getSelection({ for_english: true })
+    const selectionPromise = referencesStore.getSelection({
+        for_english: true,
+        is_premium: false,
+    })
 
     const results = await Promise.allSettled([
         testTypesPromise,

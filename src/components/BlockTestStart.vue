@@ -13,6 +13,7 @@
                         :options="mainSubjects"
                         option-label="title"
                         :error="firstIsSelect"
+                        :isShaking="isShaking"
                         option-value="id"
                     />
                     <span v-if="firstIsSelect" class="text-red mt-1">
@@ -40,6 +41,7 @@
             <div class="flex justify-between items-center">
                 <q-badge
                     v-for="(subject, index) in MANDATORY_SUBJECTS"
+                    :key="index"
                     rounded
                     class="py-2 px-4"
                     color="secondary"
@@ -99,6 +101,7 @@ const data = ref({
 })
 
 const firstIsSelect = ref(false)
+const isShaking = ref(false)
 
 watch(
     () => data.value.s1,
@@ -114,8 +117,15 @@ watch(
 
 const checkFirstSelected = () => {
     if (data.value.s1) {
-        firstIsSelect.value = false
-    } else firstIsSelect.value = true
+        firstIsSelect.value = isShaking.value = false
+    } else {
+        if (navigator.vibrate) {
+            navigator.vibrate(200)
+            isShaking.value = true
+        }
+
+        firstIsSelect.value = true
+    }
 }
 
 const openModal = () => {

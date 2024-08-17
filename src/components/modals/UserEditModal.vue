@@ -62,20 +62,13 @@
                         $t('must_at_least_sign', { signCount: 3 }),
                 ]"
             />
-            <div class="grid grid-cols-2 gap-4">
-                <button
-                    v-close-popup
-                    class="px-5 w-full h-10 text-base rounded-xl bg-f1f2f4"
-                >
-                    {{ $t('no') }}
-                </button>
-                <button
-                    type="submit"
-                    class="px-5 w-full h-10 text-base text-white rounded-xl bg-primary"
-                >
-                    {{ $t('change') }}
-                </button>
-            </div>
+
+            <button
+                type="submit"
+                class="px-5 w-full h-10 text-base text-white rounded-xl bg-primary"
+            >
+                {{ $t('change') }}
+            </button>
         </q-form>
     </BaseModal>
 </template>

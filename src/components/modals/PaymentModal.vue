@@ -60,22 +60,13 @@
             </div>
 
             <div class="mt-6">
-                <div class="grid grid-cols-2 gap-4">
-                    <button
-                        v-close-popup
-                        class="px-5 w-full h-10 text-base rounded-xl bg-f1f2f4"
-                    >
-                        {{ $t('shut_down') }}
-                    </button>
-                    <!-- @click="submitButton" -->
-                    <q-btn
-                        :loading="loading"
-                        type="submit"
-                        class="px-5 w-full h-10 text-base text-white rounded-xl bg-primary"
-                    >
-                        {{ $t('add') }}
-                    </q-btn>
-                </div>
+                <q-btn
+                    :loading="loading"
+                    type="submit"
+                    class="px-5 w-full h-10 text-base text-white rounded-xl bg-primary"
+                >
+                    {{ $t('add') }}
+                </q-btn>
             </div>
         </q-form>
     </BaseModal>

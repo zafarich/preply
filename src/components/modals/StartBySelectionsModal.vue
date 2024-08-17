@@ -44,20 +44,12 @@ const startTest = () => {
                     </div>
                 </div>
 
-                <div class="grid grid-cols-2 gap-4">
-                    <button
-                        v-close-popup
-                        class="px-5 w-full h-10 text-base rounded-xl bg-f1f2f4"
-                    >
-                        {{ $t('cancel') }}
-                    </button>
-                    <button
-                        @click="startTest"
-                        class="px-5 w-full h-10 text-base text-white rounded-xl bg-primary"
-                    >
-                        {{ $t('start') }}
-                    </button>
-                </div>
+                <button
+                    @click="startTest"
+                    class="px-5 w-full h-10 text-base text-white rounded-xl bg-primary"
+                >
+                    {{ $t('start') }}
+                </button>
             </div>
         </div>
     </BaseModal>

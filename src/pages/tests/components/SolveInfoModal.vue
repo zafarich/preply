@@ -7,7 +7,7 @@
         <q-card class="p-10 rounded-12">
             <div class="row items-center q-pb-none">
                 <div class="title-modal font-medium text-lg">
-                    Tanlangan Testlar
+                    {{ $t('selected_tests') }}
                 </div>
                 <q-space />
                 <button class="close-modal_btn" v-close-popup>

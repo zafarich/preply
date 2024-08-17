@@ -1,5 +1,5 @@
 export default {
-    international_certificates: 'Xalqaro sertifikat testlari',
+    international_certificates: 'Xalqaro ingliz tili sertifikatlari',
     test_types: 'Test Turlari',
     popular_sciences: 'Ommabop fanlar',
     all: 'barchasi',
@@ -27,12 +27,12 @@ export default {
     error_confirmation_code: "Xato tasdiqlash ko'di",
     enter_the_correct_format: "To'g'ri formatda kiriting",
     card_number: 'Karta raqami',
-    card_expire_in: 'OO/YY',
+    card_expire_in: 'OO/YYYY',
     remember: 'Eslab qol',
     sms_code: 'Sms kod',
     attention: 'Diqqat',
     warning_test_test:
-        'Test boshlangandan keyin uni yakunlamasdan boshqa amallarni bajara olmaysiz !',
+        'Test boshlangandan keyin uni yakunlamasdan boshqa amallarni bajara olmaysiz!',
     cancel: 'Bekor qilish',
     name: 'Ismi',
     surname: 'Familyasi',
@@ -45,7 +45,7 @@ export default {
     my_subscriptions: 'Obunalarim',
     payment_history: "To'lovlar tarixi",
     tests: 'Testlar',
-    by_science: 'MOCK testlari',
+    by_science: "Fan bo'yicha",
     by_block: 'Blok test',
     by_variant: 'Variant test',
     back: 'Orqaga',
@@ -77,7 +77,7 @@ export default {
     main: 'Asosiy',
     profile: 'Profil',
     add_card: "Karta qo'shish",
-    you_have_not_card: 'Sizda hozircha hech qanday karta mavjud emas',
+    you_have_not_card: 'Sizda hozircha karta mavjud emas',
     purchase: 'Sotib olish',
     you_have_not_subscription: 'Sizda hozircha hech qanday obuna mavjud emas',
     //
@@ -101,7 +101,7 @@ export default {
         'Siz haqiqatdan ham profildan chiqmoqchimisiz?',
     exit: 'Chiqish',
     expired_in: 'Amal qilish muddati',
-    are_you_want_delete_card: "Kartani o'chirishni xoxlaysizmi?",
+    are_you_want_delete_card: "Kartani o'chirishni xohlaysizmi?",
     delete: "O'chirish",
     test_type: 'Test Turi',
     test_period: 'Test Vaqti',
@@ -125,16 +125,25 @@ export default {
     vacancy: 'Vakansiyalar',
     we_accept_payments: "Biz to'lovlarni qabul qilamiz",
     all_rights_reserved: 'Barcha huquqlar himoyalangan',
-    premium_info:
-        '6 oy muddatga barcha testlarni yechish imkoniyati. (*Prime testlardan tashqari)',
     prime_info:
-        '1 martalik prime (mock va blok) testlarini sotib olish imkoniyati. Yani 1ta obuna 1 marta test yechish imkoniyati.',
+        '6 oy muddatga barcha testlarni yechish imkoniyati. (*Premium testlardan tashqari)',
+    premium_info:
+        '1 martalik premium (mock va blok) testlarini sotib olish imkoniyati. Yani 1ta obuna 1 marta test yechish imkoniyati.',
 
+    // NEW TRANSLATES WITH CHECKING
     prime_test_count: 'Soni',
     math: 'Matematika',
     history: 'Tarix',
     mother_tongue: 'Ona tili',
     premium_tests: 'Premium testlar',
     prime_tests: 'Prime testlar',
-    //TODO: new
+
+    //TODO: MY
+    download_file: 'Faylni Yuklash',
+    dowload_result: 'Natijani Yuklash',
+    selected_tests: 'Tanlangan Testlar',
+    warning: 'Ogohlantirish',
+    warning_back_notify:
+        'Testni yakunlashni tavsiya qilamiz. Oraqaga qaytishni tasdiqlashingiz bilan ushbu test bekor qilinadi',
+    confirming: 'Tasdiqlash',
 }

@@ -6,7 +6,9 @@
             <div>{{ $t('have_question_call_us') }}</div>
             <div class="flex justify-start items-center gap-2">
                 <q-icon name="eva-phone-outline" color="" size="md" />
-                +998 88 888 88 88
+                <a href="tel:+998888888888" target="_blank">
+                    +998 88 888 88 88</a
+                >
             </div>
         </div>
 
@@ -18,16 +20,18 @@
         </div>
         <div
             class="py-3 flex justify-between items-center border-b cursor-pointer"
-            @click="toContactUs"
         >
-            {{ $t('to_cooperate_with_us') }}
+            <a href="tel:+998888888888" target="_blank">
+                {{ $t('to_cooperate_with_us') }}</a
+            >
         </div>
 
         <div
             class="py-3 flex justify-between items-center border-b cursor-pointer"
-            @click="toVacancies"
         >
-            {{ $t('vacancy') }}
+            <a href="tel:+998888888888" target="_blank">
+                {{ $t('vacancy') }}
+            </a>
         </div>
 
         <div class="py-3 flex justify-between items-center border-b">
@@ -43,30 +47,47 @@
         </div>
 
         <div class="py-3 flex gap-4 justify-center items-center">
-            <img
-                src="/icons/instagram.png"
-                alt=""
-                class="h-8 mb-8 cursor-pointer"
-            />
-            <img
-                src="/icons/telegram.png"
-                alt=""
-                class="h-8 mb-8 cursor-pointer"
-            />
-            <img
-                src="/icons/youtube.png"
-                alt=""
-                class="h-8 mb-8 cursor-pointer"
-            />
-            <img
-                src="/icons/facebook.png"
-                alt=""
-                class="h-8 mb-8 cursor-pointer"
-            />
+            <a
+                href="https://www.instagram.com/exbmba?igsh=MWYyZHIwZndoc281aA%3D%3D&utm_source=qr"
+                target="_blank"
+            >
+                <img
+                    src="/icons/instagram.png"
+                    alt=""
+                    class="h-8 mb-8 cursor-pointer"
+                />
+            </a>
+            <a href="https://t.me/exbmba" target="_blank">
+                <img
+                    src="/icons/telegram.png"
+                    alt=""
+                    class="h-8 mb-8 cursor-pointer"
+                />
+            </a>
+            <a
+                href="https://youtube.com/@exbmba?si=9EBwy7kaRLGCEjPt"
+                target="_blank"
+            >
+                <img
+                    src="/icons/youtube.png"
+                    alt=""
+                    class="h-8 mb-8 cursor-pointer"
+                />
+            </a>
+            <a
+                href="https://www.facebook.com/share/6bJvZVSu7eNw7kpZ/?mibextid=LQQJ4d"
+                target="_blank"
+            >
+                <img
+                    src="/icons/facebook.png"
+                    alt=""
+                    class="h-8 mb-8 cursor-pointer"
+                />
+            </a>
         </div>
 
         <div class="text-center text-sm py-3">
-            ©2024 EXBMBA, {{ $t('all_rights_reserved') }}
+            ©2024 White Rock IT Group MCHJ, {{ $t('all_rights_reserved') }}
         </div>
     </div>
 </template>
@@ -79,10 +100,11 @@ const router = useRouter()
 const toAboutUs = () => {
     router.push({ name: 'about-us' })
 }
-const toContactUs = () => {
-    router.push({ name: 'contact-us' })
-}
-const toVacancies = () => {
-    router.push({ name: 'vacancy' })
-}
+
+// const toContactUs = () => {
+//     router.push({ name: 'contact-us' })
+// }
+// const toVacancies = () => {
+//     router.push({ name: 'vacancy' })
+// }
 </script>

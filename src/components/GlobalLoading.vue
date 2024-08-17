@@ -12,7 +12,7 @@
             class="q-pa-md row justify-center items-center"
             style="background-color: white; height: 100%"
         >
-            <q-spinner-grid color="primary" size="50px" />
+            <q-spinner-ios color="primary" size="50px" />
         </div>
     </q-dialog>
 </template>

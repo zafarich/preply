@@ -130,23 +130,14 @@ const getSum = (item) => {
                     </div>
                 </q-card>
 
-                <div class="grid grid-cols-2 gap-4">
-                    <button
-                        v-close-popup
-                        class="px-5 w-full h-10 text-base rounded-xl bg-f1f2f4"
-                    >
-                        {{ $t('no') }}
-                    </button>
-
-                    <q-btn
-                        :loading="loading"
-                        @click="addSubscribe"
-                        :disabled="!tariff || !seletedCard"
-                        class="px-5 w-full h-10 text-base text-white rounded-xl bg-primary"
-                    >
-                        {{ $t('add') }}
-                    </q-btn>
-                </div>
+                <q-btn
+                    :loading="loading"
+                    @click="addSubscribe"
+                    :disabled="!tariff || !seletedCard"
+                    class="px-5 w-full h-10 text-base text-white rounded-xl bg-primary"
+                >
+                    {{ $t('add') }}
+                </q-btn>
             </div>
         </div>
     </BaseModal>
