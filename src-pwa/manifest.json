@@ -2,7 +2,7 @@
   "name": "EXBMBA",
   "short_name": "ExBmBa",
   "description": "www.Exbmba.com",
-  "start_url": "/",
+  "start_url": "/index.html",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#ffffff",

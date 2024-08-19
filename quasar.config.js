@@ -153,12 +153,6 @@ module.exports = configure(function (ctx) {
                         type: 'image/png',
                         purpose: 'any',
                     },
-                    {
-                        src: '/icons/global-loader.png',
-                        sizes: '192x192',
-                        type: 'image/png',
-                        purpose: 'any',
-                    },
                 ],
                 useCredentialsForManifestTag: false,
                 injectPwaMetaTags: true,
