@@ -136,6 +136,7 @@ const submitForm = async () => {
         })
     }
 
+    mainStore.changeFireWorks(true)
     mainStore.changeSiteLoader(false)
 }
 </script>

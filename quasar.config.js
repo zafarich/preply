@@ -111,7 +111,7 @@ module.exports = configure(function (ctx) {
 
         // https://v2.quasar.dev/quasar-cli-webpack/developing-ssr/configuring-ssr
         ssr: {
-            pwa: false,
+            // pwa: false,
 
             // manualStoreHydration: true,
             // manualPostHydrationTrigger: true,
@@ -135,33 +135,25 @@ module.exports = configure(function (ctx) {
         },
 
         // https://v2.quasar.dev/quasar-cli-webpack/developing-pwa/configuring-pwa
+
         pwa: {
-            workboxMode: 'generateSW', // or 'injectManifest'
-            workboxOptions: {}, // Workbox options
-
-            // for the custom service worker ONLY (/src-pwa/custom-service-worker.[js|ts])
-            // if using workbox in InjectManifest mode
-
-            chainWebpackCustomSW(chain) {
-                chain
-                    .plugin('eslint-webpack-plugin')
-                    .use(ESLintPlugin, [{ extensions: ['js'] }])
-            },
-
+            workboxMode: 'injectManifest',
+            workboxOptions: {}, // Workbox options go here
             manifest: {
-                name: `My App`,
-                short_name: `MyApp`,
-                description: `A Quasar project with PWA support`,
+                name: `Your App Name`,
+                short_name: `App`,
+                description: `Your app description`,
                 display: 'standalone',
                 orientation: 'portrait',
                 background_color: '#ffffff',
-                theme_color: '#027be3',
+                theme_color: '#027BE3',
                 icons: [
                     {
-                        src: 'icons/global-loader.svg',
+                        src: '/icons/global-loader.png',
                         sizes: '128x128',
-                        type: 'image/svg',
+                        type: 'image/png',
                     },
+                    // Add other icon sizes as needed
                 ],
             },
         },

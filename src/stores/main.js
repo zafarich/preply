@@ -6,6 +6,7 @@ export const useMainStore = defineStore('main', () => {
     const siteLoader = ref(false)
     const selectedTariffInfo = ref(TARIFFS.PREMIUM.code)
     const profileTab = ref(PROFILE_TABS.MY_DATA)
+    const showFireWorks = ref(false)
 
     function changeSiteLoader(value) {
         siteLoader.value = value
@@ -15,11 +16,17 @@ export const useMainStore = defineStore('main', () => {
         selectedTariffInfo.value = value
     }
 
+    function changeFireWorks(value) {
+        showFireWorks.value = value
+    }
+
     return {
         siteLoader,
         profileTab,
         selectedTariffInfo,
+        showFireWorks,
         changeSiteLoader,
+        changeFireWorks,
         changeSelectedTariffInfo,
     }
 })

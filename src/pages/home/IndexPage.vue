@@ -1,5 +1,6 @@
 <template>
     <div>
+        <div id="fireworks-container"></div>
         <div class="mb-8" v-if="banners">
             <Banner :banners="banners" />
         </div>
@@ -36,7 +37,6 @@ import Banner from './sections/Banner.vue'
 import TestTypes from './sections/TestTypes.vue'
 import PopularScience from './sections/PopularScience.vue'
 import TestsList from 'src/components/TestsList.vue'
-import VueJwtDecode from 'vue-jwt-decode'
 import { useUserStore } from 'src/stores/user'
 import { useMainStore } from 'src/stores/main'
 
@@ -44,6 +44,7 @@ import { useReferencesStore } from 'src/stores/references'
 import { useRoute, useRouter } from 'vue-router'
 import { useQuasar } from 'quasar'
 import { TARIFFS } from 'src/utils/constants'
+import { animateFireWorks } from 'src/utils/fireworks'
 
 const { t } = useI18n()
 const userStore = useUserStore()

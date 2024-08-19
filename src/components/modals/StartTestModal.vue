@@ -2,9 +2,13 @@
 import { storeToRefs } from 'pinia'
 import BaseModal from 'src/components/UI/BaseModal.vue'
 import { useModalStore } from 'src/stores/modal'
+import { ref } from 'vue'
 
 const modalStore = useModalStore()
 const { startModal } = storeToRefs(modalStore)
+
+const is_agree = ref(false)
+
 const emit = defineEmits(['startTest'])
 
 const close = () => {
@@ -40,8 +44,15 @@ const startTest = () => {
                     </div>
                 </div>
 
+                <q-toggle
+                    v-model="is_agree"
+                    label="Offerta shartlarini qabul qilaman"
+                    class="mb-2"
+                />
+
                 <button
                     @click="startTest"
+                    :disabled="!is_agree"
                     class="px-5 w-full h-10 text-base text-white rounded-xl bg-primary"
                 >
                     {{ $t('start') }}

@@ -108,12 +108,14 @@ import { useUserStore } from 'src/stores/user'
 import { useQuasar } from 'quasar'
 import { priceFormat } from 'src/utils/helpers'
 import { TARIFFS } from 'src/utils/constants'
+import { useMainStore } from 'src/stores/main'
 
 const modalStore = useModalStore()
 const { subscriptionModal } = storeToRefs(modalStore)
 
 const billingStore = useBillingStore()
 const userStore = useUserStore()
+const mainStore = useMainStore()
 
 const $q = useQuasar()
 
@@ -132,6 +134,8 @@ const addSubscribe = async () => {
         await billingStore.paySubscription(res.id)
         await billingStore.getSubscriptions({ page_size: 1000 })
         subscriptionModal.value = false
+
+        mainStore.changeFireWorks(true)
     } catch (error) {
         $q.notify({
             color: 'red-5',

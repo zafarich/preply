@@ -88,13 +88,6 @@ const routes = [
         component: () => import('layouts/TestLayout.vue'),
         children: [
             {
-                path: 'solving',
-                name: 'tests.solving',
-                component: () => import('pages/tests/TestSolvePage.vue'),
-                meta: { middlewares: [auth] },
-            },
-
-            {
                 path: '/test-solve',
                 name: 'test-solve',
                 component: () => import('pages/tests/TestScrollPage.vue'),
