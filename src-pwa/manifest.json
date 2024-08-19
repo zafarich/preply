@@ -1,16 +1,17 @@
 {
-  "name": "Your App Name",
-  "short_name": "App Name",
-  "description": "Your App Description",
-  "start_url": ".",
+  "name": "EXBMBA",
+  "short_name": "ExBmBa",
+  "description": "www.Exbmba.com",
+  "start_url": "/",
   "display": "standalone",
+  "orientation": "portrait",
   "background_color": "#ffffff",
   "theme_color": "#027be3",
   "icons": [
     {
-      "src": "/icons/global-loader.svg",
-      "sizes": "128x128",
-      "type": "image/svg"
+      "src": "/icons/global-loader.png",
+      "sizes": "144x144",
+      "type": "image/png"
     }
   ]
 }

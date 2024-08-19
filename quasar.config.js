@@ -137,24 +137,31 @@ module.exports = configure(function (ctx) {
         // https://v2.quasar.dev/quasar-cli-webpack/developing-pwa/configuring-pwa
 
         pwa: {
-            workboxMode: 'injectManifest',
-            workboxOptions: {}, // Workbox options go here
+            workboxMode: 'generateSW', // or 'injectManifest'
             manifest: {
-                name: `Your App Name`,
-                short_name: `App`,
-                description: `Your app description`,
+                name: 'EXBMBA',
+                short_name: 'ExBmBa',
+                description: 'www.Exbmba.com',
                 display: 'standalone',
                 orientation: 'portrait',
                 background_color: '#ffffff',
-                theme_color: '#027BE3',
+                theme_color: '#027be3',
                 icons: [
                     {
                         src: '/icons/global-loader.png',
-                        sizes: '128x128',
+                        sizes: '144x144',
                         type: 'image/png',
+                        purpose: 'any',
                     },
-                    // Add other icon sizes as needed
+                    {
+                        src: '/icons/global-loader.png',
+                        sizes: '192x192',
+                        type: 'image/png',
+                        purpose: 'any',
+                    },
                 ],
+                useCredentialsForManifestTag: false,
+                injectPwaMetaTags: true,
             },
         },
 
