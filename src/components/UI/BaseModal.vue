@@ -2,6 +2,9 @@
 import { ref, useAttrs } from 'vue-demi'
 
 const emit = defineEmits(['update:modelValue', 'close', 'beforeShow'])
+const props = defineProps({
+    modelValue: Boolean,
+})
 
 const mouseDownWithinModal = ref(false)
 const attrs = useAttrs()

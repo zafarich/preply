@@ -25,6 +25,7 @@
             icon="eva-bar-chart-outline"
             no-caps
             :label="$t('leaders')"
+            @click="() => console.log('hello')"
         />
         <q-btn
             class="relative flex flex-col"

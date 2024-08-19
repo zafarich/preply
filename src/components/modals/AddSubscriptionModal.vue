@@ -1,60 +1,3 @@
-<script setup>
-import { storeToRefs } from 'pinia'
-import BaseModal from 'src/components/UI/BaseModal.vue'
-import { useModalStore } from 'src/stores/modal'
-import BaseSelect from 'src/components/UI/BaseSelect.vue'
-import { useBillingStore } from 'src/stores/billing'
-import { computed, onMounted } from 'vue'
-import { ref } from 'vue'
-import { useUserStore } from 'src/stores/user'
-import { useQuasar } from 'quasar'
-import { priceFormat } from 'src/utils/helpers'
-import { TARIFFS } from 'src/utils/constants'
-
-const modalStore = useModalStore()
-const { subscriptionModal } = storeToRefs(modalStore)
-
-const billingStore = useBillingStore()
-const userStore = useUserStore()
-
-const $q = useQuasar()
-
-const tariff = ref('')
-const seletedCard = ref('')
-const loading = ref(false)
-
-const addSubscribe = async () => {
-    try {
-        loading.value = true
-        const res = await billingStore.createSubscription({
-            tariff: tariff.value.id,
-            card: seletedCard.value,
-        })
-        await billingStore.paySubscription(res.id)
-        await billingStore.getSubscriptions({ page_size: 1000 })
-        subscriptionModal.value = false
-    } catch (error) {
-        $q.notify({
-            color: 'red-5',
-            textColor: 'white',
-            position: 'top',
-            icon: 'warning',
-            message: error.response.data.error.message,
-        })
-    }
-
-    loading.value = false
-}
-
-const close = () => {
-    subscriptionModal.value = false
-}
-
-const getSum = (item) => {
-    return priceFormat(Math.ceil(item.price / 100))
-}
-</script>
-
 <template>
     <BaseModal
         :model-value="subscriptionModal"
@@ -90,6 +33,17 @@ const getSum = (item) => {
                         </div>
                     </div>
                 </q-card>
+
+                <div
+                    v-if="tariff.unique_name == TARIFFS.PREMIUM.code"
+                    class="mb-2"
+                >
+                    <q-input
+                        outlined
+                        v-model="quantity"
+                        :label="$t('prime_test_count')"
+                    />
+                </div>
 
                 <div
                     v-if="tariff"
@@ -142,7 +96,63 @@ const getSum = (item) => {
         </div>
     </BaseModal>
 </template>
+<script setup>
+import { storeToRefs } from 'pinia'
+import BaseModal from 'src/components/UI/BaseModal.vue'
+import { useModalStore } from 'src/stores/modal'
+import BaseSelect from 'src/components/UI/BaseSelect.vue'
+import { useBillingStore } from 'src/stores/billing'
+import { computed, onMounted } from 'vue'
+import { ref } from 'vue'
+import { useUserStore } from 'src/stores/user'
+import { useQuasar } from 'quasar'
+import { priceFormat } from 'src/utils/helpers'
+import { TARIFFS } from 'src/utils/constants'
 
+const modalStore = useModalStore()
+const { subscriptionModal } = storeToRefs(modalStore)
+
+const billingStore = useBillingStore()
+const userStore = useUserStore()
+
+const $q = useQuasar()
+
+const tariff = ref('')
+const seletedCard = ref('')
+const loading = ref(false)
+const quantity = ref(0)
+
+const addSubscribe = async () => {
+    try {
+        loading.value = true
+        const res = await billingStore.createSubscription({
+            tariff: tariff.value.id,
+            card: seletedCard.value,
+        })
+        await billingStore.paySubscription(res.id)
+        await billingStore.getSubscriptions({ page_size: 1000 })
+        subscriptionModal.value = false
+    } catch (error) {
+        $q.notify({
+            color: 'red-5',
+            textColor: 'white',
+            position: 'top',
+            icon: 'warning',
+            message: error.response.data.error.message,
+        })
+    }
+
+    loading.value = false
+}
+
+const close = () => {
+    subscriptionModal.value = false
+}
+
+const getSum = (item) => {
+    return priceFormat(Math.ceil(item.price / 100))
+}
+</script>
 <style>
 /* Your component styles here */
 </style>

@@ -12,7 +12,9 @@
             class="q-pa-md row justify-center items-center"
             style="background-color: white; height: 100%"
         >
-            <q-spinner-ios color="primary" size="50px" />
+            <!-- <q-spinner-ios color="primary" size="50px" /> -->
+
+            <img src="/icons/global-loader.svg" class="spinner h-16" />
         </div>
     </q-dialog>
 </template>
@@ -23,3 +25,20 @@ import { useMainStore } from 'src/stores/main'
 
 const { siteLoader } = storeToRefs(useMainStore())
 </script>
+
+<style scoped>
+.spinner {
+    animation: spin 0.8s linear infinite;
+    width: 50px; /* Adjust size */
+    height: 50px;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+</style>
