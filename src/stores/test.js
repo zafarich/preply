@@ -87,8 +87,8 @@ export const useTestStore = defineStore(
             }
         }
 
-        async function FETCH_TEST_RESULT() {
-            const res = await api.getTestResultDetail(tests.value?.id)
+        async function FETCH_TEST_RESULT(id = tests.value.id) {
+            const res = await api.getTestResultDetail(id)
             test_results.value = res
 
             return res

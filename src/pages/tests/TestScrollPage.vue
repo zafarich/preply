@@ -47,7 +47,7 @@
 
                 <div v-else-if="testStore.GET_TEST_TYPE === TEST_TYPES.BLOCK">
                     <div
-                        class="w-full text-lg border border-primary rounded-10 text-center py-1.5 mb-1.5"
+                        class="w-full text-lg border-2 border-[#4f9e91] rounded-10 text-center py-1.5 mb-1.5"
                         v-for="(subject, index) in testStore.GET_TESTS
                             .block_test_subjects"
                         :key="index"
@@ -61,7 +61,7 @@
                     "
                 >
                     <div
-                        class="w-full text-lg border border-primary rounded-10 text-center py-1.5 mb-1.5"
+                        class="w-full text-lg border-2 border-[#4f9e91] rounded-10 text-center py-1.5 mb-1.5"
                         v-for="(subject, index) in testStore.GET_TESTS
                             .block_test_subjects"
                         :key="index"

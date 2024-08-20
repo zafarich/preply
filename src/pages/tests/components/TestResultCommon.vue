@@ -113,7 +113,6 @@
 import { useTestStore } from 'src/stores/test'
 import { computed, ref } from 'vue'
 
-import html2pdf from 'html2pdf.js'
 import { useQuasar } from 'quasar'
 
 const testStore = useTestStore()
@@ -121,7 +120,11 @@ const pdfContent = ref(null)
 
 const $q = useQuasar()
 
-const emit = defineEmits(['returnListItemColor', 'downloadPdf'])
+const emit = defineEmits([
+    'returnListItemColor',
+    'downloadPdf',
+    'dowloadResultPage',
+])
 
 const returnListItemColor = (item, cIndex) => {
     if (item.is_correct && cIndex == item.correct_answer) {
@@ -142,32 +145,8 @@ const returnBorderColor = (item) => {
     } else return '!border-gray-500'
 }
 
-const dowloadResultPage = () => {
-    try {
-        const options = {
-            margin: 10,
-            filename: 'my-result.pdf',
-            image: { type: 'jpeg', quality: 0.98 },
-            html2canvas: { scale: 2 },
-            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-        }
-
-        html2pdf().from(pdfContent.value).set(options).save()
-
-        $q.notify({
-            type: 'positive',
-            textColor: 'white',
-            position: 'top',
-            message: 'Result File Saved',
-        })
-    } catch (error) {
-        $q.notify({
-            type: 'negative',
-            textColor: 'white',
-            position: 'top',
-            message: 'Failed',
-        })
-    }
+const dowloadResultPage = async () => {
+    emit('dowloadResultPage', pdfContent.value)
 }
 
 const downloadPdf = async (pdfUrl) => {

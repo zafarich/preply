@@ -3,8 +3,13 @@
         <TestResultBlock
             v-if="testStore.test_type == TEST_TYPES.BLOCK"
             @downloadPdf="downloadPdf"
+            @dowloadResultPage="dowloadResultPage"
         />
-        <TestResultCommon v-else @downloadPdf="downloadPdf" />
+        <TestResultCommon
+            v-else
+            @downloadPdf="downloadPdf"
+            @dowloadResultPage="dowloadResultPage"
+        />
         <div
             class="fixed bottom-14 right-4 border rounded-full p-3 bg-orange-500 cursor-pointer"
             @click="scrollToTop"
@@ -23,8 +28,12 @@ import TestResultBlock from './components/TestResultBlock.vue'
 import { TEST_TYPES } from 'src/utils/constants'
 import { onMounted, ref } from 'vue'
 import { api } from 'src/boot/axios'
+import html2pdf from 'html2pdf.js'
+import { useQuasar } from 'quasar'
 const testStore = useTestStore()
 const showIcon = ref(false)
+
+const $q = useQuasar()
 
 const downloadPdf = async (pdfUrl) => {
     try {
@@ -32,11 +41,14 @@ const downloadPdf = async (pdfUrl) => {
             responseType: 'blob',
         })
 
-        console.log('resulponse', response)
+        const fileUrl = response.request.responseURL
+
+        const fileName = fileUrl.substring(fileUrl.lastIndexOf('/') + 1)
+
         const url = window.URL.createObjectURL(new Blob([response.data]))
         const link = document.createElement('a')
         link.href = url
-        link.setAttribute('download', 'your-pdf-file.pdf') // You can set the file name here
+        link.setAttribute('download', fileName) // You can set the file name here
         document.body.appendChild(link)
         link.click()
         link.remove()
@@ -58,6 +70,48 @@ const downloadPdf = async (pdfUrl) => {
         })
     }
 }
+const dowloadResultPage = async (pdfContent) => {
+    try {
+        const options = {
+            margin: 10,
+            filename: 'my-result.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+        }
+
+        // Generate the PDF as a blob
+        const pdfBlob = await html2pdf()
+            .from(pdfContent)
+            .set(options)
+            .outputPdf('blob')
+
+        // Create a link element and force the download
+        const link = document.createElement('a')
+        link.href = URL.createObjectURL(pdfBlob)
+        link.download = 'my-result.pdf'
+        document.body.appendChild(link)
+        link.click()
+        document.body.removeChild(link)
+
+        $q.notify({
+            type: 'positive',
+            textColor: 'white',
+            position: 'top',
+            message: 'Result File Saved',
+        })
+    } catch (error) {
+        console.log('error', error)
+
+        $q.notify({
+            type: 'negative',
+            textColor: 'white',
+            position: 'top',
+            message: 'Failed',
+        })
+    }
+}
+
 onMounted(() => {
     window.addEventListener('scroll', () => {
         const scrollIcon = document.getElementById('scrollIcon')

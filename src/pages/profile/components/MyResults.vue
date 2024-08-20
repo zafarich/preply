@@ -5,9 +5,10 @@
             bordered
             :rows="results"
             :columns="columns"
-            row-key="score"
             hide-bottom=""
             :pagination.sync="pagination"
+            row-key="score"
+            @row-click="goToResultPage"
         >
             <template v-slot:body-cell-score="props">
                 <q-td :props="props">
@@ -50,7 +51,10 @@ import {} from 'vue'
 import { ref, computed, watch } from 'vue'
 import { useTestStore } from 'src/stores/test'
 import { useI18n } from 'vue-i18n'
+import { useRouter } from 'vue-router'
+import { useMainStore } from 'src/stores/main'
 
+const router = useRouter()
 const testStore = useTestStore()
 const props = defineProps({
     count: {
@@ -110,6 +114,20 @@ const getTestTypeText = (key) => {
     const testType = TEST_TYPE_LIST.find((type) => type.key === key)
     console.log('testType', testType)
     return testType ? testType.text : key
+}
+
+const goToResultPage = async (event, row) => {
+    console.log('rowww', row.id)
+    useMainStore().changeSiteLoader(true)
+
+    let res = await testStore.FETCH_TEST_RESULT(row.id)
+
+    if (res?.id) {
+        testStore.RESET_TEST_STORE()
+        router.replace({ name: 'test.result', params: { id: res.id } })
+    }
+
+    useMainStore().changeSiteLoader(false)
 }
 
 const calculateDuration = (start, end) => {

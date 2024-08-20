@@ -13,7 +13,7 @@
             <span class="ml-1"> {{ $t('download_result') }} </span>
         </q-btn>
     </div>
-    <div class="q-pa-sm font-medium">
+    <div class="q-pa-sm font-medium" ref="pdfContent">
         <div class="font-semibold text-xl my-4 text-center">
             <div>
                 {{ testStore.GET_TEST_RESULTS?.test_type.title }}
@@ -106,43 +106,23 @@
 
 <script setup>
 import { useTestStore } from 'src/stores/test'
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import html2pdf from 'html2pdf.js'
 import { useQuasar } from 'quasar'
 
 const testStore = useTestStore()
 
-const emit = defineEmits(['returnListItemColor', 'downloadPdf'])
+const emit = defineEmits([
+    'returnListItemColor',
+    'downloadPdf',
+    'dowloadResultPage',
+])
 
 const pdfContent = ref(null)
 const $q = useQuasar()
 
-const dowloadResultPage = () => {
-    try {
-        const options = {
-            margin: 10,
-            filename: 'my-result.pdf',
-            image: { type: 'jpeg', quality: 0.98 },
-            html2canvas: { scale: 2 },
-            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-        }
-
-        html2pdf().from(pdfContent.value).set(options).save()
-
-        $q.notify({
-            type: 'positive',
-            textColor: 'white',
-            position: 'top',
-            message: 'Result File Saved',
-        })
-    } catch (error) {
-        $q.notify({
-            type: 'negative',
-            textColor: 'white',
-            position: 'top',
-            message: 'Failed',
-        })
-    }
+const dowloadResultPage = async () => {
+    emit('dowloadResultPage', pdfContent.value)
 }
 
 const getAllResults = computed(() => {

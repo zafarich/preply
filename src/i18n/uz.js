@@ -140,7 +140,7 @@ export default {
 
     //TODO: MY
     download_file: 'Faylni Yuklash',
-    dowload_result: 'Natijani Yuklash',
+    download_result: 'Natijani Yuklash',
     selected_tests: 'Tanlangan Testlar',
     warning: 'Ogohlantirish',
     warning_back_notify:
