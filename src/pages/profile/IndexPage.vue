@@ -9,7 +9,7 @@
                     @click="changeProfileTab(tabItem.key)"
                     :label="$t(tabItem.name)"
                     :outline="tabs !== tabItem.key"
-                    color="secondary"
+                    color="primary"
                 />
             </div>
 

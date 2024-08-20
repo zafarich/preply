@@ -57,17 +57,17 @@
                 </div>
                 <div class="info-item">
                     <div class="key flex items-center gap-3">
-                        Premium obuna
-                        <img :src="TARIFFS.PREMIUM.icon" class="w-5 h-5" />
+                        Prime obuna
+                        <img :src="TARIFFS.PRIME.icon" class="w-5 h-5" />
                     </div>
                     <div class="value">
                         <q-badge
-                            v-if="userStore.userData.is_premium"
+                            v-if="userStore.userData.is_prime"
                             color="primary"
                             no-caps
                             class="py-2"
                         >
-                            {{ userStore.userData.premium_expiration_date }}
+                            {{ userStore.userData.prime_expiration_date }}
                             gacha
                         </q-badge>
                         <q-badge class="py-2" v-else color="red" no-caps>
@@ -77,22 +77,22 @@
                 </div>
                 <div class="info-item">
                     <div class="key flex items-center gap-3">
-                        Prime obuna
-                        <img :src="TARIFFS.PRIME.icon" class="w-5 h-5" />
+                        Premium obuna
+                        <img :src="TARIFFS.PREMIUM.icon" class="w-5 h-5" />
                     </div>
                     <div class="value">
                         <q-badge
                             class="py-2"
-                            v-if="userStore.userData.is_prime"
+                            v-if="userStore.userData.is_premium"
                             color="primary"
                             no-caps
                         >
-                            <span v-if="userStore.userData.is_prime === true">
+                            <span v-if="userStore.userData.is_premium === true">
                                 <img src="/icons/infinity.png" class="w-3.5" />
                             </span>
 
                             <span v-else>
-                                {{ userStore.userData.is_prime }} ta
+                                {{ userStore.userData.is_premium }} ta
                             </span>
                         </q-badge>
                         <q-badge class="py-2" v-else color="red" no-caps>

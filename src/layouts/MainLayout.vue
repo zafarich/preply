@@ -48,10 +48,10 @@ const isShowFooter = computed(() => {
 })
 
 onMounted(() => {
-    if (showFireWorks.value) {
-        const container = document.getElementById('fireworks-container')
-        animateFireWorks(container)
-    }
+    // if (showFireWorks.value) {
+    const container = document.getElementById('fireworks-container')
+    animateFireWorks(container)
+    // }
 
     if (!!testStore.GET_TESTS && route.name !== 'test-solve') {
         router.push({

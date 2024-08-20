@@ -10,7 +10,7 @@
                     @click="changeTestType(testType.key)"
                     :label="$t(testType.name)"
                     :outline="GET_TEST_TYPE !== testType.key"
-                    color="secondary"
+                    color="primary"
                 />
             </div>
 
@@ -51,8 +51,8 @@ const route = useRoute()
 
 const testTypesList = ref([
     {
-        name: 'by_science',
-        key: TEST_TYPES.BY_SUBJECTS,
+        name: 'Milliy sertifikat testlari',
+        key: TEST_TYPES.SERTIFICATE,
     },
     {
         name: 'by_block',

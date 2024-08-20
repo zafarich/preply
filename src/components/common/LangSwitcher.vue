@@ -105,6 +105,7 @@ const changeLang = async (lang) => {
     .q-icon {
         color: $primary;
         margin-left: 5px;
+        display: none;
     }
     &-dropdown {
         .flag-icon {

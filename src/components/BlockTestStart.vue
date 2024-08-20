@@ -44,7 +44,7 @@
                     :key="index"
                     rounded
                     class="py-2 px-4"
-                    color="secondary"
+                    color="primary"
                     :label="$t(subject.label)"
                 />
             </div>
