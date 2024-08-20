@@ -85,7 +85,7 @@ const mainStore = useMainStore()
 const router = useRouter()
 const phone = ref('+998 ')
 const password = ref('')
-const isPwd = ref(false)
+const isPwd = ref(true)
 
 const { t: $tranlate } = useI18n()
 
@@ -136,8 +136,10 @@ const submitForm = async () => {
         })
     }
 
-    mainStore.changeFireWorks(true)
-    mainStore.changeSiteLoader(false)
+    setTimeout(() => {
+        mainStore.changeFireWorks(true)
+        mainStore.changeSiteLoader(false)
+    }, 1000)
 }
 </script>
 

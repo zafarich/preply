@@ -1,6 +1,6 @@
 <template>
     <div class="main-layout">
-        <div id="fireworks-container"></div>
+        <Fireworks />
         <TheHeader />
         <div class="app-container">
             <router-view />
@@ -31,44 +31,26 @@ import { computed } from 'vue'
 import PremiumPeriodModal from 'src/components/modals/PremiumPeriodModal.vue'
 import TariffInfoModal from 'src/components/modals/TariffInfoModal.vue'
 import { useMainStore } from 'src/stores/main'
-import { useReferencesStore } from 'src/stores/references'
 import LogoutModal from 'src/components/modals/LogoutModal.vue'
-import { animateFireWorks } from 'src/utils/fireworks'
 import { storeToRefs } from 'pinia'
+import Fireworks from 'src/components/Fireworks.vue'
 
 const router = useRouter()
 const route = useRoute()
 const testStore = useTestStore()
 const mainStore = useMainStore()
 
-const { showFireWorks } = storeToRefs(mainStore)
-
 const isShowFooter = computed(() => {
     return route.name == 'home'
 })
 
 onMounted(() => {
-    // if (showFireWorks.value) {
-    const container = document.getElementById('fireworks-container')
-    animateFireWorks(container)
-    // }
-
     if (!!testStore.GET_TESTS && route.name !== 'test-solve') {
         router.push({
             name: 'test-solve',
         })
     }
 })
-
-watch(
-    () => showFireWorks.value,
-    () => {
-        if (showFireWorks.value) {
-            const container = document.getElementById('fireworks-container')
-            animateFireWorks(container)
-        }
-    },
-)
 </script>
 
 <style scoped>

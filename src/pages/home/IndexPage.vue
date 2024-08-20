@@ -41,10 +41,8 @@ import { useUserStore } from 'src/stores/user'
 import { useMainStore } from 'src/stores/main'
 
 import { useReferencesStore } from 'src/stores/references'
-import { useRoute, useRouter } from 'vue-router'
 import { useQuasar } from 'quasar'
 import { TARIFFS } from 'src/utils/constants'
-import { animateFireWorks } from 'src/utils/fireworks'
 
 const { t } = useI18n()
 const userStore = useUserStore()

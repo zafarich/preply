@@ -61,7 +61,7 @@
                     <div class="font-medium mb-2">{{ $t('Password') }} :</div>
                     <input
                         v-model="password1"
-                        :type="isPwd ? 'password' : 'text'"
+                        :type="isPwd1 ? 'password' : 'text'"
                         :class="{ 'base-input__error': v$.password1.$error }"
                         :label="$t('Password')"
                         class="base-input w-full text-base !pr-10 tracking-widest"
@@ -87,7 +87,7 @@
                     <div class="font-medium mb-2">{{ $t('Password') }} :</div>
                     <input
                         v-model="password2"
-                        :type="isPwd ? 'password' : 'text'"
+                        :type="isPwd2 ? 'password' : 'text'"
                         :class="{ 'base-input__error': v$.password2.$error }"
                         :label="$t('Password')"
                         class="base-input w-full text-base !pr-10 tracking-widest"

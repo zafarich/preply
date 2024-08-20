@@ -5,6 +5,7 @@
         transition-show="jump-up"
         transition-hide="jump-down"
         hide-bottom-space
+        :class="{ shake: isShaking }"
         lazy-rules="ondemand"
         v-bind="attrs"
         options-dense
@@ -59,6 +60,10 @@ defineProps({
     modelValue: [Number, String, Object],
     placeholder: String,
     required: {
+        type: Boolean,
+        default: false,
+    },
+    isShaking: {
         type: Boolean,
         default: false,
     },
@@ -145,6 +150,26 @@ function change(v) {
     .disabled,
     [disabled] {
         opacity: 1 !important;
+    }
+    .shake {
+        animation: shake 0.5s;
+    }
+    @keyframes shake {
+        0% {
+            transform: translateX(0);
+        }
+        25% {
+            transform: translateX(-5px);
+        }
+        50% {
+            transform: translateX(5px);
+        }
+        75% {
+            transform: translateX(-5px);
+        }
+        100% {
+            transform: translateX(0);
+        }
     }
 }
 </style>

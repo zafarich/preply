@@ -132,6 +132,7 @@ import { copyToClipboard, useQuasar } from 'quasar'
 import { useUserStore } from 'src/stores/user'
 import { TARIFFS } from 'src/utils/constants'
 import { hashUserId } from 'src/utils/auth'
+import { useMainStore } from 'src/stores/main'
 
 const props = defineProps({
     filePassword: {

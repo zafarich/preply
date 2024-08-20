@@ -27,11 +27,13 @@
 <script setup>
 import { storeToRefs } from 'pinia'
 import BaseModal from 'src/components/UI/BaseModal.vue'
+import { useMainStore } from 'src/stores/main'
 import { useModalStore } from 'src/stores/modal'
 import { useUserStore } from 'src/stores/user'
 import { useRouter } from 'vue-router'
 
 const modalStore = useModalStore()
+const mainStore = useMainStore()
 
 const router = useRouter()
 
@@ -39,6 +41,7 @@ const { logoutModal } = storeToRefs(modalStore)
 
 const close = () => {
     logoutModal.value = false
+    mainStore.changeFireWorks(false)
 }
 
 const logout = () => {
