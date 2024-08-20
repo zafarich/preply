@@ -1,6 +1,6 @@
 import { Fireworks } from 'fireworks-js'
 //TODO
-// import { useMainStore } from 'src/stores/main'
+import { useMainStore } from 'src/stores/main'
 
 export function animateFireWorks(container) {
     const fireworks = new Fireworks(container, {

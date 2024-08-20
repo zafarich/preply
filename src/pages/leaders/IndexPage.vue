@@ -26,7 +26,7 @@
             <BaseSelect
                 v-model="region"
                 outlined
-                :placeholder="$t('province')"
+                placeholder="Hudud"
                 emit-value
                 map-options
                 :options="referenceStore.regions"

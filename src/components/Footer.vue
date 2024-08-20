@@ -6,8 +6,8 @@
             <div>{{ $t('have_question_call_us') }}</div>
             <div class="flex justify-start items-center gap-2">
                 <q-icon name="eva-phone-outline" color="" size="md" />
-                <a href="tel:+998888888888" target="_blank">
-                    +998 88 888 88 88</a
+                <a href="tel:+998712001117" target="_blank">
+                    +998 71 200 11 17</a
                 >
             </div>
         </div>
@@ -21,7 +21,7 @@
         <div
             class="py-3 flex justify-between items-center border-b cursor-pointer"
         >
-            <a href="tel:+998888888888" target="_blank">
+            <a href="tel:+998712001117" target="_blank">
                 {{ $t('to_cooperate_with_us') }}</a
             >
         </div>
@@ -29,7 +29,7 @@
         <div
             class="py-3 flex justify-between items-center border-b cursor-pointer"
         >
-            <a href="tel:+998888888888" target="_blank">
+            <a href="tel:+998712001117" target="_blank">
                 {{ $t('vacancy') }}
             </a>
         </div>
