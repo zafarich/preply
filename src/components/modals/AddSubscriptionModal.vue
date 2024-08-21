@@ -155,7 +155,7 @@ const getSum = (item) => {
 #add-subs-modal {
     .q-dialog__inner--minimized {
         /* padding: 24px; */
-        padding: 0;
+        padding: 10px;
     }
 }
 /* Your component styles here */
