@@ -71,20 +71,10 @@ export const useTestStore = defineStore(
         }
 
         function SELECT_ANSWER(index, question_index) {
-            // console.log('selectedanserver')
-            const countOfSolvedQuestions = test_questions.value.filter(
-                (question) => question.selected_answer,
-            ).length
+            test_questions.value.filter((question) => question.selected_answer)
+                .length
 
-            if (
-                countOfSolvedQuestions >= 10 &&
-                !useUserStore().userData.is_premium
-            ) {
-                useModalStore().changeBuySubscriptionModal(true)
-                isEndLimit.value = true
-            } else {
-                test_questions.value[question_index].selected_answer = index
-            }
+            test_questions.value[question_index].selected_answer = index
         }
 
         async function FETCH_TEST_RESULT(id = tests.value.id) {
