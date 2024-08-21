@@ -111,10 +111,16 @@ const submitForm = async () => {
 
     mainStore.changeSiteLoader(true)
     try {
-        await userStore.login({
+        const response = await userStore.login({
             phone: phone.value.replace(/\s/g, ''),
             password: password.value,
         })
+
+        if (response.refresh && response.access) {
+            setTimeout(() => {
+                mainStore.changeFireWorks(true)
+            }, 1000)
+        }
 
         router.push({ name: 'home' })
 
@@ -122,7 +128,8 @@ const submitForm = async () => {
             color: 'green-4',
             textColor: 'white',
             icon: 'cloud_done',
-            position: 'top',
+            timeout: 1000,
+            position: 'center',
             message: $tranlate('success_welcome'),
         })
     } catch (error) {
@@ -137,7 +144,6 @@ const submitForm = async () => {
     }
 
     setTimeout(() => {
-        mainStore.changeFireWorks(true)
         mainStore.changeSiteLoader(false)
     }, 1000)
 }

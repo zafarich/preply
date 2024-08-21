@@ -52,8 +52,6 @@ export const useUserStore = defineStore(
                 token.value = res.access
             }
 
-            console.log('hi', res.access)
-
             const res2 = await getMe()
 
             useLangStore().setLanguage(res2.language)

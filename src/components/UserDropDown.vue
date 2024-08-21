@@ -11,7 +11,7 @@
 
         <img
             v-else
-            src="icons/user-icon.svg"
+            src="/icons/user-icon.svg"
             alt="dropdown label"
             class="dropdown-label"
             @click="toggleDropdown"

@@ -33,15 +33,15 @@ const particles = ref(50) // Количество частиц в каждом �
 
 const { showFireWorks } = storeToRefs(mainStore)
 
-// onMounted(() => {
-//     // if (showFireWorks.value) {
-//     const leftExplosions = document.querySelectorAll('.explosion.left')
-//     const rightExplosions = document.querySelectorAll('.explosion.right')
+onMounted(() => {
+    if (showFireWorks.value) {
+        const leftExplosions = document.querySelectorAll('.explosion.left')
+        const rightExplosions = document.querySelectorAll('.explosion.right')
 
-//     triggerExplosions(leftExplosions, 'left')
-//     triggerExplosions(rightExplosions, 'right')
-//     // }
-// })
+        triggerExplosions(leftExplosions, 'left')
+        triggerExplosions(rightExplosions, 'right')
+    }
+})
 
 watch(
     () => showFireWorks.value,

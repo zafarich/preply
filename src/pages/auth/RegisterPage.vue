@@ -137,8 +137,10 @@ import { useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import useVuelidate from '@vuelidate/core'
 import { required, minLength, email } from '@vuelidate/validators'
+import { useMainStore } from 'src/stores/main'
 
 const userStore = useUserStore()
+const mainStore = useMainStore()
 const registerRef = ref('')
 const first_name = ref('')
 const last_name = ref('')
@@ -194,12 +196,18 @@ const submitForm = async () => {
         })
 
         if (res) {
-            await userStore.login({
+            const response = await userStore.login({
                 phone: phone.value.replace(/\s/g, ''),
                 password: password1.value,
             })
 
             router.push({ name: 'home' })
+
+            if (response.refresh && response.access) {
+                setTimeout(() => {
+                    mainStore.changeFireWorks(true)
+                }, 1000)
+            }
         }
 
         $q.notify({

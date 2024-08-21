@@ -307,7 +307,9 @@ async function confirmEndTest() {
     if (res?.id) {
         testStore.RESET_TEST_STORE()
         router.replace({ name: 'test.result', params: { id: res.id } })
+        mainStore.changeFireWorks(true)
     }
+
     mainStore.changeSiteLoader(true)
 }
 </script>

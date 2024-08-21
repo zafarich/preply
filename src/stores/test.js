@@ -143,7 +143,7 @@ export const useTestStore = defineStore(
             } else if (test_type.value === TEST_TYPES.BY_SELECTIONS) {
                 res = await api.endBySelectionTest(data)
             } else if (test_type.value === TEST_TYPES.CERTIFICATE) {
-                res = await api.endNationalCertificateTest(payload)
+                res = await api.endNationalCertificateTest(data)
             }
 
             await useUserStore().getMe()

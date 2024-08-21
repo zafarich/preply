@@ -53,8 +53,22 @@
                 </div>
             </q-card>
         </div>
+        <div
+            v-else-if="userStore.userVerifyCards.length === 0"
+            class="text-center font-semibold text-base text-gray-400 mt-10"
+        >
+            <div>
+                Sizda karta mavjud emas.Shuning uchun avval karta qo'shing
+            </div>
+            <q-btn no-caps color="primary" @click="goToCardsTab" class="mt-10">
+                Karta qo'shishga o'tish
+            </q-btn>
+        </div>
 
-        <h1 v-else class="text-center font-semibold text-base text-gray-400">
+        <h1
+            v-else
+            class="text-center font-semibold text-base text-gray-400 mt-10"
+        >
             {{ $t('you_have_not_subscription') }}
         </h1>
     </div>
@@ -71,7 +85,11 @@ import { priceFormat } from 'src/utils/helpers'
 const modalStore = useModalStore()
 const userStore = useUserStore()
 const billingStore = useBillingStore()
-const { subscriptionModal } = storeToRefs(modalStore)
+const { subscriptionModal, profileTab: tabs } = storeToRefs(modalStore)
+
+function goToCardsTab() {
+    tabs.value = 'my_cards'
+}
 </script>
 
 <style lang="scss">

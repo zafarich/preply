@@ -40,7 +40,10 @@
                 >
                     <q-input
                         outlined
+                        type="number"
                         v-model="quantity"
+                        :min="1"
+                        @keyup="checkMinValue"
                         :label="$t('prime_test_count')"
                     />
                 </div>
@@ -107,7 +110,7 @@ import { ref } from 'vue'
 import { useUserStore } from 'src/stores/user'
 import { useQuasar } from 'quasar'
 import { priceFormat } from 'src/utils/helpers'
-import { TARIFFS } from 'src/utils/constants'
+import { TARIFFS, TEST_TYPES } from 'src/utils/constants'
 import { useMainStore } from 'src/stores/main'
 
 const modalStore = useModalStore()
@@ -122,15 +125,23 @@ const $q = useQuasar()
 const tariff = ref('')
 const seletedCard = ref('')
 const loading = ref(false)
-const quantity = ref(0)
+const quantity = ref(1)
 
 const addSubscribe = async () => {
     try {
         loading.value = true
-        const res = await billingStore.createSubscription({
+
+        const exportData = {
             tariff: tariff.value.id,
             card: seletedCard.value,
-        })
+        }
+
+        if (tariff.value.unique_name === TARIFFS.PREMIUM.code) {
+            exportData.quantity = quantity.value
+        }
+        console.log('exportDasta', exportData)
+
+        const res = await billingStore.createSubscription(exportData)
         await billingStore.paySubscription(res.id)
         await billingStore.getSubscriptions({ page_size: 1000 })
         subscriptionModal.value = false
@@ -156,7 +167,25 @@ const close = () => {
 const getSum = (item) => {
     return priceFormat(Math.ceil(item.price / 100))
 }
+
+const checkMinValue = () => {
+    if (quantity.value < 1) {
+        quantity.value = 1
+    }
+}
 </script>
-<style>
+<style lang="scss">
+#add-subs-modal {
+    /* Hide the number input arrows */
+    input[type='number']::-webkit-outer-spin-button,
+    input[type='number']::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    input[type='number'] {
+        -moz-appearance: textfield;
+    }
+}
 /* Your component styles here */
 </style>
