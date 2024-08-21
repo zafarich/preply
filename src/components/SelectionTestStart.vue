@@ -117,11 +117,6 @@ const checkFirstSelected = () => {
 }
 
 const openModal = () => {
-    if (testStore.isEndLimit) {
-        modalStore.changeBuySubscriptionModal(true)
-        return
-    }
-
     if (selectedSubject.value && subjectSelection) {
         startModal.value = true
     }

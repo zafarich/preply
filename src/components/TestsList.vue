@@ -1,3 +1,19 @@
+<template>
+    <div class="grid grid-cols-3 gap-4">
+        <div
+            v-for="subject in subjects"
+            :key="subject.title"
+            class="tests-item"
+            @click="openModal(subject.unique_name)"
+        >
+            <div>
+                <BaseImg width="70px" height="70px" :src="subject.image" />
+            </div>
+        </div>
+    </div>
+    <StartBySelectionsModal @start-test="startTest" />
+</template>
+
 <script setup>
 import { TEST_TYPES } from 'src/utils/constants'
 import StartBySelectionsModal from 'src/components/modals/StartBySelectionsModal.vue'
@@ -29,54 +45,26 @@ const props = defineProps({
 const selectedTest = ref(null)
 
 const openModal = (unique_name) => {
-    if (testStore.isEndLimit) {
-        modalStore.changeBuySubscriptionModal(true)
-        return
-    }
-
     selectedTest.value = unique_name
     startBySelectionModal.value = true
 }
 
 const startTest = async () => {
-    if (testStore.isEndLimit) {
-        modalStore.changeBuySubscriptionModal(true)
-        return
-    }
-
     mainStore.changeSiteLoader(true)
-    await testStore.START_TEST(TEST_TYPES.BY_SELECTIONS, {
+    const response = await testStore.START_TEST(TEST_TYPES.BY_SELECTIONS, {
         selection: selectedTest.value,
     })
 
+    if (!response.error) {
+        router.push({
+            name: 'test-solve',
+        })
+    }
     startBySelectionModal.value = false
-
-    router.push({
-        name: 'test-solve',
-    })
 
     mainStore.changeSiteLoader(false)
 }
 </script>
-<template>
-    <div class="grid grid-cols-3 gap-4">
-        <div
-            v-for="subject in subjects"
-            :key="subject.title"
-            class="tests-item"
-            @click="openModal(subject.unique_name)"
-        >
-            <div>
-                <BaseImg width="70px" height="70px" :src="subject.image" />
-            </div>
-            <!-- <div>
-                {{ subject.title }}
-            </div> -->
-        </div>
-    </div>
-    <StartBySelectionsModal @start-test="startTest" />
-</template>
-
 <style lang="scss">
 .tests-item {
     border-radius: 16px;

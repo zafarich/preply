@@ -77,9 +77,11 @@ async function fetchData() {
 
     const testTypesPromise = referencesStore.getTestTypes()
     const subjectsPromise = referencesStore.getSubjects({
+        // page: 1,
+        // // is_main_for_block: true,
+        // is_premium: false,
         page: 1,
-        // is_main_for_block: true,
-        is_premium: false,
+        page_size: 100,
     })
     const bannersPromise = referencesStore.getBanners()
     const selectionPromise = referencesStore.getSelection({

@@ -18,7 +18,7 @@ const props = defineProps({
             <div class="text-md font-semibold">
                 {{ $t('popular_sciences') }}
             </div>
-            <q-btn
+            <!-- <q-btn
                 :to="{
                     name: 'tests',
                     query: { test_type: TEST_TYPES.BY_SUBJECTS },
@@ -30,7 +30,7 @@ const props = defineProps({
                 dense
                 color="primary"
                 >{{ $t('all') }}</q-btn
-            >
+            > -->
         </div>
 
         <ScienceList :subjects="subjects" />

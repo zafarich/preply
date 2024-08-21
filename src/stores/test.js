@@ -15,9 +15,6 @@ export const useTestStore = defineStore(
         const test_type = ref(TEST_TYPES.BLOCK)
         const active_index = ref(0)
 
-        // const isEndLimit = ref(!useUserStore().userData.is_premium)
-        const isEndLimit = ref(false)
-
         const errorSubsType = ref('')
 
         const myResults = ref({
@@ -98,6 +95,8 @@ export const useTestStore = defineStore(
                     res = await api.startVariantTest(payload)
                 } else if (type === TEST_TYPES.BY_SELECTIONS) {
                     res = await api.startBySelectionTest(payload)
+                } else if (type === TEST_TYPES.CERTIFICATE) {
+                    res = await api.startNationalCertificateTest(payload)
                 }
 
                 if (!res.error) {
@@ -143,6 +142,8 @@ export const useTestStore = defineStore(
                 res = await api.endVariantTest(data)
             } else if (test_type.value === TEST_TYPES.BY_SELECTIONS) {
                 res = await api.endBySelectionTest(data)
+            } else if (test_type.value === TEST_TYPES.CERTIFICATE) {
+                res = await api.endNationalCertificateTest(payload)
             }
 
             await useUserStore().getMe()
@@ -163,7 +164,6 @@ export const useTestStore = defineStore(
             test_results,
             active_index,
             test_type,
-            isEndLimit,
             errorSubsType,
             myResults,
 

@@ -1,24 +1,3 @@
-<script setup>
-import { storeToRefs } from 'pinia'
-import BaseModal from 'src/components/UI/BaseModal.vue'
-import { useModalStore } from 'src/stores/modal'
-import { ref } from 'vue'
-
-const modalStore = useModalStore()
-const { startBySelectionModal } = storeToRefs(modalStore)
-const emit = defineEmits(['startTest'])
-
-const is_agree = ref(false)
-
-const close = () => {
-    startBySelectionModal.value = false
-}
-
-const startTest = () => {
-    emit('startTest')
-}
-</script>
-
 <template>
     <BaseModal
         :model-value="startBySelectionModal"
@@ -64,5 +43,26 @@ const startTest = () => {
         </div>
     </BaseModal>
 </template>
+
+<script setup>
+import { storeToRefs } from 'pinia'
+import BaseModal from 'src/components/UI/BaseModal.vue'
+import { useModalStore } from 'src/stores/modal'
+import { ref } from 'vue'
+
+const modalStore = useModalStore()
+const { startBySelectionModal } = storeToRefs(modalStore)
+const emit = defineEmits(['startTest'])
+
+const is_agree = ref(false)
+
+const close = () => {
+    startBySelectionModal.value = false
+}
+
+const startTest = () => {
+    emit('startTest')
+}
+</script>
 
 <style lang="scss"></style>

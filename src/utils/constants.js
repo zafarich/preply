@@ -2,7 +2,7 @@ import { info } from 'autoprefixer'
 
 export const TEST_TYPES = {
     BLOCK: 'block',
-    SERTIFICATE: 'certificate',
+    CERTIFICATE: 'certificate',
     VARIANT: 'variant',
     BY_SUBJECTS: 'by_subjects',
     BY_SELECTIONS: 'by_selections',

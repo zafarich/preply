@@ -76,6 +76,22 @@ export async function endBySelectionTest(payload) {
     return data
 }
 
+export async function startNationalCertificateTest(payload) {
+    const { data } = await api.post(
+        url + 'test-solving/start_national_certificate_test/',
+        payload,
+    )
+    return data
+}
+
+export async function endNationalCertificateTest(payload) {
+    const { data } = await api.post(
+        url + 'test-solving/end_national_certificate_test/',
+        payload,
+    )
+    return data
+}
+
 export async function getMyResults(params) {
     const { data } = await api(url + 'results/my_results/', { params })
     return data

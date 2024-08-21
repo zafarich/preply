@@ -46,11 +46,6 @@ async function fetchSubject() {
 }
 
 function goToSolveTest(variant) {
-    if (testStore.isEndLimit) {
-        modalStore.changeBuySubscriptionModal(true)
-        return
-    }
-
     selected_variant.value = variant?.id
     variantNotifyStartModal.value = true
 }

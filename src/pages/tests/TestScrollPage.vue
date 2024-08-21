@@ -105,40 +105,51 @@
                     </button>
                 </div>
             </div>
+            <TestInfo
+                :questions="testStore.test_questions"
+                @goToLink="goToLink"
+            />
             <div class="mt-10 mb-24">
-                <q-btn
+                <!-- <q-btn
                     @click="() => (solveInfoModal = true)"
-                    label="Urinishlar"
+                    label="Test holati"
                     no-caps
                     color="primary"
                     class="full-width py-2 mb-4"
                     size="md"
-                />
+                /> -->
                 <q-btn
                     @click="() => (endTestModal = true)"
                     :label="$t('finish')"
                     no-caps
                     color="warning"
                     class="full-width py-2"
-                    size="md"
+                    size="lg"
                 />
             </div>
         </div>
 
         <NotifyTestModal @confirmBack="confirmBack" />
         <EndTestModal @confirmEndTest="confirmEndTest" />
-        <SolveInfoModal
-            :questions="testStore.test_questions"
-            @goToLink="goToLink"
-        />
 
         <div
-            class="fixed bottom-14 right-4 border rounded-full p-3 bg-orange-500 cursor-pointer"
+            class="fixed bottom-24 right-4 border rounded-full p-3 bg-orange-500 cursor-pointer"
             @click="scrollToTop"
             id="scrollIcon"
-            v-if="showIcon"
+            v-if="showToTop"
         >
             <img src="/images/icons/to-top-icon.svg" class="w-4 h-4" />
+        </div>
+        <div
+            class="fixed bottom-12 right-4 border rounded-full p-3 bg-orange-500 cursor-pointer"
+            @click="scrollToBottom"
+            id="scrollIcon"
+            v-if="showToBottom"
+        >
+            <img
+                src="/images/icons/to-top-icon.svg"
+                class="w-4 h-4 rotate-180"
+            />
         </div>
     </div>
 </template>
@@ -155,14 +166,15 @@ import { useTestStore } from 'src/stores/test'
 import { useModalStore } from 'src/stores/modal'
 import { useMainStore } from 'src/stores/main'
 import { storeToRefs } from 'pinia'
-import SolveInfoModal from './components/SolveInfoModal.vue'
+import TestInfo from './components/TestInfo.vue'
 
 const router = useRouter()
 const testStore = useTestStore()
 const modalStore = useModalStore()
 const mainStore = useMainStore()
 
-const showIcon = ref(false)
+const showToTop = ref(false)
+const showToBottom = ref(true)
 
 const { notifyTestModal, endTestModal, solveInfoModal } =
     storeToRefs(modalStore)
@@ -220,9 +232,9 @@ onMounted(async () => {
             window.pageYOffset || document.documentElement.scrollTop
 
         if (scrollTop > 500) {
-            showIcon.value = true
+            showToTop.value = true
         } else {
-            showIcon.value = false
+            showToTop.value = false
         }
         // }
     })
@@ -235,7 +247,14 @@ onUnmounted(() => {
 const scrollToTop = () => {
     window.scrollTo({
         top: 0,
-        behavior: 'smooth',
+        behavior: 'instant',
+    })
+}
+
+const scrollToBottom = () => {
+    window.scrollTo({
+        top: document.documentElement.scrollHeight - window.innerHeight,
+        behavior: 'instant',
     })
 }
 
@@ -253,7 +272,7 @@ const goToLink = (index) => {
 
     window.scrollTo({
         top: offsetPosition,
-        behavior: 'smooth',
+        behavior: 'instant',
     })
 }
 

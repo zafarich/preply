@@ -18,7 +18,7 @@ const props = defineProps({
             <swiper
                 :slides-per-view="1"
                 :space-between="0"
-                :loop="true"
+                :loop="banners.length > 1"
                 :autoplay="{
                     delay: 4000,
                     disableOnInteraction: false,

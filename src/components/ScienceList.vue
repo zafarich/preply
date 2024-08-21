@@ -29,7 +29,7 @@ const selectId = ref(null)
 
 const startTest = async (id) => {
     mainStore.changeSiteLoader(true)
-    const response = await testStore.START_TEST(TEST_TYPES.BY_SUBJECTS, {
+    const response = await testStore.START_TEST(TEST_TYPES.CERTIFICATE, {
         subject_id: selectId.value,
     })
 
@@ -44,13 +44,6 @@ const startTest = async (id) => {
 }
 
 const selectSubject = (id) => {
-  
-
-    if (testStore.isEndLimit) {
-        modalStore.changeBuySubscriptionModal(true)
-        return
-    }
-
     selectId.value = id
     nextTick(() => {
         startModal.value = true

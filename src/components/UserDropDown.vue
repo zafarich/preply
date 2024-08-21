@@ -24,15 +24,15 @@
                 <q-icon name="eva-person-outline" size="sm" color="primary" />
             </q-item>
             <q-item clickable class="dropdown-item" @click="goToSubscriptions">
-                <div>Premium</div>
+                <div>Prime</div>
                 <div>
                     <q-badge
-                        v-if="userStore.userData.is_premium"
+                        v-if="userStore.userData.is_prime"
                         color="primary"
                         no-caps
                         class="py-2"
                     >
-                        {{ userStore.userData.premium_expiration_date }}
+                        {{ userStore.userData.prime_expiration_date }}
                     </q-badge>
                     <q-badge class="py-2" v-else color="red" no-caps>
                         mavjud emas
@@ -40,18 +40,18 @@
                 </div>
             </q-item>
             <q-item clickable class="dropdown-item" @click="goToSubscriptions">
-                <div>Prime</div>
+                <div>Premium</div>
                 <q-badge
                     class="py-2"
-                    v-if="userStore.userData.is_prime"
+                    v-if="userStore.userData.is_premium"
                     color="primary"
                     no-caps
                 >
-                    <span v-if="userStore.userData.is_prime === true">
+                    <span v-if="userStore.userData.is_premium === true">
                         <img src="/icons/infinity.png" class="w-3.5" />
                     </span>
 
-                    <span v-else> {{ userStore.userData.is_prime }} ta </span>
+                    <span v-else> {{ userStore.userData.is_premium }} ta </span>
                 </q-badge>
                 <q-badge class="py-2" v-else color="red" no-caps>
                     mavjud emas

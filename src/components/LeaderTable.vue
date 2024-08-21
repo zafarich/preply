@@ -96,7 +96,7 @@ const props = defineProps({
                 <th>#</th>
                 <th>{{ $t('student') }}</th>
                 <th>{{ $t('common') }}</th>
-                <th>{{ $t('accuracy') }} ( % )</th>
+                <th>{{ $t('accuracy') }}%</th>
             </thead>
 
             <tbody>
@@ -112,7 +112,7 @@ const props = defineProps({
                                 <img
                                     v-if="item.image"
                                     :src="`${item.image}`"
-                                    class="w-10 h-10 rounded-full mr-2"
+                                    class="w-10 h-10 rounded-full mr-2 object-cover"
                                 />
                                 <img
                                     v-else

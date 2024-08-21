@@ -15,7 +15,7 @@
             </div>
 
             <ScienceList
-                v-if="GET_TEST_TYPE === TEST_TYPES.BY_SUBJECTS"
+                v-if="GET_TEST_TYPE === TEST_TYPES.CERTIFICATE"
                 :subjects="mockSubjects"
             />
             <BlockTestStart
@@ -31,6 +31,7 @@
                 v-else-if="GET_TEST_TYPE === TEST_TYPES.VARIANT"
                 :subjects="referencesStore.subjects"
             />
+            <div class="mb-10"></div>
         </div>
     </div>
 </template>
@@ -52,7 +53,7 @@ const route = useRoute()
 const testTypesList = ref([
     {
         name: 'Milliy sertifikat testlari',
-        key: TEST_TYPES.SERTIFICATE,
+        key: TEST_TYPES.CERTIFICATE,
     },
     {
         name: 'by_block',
@@ -88,7 +89,10 @@ onMounted(() => {
 async function fetchData() {
     mainStore.changeSiteLoader(true)
 
-    const subjectPromise = referencesStore.getSubjects({ page: 1 })
+    const subjectPromise = referencesStore.getSubjects({
+        page: 1,
+        page_size: 100,
+    })
     const mainSubjectPromise = referencesStore.getSubjects({
         is_main_for_block: true,
     })
