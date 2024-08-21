@@ -43,11 +43,13 @@ import { useMainStore } from 'src/stores/main'
 import { useReferencesStore } from 'src/stores/references'
 import { useQuasar } from 'quasar'
 import { TARIFFS } from 'src/utils/constants'
+import { useBillingStore } from 'src/stores/billing'
 
 const { t } = useI18n()
 const userStore = useUserStore()
 const referencesStore = useReferencesStore()
 const mainStore = useMainStore()
+const billingStore = useBillingStore()
 
 const testTypes = ref([])
 const subjects = ref([])
@@ -74,6 +76,7 @@ const getPrimeTests = computed(() => {
 
 async function fetchData() {
     mainStore.changeSiteLoader(true)
+    billingStore.getTariffTypes()
 
     const testTypesPromise = referencesStore.getTestTypes()
     const subjectsPromise = referencesStore.getSubjects({

@@ -79,7 +79,7 @@ onMounted(async () => {
 
     await Promise.allSettled([
         testStore.GET_MY_RESULTS(),
-        billingStore.getTariffs(),
+        billingStore.getTariffTypes(),
         userStore.getMe(),
         billingStore.getSubscriptions({ page: 1, page_size: 1000 }),
     ])

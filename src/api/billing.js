@@ -46,3 +46,8 @@ export async function getTariffs() {
     const { data } = await api.get(url + `tariffs/`)
     return data
 }
+
+export async function getTariffTypes() {
+    const { data } = await api.get(url + `tariff-types/`)
+    return data
+}

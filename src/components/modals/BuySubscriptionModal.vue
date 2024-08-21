@@ -51,7 +51,7 @@ const router = useRouter()
 const { buySubscriptionModal } = storeToRefs(modalStore)
 
 onMounted(async () => {
-    await billingStore.getTariffs()
+    await billingStore.getTariffTypes()
 })
 
 const getSubsType = computed(() => {

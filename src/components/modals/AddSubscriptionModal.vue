@@ -19,7 +19,7 @@
                 </div>
                 <q-card
                     class="mb-4 !w-auto !rounded-lg cursor-pointer relative !py-2 !pl-6"
-                    v-for="(item, index) in billingStore.tariffs"
+                    v-for="(item, index) in billingStore.tariffTypes"
                     :key="index"
                     @click="() => (tariff = item)"
                 >
@@ -28,25 +28,12 @@
                         <div class="flex justify-between items-center w-full">
                             <div>
                                 {{ item.name }}
+                                <q-badge :label="item.quantity" />
                             </div>
                             <div>{{ getSum(item) }} {{ $t('sum') }}</div>
                         </div>
                     </div>
                 </q-card>
-
-                <div
-                    v-if="tariff.unique_name == TARIFFS.PREMIUM.code"
-                    class="mb-2"
-                >
-                    <q-input
-                        outlined
-                        type="number"
-                        v-model="quantity"
-                        :min="1"
-                        @keyup="checkMinValue"
-                        :label="$t('prime_test_count')"
-                    />
-                </div>
 
                 <div
                     v-if="tariff"
@@ -125,20 +112,16 @@ const $q = useQuasar()
 const tariff = ref('')
 const seletedCard = ref('')
 const loading = ref(false)
-const quantity = ref(1)
 
 const addSubscribe = async () => {
     try {
         loading.value = true
 
         const exportData = {
-            tariff: tariff.value.id,
+            tariff_type: tariff.value.tariff_id,
             card: seletedCard.value,
         }
 
-        if (tariff.value.unique_name === TARIFFS.PREMIUM.code) {
-            exportData.quantity = quantity.value
-        }
         console.log('exportDasta', exportData)
 
         const res = await billingStore.createSubscription(exportData)
@@ -167,24 +150,12 @@ const close = () => {
 const getSum = (item) => {
     return priceFormat(Math.ceil(item.price / 100))
 }
-
-const checkMinValue = () => {
-    if (quantity.value < 1) {
-        quantity.value = 1
-    }
-}
 </script>
 <style lang="scss">
 #add-subs-modal {
-    /* Hide the number input arrows */
-    input[type='number']::-webkit-outer-spin-button,
-    input[type='number']::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-    }
-
-    input[type='number'] {
-        -moz-appearance: textfield;
+    .q-dialog__inner--minimized {
+        /* padding: 24px; */
+        padding: 0;
     }
 }
 /* Your component styles here */
