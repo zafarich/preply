@@ -109,6 +109,23 @@
                     </div>
                 </div>
 
+                <div class="my-2">
+                    <div class="flex justify-start items-center">
+                        <q-checkbox
+                            color="secondary"
+                            label="Men ommaviy offerta shartlarini qabul qilaman
+                        "
+                            v-model="is_agree"
+                        />
+                    </div>
+                    <div
+                        class="text-secondary cursor-pointer"
+                        @click="openPrivacyModal"
+                    >
+                        Ommaviy offerta
+                    </div>
+                </div>
+
                 <q-btn
                     class="full-width mt-8"
                     color="primary"
@@ -116,6 +133,7 @@
                     :label="$t('Continue')"
                     type="submit"
                     @click="submitForm"
+                    :disable="!is_agree"
                 />
                 <div class="text-center mt-10 text-base">
                     {{ $t('have_account')
@@ -126,6 +144,8 @@
             </div>
         </div>
     </div>
+
+    <PrivacyPolicyModal />
 </template>
 
 <script setup>
@@ -138,9 +158,13 @@ import { useI18n } from 'vue-i18n'
 import useVuelidate from '@vuelidate/core'
 import { required, minLength, email } from '@vuelidate/validators'
 import { useMainStore } from 'src/stores/main'
+import { useModalStore } from 'src/stores/modal'
+import PrivacyPolicyModal from 'src/components/modals/PrivacyPolicyModal.vue'
 
 const userStore = useUserStore()
 const mainStore = useMainStore()
+const modalStore = useModalStore()
+
 const registerRef = ref('')
 const first_name = ref('')
 const last_name = ref('')
@@ -152,6 +176,8 @@ const router = useRouter()
 
 const isPwd1 = ref(true)
 const isPwd2 = ref(true)
+
+const is_agree = ref(false)
 
 const togglePassword1 = () => {
     isPwd1.value = !isPwd1.value
@@ -179,6 +205,10 @@ const v$ = useVuelidate(rules, {
     last_name,
     first_name,
 })
+
+const openPrivacyModal = () => {
+    modalStore.changePrivacyModal(true)
+}
 
 const submitForm = async () => {
     const isFormCorrect = await v$.value.$validate()

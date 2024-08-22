@@ -17,6 +17,7 @@ export const useModalStore = defineStore('modal', () => {
     const logoutModal = ref(false)
     const tariffInfoModal = ref(false)
     const fireWorksModal = ref(false)
+    const privacyModal = ref(false)
 
     function changeBuySubscriptionModal(value) {
         buySubscriptionModal.value = value
@@ -34,8 +35,14 @@ export const useModalStore = defineStore('modal', () => {
         fireWorksModal.value = value
     }
 
+    function changePrivacyModal(value) {
+        privacyModal.value = value
+    }
+
     return {
         tariffInfoModal,
+        privacyModal,
+        changePrivacyModal,
         variantNotifyStartModal,
         periodPremiumModal,
         endTestModal,
