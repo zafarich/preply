@@ -93,7 +93,7 @@ async function fetchData() {
         page: 1,
         page_size: 100,
     })
-    const mainSubjectPromise = referencesStore.getSubjects({
+    const mainSubjectPromise = referencesStore.getParentSubjects({
         is_main_for_block: true,
     })
     const selectionsPromise = referencesStore.getSelection({

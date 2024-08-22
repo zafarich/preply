@@ -110,7 +110,10 @@ watch(
         firstIsSelect.value = false
         referenceStore.setSubMainSubject([])
         if (newValue) {
-            await referenceStore.getSubjects({ parent_subjects: newValue })
+            await referenceStore.getChildSubjects({
+                is_main_for_block: true,
+                parent_subjects: newValue,
+            })
         }
     },
 )

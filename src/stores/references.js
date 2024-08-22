@@ -29,15 +29,25 @@ export const useReferencesStore = defineStore('references', () => {
     async function getSubjects(params) {
         const res = await api.getSubjects(params)
 
-        if (params.is_main_for_block) {
-            main_subjects.value = res?.results
-        } else if (params.parent_subjects) {
-            sub_main_subjects.value = res?.results
-        } else {
-            subjects.value = res?.results
-        }
+        subjects.value = res?.results
 
         return res?.results
+    }
+
+    async function getParentSubjects(params) {
+        const res = await api.getSubjects(params)
+
+        console.log('resss', res)
+        main_subjects.value = res?.results
+
+        return res
+    }
+
+    async function getChildSubjects(params) {
+        const res = await api.getSubjects(params)
+        sub_main_subjects.value = res?.results
+
+        return res
     }
 
     async function getTestTypes(params) {
@@ -82,6 +92,8 @@ export const useReferencesStore = defineStore('references', () => {
         getDistricts,
         getSubjects,
         getBanners,
+        getChildSubjects,
+        getParentSubjects,
         getTestTypes,
         getSubjectById,
         getUserStats,

@@ -132,7 +132,7 @@ onMounted(async () => {
     mainStore.changeSiteLoader(true)
     await Promise.allSettled([
         referenceStore.getRegions(),
-        referenceStore.getSubjects({ is_main_for_block: true }),
+        referenceStore.getParentSubjects({ is_main_for_block: true }),
         fetchLeaders(),
     ])
 
