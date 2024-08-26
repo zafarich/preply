@@ -1,6 +1,5 @@
 <template>
     <div>
-        <div id="fireworks-container"></div>
         <div class="mb-8" v-if="banners">
             <Banner :banners="banners" />
         </div>
@@ -22,11 +21,11 @@
             <PopularScience :subjects="subjects" />
         </div>
 
-        <div class="mb-8" v-if="languageSelections.results">
+        <div class="mb-8" v-if="languageSelections">
             <div class="text-md font-semibold mb-6">
                 {{ $t('international_certificates') }}
             </div>
-            <TestsList :subjects="languageSelections.results" />
+            <TestsList :subjects="languageSelections" />
         </div>
     </div>
 </template>
@@ -83,8 +82,8 @@ async function fetchData() {
         // page: 1,
         // // is_main_for_block: true,
         // is_premium: false,
-        page: 1,
-        page_size: 100,
+        // page: 1,
+        // page_size: 100,
     })
     const bannersPromise = referencesStore.getBanners()
     const selectionPromise = referencesStore.getSelection({

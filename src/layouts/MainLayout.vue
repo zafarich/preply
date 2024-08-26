@@ -13,6 +13,7 @@
         <PremiumPeriodModal />
         <TariffInfoModal />
         <LogoutModal />
+        <soon-days-modal />
     </div>
 </template>
 
@@ -32,6 +33,7 @@ import PremiumPeriodModal from 'src/components/modals/PremiumPeriodModal.vue'
 import TariffInfoModal from 'src/components/modals/TariffInfoModal.vue'
 import { useMainStore } from 'src/stores/main'
 import LogoutModal from 'src/components/modals/LogoutModal.vue'
+import SoonDaysModal from 'src/components/modals/SoonDaysModal.vue'
 import { storeToRefs } from 'pinia'
 import Fireworks from 'src/components/Fireworks.vue'
 

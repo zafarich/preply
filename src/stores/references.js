@@ -29,31 +29,30 @@ export const useReferencesStore = defineStore('references', () => {
     async function getSubjects(params) {
         const res = await api.getSubjects(params)
 
-        subjects.value = res?.results
+        subjects.value = res
 
-        return res?.results
+        return res
     }
 
     async function getParentSubjects(params) {
         const res = await api.getSubjects(params)
 
-        console.log('resss', res)
-        main_subjects.value = res?.results
+        main_subjects.value = res
 
         return res
     }
 
     async function getChildSubjects(params) {
         const res = await api.getSubjects(params)
-        sub_main_subjects.value = res?.results
+        sub_main_subjects.value = res
 
         return res
     }
 
     async function getTestTypes(params) {
         const res = await api.getTestTypes(params)
-        test_types.value = res?.results
-        return res?.results
+        test_types.value = res
+        return res
     }
 
     async function getSubjectById(id) {
@@ -62,7 +61,7 @@ export const useReferencesStore = defineStore('references', () => {
     }
     async function getBanners() {
         const res = await api.getBanners()
-        return res?.results
+        return res
     }
 
     async function getSelection(params) {

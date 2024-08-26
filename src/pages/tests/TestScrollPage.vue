@@ -167,6 +167,7 @@ import { useModalStore } from 'src/stores/modal'
 import { useMainStore } from 'src/stores/main'
 import { storeToRefs } from 'pinia'
 import TestInfo from './components/TestInfo.vue'
+import { useUserStore } from 'src/stores/user'
 
 const router = useRouter()
 const testStore = useTestStore()
@@ -201,10 +202,6 @@ let timer
 const remainingTime = ref(testStore.GET_TEST_TIME)
 const warningTimePeriod = 3 * 60
 
-const is_visible_subjects = computed(() => {
-    return testStore.GET_TEST_TYPE !== TEST_TYPES.BLOCK
-})
-
 const updateRemainingTime = () => {
     if (testStore.GET_TESTS.started_at) {
         const currentTime = new Date()
@@ -220,24 +217,32 @@ const updateRemainingTime = () => {
             confirmEndTest()
             clearInterval(timer)
         }
+    } else {
+        useUserStore().logoutProfile()
+        router.push({ name: 'login' })
     }
 }
 
 onMounted(async () => {
-    timer = setInterval(updateRemainingTime, 1000)
+    if (remainingTime <= 0) {
+        clearInterval(timer)
+        confirmEndTest()
+    } else {
+        timer = setInterval(updateRemainingTime, 1000)
 
-    window.addEventListener('scroll', () => {
-        const scrollIcon = document.getElementById('scrollIcon')
-        const scrollTop =
-            window.pageYOffset || document.documentElement.scrollTop
+        window.addEventListener('scroll', () => {
+            const scrollIcon = document.getElementById('scrollIcon')
+            const scrollTop =
+                window.pageYOffset || document.documentElement.scrollTop
 
-        if (scrollTop > 500) {
-            showToTop.value = true
-        } else {
-            showToTop.value = false
-        }
-        // }
-    })
+            if (scrollTop > 500) {
+                showToTop.value = true
+            } else {
+                showToTop.value = false
+            }
+            // }
+        })
+    }
 })
 
 onUnmounted(() => {

@@ -115,7 +115,7 @@ export default {
     your_subscription_end_date: 'Дата окончания вашей подписки',
     upload_photo: 'Загрузить фото',
     must_at_least_sign: 'Должен содержать как минимум {{signCount}} символов',
-    have_question_call_us: 'Возник вопрос? Звоните',
+    have_question_call_us: 'Возник вопрос?',
     about_us: 'О нас',
     to_cooperate_with_us: 'Для сотрудничества с нами',
     vacancy: 'Вакансии',

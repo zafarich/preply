@@ -119,15 +119,15 @@ export default {
     upload_photo: 'Rasm yuklash',
     must_at_least_sign:
         'Eng kamida {{ signCount }} ta belgidan iborat bo`lishi kerak',
-    have_question_call_us: "Savolingiz bormi? Qo'ng'iroq qiling",
+    have_question_call_us: 'Savolingiz bormi?',
     about_us: 'Biz haqimizda',
     to_cooperate_with_us: 'Biz bilan hamkorlik qilish uchun',
     vacancy: 'Vakansiyalar',
     we_accept_payments: "Biz to'lovlarni qabul qilamiz",
     all_rights_reserved: 'Barcha huquqlar himoyalangan',
-    prime_info:
-        '6 oy muddatga barcha testlarni yechish imkoniyati. (*Premium testlardan tashqari)',
     premium_info:
+        '6 oy muddatga barcha testlarni yechish imkoniyati. (*Premium testlardan tashqari)',
+    prime_info:
         '1 martalik premium (mock va blok) testlarini sotib olish imkoniyati. Yani 1ta obuna 1 marta test yechish imkoniyati.',
 
     // NEW TRANSLATES WITH CHECKING
@@ -146,4 +146,5 @@ export default {
     warning_back_notify:
         'Testni yakunlashni tavsiya qilamiz. Oraqaga qaytishni tasdiqlashingiz bilan ushbu test bekor qilinadi',
     confirming: 'Tasdiqlash',
+    soon_days: 'Tez kunlarda',
 }

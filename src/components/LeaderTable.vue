@@ -93,7 +93,7 @@ const props = defineProps({
 
         <table>
             <thead>
-                <th>#</th>
+                <!-- <th>#</th> -->
                 <th>{{ $t('student') }}</th>
                 <th>{{ $t('common') }}</th>
                 <th>{{ $t('accuracy') }}%</th>
@@ -102,31 +102,42 @@ const props = defineProps({
             <tbody>
                 <template v-for="(item, index) in items" :key="index">
                     <tr v-if="!(page === 1 && index < 3)">
-                        <!-- {{
-                            item
-                        }} -->
-
-                        <td>{{ (page - 1) * page_size + index + 1 }}</td>
                         <td>
-                            <div class="flex items-center">
-                                <img
-                                    v-if="item.image"
-                                    :src="`${item.image}`"
-                                    class="w-10 h-10 rounded-full mr-2 object-cover"
-                                />
-                                <img
-                                    v-else
-                                    src="icons/user-icon.svg"
-                                    alt=""
-                                    class="w-10 rounded-full mr-2"
-                                />
+                            <div class="flex justify-start items-center">
+                                <!-- <q-badge
+                                    class="rounded-full p-1"
+                                    rounded
+                                    color="secondary"
+                                    :label="(page - 1) * page_size + index + 1"
+                                /> -->
 
-                                <div>
-                                    <div class="fio">
-                                        {{ item.first_name }}
-                                        {{ item.last_name }}
+                                <span
+                                    class="mr-3 bg-blue-500 text-white text-xs font-semibold px-2.5 py-1 rounded-full"
+                                >
+                                    {{ (page - 1) * page_size + index + 1 }}
+                                </span>
+                                <div class="flex items-center">
+                                    <img
+                                        v-if="item.image"
+                                        :src="`${item.image}`"
+                                        class="w-10 h-10 rounded-full mr-2 object-cover"
+                                    />
+                                    <img
+                                        v-else
+                                        src="icons/user-icon.svg"
+                                        alt=""
+                                        class="w-10 rounded-full mr-2"
+                                    />
+
+                                    <div>
+                                        <div class="fio">
+                                            {{ item.first_name }}
+                                            {{ item.last_name }}
+                                        </div>
+                                        <div class="city">
+                                            {{ item.region }}
+                                        </div>
                                     </div>
-                                    <div class="city">{{ item.region }}</div>
                                 </div>
                             </div>
                         </td>

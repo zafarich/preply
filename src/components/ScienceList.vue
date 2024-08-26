@@ -16,7 +16,8 @@ const modalStore = useModalStore()
 const userStore = useUserStore()
 const mainStore = useMainStore()
 
-const { startModal, buySubscriptionModal } = storeToRefs(modalStore)
+const { startModal, buySubscriptionModal, soonDaysModal } =
+    storeToRefs(modalStore)
 
 const props = defineProps({
     subjects: {
@@ -44,10 +45,11 @@ const startTest = async (id) => {
 }
 
 const selectSubject = (id) => {
-    selectId.value = id
-    nextTick(() => {
-        startModal.value = true
-    })
+    soonDaysModal.value = true
+    // selectId.value = id
+    // nextTick(() => {
+    //     startModal.value = true
+    // })
 }
 </script>
 <template>

@@ -33,7 +33,8 @@ const mainStore = useMainStore()
 const testStore = useTestStore()
 const userStore = useUserStore()
 
-const { startBySelectionModal, buySubscriptionModal } = storeToRefs(modalStore)
+const { startBySelectionModal, buySubscriptionModal, soonDaysModal } =
+    storeToRefs(modalStore)
 
 const props = defineProps({
     subjects: {
@@ -45,8 +46,10 @@ const props = defineProps({
 const selectedTest = ref(null)
 
 const openModal = (unique_name) => {
-    selectedTest.value = unique_name
-    startBySelectionModal.value = true
+    soonDaysModal.value = true
+
+    // selectedTest.value = unique_name
+    // startBySelectionModal.value = true
 }
 
 const startTest = async () => {

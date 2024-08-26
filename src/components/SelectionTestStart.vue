@@ -28,7 +28,7 @@
                         outlined
                         :disabled="!!selectedSubject"
                         placeholder="Mavzulashtirilgan test"
-                        :options="subjectSelectionsList.results"
+                        :options="subjectSelectionsList"
                         option-label="title"
                         option-value="id"
                         @click="checkFirstSelected"

@@ -115,7 +115,7 @@ export default {
     your_subscription_end_date: 'Sizdiń aǵzalıǵıńız juwmaqlanıw kúnі',
     upload_photo: 'Súwret júklew',
     must_at_least_sign: 'Eń az {signCount} belgiden turıwı kerek',
-    have_question_call_us: 'Suraǵıńız bar ma? Qońıraw etiń',
+    have_question_call_us: 'Suraǵıńız bar ma? ',
     about_us: 'Biz haqımızda',
     to_cooperate_with_us: 'Biz benen islesiw ushın',
     vacancy: 'Vakansiyalar',
@@ -134,5 +134,4 @@ export default {
     mother_tongue: 'Ana tili',
     premium_tests: 'Premium testlar',
     prime_tests: 'Prime testlar',
-    
 }

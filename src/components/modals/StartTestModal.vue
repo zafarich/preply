@@ -44,15 +44,15 @@ const startTest = () => {
                     </div>
                 </div>
 
-                <q-toggle
+                <!-- <q-toggle
                     v-model="is_agree"
                     label="Offerta shartlarini qabul qilaman"
                     class="mb-2"
-                />
+                /> -->
 
+                <!-- :disabled="!is_agree" -->
                 <button
                     @click="startTest"
-                    :disabled="!is_agree"
                     class="px-5 w-full h-10 text-base text-white rounded-xl bg-primary"
                 >
                     {{ $t('start') }}
