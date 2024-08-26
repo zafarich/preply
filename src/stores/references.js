@@ -59,14 +59,20 @@ export const useReferencesStore = defineStore('references', () => {
         const res = await api.getSubjectById(id)
         return res
     }
-    async function getBanners() {
-        const res = await api.getBanners()
+    async function getBanners(params) {
+        const res = await api.getBanners(params)
         return res
     }
 
     async function getSelection(params) {
         const res = await api.getSelection(params)
         // selections.value = [...res.results]
+        return res
+    }
+
+    async function getOlympicTests() {
+        const res = await api.getSelection({ olympic: true })
+
         return res
     }
 

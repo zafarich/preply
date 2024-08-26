@@ -25,7 +25,7 @@
 
             <SelectionTestStart
                 v-else-if="GET_TEST_TYPE === TEST_TYPES.BY_SELECTIONS"
-                :subjects="selections"
+                :subjects="referencesStore.main_subjects"
             />
             <VariantTestStart
                 v-else-if="GET_TEST_TYPE === TEST_TYPES.VARIANT"

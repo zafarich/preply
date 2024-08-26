@@ -103,7 +103,9 @@ const props = defineProps({
                 <template v-for="(item, index) in items" :key="index">
                     <tr v-if="!(page === 1 && index < 3)">
                         <td>
-                            <div class="flex justify-start items-center">
+                            <div
+                                class="flex justify-start items-center flex-nowrap"
+                            >
                                 <!-- <q-badge
                                     class="rounded-full p-1"
                                     rounded

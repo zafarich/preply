@@ -1,7 +1,7 @@
 <template>
     <div>
-        <div class="mb-8" v-if="banners">
-            <Banner :banners="banners" />
+        <div class="mb-8" v-if="topBanners">
+            <TopBanner :banners="topBanners" />
         </div>
         <div class="mb-12" v-if="testTypes">
             <TestTypes
@@ -9,6 +9,9 @@
                 :label="$t('premium_tests')"
                 :test-type="TARIFFS.PREMIUM.code"
             />
+        </div>
+        <div class="mb-8" v-if="middleBanners">
+            <MiddleBanner :banners="middleBanners" />
         </div>
         <div class="mb-4" v-if="testTypes">
             <TestTypes
@@ -27,12 +30,20 @@
             </div>
             <TestsList :subjects="languageSelections" />
         </div>
+
+        <div class="mb-8" v-if="languageSelections">
+            <div class="text-md font-semibold mb-6">
+                Xalqaro olimpiada testlari
+            </div>
+            <TestsList :subjects="olympicTest" />
+        </div>
     </div>
 </template>
 <script setup>
 import { onMounted, ref, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
-import Banner from './sections/Banner.vue'
+import TopBanner from './sections/TopBanner.vue'
+import MiddleBanner from './sections/MiddleBanner.vue'
 import TestTypes from './sections/TestTypes.vue'
 import PopularScience from './sections/PopularScience.vue'
 import TestsList from 'src/components/TestsList.vue'
@@ -52,8 +63,10 @@ const billingStore = useBillingStore()
 
 const testTypes = ref([])
 const subjects = ref([])
-const banners = ref([])
+const topBanners = ref([])
+const middleBanners = ref([])
 const languageSelections = ref([])
+const olympicTest = ref([])
 
 const $q = useQuasar()
 
@@ -85,17 +98,29 @@ async function fetchData() {
         // page: 1,
         // page_size: 100,
     })
-    const bannersPromise = referencesStore.getBanners()
+    const topBannersPromise = referencesStore.getBanners({
+        place: 'home_page_top',
+    })
+    const middleBannersPromise = referencesStore.getBanners({
+        place: 'home_page_middle',
+    })
+
     const selectionPromise = referencesStore.getSelection({
         for_english: true,
-        is_premium: false,
+        // is_premium: false,
+    })
+    const olympicTestPromise = referencesStore.getSelection({
+        olympic: true,
+        is_showing: true,
     })
 
     const results = await Promise.allSettled([
         testTypesPromise,
         subjectsPromise,
-        bannersPromise,
+        topBannersPromise,
         selectionPromise,
+        olympicTestPromise,
+        middleBannersPromise,
     ])
 
     results.forEach((result, index) => {
@@ -108,11 +133,18 @@ async function fetchData() {
                     subjects.value = result.value
                     break
                 case 2:
-                    banners.value = result.value
+                    topBanners.value = result.value
                     break
                 case 3:
                     languageSelections.value = result.value
+                    break
                 case 4:
+                    olympicTest.value = result.value
+                    break
+                case 5:
+                    middleBanners.value = result.value
+                    break
+                case 6:
                     break
             }
         } else {

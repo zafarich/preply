@@ -26,8 +26,8 @@ export async function getTestTypes(params) {
     return data
 }
 
-export async function getBanners() {
-    const { data } = await api(url + 'banners/')
+export async function getBanners(params) {
+    const { data } = await api(url + 'banners/', { params })
     return data
 }
 
