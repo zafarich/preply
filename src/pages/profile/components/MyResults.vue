@@ -112,7 +112,6 @@ const pagesNumber = computed(() => {
 
 const getTestTypeText = (key) => {
     const testType = TEST_TYPE_LIST.find((type) => type.key === key)
-    console.log('testType', testType)
     return testType ? testType.text : key
 }
 

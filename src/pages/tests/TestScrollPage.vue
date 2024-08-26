@@ -29,6 +29,17 @@
                     </div>
                 </div>
             </div>
+            <div class="flex justify-end items-center mt-5 mb-8">
+                <q-btn
+                    @click="downloadPdf(testStore.GET_TESTS.pdf_file)"
+                    color="primary"
+                    no-caps
+                >
+                    <q-icon name="eva-download-outline" size="xs"></q-icon>
+                    <span class="ml-1"> {{ $t('download_file') }} </span>
+                </q-btn>
+            </div>
+
             <div class="flex justify-between items-center mt-3 mb-5">
                 <div class="font-medium text-center text-xl">
                     {{ getTestTypeTitle }}
@@ -168,11 +179,14 @@ import { useMainStore } from 'src/stores/main'
 import { storeToRefs } from 'pinia'
 import TestInfo from './components/TestInfo.vue'
 import { useUserStore } from 'src/stores/user'
+import { useQuasar } from 'quasar'
 
 const router = useRouter()
 const testStore = useTestStore()
 const modalStore = useModalStore()
 const mainStore = useMainStore()
+
+const $q = useQuasar()
 
 const showToTop = ref(false)
 const showToBottom = ref(true)
@@ -181,7 +195,7 @@ const { notifyTestModal, endTestModal, solveInfoModal } =
     storeToRefs(modalStore)
 
 async function confirmBack() {
-    await testStore.END_TEST()
+    await testStore.UPDATE_TEST_RESULT()
     router.replace({ name: 'home' })
     testStore.RESET_TEST_STORE()
 }
@@ -220,6 +234,42 @@ const updateRemainingTime = () => {
     } else {
         useUserStore().logoutProfile()
         router.push({ name: 'login' })
+    }
+}
+
+const downloadPdf = async (pdfUrl) => {
+    try {
+        const response = await api.get(pdfUrl, {
+            responseType: 'blob',
+        })
+
+        const fileUrl = response.request.responseURL
+
+        const fileName = fileUrl.substring(fileUrl.lastIndexOf('/') + 1)
+
+        const url = window.URL.createObjectURL(new Blob([response.data]))
+        const link = document.createElement('a')
+        link.href = url
+        link.setAttribute('download', fileName) // You can set the file name here
+        document.body.appendChild(link)
+        link.click()
+        link.remove()
+        window.URL.revokeObjectURL(url)
+
+        $q.notify({
+            type: 'positive',
+            textColor: 'white',
+            position: 'top',
+            message: 'Test File saved',
+        })
+    } catch (error) {
+        console.error('Error downloading the PDF file:', error)
+        $q.notify({
+            type: 'negative',
+            textColor: 'white',
+            position: 'top',
+            message: 'Failid',
+        })
     }
 }
 

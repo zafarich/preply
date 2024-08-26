@@ -137,8 +137,6 @@ export default {
     mother_tongue: 'Ona tili',
     premium_tests: 'Premium testlar',
     prime_tests: 'Prime testlar',
-
-    //TODO: MY
     download_file: 'Faylni Yuklash',
     download_result: 'Natijani Yuklash',
     selected_tests: 'Tanlangan Testlar',
@@ -147,4 +145,6 @@ export default {
         'Testni yakunlashni tavsiya qilamiz. Oraqaga qaytishni tasdiqlashingiz bilan ushbu test bekor qilinadi',
     confirming: 'Tasdiqlash',
     soon_days: 'Tez kunlarda',
+    world_olympic_tests: 'Xalqaro olimpiada testlari',
+    national_certificate_tests: 'Milliy sertifikat testlari',
 }

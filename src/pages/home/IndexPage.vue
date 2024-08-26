@@ -33,7 +33,7 @@
 
         <div class="mb-8" v-if="languageSelections">
             <div class="text-md font-semibold mb-6">
-                Xalqaro olimpiada testlari
+                {{ $t('world_olympic_tests') }}
             </div>
             <TestsList :subjects="olympicTest" />
         </div>

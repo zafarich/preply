@@ -96,3 +96,8 @@ export async function getMyResults(params) {
     const { data } = await api(url + 'results/my_results/', { params })
     return data
 }
+
+export async function updateTestResult({ id, data }) {
+    const res = await api(url + `results/${id}/`, { data })
+    return res
+}

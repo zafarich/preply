@@ -17,7 +17,7 @@ const props = defineProps({
         <div class="flex mb-6 justify-between items-center">
             <div class="text-md font-semibold">
                 <!-- {{ $t('popular_sciences') }} -->
-                Milliy sertifikat testlari
+                {{ $t('national_certificate_tests') }}
             </div>
             <!-- <q-btn
                 :to="{

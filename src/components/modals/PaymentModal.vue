@@ -6,6 +6,13 @@
         id="payment-modal"
     >
         <q-form @submit="submitButton">
+            <div class="row items-center q-pb-none">
+                <div class="title-modal"></div>
+                <q-space />
+                <button class="close-modal_btn" v-close-popup>
+                    <img src="/images/icons/close-modal.png" alt="" />
+                </button>
+            </div>
             <div v-if="currentStep === 1">
                 <div class="flex justify-center items-center mb-4">
                     <span class="border rounded-lg mr-2">

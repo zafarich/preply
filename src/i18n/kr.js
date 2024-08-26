@@ -134,4 +134,14 @@ export default {
     mother_tongue: 'Ana tili',
     premium_tests: 'Premium testlar',
     prime_tests: 'Prime testlar',
+    download_file: 'Faylni jüklew',
+    download_result: 'Natijanı jüklew',
+    selected_tests: 'Tañlawlı testler',
+    warning: 'Aqıw',
+    warning_back_notify:
+        'Testti ayaqlawdı usınamız. Artqa qaytıwdı tastıyıqlawsıñız bu test bekarlana',
+    confirming: 'Tastıyıqlaw',
+    soon_days: 'Jaqın künderde',
+    world_olympic_tests: 'Xalıqaralıq olimpiyada testleri',
+    national_certificate_tests: 'Ulttıq sertifikat testleri',
 }

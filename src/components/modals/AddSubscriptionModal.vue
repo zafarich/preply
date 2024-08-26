@@ -17,32 +17,53 @@
                 <div class="font-bold text-lg mb-4">
                     {{ $t('Tarifni tanlang') }}:
                 </div>
-                <q-card
-                    class="mb-4 !w-auto !rounded-lg cursor-pointer relative !py-2 !pl-6"
-                    v-for="(item, index) in billingStore.tariffTypes"
+
+                <q-tabs
+                    v-model="currentSubsTab"
+                    narrow-indicator
+                    dense
+                    class="text-primary mb-4"
+                >
+                    <q-tab
+                        :name="TARIFFS.PRIME.code"
+                        :label="$t(TARIFFS.PRIME.label)"
+                    />
+                    <q-tab
+                        :name="TARIFFS.PREMIUM.code"
+                        :label="$t(TARIFFS.PREMIUM.label)"
+                    />
+                </q-tabs>
+
+                <div
+                    class="mb-4 !w-auto border-2 !rounded-lg cursor-pointer relative !py-2 box-border px-3"
+                    v-for="(item, index) in getCurrentTabTariffs"
                     :key="index"
                     @click="() => (tariff = item)"
+                    :class="tariff === item ? 'border-[#4f9e91]' : ''"
                 >
                     <div class="flex justify-start flex-nowrap gap-2">
-                        <q-radio dense v-model="tariff" :val="item" />
+                        <!-- <q-radio dense v-model="tariff" :val="item" /> -->
+
                         <div class="flex justify-between items-center w-full">
+                            <div><q-badge :label="item.quantity" /> oy</div>
                             <div>
-                                {{ item.name }}
-                                <q-badge :label="item.quantity" />
+                                <span class="font-bold">
+                                    {{ getSum(item) }}
+                                </span>
+                                {{ $t('sum') }}
                             </div>
-                            <div>{{ getSum(item) }} {{ $t('sum') }}</div>
                         </div>
                     </div>
-                </q-card>
+                </div>
 
                 <div
                     v-if="tariff"
                     class="flex justify-start flex-col bg-blue-500 text-white text-xs font-bold px-4 py-3 rounded-md"
                 >
-                    <div v-if="tariff.unique_name == TARIFFS.PREMIUM.code">
+                    <div v-if="currentSubsTab == TARIFFS.PREMIUM.code">
                         {{ $t(TARIFFS.PREMIUM.info) }}
                     </div>
-                    <div v-if="tariff.unique_name == TARIFFS.PRIME.code">
+                    <div v-if="currentSubsTab == TARIFFS.PRIME.code">
                         {{ $t(TARIFFS.PRIME.info) }}
                     </div>
                 </div>
@@ -50,29 +71,24 @@
                 <div class="font-bold text-lg mt-6 mb-4">
                     {{ $t('select_card') }}:
                 </div>
-                <q-card
+                <div
                     v-for="(card, index) in userStore.userVerifyCards"
                     :key="index"
-                    class="mb-4 !w-auto !rounded-lg cursor-pointer relative !py-2 !pl-6"
+                    class="mb-4 !w-auto border-2 !rounded-lg cursor-pointer relative !py-2 px-3 font-bold"
                     @click="() => (seletedCard = card.id)"
                     flat
                     bordered
+                    :class="card.id === seletedCard ? 'border-[#4f9e91]' : ''"
                 >
-                    <q-radio
-                        dense
-                        v-model="seletedCard"
-                        :val="card.id"
-                        class="absolute left-2 top-2.5"
-                    />
-                    <div class="flex justify-between items-center mb-2 ml-3">
+                    <div class="flex justify-between items-center mb-2">
                         <div>
                             {{ card.card_number }}
                         </div>
                     </div>
-                    <div class="ml-3">
+                    <div>
                         {{ card.expire }}
                     </div>
-                </q-card>
+                </div>
 
                 <q-btn
                     :loading="loading"
@@ -99,6 +115,7 @@ import { useQuasar } from 'quasar'
 import { priceFormat } from 'src/utils/helpers'
 import { TARIFFS, TEST_TYPES } from 'src/utils/constants'
 import { useMainStore } from 'src/stores/main'
+import { useTestStore } from 'src/stores/test'
 
 const modalStore = useModalStore()
 const { subscriptionModal } = storeToRefs(modalStore)
@@ -106,12 +123,20 @@ const { subscriptionModal } = storeToRefs(modalStore)
 const billingStore = useBillingStore()
 const userStore = useUserStore()
 const mainStore = useMainStore()
+const testStore = useTestStore()
 
 const $q = useQuasar()
 
 const tariff = ref('')
 const seletedCard = ref('')
 const loading = ref(false)
+const currentSubsTab = ref(TARIFFS.PREMIUM.code)
+
+const getCurrentTabTariffs = computed(() => {
+    return billingStore.tariffTypes.filter(
+        (tarif) => tarif.unique_name === currentSubsTab.value,
+    )
+})
 
 const addSubscribe = async () => {
     try {
@@ -122,15 +147,18 @@ const addSubscribe = async () => {
             card: seletedCard.value,
         }
 
-        console.log('exportDasta', exportData)
-
         const res = await billingStore.createSubscription(exportData)
         await billingStore.paySubscription(res.id)
         await billingStore.getSubscriptions({ page_size: 1000 })
         subscriptionModal.value = false
 
         mainStore.changeFireWorks(true)
+
+        if (testStore.avtoStartAfterPaying) {
+            testStore.START_TEST()
+        }
     } catch (error) {
+        loading.value = false
         $q.notify({
             color: 'red-5',
             textColor: 'white',

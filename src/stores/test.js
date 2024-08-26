@@ -14,6 +14,7 @@ export const useTestStore = defineStore(
         const test_questions = ref([])
         const test_type = ref(TEST_TYPES.BLOCK)
         const active_index = ref(0)
+        const avtoStartAfterPaying = ref(false)
 
         const errorSubsType = ref('')
 
@@ -100,10 +101,12 @@ export const useTestStore = defineStore(
                 }
 
                 if (!res.error) {
+                    avtoStartAfterPaying.value = false
                     tests.value = res
                     test_questions.value = res.questions
                     active_index.value = 0
                 } else {
+                    avtoStartAfterPaying.value = true
                     errorSubsType.value = res.error
                     useModalStore().changeBuySubscriptionModal(true)
                 }
@@ -158,6 +161,14 @@ export const useTestStore = defineStore(
             return res
         }
 
+        async function UPDATE_TEST_RESULT() {
+            const res = await api.updateTestResult({
+                id: tests.value.id,
+                data: { cancel: true },
+            })
+            return res
+        }
+
         return {
             tests,
             test_questions,
@@ -166,6 +177,7 @@ export const useTestStore = defineStore(
             test_type,
             errorSubsType,
             myResults,
+            avtoStartAfterPaying,
 
             GET_TESTS,
             GET_TEST_RESULTS,
@@ -175,6 +187,7 @@ export const useTestStore = defineStore(
             GET_TEST_TIME,
             GET_ACTIVE_TEST_INDEX,
 
+            UPDATE_TEST_RESULT,
             SELECT_TEST,
             START_TEST,
             FETCH_TEST_RESULT,

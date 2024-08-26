@@ -133,4 +133,14 @@ export default {
     mother_tongue: 'Родной язык',
     premium_tests: 'Премиум-тесты',
     prime_tests: 'Простые тесты',
+    download_file: 'Скачать файл',
+    download_result: 'Скачать результат',
+    selected_tests: 'Выбранные тесты',
+    warning: 'Предупреждение',
+    warning_back_notify:
+        'Рекомендуем завершить тест. Подтверждая возврат, вы отменяете этот тест',
+    confirming: 'Подтверждение',
+    soon_days: 'Скоро',
+    world_olympic_tests: 'Международные олимпийские тесты',
+    national_certificate_tests: 'Национальные сертификационные тесты',
 }
