@@ -35,7 +35,7 @@ const props = defineProps({
     justify-content: center;
     flex-direction: column;
     .title-science {
-        font-size: 16px;
+        font-size: 14px;
         font-weight: 500;
         text-align: center;
         // margin-left: 12px;

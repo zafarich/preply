@@ -65,6 +65,13 @@
                     >
                         {{ index + 1 }}. {{ subject.title }}
                     </div>
+                    <div
+                        class="w-full text-lg border-2 border-[#4f9e91] rounded-10 text-center py-1.5 mb-1.5"
+                        v-for="(subject, index) in MANDATORY_SUBJECTS"
+                        :key="index"
+                    >
+                        {{ index + 3 }}. {{ $t(subject.label) }}
+                    </div>
                 </div>
                 <div
                     v-else-if="
@@ -169,7 +176,7 @@
 <script setup>
 import { computed, onMounted, onUnmounted, ref } from 'vue-demi'
 import { useRouter } from 'vue-router'
-import { TEST_TYPES } from 'src/utils/constants'
+import { MANDATORY_SUBJECTS, TEST_TYPES } from 'src/utils/constants'
 import { api } from 'src/boot/axios'
 import NotifyTestModal from './components/NotifyTestModal.vue'
 import EndTestModal from 'src/components/modals/EndTestModal.vue'
@@ -220,7 +227,7 @@ const remainingTime = ref(testStore.GET_TEST_TIME)
 const warningTimePeriod = 3 * 60
 
 const updateRemainingTime = () => {
-    if (testStore.GET_TESTS.started_at) {
+    if (testStore.GET_TESTS && testStore.GET_TESTS.started_at) {
         const currentTime = new Date()
         const timeDiff =
             currentTime.getTime() -
