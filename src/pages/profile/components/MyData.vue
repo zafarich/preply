@@ -134,6 +134,10 @@ import { TARIFFS } from 'src/utils/constants'
 import { hashUserId } from 'src/utils/auth'
 import { useMainStore } from 'src/stores/main'
 
+import { useI18n } from 'vue-i18n'
+
+const { t: $t } = useI18n()
+
 const props = defineProps({
     filePassword: {
         type: String,
@@ -162,7 +166,7 @@ const clickClipboard = async () => {
                 type: 'positive',
                 textColor: 'white',
                 position: 'top',
-                message: 'Password copied to clipboard',
+                message: $t('password_saved_clipboard'),
             })
         })
         .catch(() => {
@@ -170,7 +174,7 @@ const clickClipboard = async () => {
                 type: 'negative',
                 textColor: 'white',
                 position: 'top',
-                message: 'Failid copied to clipboard',
+                message: $t('error_occured'),
             })
         })
 }

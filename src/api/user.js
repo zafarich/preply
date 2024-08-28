@@ -35,3 +35,10 @@ export async function updateUser(id, data) {
         pass: true,
     })
 }
+
+export async function refreshAccessToken(payload) {
+    const { data } = await api.post(url + 'refresh-token/', payload, {
+        pass: true,
+    })
+    return data
+}

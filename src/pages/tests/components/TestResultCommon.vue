@@ -84,7 +84,7 @@
             :key="bIndex"
         >
             <div class="question-text" :id="`question_${item.order_number}`">
-                {{ item.order_number + 1 }} {{ item.question }}
+                {{ item.order_number + 1 }} ) {{ item.question }}
             </div>
 
             <div class="my-4" v-if="item.question_image">

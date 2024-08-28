@@ -3,7 +3,7 @@ import axios from 'axios'
 import { getServerError } from 'src/utils/helpers'
 import { useUserStore } from 'src/stores/user'
 import { Notify } from 'quasar'
-import { getTokenFromCache } from 'src/utils/auth'
+import { getAccessToken } from 'src/utils/auth'
 
 const api = axios.create({ baseURL: process.env.BASE_URL })
 
@@ -11,7 +11,7 @@ export default boot(({ app, route, router, store }) => {
     const userStore = useUserStore()
     api.interceptors.request.use(
         (config) => {
-            const token = getTokenFromCache()
+            const token = getAccessToken()
 
             if (token) config.headers.Authorization = 'Bearer ' + token
 
@@ -38,15 +38,35 @@ export default boot(({ app, route, router, store }) => {
         },
         async (error) => {
             let message = getServerError(error, 'errorMessage')
+            const originalRequest = error.config
+
             const status = error?.response?.status
             if ('pass' in error?.config) {
                 return Promise.reject(error)
             }
 
-            if (status === 401) {
-                userStore.logoutProfile()
-                router.push({ name: 'login' })
-                return { data: { result: null, error: true } }
+            if (status === 401 && !originalRequest._retry) {
+                try {
+                    originalRequest._retry = true
+
+                    // const refreshToken = useUserStore().refreshToken
+                    await useUserStore().handleRefreshAccessToken()
+
+                    originalRequest.headers.Authorization = `Bearer ${useUserStore().accessToken}`
+                    return api(originalRequest)
+                } catch (refreshError) {
+                    if (
+                        refreshError.response &&
+                        refreshError.response.status === 401
+                    ) {
+                        useUserStore().logoutProfile()
+                    }
+                    return Promise.reject(refreshError)
+                }
+
+                // userStore.logoutProfile()
+                // router.push({ name: 'login' })
+                // return { data: { result: null, error: true } }
             } else if (status?.toString()?.slice(0, 1) === 5) {
                 message = 'Internal Server Error'
             } else if (status === 405) {

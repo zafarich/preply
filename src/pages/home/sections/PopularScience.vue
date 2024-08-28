@@ -14,25 +14,11 @@ const props = defineProps({
 </script>
 <template>
     <div class="popular-subjects">
-        <div class="flex mb-6 justify-between items-center">
+        <!-- <div class="flex mb-6 justify-between items-center">
             <div class="text-md font-semibold">
-                <!-- {{ $t('popular_sciences') }} -->
                 {{ $t('national_certificate_tests') }}
             </div>
-            <!-- <q-btn
-                :to="{
-                    name: 'tests',
-                    query: { test_type: TEST_TYPES.BY_SUBJECTS },
-                }"
-                class="icon-16"
-                icon-right="arrow_forward"
-                no-caps
-                flat
-                dense
-                color="primary"
-                >{{ $t('all') }}</q-btn
-            > -->
-        </div>
+        </div> -->
 
         <ScienceList :subjects="subjects" />
     </div>

@@ -85,7 +85,7 @@ const subjectSelectionsList = ref({
     results: [],
 })
 
-const { startModal, buySubscriptionModal } = storeToRefs(modalStore)
+const { startModal } = storeToRefs(modalStore)
 const router = useRouter()
 const { t } = useI18n()
 

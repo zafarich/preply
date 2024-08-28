@@ -33,8 +33,7 @@ const mainStore = useMainStore()
 const testStore = useTestStore()
 const userStore = useUserStore()
 
-const { startBySelectionModal, buySubscriptionModal, soonDaysModal } =
-    storeToRefs(modalStore)
+const { startBySelectionModal, soonDaysModal } = storeToRefs(modalStore)
 
 const props = defineProps({
     subjects: {

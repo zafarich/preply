@@ -37,7 +37,9 @@
                     />
                 </div>
             </div>
-            <div class="text-lg mb-4 mt-8 pt-5 border-t">Majburiy fanlar:</div>
+            <div class="text-lg mb-4 mt-8 pt-5 border-t">
+                {{ $t('compulsory_subjects') }}:
+            </div>
             <div class="flex justify-between items-center">
                 <q-badge
                     v-for="(subject, index) in MANDATORY_SUBJECTS"
@@ -92,7 +94,7 @@ const props = defineProps({
     },
 })
 
-const { startModal, buySubscriptionModal } = storeToRefs(modalStore)
+const { startModal } = storeToRefs(modalStore)
 const router = useRouter()
 const { t } = useI18n()
 const data = ref({

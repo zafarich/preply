@@ -36,11 +36,15 @@ import LogoutModal from 'src/components/modals/LogoutModal.vue'
 import SoonDaysModal from 'src/components/modals/SoonDaysModal.vue'
 import { storeToRefs } from 'pinia'
 import Fireworks from 'src/components/Fireworks.vue'
+import { useUserStore } from 'src/stores/user'
+import { ref } from 'vue'
+import { jwtDecode } from 'jwt-decode'
 
 const router = useRouter()
 const route = useRoute()
 const testStore = useTestStore()
 const mainStore = useMainStore()
+const userStore = useUserStore()
 
 const isShowFooter = computed(() => {
     return route.name == 'home'

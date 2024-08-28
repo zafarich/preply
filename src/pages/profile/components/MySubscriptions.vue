@@ -81,14 +81,18 @@ import { useBillingStore } from 'src/stores/billing'
 import { useUserStore } from 'src/stores/user'
 import { formatDate } from 'src/utils/helpers'
 import { priceFormat } from 'src/utils/helpers'
+import { useMainStore } from 'src/stores/main'
 
 const modalStore = useModalStore()
 const userStore = useUserStore()
 const billingStore = useBillingStore()
-const { subscriptionModal, profileTab: tabs } = storeToRefs(modalStore)
+const mainStore = useMainStore()
+
+const { subscriptionModal } = storeToRefs(modalStore)
+const { profileTab } = storeToRefs(mainStore)
 
 function goToCardsTab() {
-    tabs.value = 'my_cards'
+    profileTab.value = 'my_cards'
 }
 </script>
 

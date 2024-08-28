@@ -116,6 +116,7 @@ const submitForm = async () => {
             password: password.value,
         })
 
+        console.log('RESPONSESS', response)
         if (response.refresh && response.access) {
             setTimeout(() => {
                 mainStore.changeFireWorks(true)

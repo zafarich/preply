@@ -20,8 +20,7 @@ const referencesStore = useReferencesStore()
 const testStore = useTestStore()
 const modalStore = useModalStore()
 const userStore = useUserStore()
-const { variantNotifyStartModal, buySubscriptionModal } =
-    storeToRefs(modalStore)
+const { variantNotifyStartModal } = storeToRefs(modalStore)
 
 const subject_id = route.params.id
 const subject = ref(null)

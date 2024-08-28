@@ -89,7 +89,8 @@
                 :id="`question_${question.order_number}`"
             >
                 <div class="question-text">
-                    {{ question.order_number + 1 }}.
+                    <span class="">{{ question.order_number + 1 }} ) </span>
+
                     {{ question.question }}
                 </div>
                 <div class="my-4" v-if="question.question_image">
@@ -180,7 +181,9 @@ import { storeToRefs } from 'pinia'
 import TestInfo from './components/TestInfo.vue'
 import { useUserStore } from 'src/stores/user'
 import { useQuasar } from 'quasar'
+import { useI18n } from 'vue-i18n'
 
+const { t: $t } = useI18n()
 const router = useRouter()
 const testStore = useTestStore()
 const modalStore = useModalStore()
@@ -260,7 +263,7 @@ const downloadPdf = async (pdfUrl) => {
             type: 'positive',
             textColor: 'white',
             position: 'top',
-            message: 'Test File saved',
+            message: $t('file_saved'),
         })
     } catch (error) {
         console.error('Error downloading the PDF file:', error)
@@ -268,7 +271,7 @@ const downloadPdf = async (pdfUrl) => {
             type: 'negative',
             textColor: 'white',
             position: 'top',
-            message: 'Failid',
+            message: $t('error_occured'),
         })
     }
 }
@@ -391,7 +394,7 @@ async function confirmEndTest() {
 
         .question-text {
             margin-top: 16px;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: bold;
         }
 
@@ -412,7 +415,7 @@ async function confirmEndTest() {
 
             ._selected {
                 // background-color: $;
-                border: 2px solid #ffcf26;
+                border: 2px solid #2196f3;
             }
         }
     }

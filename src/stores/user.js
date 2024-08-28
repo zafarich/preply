@@ -1,28 +1,57 @@
 import * as api from 'src/api/user'
 import { defineStore } from 'pinia'
-
+import { jwtDecode } from 'jwt-decode'
 import { ref, computed } from 'vue-demi'
 import { useLangStore } from './lang.store'
 import {
-    getTokenFromCache,
-    removeTokenFromCache,
-    setTokenToCache,
+    getAccessToken,
+    removeAccessToken,
+    setAccessToken,
+    getRefreshToken,
+    setRefreshToken,
+    removeRefreshToken,
 } from 'src/utils/auth'
 
 export const useUserStore = defineStore(
     'user',
 
     () => {
-        const token = ref(getTokenFromCache())
+        const accessToken = ref(getAccessToken())
+        const refreshToken = ref(getRefreshToken())
+
         const userCards = ref([])
         const userData = ref({})
         const leaders = ref({
             results: [],
         })
 
-        const everyDay = ref('222')
-
         const page_size = 10
+
+        const getAccessTokenData = computed(() => {
+            return jwtDecode(accessToken.value)
+        })
+
+        const getRefreshTokenData = computed(() => {
+            return jwtDecode(refreshToken.value)
+        })
+
+        const isAccessTokenExpire = computed(() => {
+            const currentTime = Math.floor(Date.now() / 1000)
+            if (currentTime >= getAccessTokenData.value.exp) {
+                return true
+            }
+
+            return false
+        })
+
+        const isRefreshTokenExpire = computed(() => {
+            const currentTime = Math.floor(Date.now() / 1000)
+            if (currentTime >= getRefreshToken.value.exp) {
+                return true
+            }
+
+            return false
+        })
 
         const userVerifyCards = computed(() => {
             return userCards.value.filter((item) => item.verify === true)
@@ -48,14 +77,28 @@ export const useUserStore = defineStore(
         async function login(payload) {
             const res = await api.login(payload)
             if (res && res.access) {
-                setTokenToCache(res.access)
-                token.value = res.access
+                setAccessToken(res.access)
+                setRefreshToken(res.refresh)
+                accessToken.value = res.access
+                refreshToken.value = res.refresh
             }
 
             const res2 = await getMe()
 
             useLangStore().setLanguage(res2.language)
             updateUserData(res2)
+
+            return res
+        }
+
+        async function handleRefreshAccessToken() {
+            const res = await api.refreshAccessToken(refreshToken.value)
+            if (res && res.access) {
+                setAccessToken(res.access)
+                setRefreshToken(res.refresh)
+                accessToken.value = res.access
+                refreshToken.value = res.refresh
+            }
 
             return res
         }
@@ -82,34 +125,41 @@ export const useUserStore = defineStore(
 
         async function logoutProfile() {
             userData.value = {}
-            token.value = ''
-            removeTokenFromCache()
+            accessToken.value = ''
+            refreshToken.value = ''
+            removeAccessToken()
+            removeRefreshToken()
             userCards.value = []
             leaders.value = {
                 results: [],
             }
         }
 
-        function sayhay() {
-            console.log('sayHay')
-        }
         return {
             userData,
-            everyDay,
-            token,
             userCards,
+            accessToken,
+            refreshToken,
             page_size,
             leaders,
             userVerifyCards,
+            accessToken,
+            refreshToken,
+
+            getRefreshTokenData,
+            getAccessTokenData,
+            isAccessTokenExpire,
+            isRefreshTokenExpire,
+
             login,
             getLeaders,
             updateUser,
             setUserData,
             updateUserData,
-            sayhay,
             getMe,
             register,
             logoutProfile,
+            handleRefreshAccessToken,
         }
     },
     {

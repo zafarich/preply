@@ -147,4 +147,13 @@ export default {
     soon_days: 'Tez kunlarda',
     world_olympic_tests: 'Xalqaro olimpiada testlari',
     national_certificate_tests: 'Milliy sertifikat testlari',
+    //TODO: new
+    file_saved: 'Fayl saqlandi',
+    error_occured: 'Xatolik aniqlandi',
+    password_saved_clipboard: 'Parol vaqtinchalik xotiraga saqlandi',
+    compulsory_subjects: 'Majburiy fanlar',
+    file: 'fayl',
+    month: 'oy',
+    i_agree_terms: 'Men ommaviy offerta shartlarini qabul qilaman',
+    public_offer: 'Ommaviy offerta',
 }

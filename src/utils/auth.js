@@ -1,4 +1,30 @@
 const KEY = 'token'
+const ACCESS_TOKEN = 'access_token'
+const REFRESH_TOKEN = 'refresh_token'
+
+export function getAccessToken() {
+    return localStorage.getItem(ACCESS_TOKEN)
+}
+
+export function setAccessToken(token) {
+    return localStorage.setItem(ACCESS_TOKEN, token)
+}
+
+export function removeAccessToken() {
+    return localStorage.removeItem(ACCESS_TOKEN)
+}
+
+export function getRefreshToken() {
+    return localStorage.getItem(REFRESH_TOKEN)
+}
+
+export function setRefreshToken(token) {
+    return localStorage.setItem(REFRESH_TOKEN, token)
+}
+
+export function removeRefreshToken() {
+    return localStorage.removeItem(REFRESH_TOKEN)
+}
 
 export function getTokenFromCache() {
     return localStorage.getItem(KEY)

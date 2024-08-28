@@ -8,7 +8,9 @@
             </div>
             <div class="flex justify-between items-center">
                 <LangSwitcher />
-                <UserDropDown v-if="userStore.token && userStore.userData.id" />
+                <UserDropDown
+                    v-if="userStore.accessToken && userStore.userData.id"
+                />
             </div>
         </header>
     </div>

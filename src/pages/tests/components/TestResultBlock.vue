@@ -75,12 +75,26 @@
         </div>
 
         <div
-            class="mb-8 question-wrap"
+            class="mb-8 question-wrap !text-sm"
             v-for="(item, bIndex) in getAllResults"
             :key="bIndex"
         >
-            <div class="question-text" :id="`question_${item.order_number}`">
-                {{ item.order_number + 1 }} {{ item.question }}
+            <div
+                class="question-text relative"
+                :id="`question_${item.order_number}`"
+            >
+                <span class="mr-1 inline-block absolute top-[-12px]">
+                    <img
+                        v-if="item.is_correct"
+                        src="/icons/check-mark.png"
+                        class="!w-8 mt-1"
+                    />
+                    <img v-else src="/icons/cancel.png" class="!w-8 mt-1" />
+                </span>
+                <span
+                    ><span class="ml-9"> {{ item.order_number + 1 }} ) </span>
+                    {{ item.question }}</span
+                >
             </div>
 
             <div class="my-4" v-if="item.question_image">

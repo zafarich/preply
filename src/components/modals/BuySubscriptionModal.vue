@@ -40,7 +40,7 @@ import { useTestStore } from 'src/stores/test'
 import { useRouter } from 'vue-router'
 import { useBillingStore } from 'src/stores/billing'
 import { onMounted, computed } from 'vue'
-import { TEST_ERROR_TYPES } from 'src/utils/constants'
+import { TARIFFS, TEST_ERROR_TYPES, TEST_TYPES } from 'src/utils/constants'
 
 const modalStore = useModalStore()
 const testStore = useTestStore()
@@ -55,7 +55,7 @@ onMounted(async () => {
 })
 
 const getSubsType = computed(() => {
-    if (testStore.errorSubsType == TEST_ERROR_TYPES.PRIME_SUBS_IS_NOT_EXIST) {
+    if (testStore.errorSubsType == TARIFFS.PRIME.errorText) {
         return 'Prime'
     }
     return 'Premium'

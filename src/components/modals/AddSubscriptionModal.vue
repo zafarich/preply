@@ -45,7 +45,15 @@
                         <!-- <q-radio dense v-model="tariff" :val="item" /> -->
 
                         <div class="flex justify-between items-center w-full">
-                            <div><q-badge :label="item.quantity" /> oy</div>
+                            <div>
+                                <q-badge :label="item.quantity" />
+
+                                {{
+                                    TARIFFS.PREMIUM.code == currentSubsTab
+                                        ? $t('file')
+                                        : $t('month')
+                                }}
+                            </div>
                             <div>
                                 <span class="font-bold">
                                     {{ getSum(item) }}
@@ -60,12 +68,7 @@
                     v-if="tariff"
                     class="flex justify-start flex-col bg-blue-500 text-white text-xs font-bold px-4 py-3 rounded-md"
                 >
-                    <div v-if="currentSubsTab == TARIFFS.PREMIUM.code">
-                        {{ $t(TARIFFS.PREMIUM.info) }}
-                    </div>
-                    <div v-if="currentSubsTab == TARIFFS.PRIME.code">
-                        {{ $t(TARIFFS.PRIME.info) }}
-                    </div>
+                    {{ tariff.description }}
                 </div>
 
                 <div class="font-bold text-lg mt-6 mb-4">
@@ -116,8 +119,10 @@ import { priceFormat } from 'src/utils/helpers'
 import { TARIFFS, TEST_TYPES } from 'src/utils/constants'
 import { useMainStore } from 'src/stores/main'
 import { useTestStore } from 'src/stores/test'
+import { useRouter } from 'vue-router'
 
 const modalStore = useModalStore()
+const router = useRouter()
 const { subscriptionModal } = storeToRefs(modalStore)
 
 const billingStore = useBillingStore()
@@ -143,8 +148,9 @@ const addSubscribe = async () => {
         loading.value = true
 
         const exportData = {
-            tariff_type: tariff.value.tariff_id,
+            tariff: tariff.value.tariff_id,
             card: seletedCard.value,
+            tariff_type: tariff.value.id,
         }
 
         const res = await billingStore.createSubscription(exportData)
@@ -154,11 +160,28 @@ const addSubscribe = async () => {
 
         mainStore.changeFireWorks(true)
 
-        if (testStore.avtoStartAfterPaying) {
-            testStore.START_TEST()
+        const matchedTariff = Object.values(TARIFFS).find(
+            (tariff) => tariff.errorText === testStore.errorSubsType,
+        )
+
+        if (
+            testStore.avtoStartAfterPaying &&
+            matchedTariff.code == currentSubsTab.value
+        ) {
+            mainStore.changeSiteLoader(true)
+            await testStore.START_TEST(
+                testStore.test_type,
+                testStore.testStartPayload,
+            )
+
+            router.push({
+                name: 'test-solve',
+            })
+            mainStore.changeSiteLoader(false)
         }
     } catch (error) {
         loading.value = false
+        console.log('errorr', error)
         $q.notify({
             color: 'red-5',
             textColor: 'white',

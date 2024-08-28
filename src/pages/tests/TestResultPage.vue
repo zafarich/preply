@@ -1,5 +1,5 @@
 <template>
-    <div class="relative">
+    <div class="relative !text-sm">
         <TestResultBlock
             v-if="testStore.test_type == TEST_TYPES.BLOCK"
             @downloadPdf="downloadPdf"
@@ -10,13 +10,25 @@
             @downloadPdf="downloadPdf"
             @dowloadResultPage="dowloadResultPage"
         />
+
         <div
-            class="fixed bottom-14 right-4 border rounded-full p-3 bg-orange-500 cursor-pointer"
+            class="fixed bottom-28 right-4 border rounded-full p-3 bg-orange-500 cursor-pointer"
             @click="scrollToTop"
             id="scrollIcon"
-            v-if="showIcon"
+            v-if="showToTop"
         >
             <img src="/images/icons/to-top-icon.svg" class="w-4 h-4" />
+        </div>
+        <div
+            class="fixed bottom-16 right-4 border rounded-full p-3 bg-orange-500 cursor-pointer"
+            @click="scrollToBottom"
+            id="scrollIcon"
+            v-if="showToBottom"
+        >
+            <img
+                src="/images/icons/to-top-icon.svg"
+                class="w-4 h-4 rotate-180"
+            />
         </div>
     </div>
 </template>
@@ -31,8 +43,11 @@ import { api } from 'src/boot/axios'
 import html2pdf from 'html2pdf.js'
 import { useQuasar } from 'quasar'
 const testStore = useTestStore()
-const showIcon = ref(false)
+const showToTop = ref(false)
+const showToBottom = ref(true)
+import { useI18n } from 'vue-i18n'
 
+const { t: $t } = useI18n()
 const $q = useQuasar()
 
 const downloadPdf = async (pdfUrl) => {
@@ -58,7 +73,7 @@ const downloadPdf = async (pdfUrl) => {
             type: 'positive',
             textColor: 'white',
             position: 'top',
-            message: 'Test File saved',
+            message: $t('file_saved'),
         })
     } catch (error) {
         console.error('Error downloading the PDF file:', error)
@@ -66,7 +81,7 @@ const downloadPdf = async (pdfUrl) => {
             type: 'negative',
             textColor: 'white',
             position: 'top',
-            message: 'Failid',
+            message: $t('error_occured'),
         })
     }
 }
@@ -98,7 +113,7 @@ const dowloadResultPage = async (pdfContent) => {
             type: 'positive',
             textColor: 'white',
             position: 'top',
-            message: 'Result File Saved',
+            message: $t('file_saved'),
         })
     } catch (error) {
         console.log('error', error)
@@ -107,9 +122,23 @@ const dowloadResultPage = async (pdfContent) => {
             type: 'negative',
             textColor: 'white',
             position: 'top',
-            message: 'Failed',
+            message: $t('error_occured'),
         })
     }
+}
+
+const scrollToTop = () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'instant',
+    })
+}
+
+const scrollToBottom = () => {
+    window.scrollTo({
+        top: document.documentElement.scrollHeight - window.innerHeight,
+        behavior: 'instant',
+    })
 }
 
 onMounted(() => {
@@ -119,20 +148,13 @@ onMounted(() => {
             window.pageYOffset || document.documentElement.scrollTop
 
         if (scrollTop > 500) {
-            showIcon.value = true
+            showToTop.value = true
         } else {
-            showIcon.value = false
+            showToTop.value = false
         }
         // }
     })
 })
-
-const scrollToTop = () => {
-    window.scrollTo({
-        top: 0,
-        behavior: 'instant',
-    })
-}
 </script>
 
 <style lang="scss" src="src/assets/scss/TestResultPage.scss"></style>

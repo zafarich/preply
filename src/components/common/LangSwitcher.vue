@@ -39,7 +39,7 @@ const changeLang = async (lang) => {
     const language =
         lang === 'uz-Latn' ? 'uz' : lang === 'uz-Cyrl' ? 'qr' : 'ru'
 
-    if (userStore.token) await userStore.updateUser({ language })
+    if (userStore.accessToken) await userStore.updateUser({ language })
 
     router.go()
 }

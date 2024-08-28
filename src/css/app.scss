@@ -409,7 +409,7 @@ ul {
 .question-wrap {
     .question-text {
         margin-top: 16px;
-        font-size: 18px;
+        font-size: 16px;
         font-weight: bold;
     }
 
@@ -430,7 +430,9 @@ ul {
 
         ._selected {
             // background-color: $;
-            border: 2px solid #ffcf26;
+            border: 2px solid #2196f3;
+            background: #2196f3;
+            color: white;
         }
     }
 }

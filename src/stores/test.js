@@ -15,6 +15,7 @@ export const useTestStore = defineStore(
         const test_type = ref(TEST_TYPES.BLOCK)
         const active_index = ref(0)
         const avtoStartAfterPaying = ref(false)
+        const testStartPayload = ref('')
 
         const errorSubsType = ref('')
 
@@ -108,6 +109,7 @@ export const useTestStore = defineStore(
                 } else {
                     avtoStartAfterPaying.value = true
                     errorSubsType.value = res.error
+                    testStartPayload.value = payload
                     useModalStore().changeBuySubscriptionModal(true)
                 }
             } catch (error) {
@@ -178,6 +180,7 @@ export const useTestStore = defineStore(
             errorSubsType,
             myResults,
             avtoStartAfterPaying,
+            testStartPayload,
 
             GET_TESTS,
             GET_TEST_RESULTS,

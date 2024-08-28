@@ -64,12 +64,14 @@ export const TARIFFS = {
         label: 'prime_tests',
         info: 'prime_info',
         icon: '/icons/prime_icon.png',
+        errorText: 'prime_status_is_not_exists',
     },
     PREMIUM: {
         code: 'premium',
         label: 'premium_tests',
         info: 'premium_info',
         icon: '/icons/premium.png',
+        errorText: 'premium_subscribe_is_not_exists',
     },
 }
 

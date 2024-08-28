@@ -144,4 +144,13 @@ export default {
     soon_days: 'Jaqın künderde',
     world_olympic_tests: 'Xalıqaralıq olimpiyada testleri',
     national_certificate_tests: 'Ulttıq sertifikat testleri',
+    // TODO: NEW
+    file_saved: 'Fayl saqlandi',
+    error_occured: 'Qátelik anıqlandi',
+    password_saved_clipboard: 'Parol waqtınshalıq yadqa saqlandi',
+    compulsory_subjects: 'Májburiy pánler',
+    file: 'fayl',
+    month: 'ay',
+    i_agree_terms: 'Men ǵalabalıq offerta shártlerin qabıl etemen',
+    public_offer: 'Ǵalabalıq offerta',
 }

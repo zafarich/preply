@@ -73,8 +73,7 @@ const testStore = useTestStore()
 const mainStore = useMainStore()
 const userStore = useUserStore()
 const $q = useQuasar()
-const { buySubscriptionModal, variantNotifyStartModal } =
-    storeToRefs(modalStore)
+const { variantNotifyStartModal } = storeToRefs(modalStore)
 const router = useRouter()
 const { t } = useI18n()
 const data = ref({

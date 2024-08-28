@@ -69,7 +69,7 @@
 
                     <q-icon
                         :name="
-                            isPwd ? 'eva-eye-outline' : 'eva-eye-off-outline'
+                            isPwd1 ? 'eva-eye-outline' : 'eva-eye-off-outline'
                         "
                         class="cursor-pointer absolute right-4 top-[41px]"
                         @click="togglePassword1"
@@ -95,7 +95,7 @@
 
                     <q-icon
                         :name="
-                            isPwd ? 'eva-eye-outline' : 'eva-eye-off-outline'
+                            isPwd2 ? 'eva-eye-outline' : 'eva-eye-off-outline'
                         "
                         class="cursor-pointer absolute right-4 top-[41px]"
                         @click="togglePassword2"
@@ -113,8 +113,7 @@
                     <div class="flex justify-start items-center">
                         <q-checkbox
                             color="secondary"
-                            label="Men ommaviy offerta shartlarini qabul qilaman
-                        "
+                            :label="$t('i_agree_terms')"
                             v-model="is_agree"
                         />
                     </div>
@@ -122,7 +121,7 @@
                         class="text-secondary cursor-pointer"
                         @click="openPrivacyModal"
                     >
-                        Ommaviy offerta
+                        {{ $t('public_offer') }}
                     </div>
                 </div>
 
