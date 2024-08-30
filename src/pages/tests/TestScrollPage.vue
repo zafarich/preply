@@ -40,9 +40,9 @@
                 </q-btn>
             </div>
 
-            <div class="flex justify-between items-center mt-3 mb-5">
-                <div class="font-medium text-center text-xl">
-                    {{ getTestTypeTitle }}
+            <div class="flex justify-center items-center mt-3 mb-5">
+                <div class="font-medium text-xl">
+                    {{ $t(getTestTypeTitle) }}
                 </div>
             </div>
 
@@ -57,16 +57,23 @@
                 </div>
 
                 <div v-else-if="testStore.GET_TEST_TYPE === TEST_TYPES.BLOCK">
+                    <div class="font-medium text-base mb-2">
+                        {{ $t('main_subjects') }}
+                    </div>
+
                     <div
-                        class="w-full text-lg border-2 border-[#4f9e91] rounded-10 text-center py-1.5 mb-1.5"
+                        class="w-full text-sm border-2 border-[#4f9e91] rounded-10 text-center py-1.5 mb-1.5"
                         v-for="(subject, index) in testStore.GET_TESTS
                             .block_test_subjects"
                         :key="index"
                     >
                         {{ index + 1 }}. {{ subject.title }}
                     </div>
+                    <div class="font-medium text-base mt-4 mb-2">
+                        {{ $t('compulsory_subjects') }}
+                    </div>
                     <div
-                        class="w-full text-lg border-2 border-[#4f9e91] rounded-10 text-center py-1.5 mb-1.5"
+                        class="w-full text-sm border-2 border-[#4f9e91] rounded-10 text-center py-1.5 mb-1.5"
                         v-for="(subject, index) in MANDATORY_SUBJECTS"
                         :key="index"
                     >
@@ -76,6 +83,20 @@
                 <div
                     v-else-if="
                         testStore.GET_TEST_TYPE === TEST_TYPES.BY_SUBJECTS
+                    "
+                >
+                    <div
+                        class="w-full text-lg border-2 border-[#4f9e91] rounded-10 text-center py-1.5 mb-1.5"
+                        v-for="(subject, index) in testStore.GET_TESTS
+                            .block_test_subjects"
+                        :key="index"
+                    >
+                        {{ subject.title }}
+                    </div>
+                </div>
+                <div
+                    v-else-if="
+                        testStore.GET_TEST_TYPE === TEST_TYPES.CERTIFICATE
                     "
                 >
                     <div
@@ -142,8 +163,7 @@
                     :label="$t('finish')"
                     no-caps
                     color="warning"
-                    class="full-width py-2"
-                    size="lg"
+                    class="full-width"
                 />
             </div>
         </div>
@@ -212,13 +232,15 @@ async function confirmBack() {
 
 const getTestTypeTitle = computed(() => {
     if (testStore.GET_TEST_TYPE === TEST_TYPES.VARIANT) {
-        return 'Variant Test'
+        return 'by_variant'
     } else if (testStore.GET_TEST_TYPE === TEST_TYPES.BLOCK) {
-        return 'Blok Test'
+        return 'by_block'
     } else if (testStore.GET_TEST_TYPE === TEST_TYPES.BY_SELECTIONS) {
-        return 'Mavzulashtirilgan test'
+        return 'by_selections'
     } else if (testStore.GET_TEST_TYPE === TEST_TYPES.BY_SUBJECTS) {
         return 'Mock Test'
+    } else if (testStore.GET_TEST_TYPE === TEST_TYPES.CERTIFICATE) {
+        return 'national_certificate_tests'
     }
 })
 
@@ -401,7 +423,7 @@ async function confirmEndTest() {
 
         .question-text {
             margin-top: 16px;
-            font-size: 16px;
+            font-size: 14px;
             font-weight: bold;
         }
 
@@ -416,7 +438,7 @@ async function confirmEndTest() {
                 display: block;
                 text-align: left;
                 margin-bottom: 10px;
-                font-size: 16px;
+                font-size: 14px;
                 // background-color: #f4f4f4;
             }
 

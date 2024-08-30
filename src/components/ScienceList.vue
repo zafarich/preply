@@ -52,7 +52,7 @@ const selectSubject = (id) => {
 }
 </script>
 <template>
-    <div class="grid grid-cols-3 gap-4">
+    <div class="grid grid-cols-2 gap-4">
         <!-- :to="{ name: 'variant', params: { id: subject.id } }" -->
         <div
             v-for="subject in subjects"

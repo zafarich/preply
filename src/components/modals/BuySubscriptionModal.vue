@@ -41,10 +41,14 @@ import { useRouter } from 'vue-router'
 import { useBillingStore } from 'src/stores/billing'
 import { onMounted, computed } from 'vue'
 import { TARIFFS, TEST_ERROR_TYPES, TEST_TYPES } from 'src/utils/constants'
+import { useMainStore } from 'src/stores/main'
 
 const modalStore = useModalStore()
 const testStore = useTestStore()
+const mainStore = useMainStore()
 const billingStore = useBillingStore()
+
+const { profileTab } = storeToRefs(mainStore)
 
 const router = useRouter()
 
@@ -67,7 +71,9 @@ const close = () => {
 
 const goToPurchase = () => {
     useTestStore().RESET_TEST_STORE()
+    profileTab.value = 'my_subscriptions'
     router.push({ name: 'profile' })
+
     buySubscriptionModal.value = false
 }
 </script>

@@ -134,7 +134,7 @@
                     @click="submitForm"
                     :disable="!is_agree"
                 />
-                <div class="text-center mt-10 text-base">
+                <div class="text-center mt-10 text-base mb-10">
                     {{ $t('have_account')
                     }}<router-link class="text-primary" :to="{ name: 'login' }">
                         {{ $t('logining') }}</router-link

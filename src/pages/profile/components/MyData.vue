@@ -55,9 +55,16 @@
                         {{ userStore.userData.last_name }}
                     </div>
                 </div>
+
+                <div class="info-item">
+                    <div class="key">ID</div>
+                    <div class="value">
+                        {{ userStore.userData.id }}
+                    </div>
+                </div>
                 <div class="info-item">
                     <div class="key flex items-center gap-3">
-                        Prime obuna
+                        {{ $t('prime_subs') }}
                         <img :src="TARIFFS.PRIME.icon" class="w-5 h-5" />
                     </div>
                     <div class="value">
@@ -67,17 +74,21 @@
                             no-caps
                             class="py-2"
                         >
-                            {{ userStore.userData.prime_expiration_date }}
-                            gacha
+                            {{
+                                $t('until_date', {
+                                    date: userStore.userData
+                                        .prime_expiration_date,
+                                })
+                            }}
                         </q-badge>
                         <q-badge class="py-2" v-else color="red" no-caps>
-                            mavjud emas
+                            {{ $t('not_available') }}
                         </q-badge>
                     </div>
                 </div>
                 <div class="info-item">
                     <div class="key flex items-center gap-3">
-                        Premium obuna
+                        {{ $t('premium_subs') }}
                         <img :src="TARIFFS.PREMIUM.icon" class="w-5 h-5" />
                     </div>
                     <div class="value">
@@ -92,17 +103,18 @@
                             </span>
 
                             <span v-else>
-                                {{ userStore.userData.is_premium }} ta
+                                {{ userStore.userData.is_premium }}
+                                {{ $t('file') }}
                             </span>
                         </q-badge>
                         <q-badge class="py-2" v-else color="red" no-caps>
-                            mavjud emas
+                            {{ $t('not_available') }}
                         </q-badge>
                     </div>
                 </div>
 
                 <div class="info-item">
-                    <div class="key">Fayllar uchun parol</div>
+                    <div class="key">{{ $t('password_for_files') }}</div>
                     <div class="value flex items-center">
                         <div
                             class="flex justify-start items-center bg-gray-200 rounded-md text-gray-600"

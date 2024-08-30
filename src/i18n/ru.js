@@ -143,7 +143,6 @@ export default {
     soon_days: 'Скоро',
     world_olympic_tests: 'Международные олимпийские тесты',
     national_certificate_tests: 'Национальные сертификационные тесты',
-    // TODO: NEW
     file_saved: 'Файл сохранен',
     error_occured: 'Произошла ошибка',
     Password_saved_clipboard: 'Пароль сохранен в буфер обмена',
@@ -152,4 +151,13 @@ export default {
     month: 'месяцев',
     i_agree_terms: 'Я принимаю условия публичной оферты',
     public_offer: 'Публичная оферта',
+    prime_subs: 'Prime подписка',
+    premium_subs: 'Premium подписка',
+    until_date: 'до { date }',
+    not_available: 'не доступно',
+    password_for_files: 'Пароль для файлов',
+    you_have_not_card_add_first:
+        'У вас нет карты. Поэтому сначала добавьте карту',
+    go_to_add_card: 'Перейти к добавлению карты',
+    main_subjects: 'Основные предметы',
 }
