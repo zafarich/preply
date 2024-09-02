@@ -129,8 +129,7 @@ export default {
         '6 oy muddatga barcha testlarni yechish imkoniyati. (*Premium testlardan tashqari)',
     prime_info:
         '1 martalik premium (mock va blok) testlarini sotib olish imkoniyati. Yani 1ta obuna 1 marta test yechish imkoniyati.',
-
-    // NEW TRANSLATES WITH CHECKING
+    // NEW TRANSLATES
     prime_test_count: 'Soni',
     math: 'Matematika',
     history: 'Tarix',
@@ -147,7 +146,6 @@ export default {
     soon_days: 'Tez kunlarda',
     world_olympic_tests: 'Xalqaro olimpiada testlari',
     national_certificate_tests: 'Milliy sertifikat testlari',
-    //TODO: new
     file_saved: 'Fayl saqlandi',
     error_occured: 'Xatolik aniqlandi',
     password_saved_clipboard: 'Parol vaqtinchalik xotiraga saqlandi',
@@ -156,4 +154,13 @@ export default {
     month: 'oy',
     i_agree_terms: 'Men ommaviy offerta shartlarini qabul qilaman',
     public_offer: 'Ommaviy offerta',
+    prime_subs: 'Prime obuna',
+    premium_subs: 'Premium obuna',
+    until_date: '{ date } gacha',
+    not_available: 'mavjud emas',
+    password_for_files: 'Fayllar uchun parol',
+    you_have_not_card_add_first:
+        "Sizda karta mavjud emas.Shuning uchun avval karta qo'shing",
+    go_to_add_card: "Karta qo'shishga o'tish",
+    main_subjects: 'Asosiy fanlar',
 }

@@ -135,7 +135,7 @@ const $q = useQuasar()
 const tariff = ref('')
 const seletedCard = ref('')
 const loading = ref(false)
-const currentSubsTab = ref(TARIFFS.PREMIUM.code)
+const currentSubsTab = ref(TARIFFS.PRIME.code)
 
 const getCurrentTabTariffs = computed(() => {
     return billingStore.tariffTypes.filter(
@@ -156,6 +156,7 @@ const addSubscribe = async () => {
         const res = await billingStore.createSubscription(exportData)
         await billingStore.paySubscription(res.id)
         await billingStore.getSubscriptions({ page_size: 1000 })
+        await userStore.getMe()
         subscriptionModal.value = false
 
         mainStore.changeFireWorks(true)

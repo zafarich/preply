@@ -5,6 +5,13 @@
         @beforeShow="beforeShow"
         class="warning-modal"
     >
+        <div class="row items-center q-pb-none">
+            <div class="title-modal"></div>
+            <q-space />
+            <button class="close-modal_btn" v-close-popup>
+                <img src="/images/icons/close-modal.png" alt="" />
+            </button>
+        </div>
         <q-form @submit="onChange">
             <div class="text-lg font-bold">{{ $t('change_data') }}</div>
             <div class="flex justify-center mt-6 mb-3 flex-col items-center">

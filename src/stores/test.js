@@ -103,8 +103,17 @@ export const useTestStore = defineStore(
 
                 if (!res.error) {
                     avtoStartAfterPaying.value = false
+
+                    console.log('req.eustions', res.questions)
+
+                    const questions = [...res.questions].sort(
+                        (a, b) => a.order_number - b.order_number,
+                    )
+
+                    console.log('questions after', questions)
                     tests.value = res
-                    test_questions.value = res.questions
+                    tests.value.questions = [...questions]
+                    test_questions.value = [...questions]
                     active_index.value = 0
                 } else {
                     avtoStartAfterPaying.value = true

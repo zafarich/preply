@@ -55,7 +55,7 @@
         <q-btn
             @click="openModal"
             color="primary"
-            class="full-width button-md"
+            class="full-width"
             no-caps
             :loading="loading"
             :disable="data.s1 && data.s2"

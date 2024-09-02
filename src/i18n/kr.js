@@ -125,9 +125,7 @@ export default {
         '6 ay múddetke barlıq testlerdi sheshіw imkaniyatı. (*Premium testlerden tısqarı)',
     premium_info:
         "1 retlik premium (mock hám blok) testlerin satıp alıw imkaniyatı. Yag'niy 1 aǵzalıq 1 ret test sheshіw imkaniyatı.",
-
     //NEW TRANSLATES KR
-
     prime_test_count: 'Sanı',
     math: 'Matematika',
     history: 'Tariyx',
@@ -144,7 +142,6 @@ export default {
     soon_days: 'Jaqın künderde',
     world_olympic_tests: 'Xalıqaralıq olimpiyada testleri',
     national_certificate_tests: 'Ulttıq sertifikat testleri',
-    // TODO: NEW
     file_saved: 'Fayl saqlandi',
     error_occured: 'Qátelik anıqlandi',
     password_saved_clipboard: 'Parol waqtınshalıq yadqa saqlandi',
@@ -153,4 +150,13 @@ export default {
     month: 'ay',
     i_agree_terms: 'Men ǵalabalıq offerta shártlerin qabıl etemen',
     public_offer: 'Ǵalabalıq offerta',
+    prime_subs: 'Prime jazılıw',
+    premium_subs: 'Premium jazılıw',
+    until_date: '{ date } gacha',
+    not_available: 'mavjud emes',
+    password_for_files: 'Fayllar ushın parol',
+    you_have_not_card_add_first:
+        ' Sizde karta joq. Sol sebepli aldın karta áskerg',
+    go_to_add_card: ' Karta qosıwǵa ótiw',
+    main_subjects: 'Tiykarǵı pánler',
 }

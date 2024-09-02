@@ -27,10 +27,10 @@
                 v-else-if="GET_TEST_TYPE === TEST_TYPES.BY_SELECTIONS"
                 :subjects="referencesStore.main_subjects"
             />
-            <VariantTestStart
+            <!-- <VariantTestStart
                 v-else-if="GET_TEST_TYPE === TEST_TYPES.VARIANT"
                 :subjects="referencesStore.subjects"
-            />
+            /> -->
             <div class="mb-10"></div>
         </div>
     </div>

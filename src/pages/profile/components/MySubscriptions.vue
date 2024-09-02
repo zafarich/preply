@@ -58,10 +58,10 @@
             class="text-center font-semibold text-base text-gray-400 mt-10"
         >
             <div>
-                Sizda karta mavjud emas.Shuning uchun avval karta qo'shing
+                {{ $t('you_have_not_card_add_first') }}
             </div>
             <q-btn no-caps color="primary" @click="goToCardsTab" class="mt-10">
-                Karta qo'shishga o'tish
+                {{ $t('go_to_add_card') }}
             </q-btn>
         </div>
 

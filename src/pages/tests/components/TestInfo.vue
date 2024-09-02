@@ -1,7 +1,7 @@
 <template>
     <div id="test-info">
         <div class="row items-center q-pb-none">
-            <div class="title-modal font-medium text-lg">
+            <div class="title-modal font-medium">
                 {{ $t('selected_tests') }}
             </div>
             <q-space />
@@ -16,7 +16,7 @@
                 <div class="flex flex-wrap gap-2 justify-center">
                     <div v-for="(question, index) in questions" :key="index">
                         <button
-                            class="answer-item border-4 text-lg"
+                            class="answer-item border-4"
                             :class="{
                                 '!border-green-500':
                                     isHaveSelectedAnser(question),
