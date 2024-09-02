@@ -39,6 +39,7 @@ import Fireworks from 'src/components/Fireworks.vue'
 import { useUserStore } from 'src/stores/user'
 import { ref } from 'vue'
 import { jwtDecode } from 'jwt-decode'
+import { setTelegramUserId } from 'src/utils/auth'
 
 const router = useRouter()
 const route = useRoute()
@@ -55,6 +56,10 @@ onMounted(() => {
         router.push({
             name: 'test-solve',
         })
+    }
+
+    if (route.name === 'login' && route.query.telegram_user_id) {
+        setTelegramUserId(route.query.telegram_user_id)
     }
 })
 </script>

@@ -1,6 +1,7 @@
 const KEY = 'token'
 const ACCESS_TOKEN = 'access_token'
 const REFRESH_TOKEN = 'refresh_token'
+const TELEGRAM_USER_ID = 'telegram_user_id'
 
 export function getAccessToken() {
     return localStorage.getItem(ACCESS_TOKEN)
@@ -26,16 +27,16 @@ export function removeRefreshToken() {
     return localStorage.removeItem(REFRESH_TOKEN)
 }
 
-export function getTokenFromCache() {
-    return localStorage.getItem(KEY)
+export function getTelegramUserId() {
+    return localStorage.getItem(TELEGRAM_USER_ID)
 }
 
-export function setTokenToCache(token) {
-    return localStorage.setItem(KEY, token)
+export function setTelegramUserId(token) {
+    return localStorage.setItem(TELEGRAM_USER_ID, token)
 }
 
-export function removeTokenFromCache() {
-    return localStorage.removeItem(KEY)
+export function removeTelegramUserId() {
+    return localStorage.removeItem(TELEGRAM_USER_ID)
 }
 
 export async function hashUserId(userId, length = 8) {

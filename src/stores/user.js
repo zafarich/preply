@@ -10,6 +10,7 @@ import {
     getRefreshToken,
     setRefreshToken,
     removeRefreshToken,
+    getTelegramUserId,
 } from 'src/utils/auth'
 
 export const useUserStore = defineStore(
@@ -75,7 +76,10 @@ export const useUserStore = defineStore(
             return res
         }
         async function login(payload) {
-            const res = await api.login(payload)
+            const res = await api.login({
+                telegram_id: getTelegramUserId(),
+                ...payload,
+            })
             if (res && res.access) {
                 setAccessToken(res.access)
                 setRefreshToken(res.refresh)
