@@ -238,7 +238,7 @@ const getTestTypeTitle = computed(() => {
     } else if (testStore.GET_TEST_TYPE === TEST_TYPES.BY_SELECTIONS) {
         return 'by_selections'
     } else if (testStore.GET_TEST_TYPE === TEST_TYPES.BY_SUBJECTS) {
-        return 'Mock Test'
+        return 'by_science'
     } else if (testStore.GET_TEST_TYPE === TEST_TYPES.CERTIFICATE) {
         return 'national_certificate_tests'
     }

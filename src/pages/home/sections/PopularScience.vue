@@ -20,7 +20,7 @@ const props = defineProps({
             </div>
         </div> -->
 
-        <ScienceList :subjects="subjects" />
+        <ScienceList :subjects="subjects" :type="TEST_TYPES.BY_SUBJECTS" />
     </div>
 </template>
 

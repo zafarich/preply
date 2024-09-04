@@ -17,6 +17,7 @@
             <ScienceList
                 v-if="GET_TEST_TYPE === TEST_TYPES.CERTIFICATE"
                 :subjects="mockSubjects"
+                :type="TEST_TYPES.CERTIFICATE"
             />
             <BlockTestStart
                 v-else-if="GET_TEST_TYPE === TEST_TYPES.BLOCK"

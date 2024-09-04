@@ -23,13 +23,17 @@ const props = defineProps({
         type: Array,
         default: () => [],
     },
+    type: {
+        type: String,
+        default: TEST_TYPES.CERTIFICATE,
+    },
 })
 
 const selectId = ref(null)
 
 const startTest = async (id) => {
     mainStore.changeSiteLoader(true)
-    const response = await testStore.START_TEST(TEST_TYPES.CERTIFICATE, {
+    const response = await testStore.START_TEST(props.type, {
         subject_id: selectId.value,
     })
 
@@ -53,7 +57,6 @@ const selectSubject = (id) => {
 </script>
 <template>
     <div class="grid grid-cols-2 gap-4">
-        <!-- :to="{ name: 'variant', params: { id: subject.id } }" -->
         <div
             v-for="subject in subjects"
             :key="subject.id"

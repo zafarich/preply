@@ -84,6 +84,13 @@
                     class="h-8 mb-8 cursor-pointer"
                 />
             </a>
+            <a href="https://www.linkedin.com/company/exbmba/" target="_blank">
+                <img
+                    src="/icons/linkedin.png"
+                    alt=""
+                    class="h-8 mb-8 cursor-pointer"
+                />
+            </a>
         </div>
 
         <div class="text-center text-sm py-3">
