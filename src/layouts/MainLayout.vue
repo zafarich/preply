@@ -61,6 +61,8 @@ onMounted(() => {
     if (route.name === 'login' && route.query.telegram_user_id) {
         setTelegramUserId(route.query.telegram_user_id)
     }
+
+    console.log('route.query', route.query)
 })
 </script>
 
