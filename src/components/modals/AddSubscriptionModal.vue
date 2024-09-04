@@ -34,35 +34,41 @@
                     />
                 </q-tabs>
 
-                <div
-                    class="mb-4 !w-auto border-2 !rounded-lg cursor-pointer relative !py-2 box-border px-3"
+                <label
+                    class="selectable-item"
                     v-for="(item, index) in getCurrentTabTariffs"
                     :key="index"
                     @click="() => (tariff = item)"
-                    :class="tariff === item ? 'border-[#4f9e91]' : ''"
+                    :class="{ 'selectable-item__active': tariff === item }"
                 >
-                    <div class="flex justify-start flex-nowrap gap-2">
-                        <!-- <q-radio dense v-model="tariff" :val="item" /> -->
-
-                        <div class="flex justify-between items-center w-full">
-                            <div>
-                                <q-badge :label="item.quantity" />
-
-                                {{
-                                    TARIFFS.PREMIUM.code == currentSubsTab
-                                        ? $t('file')
-                                        : $t('month')
-                                }}
+                    <div class="flex justify-between items-center w-full">
+                        <div class="flex justfiy-start items-center gap-2">
+                            <input
+                                :checked="tariff === item"
+                                type="radio"
+                                name="name"
+                                class="hidden"
+                            />
+                            <div v-if="tariff === item">
+                                <img src="/icons/user-check.png" class="w-5" />
                             </div>
-                            <div>
-                                <span class="font-bold">
-                                    {{ getSum(item) }}
-                                </span>
-                                {{ $t('sum') }}
-                            </div>
+                            <div v-else class="unchecked-desc"></div>
+                            <q-badge :label="item.quantity" />
+
+                            {{
+                                TARIFFS.PREMIUM.code == currentSubsTab
+                                    ? $t('file')
+                                    : $t('month')
+                            }}
+                        </div>
+                        <div>
+                            <span class="font-bold">
+                                {{ getSum(item) }}
+                            </span>
+                            {{ $t('sum') }}
                         </div>
                     </div>
-                </div>
+                </label>
 
                 <div
                     v-if="tariff"
@@ -74,16 +80,28 @@
                 <div class="font-bold text-lg mt-6 mb-4">
                     {{ $t('select_card') }}:
                 </div>
-                <div
+
+                <!-- class="mb-4 !w-auto border-2 !rounded-lg cursor-pointer relative !py-2 px-3 font-bold" -->
+                <label
+                    class="selectable-item"
                     v-for="(card, index) in userStore.userVerifyCards"
                     :key="index"
-                    class="mb-4 !w-auto border-2 !rounded-lg cursor-pointer relative !py-2 px-3 font-bold"
                     @click="() => (seletedCard = card.id)"
-                    flat
-                    bordered
-                    :class="card.id === seletedCard ? 'border-[#4f9e91]' : ''"
+                    :class="{
+                        'selectable-item__active': card.id === seletedCard,
+                    }"
                 >
                     <div class="flex justify-between items-center mb-2">
+                        <input
+                            :checked="card.id === seletedCard"
+                            type="radio"
+                            name="name"
+                            class="hidden"
+                        />
+                        <div v-if="card.id === seletedCard">
+                            <img src="/icons/user-check.png" class="w-5" />
+                        </div>
+                        <div v-else class="unchecked-desc"></div>
                         <div>
                             {{ card.card_number }}
                         </div>
@@ -91,7 +109,7 @@
                     <div>
                         {{ card.expire }}
                     </div>
-                </div>
+                </label>
 
                 <q-btn
                     :loading="loading"
@@ -207,6 +225,27 @@ const getSum = (item) => {
 #add-subs-modal {
     .q-dialog__inner--minimized {
         padding: 10px;
+    }
+
+    .selectable-item {
+        display: block;
+        border: 2px solid $dark-light;
+        cursor: pointer;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 15px;
+
+        &__active {
+            border: 2px solid $primary;
+        }
+
+        .unchecked-desc {
+            border: 2px solid $positive;
+            border-radius: 100%;
+
+            height: 20px;
+            width: 20px;
+        }
     }
 }
 </style>

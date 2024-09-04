@@ -53,7 +53,7 @@ export const useTestStore = defineStore(
             return active_index.value
         })
         const GET_TEST_TIME = computed(() => {
-            return test_questions.value.length * 2 * 60
+            return 30
         })
 
         function SELECT_TEST(index) {

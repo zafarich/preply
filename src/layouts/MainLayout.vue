@@ -57,6 +57,9 @@ onMounted(() => {
             name: 'test-solve',
         })
     }
+
+    const tgUserId = route.query.telegram_user_id
+    if (tgUserId) setTelegramUserId(tgUserId)
 })
 </script>
 

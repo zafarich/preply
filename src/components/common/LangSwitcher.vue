@@ -34,10 +34,10 @@ const menuToggle = debounce((status) => {
 }, 20)
 
 const changeLang = async (lang) => {
-    console.log('lang', lang)
     mainStore.setLanguage(lang)
+
     const language =
-        lang === 'uz-Latn' ? 'uz' : lang === 'uz-Cyrl' ? 'kr' : 'ru'
+        lang === 'uz-Cyrl' ? 'kr' : lang === 'uz-Latn' ? 'uz' : 'ru'
 
     if (userStore.accessToken) await userStore.updateUser({ language })
 

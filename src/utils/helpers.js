@@ -164,3 +164,17 @@ export const fileExtensionsTypeObj = {
     ['image/gif']: 'gif',
     ['application/pdf']: 'pdf',
 }
+
+export const scrollToTop = () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'instant',
+    })
+}
+
+export const scrollToBottom = (topPosition) => {
+    window.scrollTo({
+        top: document.documentElement.scrollHeight - window.innerHeight,
+        behavior: 'instant',
+    })
+}

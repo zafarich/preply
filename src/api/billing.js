@@ -1,5 +1,4 @@
 import { api } from 'src/boot/axios'
-
 const url = '/api/v1/billing/'
 
 export async function addBillingCard(payload) {

@@ -3,8 +3,6 @@ import { useRoute, useRouter } from 'vue-router'
 
 // src/middlewares/auth.js
 export default function auth({ to, from, next }) {
-    const route = useRoute()
-
     const tgUserId = to.query.telegram_user_id
 
     if (tgUserId) setTelegramUserId(tgUserId)

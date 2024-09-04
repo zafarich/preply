@@ -6,7 +6,7 @@
                 <q-btn
                     v-for="(testType, index) in testTypesList"
                     :key="index"
-                    class="flex-grow"
+                    class="flex-grow cursor-pointer"
                     @click="changeTestType(testType.key)"
                     :label="$t(testType.name)"
                     :outline="GET_TEST_TYPE !== testType.key"
@@ -53,9 +53,10 @@ const route = useRoute()
 
 const testTypesList = ref([
     {
-        name: 'Milliy sertifikat testlari',
-        key: TEST_TYPES.CERTIFICATE,
+        name: 'by_selections',
+        key: TEST_TYPES.BY_SELECTIONS,
     },
+
     {
         name: 'by_block',
         key: TEST_TYPES.BLOCK,
@@ -64,9 +65,10 @@ const testTypesList = ref([
     //     name: 'by_variant',
     //     key: TEST_TYPES.VARIANT,
     // },
+
     {
-        name: 'by_selections',
-        key: TEST_TYPES.BY_SELECTIONS,
+        name: 'Milliy sertifikat testlari',
+        key: TEST_TYPES.CERTIFICATE,
     },
 ])
 

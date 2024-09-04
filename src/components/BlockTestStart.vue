@@ -146,7 +146,7 @@ const startTest = async () => {
         subjects: [data.value.s1, data.value.s2],
     })
 
-    if (!response.error) {
+    if (response && !response.error) {
         router.push({
             name: 'test-solve',
         })

@@ -46,6 +46,29 @@ export const TEST_TYPE_LIST = [
     },
 ]
 
+export const ALL_TEST_TYPES = [
+    {
+        key: 'block',
+        text: 'Blok Test',
+    },
+    {
+        key: 'certificate',
+        text: 'Sertificate Test',
+    },
+    {
+        key: 'variant',
+        text: 'Variant Test',
+    },
+    {
+        key: 'by_subjects',
+        text: 'Fan Test',
+    },
+    {
+        key: 'by_selections',
+        text: 'Mavzulashtirilgan Test',
+    },
+]
+
 export const MANDATORY_SUBJECTS = [
     {
         label: 'math',

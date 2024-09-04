@@ -67,7 +67,7 @@
                             .block_test_subjects"
                         :key="index"
                     >
-                        {{ index + 1 }}. {{ subject.title }}
+                        {{ subject.title }}
                     </div>
                     <div class="font-medium text-base mt-4 mb-2">
                         {{ $t('compulsory_subjects') }}
@@ -77,7 +77,7 @@
                         v-for="(subject, index) in MANDATORY_SUBJECTS"
                         :key="index"
                     >
-                        {{ index + 3 }}. {{ $t(subject.label) }}
+                        {{ $t(subject.label) }}
                     </div>
                 </div>
                 <div
@@ -150,14 +150,6 @@
                 @goToLink="goToLink"
             />
             <div class="mt-10 mb-24">
-                <!-- <q-btn
-                    @click="() => (solveInfoModal = true)"
-                    label="Test holati"
-                    no-caps
-                    color="primary"
-                    class="full-width py-2 mb-4"
-                    size="md"
-                /> -->
                 <q-btn
                     @click="() => (endTestModal = true)"
                     :label="$t('finish')"
@@ -209,6 +201,7 @@ import TestInfo from './components/TestInfo.vue'
 import { useUserStore } from 'src/stores/user'
 import { useQuasar } from 'quasar'
 import { useI18n } from 'vue-i18n'
+import { scrollToTop, scrollToBottom } from 'src/utils/helpers'
 
 const { t: $t } = useI18n()
 const router = useRouter()
@@ -221,12 +214,11 @@ const $q = useQuasar()
 const showToTop = ref(false)
 const showToBottom = ref(true)
 
-const { notifyTestModal, endTestModal, solveInfoModal } =
-    storeToRefs(modalStore)
+const { notifyTestModal, endTestModal } = storeToRefs(modalStore)
 
 async function confirmBack() {
-    await testStore.UPDATE_TEST_RESULT()
     router.replace({ name: 'home' })
+    await testStore.UPDATE_TEST_RESULT()
     testStore.RESET_TEST_STORE()
 }
 
@@ -254,6 +246,7 @@ const updateRemainingTime = () => {
         const timeDiff =
             currentTime.getTime() -
             new Date(testStore.GET_TESTS.started_at).getTime()
+
         remainingTime.value = Math.max(
             0,
             testStore.GET_TEST_TIME - Math.floor(timeDiff / 1000),
@@ -331,20 +324,6 @@ onUnmounted(() => {
     clearInterval(timer)
 })
 
-const scrollToTop = () => {
-    window.scrollTo({
-        top: 0,
-        behavior: 'instant',
-    })
-}
-
-const scrollToBottom = () => {
-    window.scrollTo({
-        top: document.documentElement.scrollHeight - window.innerHeight,
-        behavior: 'instant',
-    })
-}
-
 const goToLink = (index) => {
     const element = document.getElementById(`question_${index}`)
     console.log('liIndex', index)
@@ -391,13 +370,13 @@ async function confirmEndTest() {
 
     let res = await testStore.FETCH_TEST_RESULT()
 
+    testStore.RESET_TEST_STORE()
     if (res?.id) {
-        testStore.RESET_TEST_STORE()
         router.replace({ name: 'test.result', params: { id: res.id } })
-        mainStore.changeFireWorks(true)
+        mainStore.changeFireWorks(false)
     }
 
-    mainStore.changeSiteLoader(true)
+    mainStore.changeSiteLoader(false)
 }
 </script>
 
