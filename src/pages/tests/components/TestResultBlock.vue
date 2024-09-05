@@ -15,22 +15,21 @@
         </div>
     </div>
 
-    <div class="grid grid-cols-1 768:grid-cols-3 gap-3 q-pa-sm mt-5">
+    <div class="grid grid-cols-2 gap-5 q-pa-sm mt-5">
         <q-btn
-            @click="downloadPdf(testStore.GET_TEST_RESULTS.pdf_file)"
+            @click="sendFileToTelegramUser(testStore.GET_TEST_RESULTS.pdf_file)"
             color="primary"
             no-caps
         >
             <q-icon name="eva-download-outline" size="xs"></q-icon>
             <span class="ml-1"> {{ $t('download_file') }} </span>
         </q-btn>
-        <q-btn
+        <!-- <q-btn
             @click="sendFileToTelegramUser"
             color="secondary"
             no-caps
             outline
         >
-            <!-- <q-icon name="eva-download-outline" size="xs"></q-icon> -->
             <div class="flex justify-center items-center">
                 <img
                     src="/icons/send-tg.png"
@@ -39,7 +38,7 @@
                 />
                 <span class="ml-1"> {{ $t('send_to_tg') }} </span>
             </div>
-        </q-btn>
+        </q-btn> -->
         <q-btn @click="dowloadResultPage" color="secondary" no-caps>
             <q-icon name="eva-download-outline" size="xs"></q-icon>
             <span class="ml-1"> {{ $t('download_result') }} </span>

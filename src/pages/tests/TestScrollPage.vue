@@ -31,7 +31,9 @@
             </div>
             <div class="flex justify-end items-center mt-5 mb-8">
                 <q-btn
-                    @click="downloadPdf(testStore.GET_TESTS.pdf_file)"
+                    @click="
+                        sendFileToTelegramUser(testStore.GET_TESTS.pdf_file)
+                    "
                     color="primary"
                     no-caps
                 >
@@ -208,6 +210,7 @@ const router = useRouter()
 const testStore = useTestStore()
 const modalStore = useModalStore()
 const mainStore = useMainStore()
+const userStore = useUserStore()
 
 const $q = useQuasar()
 
@@ -261,33 +264,20 @@ const updateRemainingTime = () => {
     }
 }
 
-const downloadPdf = async (pdfUrl) => {
+const sendFileToTelegramUser = async () => {
     try {
-        const response = await api.get(pdfUrl, {
-            responseType: 'blob',
+        const res = await userStore.sendFileToUserTelegram({
+            result_id: testStore.GET_TESTS.id,
         })
-
-        const fileUrl = response.request.responseURL
-
-        const fileName = fileUrl.substring(fileUrl.lastIndexOf('/') + 1)
-
-        const url = window.URL.createObjectURL(new Blob([response.data]))
-        const link = document.createElement('a')
-        link.href = url
-        link.setAttribute('download', fileName) // You can set the file name here
-        document.body.appendChild(link)
-        link.click()
-        link.remove()
-        window.URL.revokeObjectURL(url)
 
         $q.notify({
             type: 'positive',
             textColor: 'white',
             position: 'top',
-            message: $t('file_saved'),
+            message: $t('file_sended_to_tg'),
         })
     } catch (error) {
-        console.error('Error downloading the PDF file:', error)
+        console.error('Error sending file to telegram:', error)
         $q.notify({
             type: 'negative',
             textColor: 'white',
@@ -296,6 +286,42 @@ const downloadPdf = async (pdfUrl) => {
         })
     }
 }
+
+// const downloadPdf = async (pdfUrl) => {
+//     try {
+//         const response = await api.get(pdfUrl, {
+//             responseType: 'blob',
+//         })
+
+//         const fileUrl = response.request.responseURL
+
+//         const fileName = fileUrl.substring(fileUrl.lastIndexOf('/') + 1)
+
+//         const url = window.URL.createObjectURL(new Blob([response.data]))
+//         const link = document.createElement('a')
+//         link.href = url
+//         link.setAttribute('download', fileName) // You can set the file name here
+//         document.body.appendChild(link)
+//         link.click()
+//         link.remove()
+//         window.URL.revokeObjectURL(url)
+
+//         $q.notify({
+//             type: 'positive',
+//             textColor: 'white',
+//             position: 'top',
+//             message: $t('file_saved'),
+//         })
+//     } catch (error) {
+//         console.error('Error downloading the PDF file:', error)
+//         $q.notify({
+//             type: 'negative',
+//             textColor: 'white',
+//             position: 'top',
+//             message: $t('error_occured'),
+//         })
+//     }
+// }
 
 onMounted(async () => {
     if (remainingTime <= 0) {
