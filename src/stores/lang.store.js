@@ -9,11 +9,17 @@ const langList = import.meta.glob('../../node_modules/quasar/lang/*.mjs')
 
 export const useLangStore = defineStore('language', () => {
     const baseURL = process.env.API || ''
-    const availableLangs = ['ru', 'uz-Latn', 'uz-Cyrl']
-    const appLanguages = languages.filter((lang) =>
+    const availableLangs = ['ru', 'uz-Latn', 'qr']
+    let appLanguages = languages.filter((lang) =>
         availableLangs.includes(lang.isoName),
     )
-
+    appLanguages = [
+        ...appLanguages,
+        {
+            isoName: 'qr',
+            nativeName: 'Qoraqalpoqcha',
+        },
+    ]
     const defaultLangOptions = [
         {
             value: 'ru',
@@ -28,7 +34,7 @@ export const useLangStore = defineStore('language', () => {
             icon: '/images/lang/uz.png',
         },
         {
-            value: 'uz-Cyrl',
+            value: 'qr',
             label: 'Qoraqalpoqcha',
             shortName: 'QR',
             icon: '/images/lang/qr.png',
@@ -46,6 +52,7 @@ export const useLangStore = defineStore('language', () => {
             })
         }
     })
+
     const { locale } = useI18n()
 
     const availableLocales = computed(() => {
@@ -71,8 +78,8 @@ export const useLangStore = defineStore('language', () => {
                 },
             )
         } catch (err) {}
+
         i18n.global.locale.value = lang
-        localStorage.setItem('locale', lang)
     }
 
     return {

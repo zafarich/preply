@@ -18,6 +18,7 @@ export default boot(({ app, route, router, store }) => {
             let lang = localStorage.getItem('locale')
 
             if (lang?.startsWith('uz')) lang = 'uz'
+            if (lang == 'qr') lang = 'kr'
 
             if (lang) config.headers['lang'] = lang
 

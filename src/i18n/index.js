@@ -8,5 +8,5 @@ export default {
     // ...i18nData,
     ru: { ...ru },
     uz: { ...uz },
-    kr: { ...kr },
+    qr: { ...kr },
 }
