@@ -217,9 +217,11 @@ const showToBottom = ref(true)
 const { notifyTestModal, endTestModal } = storeToRefs(modalStore)
 
 async function confirmBack() {
-    router.replace({ name: 'home' })
+    mainStore.changeSiteLoader(true)
     await testStore.UPDATE_TEST_RESULT()
+    router.replace({ name: 'home' })
     testStore.RESET_TEST_STORE()
+    mainStore.changeSiteLoader(false)
 }
 
 const getTestTypeTitle = computed(() => {
@@ -256,9 +258,6 @@ const updateRemainingTime = () => {
             confirmEndTest()
             clearInterval(timer)
         }
-    } else {
-        useUserStore().logoutProfile()
-        router.push({ name: 'login' })
     }
 }
 
