@@ -163,4 +163,6 @@ export default {
         "Sizda karta mavjud emas.Shuning uchun avval karta qo'shing",
     go_to_add_card: "Karta qo'shishga o'tish",
     main_subjects: 'Asosiy fanlar',
+    send_to_tg: "Telegramga jo'natish",
+    file_sended_to_tg: 'Fayl telegram orqali yuborildi',
 }

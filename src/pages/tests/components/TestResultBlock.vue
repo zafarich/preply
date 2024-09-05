@@ -1,5 +1,21 @@
 <template>
-    <div class="flex justify-between items-center q-pa-sm mt-5">
+    <div class="font-semibold text-xl mb-4 mt-6 text-center">
+        <div>
+            {{ testStore.GET_TEST_RESULTS?.test_type.title }}
+            <span class="ml-2" v-if="testStore.GET_TEST_RESULTS?.test_variant">
+                {{ testStore.GET_TEST_RESULTS?.test_variant.title }}
+            </span>
+        </div>
+
+        <div class="flex justify-center items-center text-lg mb-4">
+            <div class="mr-1">
+                <img class="mr-2" src="/images/icons/stopwatch.svg" alt="" />
+            </div>
+            <div>{{ spendTime }}</div>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 768:grid-cols-3 gap-3 q-pa-sm mt-5">
         <q-btn
             @click="downloadPdf(testStore.GET_TEST_RESULTS.pdf_file)"
             color="primary"
@@ -8,35 +24,28 @@
             <q-icon name="eva-download-outline" size="xs"></q-icon>
             <span class="ml-1"> {{ $t('download_file') }} </span>
         </q-btn>
+        <q-btn
+            @click="sendFileToTelegramUser"
+            color="secondary"
+            no-caps
+            outline
+        >
+            <!-- <q-icon name="eva-download-outline" size="xs"></q-icon> -->
+            <div class="flex justify-center items-center">
+                <img
+                    src="/icons/send-tg.png"
+                    alt=""
+                    class="w-7 h-7 cursor-pointer"
+                />
+                <span class="ml-1"> {{ $t('send_to_tg') }} </span>
+            </div>
+        </q-btn>
         <q-btn @click="dowloadResultPage" color="secondary" no-caps>
             <q-icon name="eva-download-outline" size="xs"></q-icon>
             <span class="ml-1"> {{ $t('download_result') }} </span>
         </q-btn>
     </div>
     <div class="q-pa-sm font-medium" ref="pdfContent">
-        <div class="font-semibold text-xl my-4 text-center">
-            <div>
-                {{ testStore.GET_TEST_RESULTS?.test_type.title }}
-                <span
-                    class="ml-2"
-                    v-if="testStore.GET_TEST_RESULTS?.test_variant"
-                >
-                    {{ testStore.GET_TEST_RESULTS?.test_variant.title }}
-                </span>
-            </div>
-
-            <div class="flex justify-center items-center text-lg mb-4">
-                <div class="mr-1">
-                    <img
-                        class="mr-2"
-                        src="/images/icons/stopwatch.svg"
-                        alt=""
-                    />
-                </div>
-                <div>{{ spendTime }}</div>
-            </div>
-        </div>
-
         <div class="flex justify-start items-center text-lg">
             <div class="mr-2">{{ $t('answers_count') }} -</div>
             <div>{{ getTotalTestCount }}</div>
@@ -130,6 +139,7 @@ const emit = defineEmits([
     'returnListItemColor',
     'downloadPdf',
     'dowloadResultPage',
+    'sendFileToTelegramUser',
 ])
 
 const pdfContent = ref(null)
@@ -170,6 +180,9 @@ const returnBorderColor = (item) => {
     } else if (!item.is_correct && !!item.user_answer) {
         return '!border-red-500'
     } else return '!border-gray-500'
+}
+const sendFileToTelegramUser = async () => {
+    emit('sendFileToTelegramUser', pdfContent.value)
 }
 
 const downloadPdf = async (pdfUrl) => {

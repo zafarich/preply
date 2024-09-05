@@ -160,4 +160,6 @@ export default {
         'У вас нет карты. Поэтому сначала добавьте карту',
     go_to_add_card: 'Перейти к добавлению карты',
     main_subjects: 'Основные предметы',
+    send_to_tg: 'Отправить в Telegram',
+    file_sended_to_tg: 'Файл отправлен через Telegram',
 }

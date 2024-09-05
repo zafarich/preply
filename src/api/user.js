@@ -16,6 +16,11 @@ export async function me() {
     const { data } = await api(url)
     return data
 }
+export async function sendFileToUserTelegram(params) {
+    const { data } = await api(url + 'send_file_to_user_telegram/', { params })
+    return data
+}
+
 export async function login(payload) {
     const { data } = await api.post(url + 'login', payload, {
         pass: true,

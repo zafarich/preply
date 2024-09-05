@@ -127,6 +127,11 @@ export const useUserStore = defineStore(
             return res
         }
 
+        async function sendFileToUserTelegram(params) {
+            const res = await api.sendFileToUserTelegram(params)
+            return res
+        }
+
         async function logoutProfile() {
             userData.value = {}
             accessToken.value = ''
@@ -160,6 +165,7 @@ export const useUserStore = defineStore(
             updateUser,
             setUserData,
             updateUserData,
+            sendFileToUserTelegram,
             getMe,
             register,
             logoutProfile,

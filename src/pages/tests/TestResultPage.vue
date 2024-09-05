@@ -4,11 +4,13 @@
             v-if="testStore.test_type == TEST_TYPES.BLOCK"
             @downloadPdf="downloadPdf"
             @dowloadResultPage="dowloadResultPage"
+            @sendFileToTelegramUser="sendFileToTelegramUser"
         />
         <TestResultCommon
             v-else
             @downloadPdf="downloadPdf"
             @dowloadResultPage="dowloadResultPage"
+            @sendFileToTelegramUser="sendFileToTelegramUser"
         />
 
         <div
@@ -42,13 +44,39 @@ import { onMounted, ref } from 'vue'
 import { api } from 'src/boot/axios'
 import html2pdf from 'html2pdf.js'
 import { useQuasar } from 'quasar'
+import { useI18n } from 'vue-i18n'
+import { useUserStore } from 'src/stores/user'
+
+const userStore = useUserStore()
 const testStore = useTestStore()
 const showToTop = ref(false)
 const showToBottom = ref(true)
-import { useI18n } from 'vue-i18n'
 
 const { t: $t } = useI18n()
 const $q = useQuasar()
+
+const sendFileToTelegramUser = async () => {
+    try {
+        const res = await userStore.sendFileToUserTelegram({
+            result_id: testStore.GET_TEST_RESULTS.id,
+        })
+
+        $q.notify({
+            type: 'positive',
+            textColor: 'white',
+            position: 'top',
+            message: $t('file_sended_to_tg'),
+        })
+    } catch (error) {
+        console.error('Error sending file to telegram:', error)
+        $q.notify({
+            type: 'negative',
+            textColor: 'white',
+            position: 'top',
+            message: $t('error_occured'),
+        })
+    }
+}
 
 const downloadPdf = async (pdfUrl) => {
     try {

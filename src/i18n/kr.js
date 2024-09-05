@@ -159,4 +159,6 @@ export default {
         ' Sizde karta joq. Sol sebepli aldın karta áskerg',
     go_to_add_card: ' Karta qosıwǵa ótiw',
     main_subjects: 'Tiykarǵı pánler',
+    send_to_tg: ' Telegramga jıberiw',
+    File_sended_to_tg: 'Fayl telegram arqalı jiberildi',
 }
