@@ -5,6 +5,7 @@ import BaseImg from 'components/UI/BaseImg.vue'
 import { debounce } from 'quasar'
 import { useUserStore } from 'src/stores/user'
 import { useRouter } from 'vue-router'
+import { setLocale } from 'src/utils/auth'
 
 const attrs = useAttrs()
 
@@ -35,9 +36,11 @@ const menuToggle = debounce((status) => {
 
 const changeLang = async (lang) => {
     mainStore.setLanguage(lang)
+    setLocale(lang)
 
     const language = lang === 'qr' ? 'kr' : lang === 'uz-Latn' ? 'uz' : 'ru'
 
+    console.log('language', language)
     if (userStore.accessToken) await userStore.updateUser({ language })
 
     router.go()

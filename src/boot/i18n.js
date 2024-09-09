@@ -1,6 +1,7 @@
 import { boot } from 'quasar/wrappers'
 import { createI18n } from 'vue-i18n'
 import messages from 'src/i18n'
+import { getLocale } from 'src/utils/auth'
 
 function customRule(choice, choicesLength) {
     if (choice === 0) return 0
@@ -13,7 +14,7 @@ function customRule(choice, choicesLength) {
     return choicesLength < 4 ? 2 : 3
 }
 
-const storedLocale = localStorage.getItem('locale')
+const storedLocale = getLocale()
 
 const i18n = createI18n({
     globalInjection: true,

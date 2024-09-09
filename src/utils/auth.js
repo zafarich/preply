@@ -2,6 +2,19 @@ const KEY = 'token'
 const ACCESS_TOKEN = 'access_token'
 const REFRESH_TOKEN = 'refresh_token'
 const TELEGRAM_USER_ID = 'telegram_user_id'
+const LOCALE = 'locale'
+
+export function getLocale() {
+    return localStorage.getItem(LOCALE)
+}
+
+export function setLocale(token) {
+    return localStorage.setItem(LOCALE, token)
+}
+
+export function removeLocale() {
+    return localStorage.removeItem(LOCALE)
+}
 
 export function getAccessToken() {
     return localStorage.getItem(ACCESS_TOKEN)

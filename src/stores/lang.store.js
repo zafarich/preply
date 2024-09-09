@@ -5,6 +5,7 @@ import { computed, ref } from 'vue-demi'
 import languages from 'quasar/lang/index.json'
 import { Quasar } from 'quasar'
 import { useI18n } from 'vue-i18n'
+import { getLocale } from 'src/utils/auth'
 const langList = import.meta.glob('../../node_modules/quasar/lang/*.mjs')
 
 export const useLangStore = defineStore('language', () => {
@@ -65,7 +66,7 @@ export const useLangStore = defineStore('language', () => {
     async function setLanguage(val = null) {
         const navigatorLang = navigator.language.split('-')[0]
 
-        let lang = val || localStorage.getItem('locale') || navigatorLang
+        let lang = val || getLocale() || navigatorLang
 
         lang = availableLangs.find((v) => v.startsWith(lang))
 

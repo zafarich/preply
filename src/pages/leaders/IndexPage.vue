@@ -90,17 +90,11 @@ import { useReferencesStore } from 'src/stores/references'
 import { onMounted, watch } from 'vue'
 import { useMainStore } from 'src/stores/main'
 import { LEADERS_FILTER_TIME } from 'src/utils/constants'
-import html2canvas from 'html2canvas'
-import { useQuasar } from 'quasar'
-import axios from 'axios'
-import { useI18n } from 'vue-i18n'
+import { useRoute, useRouter } from 'vue-router'
 
-const { t: $translate } = useI18n()
 const contentToCapture = ref(null)
-const $q = useQuasar()
 
 const region = ref('')
-const district = ref('')
 const science = ref('')
 const page = ref(1)
 const by_time = ref('all')
@@ -127,6 +121,8 @@ const DAILY_FILTERS = [
 const usersStore = useUserStore()
 const referenceStore = useReferencesStore()
 const mainStore = useMainStore()
+const router = useRouter()
+const route = useRoute()
 
 onMounted(async () => {
     mainStore.changeSiteLoader(true)
@@ -136,24 +132,58 @@ onMounted(async () => {
         fetchLeaders(),
     ])
 
+    const route = useRoute()
+
+    if (route.page) {
+        page.value = route.page
+    }
+
+    if (route.science) {
+        science.value = route.science
+    }
+
+    if (route.region) {
+        region.value = route.region
+    }
+
+    if (route.by_time) {
+        by_time.value = route.by_time
+    }
+
     mainStore.changeSiteLoader(false)
 })
 
 watch(
-    () => region.value + science.value + district.value,
+    () => region.value + science.value + by_time.value,
     async () => {
         page.value = 1
+
+        replaceQuery()
+
         await fetchLeaders()
     },
 )
 
+const replaceQuery = () => {
+    const queryFilters = {
+        page: page.value,
+        region: region.value,
+        science: science.value,
+        by_time: by_time.value,
+    }
+
+    router.replace({ query: { ...queryFilters } })
+}
+
 const fetchLeaders = async () => {
+    mainStore.changeSiteLoader(true)
     await usersStore.getLeaders({
         page: page.value,
         region: region.value,
-        district: district.value,
+        science: science.value,
         by_time: by_time.value,
     })
+    mainStore.changeSiteLoader(false)
 }
 
 const filterByTime = async (value) => {
@@ -161,47 +191,9 @@ const filterByTime = async (value) => {
     await fetchLeaders()
 }
 const sharePage = async () => {
-    try {
-        if (contentToCapture.value) {
-            const canvas = await html2canvas(contentToCapture.value)
-            const imageUrl = canvas.toDataURL('image/png')
-
-            // Convert the data URL to a Blob
-            const blob = await (await fetch(imageUrl)).blob()
-            const formData = new FormData()
-            formData.append('image', blob)
-
-            // Upload the image to Imgur
-            const response = await axios.post(
-                'https://api.imgur.com/3/image',
-                formData,
-                {
-                    headers: {
-                        Authorization: '003f7b9cc422411',
-                    },
-                },
-            )
-
-            if (response.data.success) {
-                const imgurUrl = response.data.data.link
-                const telegramUrl = `https://telegram.me/share/url?url=${encodeURIComponent(imgurUrl)}&text=${encodeURIComponent('Check out this screenshot!')}`
-
-                // Open the Telegram share URL in a new window/tab
-                window.open(telegramUrl, '_blank')
-            } else {
-                console.error('Failed to upload image to Imgur')
-            }
-        }
-    } catch (error) {
-        console.error('Error capturing screenshot or uploading image:', error)
-        $q.notify({
-            color: 'red-5',
-            textColor: 'white',
-            position: 'top',
-            icon: 'warning',
-            message: $translate('try_again_later'),
-        })
-    }
+    // t.me/exbmba_bot?start=getCommand-forward=?next=/leaders?region=1
+    const page = 'leaders'
+    const url = `https://t.me/exbmba?start=getCommand-forward=${page}&next`
 }
 </script>
 

@@ -18,7 +18,8 @@ export const useReferencesStore = defineStore('references', () => {
 
     async function getRegions() {
         const res = await api.loadRegions()
-        regions.value = res.results
+        console.log('res', res)
+        regions.value = res
     }
 
     async function getDistricts(id) {

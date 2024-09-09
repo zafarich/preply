@@ -3,7 +3,7 @@ import axios from 'axios'
 import { getServerError } from 'src/utils/helpers'
 import { useUserStore } from 'src/stores/user'
 import { Notify } from 'quasar'
-import { getAccessToken } from 'src/utils/auth'
+import { getAccessToken, getLocale } from 'src/utils/auth'
 
 const api = axios.create({ baseURL: process.env.BASE_URL })
 
@@ -15,7 +15,7 @@ export default boot(({ app, route, router, store }) => {
 
             if (token) config.headers.Authorization = 'Bearer ' + token
 
-            let lang = localStorage.getItem('locale')
+            let lang = getLocale()
 
             if (lang?.startsWith('uz')) lang = 'uz'
             if (lang == 'qr') lang = 'kr'
