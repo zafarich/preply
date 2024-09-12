@@ -192,8 +192,29 @@ const filterByTime = async (value) => {
 }
 const sharePage = async () => {
     // t.me/exbmba_bot?start=getCommand-forward=?next=/leaders?region=1
-    const page = 'leaders'
-    const url = `https://t.me/exbmba?start=getCommand-forward=${page}&next`
+    //  const page = 'leaders'
+    //const url = `https://t.me/exbmba?start=getCommand-forward=${page}&next=leaders`
+    const url =
+        'https://t.me/exbmba?start=getCommand-forward=&next-page=leaders&page-number=page&by-time=time&science=science&region=region'
+    const title = 'Check this out!'
+    const text = 'Here is a link I wanted to share with you.'
+
+    if (navigator.share) {
+        navigator
+            .share({
+                title: title,
+                text: text,
+                url: url,
+            })
+            .then(() => {
+                console.log('Successfully shared')
+            })
+            .catch((error) => {
+                console.error('Error sharing:', error)
+            })
+    } else {
+        console.error('Sharing not supported on this browser')
+    }
 }
 </script>
 

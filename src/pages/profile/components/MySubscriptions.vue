@@ -4,7 +4,6 @@
             <div class="font-semibold text-base items-center">
                 {{ $t('my_subscriptions') }}
             </div>
-            <!-- <div class="font-semibold text-base money-text">20 000 so'm</div> -->
             <q-btn
                 v-if="userStore.userVerifyCards.length > 0"
                 no-caps
@@ -13,6 +12,19 @@
             >
                 {{ $t('purchase') }}</q-btn
             >
+        </div>
+
+        <div
+            v-if="userStore.userVerifyCards.length == 0"
+            class="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3 mb-3"
+            role="alert"
+        >
+            <span class="font-semibold text-base text-gray-400">
+                {{ $t('you_have_not_card_add_first') }}
+            </span>
+            <q-btn no-caps color="primary" @click="goToCardsTab" class="mt-10">
+                {{ $t('go_to_add_card') }}
+            </q-btn>
         </div>
 
         <div

@@ -28,7 +28,7 @@ const { siteLoader } = storeToRefs(useMainStore())
 
 <style scoped>
 .spinner {
-    animation: spin 0.8s linear infinite;
+    animation: spin 850ms linear infinite;
     width: 50px; /* Adjust size */
     height: 50px;
 }
