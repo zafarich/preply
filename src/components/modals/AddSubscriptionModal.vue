@@ -77,11 +77,20 @@
                     {{ tariff.description }}
                 </div>
 
-                <div class="font-bold text-lg mt-6 mb-4">
-                    {{ $t('select_card') }}:
+                <div
+                    class="font-bold text-lg mt-6 mb-4 flex justify-between items-center"
+                >
+                    <div>{{ $t('select_card') }}:</div>
+
+                    <q-btn
+                        no-caps
+                        color="primary"
+                        @click="() => (paymentModal = true)"
+                    >
+                        +
+                    </q-btn>
                 </div>
 
-                <!-- class="mb-4 !w-auto border-2 !rounded-lg cursor-pointer relative !py-2 px-3 font-bold" -->
                 <label
                     class="selectable-item"
                     v-for="(card, index) in userStore.userVerifyCards"
@@ -117,7 +126,7 @@
                     :disabled="!tariff || !seletedCard"
                     class="px-5 w-full h-10 text-base text-white rounded-xl bg-primary"
                 >
-                    {{ $t('add') }}
+                    {{ $t('purchase') }}
                 </q-btn>
             </div>
         </div>
@@ -141,7 +150,7 @@ import { useRouter } from 'vue-router'
 
 const modalStore = useModalStore()
 const router = useRouter()
-const { subscriptionModal } = storeToRefs(modalStore)
+const { subscriptionModal, paymentModal } = storeToRefs(modalStore)
 
 const billingStore = useBillingStore()
 const userStore = useUserStore()

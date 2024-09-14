@@ -196,24 +196,12 @@ const sharePage = async () => {
     //const url = `https://t.me/exbmba?start=getCommand-forward=${page}&next=leaders`
     const url =
         'https://t.me/exbmba?start=getCommand-forward=&next-page=leaders&page-number=page&by-time=time&science=science&region=region'
-    const title = 'Check this out!'
-    const text = 'Here is a link I wanted to share with you.'
-
-    if (navigator.share) {
-        navigator
-            .share({
-                title: title,
-                text: text,
-                url: url,
-            })
-            .then(() => {
-                console.log('Successfully shared')
-            })
-            .catch((error) => {
-                console.error('Error sharing:', error)
-            })
+    if (window.Telegram && window.Telegram.WebApp) {
+        // Inside Telegram Mini App: Use Telegram WebApp API
+        window.Telegram.WebApp.openLink(botUrl)
     } else {
-        console.error('Sharing not supported on this browser')
+        // Outside Telegram (Web): Use regular URL redirect
+        window.location.href = botUrl
     }
 }
 </script>

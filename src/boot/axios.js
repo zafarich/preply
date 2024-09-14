@@ -40,34 +40,25 @@ export default boot(({ app, route, router, store }) => {
         async (error) => {
             let message = getServerError(error, 'errorMessage')
             const originalRequest = error.config
-
             const status = error?.response?.status
+
             if ('pass' in error?.config) {
                 return Promise.reject(error)
             }
 
             if (status === 401 && !originalRequest._retry) {
+                originalRequest._retry = true
                 try {
-                    originalRequest._retry = true
-
                     // const refreshToken = useUserStore().refreshToken
                     await useUserStore().handleRefreshAccessToken()
 
                     originalRequest.headers.Authorization = `Bearer ${useUserStore().accessToken}`
                     return api(originalRequest)
                 } catch (refreshError) {
-                    if (
-                        refreshError.response &&
-                        refreshError.response.status === 401
-                    ) {
-                        useUserStore().logoutProfile()
-                    }
+                    useUserStore().logoutProfile()
+                    router.push({ name: 'login' })
                     return Promise.reject(refreshError)
                 }
-
-                // userStore.logoutProfile()
-                // router.push({ name: 'login' })
-                // return { data: { result: null, error: true } }
             } else if (status?.toString()?.slice(0, 1) === 5) {
                 message = 'Internal Server Error'
             } else if (status === 405) {

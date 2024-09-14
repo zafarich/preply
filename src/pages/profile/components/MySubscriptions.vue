@@ -15,19 +15,6 @@
         </div>
 
         <div
-            v-if="userStore.userVerifyCards.length == 0"
-            class="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3 mb-3"
-            role="alert"
-        >
-            <span class="font-semibold text-base text-gray-400">
-                {{ $t('you_have_not_card_add_first') }}
-            </span>
-            <q-btn no-caps color="primary" @click="goToCardsTab" class="mt-10">
-                {{ $t('go_to_add_card') }}
-            </q-btn>
-        </div>
-
-        <div
             v-if="billingStore.subscriptions.length > 0"
             class="grid 768:grid-cols-3 640:grid-cols-2 gap-4"
         >

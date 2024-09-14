@@ -88,7 +88,7 @@ const getPrimeTests = computed(() => {
 
 async function fetchData() {
     mainStore.changeSiteLoader(true)
-    billingStore.getTariffTypes()
+    await billingStore.getTariffTypes()
 
     const testTypesPromise = referencesStore.getTestTypes()
     const subjectsPromise = referencesStore.getSubjects({

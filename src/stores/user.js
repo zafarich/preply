@@ -28,6 +28,27 @@ export const useUserStore = defineStore(
 
         const page_size = 10
 
+        function isTokenValid() {
+            const token = accessToken.value
+
+            if (!token) {
+                return false
+            }
+
+            try {
+                const { exp } = jwtDecode(token)
+
+                if (Date.now() >= exp * 1000) {
+                    return false
+                }
+
+                return true
+            } catch (error) {
+                console.error('Error decoding token:', error)
+                return false
+            }
+        }
+
         const getAccessTokenData = computed(() => {
             return jwtDecode(accessToken.value)
         })
@@ -96,15 +117,24 @@ export const useUserStore = defineStore(
         }
 
         async function handleRefreshAccessToken() {
-            const res = await api.refreshAccessToken(refreshToken.value)
-            if (res && res.access) {
-                setAccessToken(res.access)
-                setRefreshToken(res.refresh)
-                accessToken.value = res.access
-                refreshToken.value = res.refresh
-            }
+            try {
+                const res = await api.refreshAccessToken(refreshToken.value)
 
-            return res
+                if (res && res.access && res.refresh) {
+                    // Set the new tokens
+                    setAccessToken(res.access)
+                    setRefreshToken(res.refresh)
+                    accessToken.value = res.access
+                    refreshToken.value = res.refresh
+                    return res
+                } else {
+                    throw new Error('Invalid refresh response')
+                }
+            } catch (error) {
+                console.error('Failed to refresh access token:', error)
+                // Handle failure (you can log out user, redirect, or notify)
+                return null
+            }
         }
 
         async function register(payload) {
@@ -162,6 +192,7 @@ export const useUserStore = defineStore(
 
             login,
             getLeaders,
+            isTokenValid,
             updateUser,
             setUserData,
             updateUserData,
