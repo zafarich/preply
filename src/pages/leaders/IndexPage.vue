@@ -137,15 +137,12 @@ onMounted(async () => {
     if (route.page) {
         page.value = route.page
     }
-
     if (route.science) {
         science.value = route.science
     }
-
     if (route.region) {
         region.value = route.region
     }
-
     if (route.by_time) {
         by_time.value = route.by_time
     }
@@ -198,10 +195,10 @@ const sharePage = async () => {
         'https://t.me/exbmba?start=getCommand-forward=&next-page=leaders&page-number=page&by-time=time&science=science&region=region'
     if (window.Telegram && window.Telegram.WebApp) {
         // Inside Telegram Mini App: Use Telegram WebApp API
-        window.Telegram.WebApp.openLink(botUrl)
+        window.Telegram.WebApp.openLink(url)
     } else {
         // Outside Telegram (Web): Use regular URL redirect
-        window.location.href = botUrl
+        window.location.href = url
     }
 }
 </script>
