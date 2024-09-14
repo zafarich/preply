@@ -192,7 +192,7 @@ const sharePage = async () => {
     //  const page = 'leaders'
     //const url = `https://t.me/exbmba?start=getCommand-forward=${page}&next=leaders`
     const url =
-        'https://t.me/exbmba?start=getCommand-forward=&next-page=leaders&page-number=page&by-time=time&science=science&region=region'
+        'https://t.me/exbmba_bot?start=getCommand-forward=&next-page=leaders&page-number=page&by-time=time&science=science&region=region'
     if (window.Telegram && window.Telegram.WebApp) {
         // Inside Telegram Mini App: Use Telegram WebApp API
         window.Telegram.WebApp.openLink(url)
