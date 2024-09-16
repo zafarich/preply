@@ -6,6 +6,7 @@ export const TEST_TYPES = {
     VARIANT: 'variant',
     BY_SUBJECTS: 'by_subjects',
     BY_SELECTIONS: 'by_selections',
+    BY_YHQ: 'yhq_tests',
 }
 
 export const LEADERS_FILTER_TIME = {
@@ -44,6 +45,10 @@ export const TEST_TYPE_LIST = [
         key: 'by_selections',
         text: 'Mavzulashtirilgan Test',
     },
+    {
+        text: 'YHQ testlari',
+        key: 'yhq_tests',
+    },
 ]
 
 export const ALL_TEST_TYPES = [
@@ -66,6 +71,10 @@ export const ALL_TEST_TYPES = [
     {
         key: 'by_selections',
         text: 'Mavzulashtirilgan Test',
+    },
+    {
+        text: 'YHQ testlari',
+        key: 'yhq_tests',
     },
 ]
 

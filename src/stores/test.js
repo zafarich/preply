@@ -77,7 +77,14 @@ export const useTestStore = defineStore(
         }
 
         async function FETCH_TEST_RESULT(id = tests.value.id) {
-            const res = await api.getTestResultDetail(id)
+            let res
+
+            if (test_type.value == TEST_TYPES.BY_YHQ) {
+                res = await api.getYHQResultDetail(id)
+            } else {
+                res = await api.getTestResultDetail(id)
+            }
+
             test_results.value = res
 
             return res
@@ -99,6 +106,8 @@ export const useTestStore = defineStore(
                     res = await api.startBySelectionTest(payload)
                 } else if (type === TEST_TYPES.CERTIFICATE) {
                     res = await api.startNationalCertificateTest(payload)
+                } else if (type === TEST_TYPES.BY_YHQ) {
+                    res = await api.startYHQTest(payload)
                 }
 
                 if (!res.error) {
@@ -158,6 +167,8 @@ export const useTestStore = defineStore(
                 res = await api.endBySelectionTest(data)
             } else if (test_type.value === TEST_TYPES.CERTIFICATE) {
                 res = await api.endNationalCertificateTest(data)
+            } else if (test_type.value === TEST_TYPES.BY_YHQ) {
+                res = await api.endYHQTest(data)
             }
 
             await useUserStore().getMe()

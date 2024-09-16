@@ -4,24 +4,35 @@
             <TopBanner :banners="topBanners" />
         </div>
         <div class="mb-12" v-if="testTypes">
-            <TestTypes
-                :test-types="getPremiumTests"
+            <TitleTestType
                 :label="$t('premium_tests')"
                 :test-type="TARIFFS.PREMIUM.code"
             />
+            <TestTypes :test-types="getPremiumTests" />
         </div>
         <div class="mb-8" v-if="middleBanners">
             <MiddleBanner :banners="middleBanners" />
         </div>
         <div class="mb-4" v-if="testTypes">
-            <TestTypes
-                :test-types="getPrimeTests"
+            <TitleTestType
                 :label="$t('prime_tests')"
-                :test-type="TARIFFS.PREMIUM.code"
+                :test-type="TARIFFS.PRIME.code"
             />
         </div>
-        <div class="mb-8" v-if="subjects">
+        <div class="mb-10" v-if="subjects">
             <PopularScience :subjects="subjects" />
+        </div>
+
+        <!-- TODO: YPX tests -->
+        <div
+            class="mb-8 flex justify-between items-center border border-[#e9eaec] p-6 rounded-2xl cursor-pointer"
+            v-if="getYHQTests && getYHQTests.id"
+            @click="openModal"
+        >
+            <div class="font-medium text-lg">{{ getYHQTests.title }}</div>
+            <div>
+                <img :src="getYHQTests.image" class="h-8 w-8" />
+            </div>
         </div>
 
         <div class="mb-8" v-if="languageSelections">
@@ -38,9 +49,11 @@
             <TestsList :subjects="olympicTest" />
         </div>
     </div>
+    <StartYpxTestModal @startTest="startYHQTest" />
 </template>
 <script setup>
 import { onMounted, ref, computed } from 'vue'
+import StartYpxTestModal from './components/StartYpxTestModal.vue'
 import { useI18n } from 'vue-i18n'
 import TopBanner from './sections/TopBanner.vue'
 import MiddleBanner from './sections/MiddleBanner.vue'
@@ -54,12 +67,21 @@ import { useReferencesStore } from 'src/stores/references'
 import { useQuasar } from 'quasar'
 import { TARIFFS } from 'src/utils/constants'
 import { useBillingStore } from 'src/stores/billing'
+import TitleTestType from './components/TitleTestType.vue'
+import { TEST_TYPES } from 'src/utils/constants'
+import { storeToRefs } from 'pinia'
+import { useModalStore } from 'src/stores/modal'
+import { useTestStore } from 'src/stores/test'
+import { useRouter } from 'vue-router'
 
 const { t } = useI18n()
 const userStore = useUserStore()
 const referencesStore = useReferencesStore()
 const mainStore = useMainStore()
 const billingStore = useBillingStore()
+const modalStore = useModalStore()
+const testStore = useTestStore()
+const router = useRouter()
 
 const testTypes = ref([])
 const subjects = ref([])
@@ -67,6 +89,8 @@ const topBanners = ref([])
 const middleBanners = ref([])
 const languageSelections = ref([])
 const olympicTest = ref([])
+
+const { yhqTestStartModal } = storeToRefs(modalStore)
 
 const $q = useQuasar()
 
@@ -80,11 +104,34 @@ const getPremiumTests = computed(() => {
     )
 })
 
+const getYHQTests = computed(() => {
+    return testTypes.value.find((item) => item.unique_name === 'yhq_tests')
+})
+
 const getPrimeTests = computed(() => {
     return testTypes.value.filter(
         (item) => item.tariff_unique_name == TARIFFS.PRIME.code,
     )
 })
+
+const openModal = () => {
+    yhqTestStartModal.value = true
+}
+
+const startYHQTest = async () => {
+    mainStore.changeSiteLoader(true)
+
+    const response = await testStore.START_TEST(TEST_TYPES.BY_YHQ)
+
+    if (response && !response.error) {
+        router.push({
+            name: 'test-solve',
+        })
+    }
+
+    yhqTestStartModal.value = false
+    mainStore.changeSiteLoader(false)
+}
 
 async function fetchData() {
     mainStore.changeSiteLoader(true)

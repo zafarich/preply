@@ -165,4 +165,6 @@ export default {
     main_subjects: 'Asosiy fanlar',
     send_to_tg: "Telegramga jo'natish",
     file_sended_to_tg: 'Fayl telegram orqali yuborildi',
+    // NEW
+    traffic_rules_tests: 'YHQ testlari',
 }

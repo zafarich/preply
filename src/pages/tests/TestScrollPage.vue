@@ -239,6 +239,7 @@ const getTestTypeTitle = computed(() => {
     } else if (testStore.GET_TEST_TYPE === TEST_TYPES.CERTIFICATE) {
         return 'national_certificate_tests'
     }
+    return 'traffic_rules_tests'
 })
 
 let timer

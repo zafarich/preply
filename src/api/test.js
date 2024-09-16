@@ -12,6 +12,11 @@ export async function getTestResultDetail(id) {
     return data
 }
 
+export async function getYHQResultDetail(id) {
+    const { data } = await api.get(url + `results-yhq/${id}/`)
+    return data
+}
+
 export async function startVariantTest(payload) {
     const { data } = await api.post(
         url + 'test-solving/start_variant_test/',
@@ -100,4 +105,17 @@ export async function getMyResults(params) {
 export async function updateTestResult({ id, data }) {
     const res = await api(url + `results/${id}/`, { data })
     return res
+}
+
+export async function startYHQTest(payload) {
+    const { data } = await api.post(
+        url + 'test-solving/start_yhq_test/',
+        payload,
+    )
+    return data
+}
+
+export async function endYHQTest(payload) {
+    const { data } = await api.post(url + 'test-solving/end_yhq_test/', payload)
+    return data
 }

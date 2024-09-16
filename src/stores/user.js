@@ -11,6 +11,7 @@ import {
     setRefreshToken,
     removeRefreshToken,
     getTelegramUserId,
+    removeTelegramUserId,
 } from 'src/utils/auth'
 
 export const useUserStore = defineStore(
@@ -162,6 +163,7 @@ export const useUserStore = defineStore(
             refreshToken.value = ''
             removeAccessToken()
             removeRefreshToken()
+            removeTelegramUserId()
             userCards.value = []
             leaders.value = {
                 results: [],

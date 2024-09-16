@@ -161,4 +161,6 @@ export default {
     main_subjects: 'Tiykarǵı pánler',
     send_to_tg: ' Telegramga jıberiw',
     File_sended_to_tg: 'Fayl telegram arqalı jiberildi',
+    // NEW
+    traffic_rules_tests: 'Тесты по правилам дорожного движения',
 }
