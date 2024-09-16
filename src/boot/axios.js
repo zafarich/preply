@@ -13,7 +13,7 @@ export default boot(({ app, route, router, store }) => {
         (config) => {
             const token = getAccessToken()
 
-            if (token) config.headers.Authorization = 'Bearer s' + token
+            if (token) config.headers.Authorization = 'Bearer ' + token
 
             let lang = getLocale()
 
