@@ -117,23 +117,17 @@ export const useUserStore = defineStore(
         }
 
         async function handleRefreshAccessToken() {
-            try {
-                const res = await api.refreshAccessToken(refreshToken.value)
+            const res = await api.refreshAccessToken(refreshToken.value)
 
-                if (res && res.access && res.refresh) {
-                    // Set the new tokens
-                    setAccessToken(res.access)
-                    setRefreshToken(res.refresh)
-                    accessToken.value = res.access
-                    refreshToken.value = res.refresh
-                    return res
-                } else {
-                    throw new Error('Invalid refresh response')
-                }
-            } catch (error) {
-                console.error('Failed to refresh access token:', error)
-                // Handle failure (you can log out user, redirect, or notify)
-                return null
+            if (res && res.access && res.refresh) {
+                // Set the new tokens
+                setAccessToken(res.access)
+                setRefreshToken(res.refresh)
+                accessToken.value = res.access
+                refreshToken.value = res.refresh
+                return res
+            } else {
+                throw new Error('Invalid refresh response')
             }
         }
 

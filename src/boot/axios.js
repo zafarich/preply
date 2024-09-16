@@ -13,7 +13,7 @@ export default boot(({ app, route, router, store }) => {
         (config) => {
             const token = getAccessToken()
 
-            if (token) config.headers.Authorization = 'Bearer ' + token
+            if (token) config.headers.Authorization = 'Bearer s' + token
 
             let lang = getLocale()
 
@@ -47,6 +47,9 @@ export default boot(({ app, route, router, store }) => {
             }
 
             if (status === 401 && !originalRequest._retry) {
+                console.log('status', status)
+                console.log('hi')
+
                 originalRequest._retry = true
                 try {
                     // const refreshToken = useUserStore().refreshToken
@@ -55,6 +58,8 @@ export default boot(({ app, route, router, store }) => {
                     originalRequest.headers.Authorization = `Bearer ${useUserStore().accessToken}`
                     return api(originalRequest)
                 } catch (refreshError) {
+                    console.log('refreshError', refreshError)
+
                     useUserStore().logoutProfile()
                     router.push({ name: 'login' })
                     return Promise.reject(refreshError)
