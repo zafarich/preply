@@ -163,7 +163,7 @@ export const useUserStore = defineStore(
             refreshToken.value = ''
             removeAccessToken()
             removeRefreshToken()
-            removeTelegramUserId()
+            // removeTelegramUserId()
             userCards.value = []
             leaders.value = {
                 results: [],
