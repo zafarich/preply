@@ -184,10 +184,14 @@ export const useTestStore = defineStore(
         }
 
         async function UPDATE_TEST_RESULT() {
-            const res = await api.updateTestResult({
-                id: tests.value.id,
-                data: { cancel: true },
-            })
+            let res
+
+            if (test_type.value == TEST_TYPES.BY_YHQ) {
+                res = await api.getYHQResultDetail(tests.value.id)
+            } else {
+                res = await api.updateTestResult(tests.value.id)
+            }
+
             return res
         }
 

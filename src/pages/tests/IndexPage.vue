@@ -28,6 +28,7 @@
                 v-else-if="GET_TEST_TYPE === TEST_TYPES.BY_SELECTIONS"
                 :subjects="referencesStore.main_subjects"
             />
+            <TestYHQStart v-else-if="GET_TEST_TYPE === TEST_TYPES.BY_YHQ" />
             <!-- <VariantTestStart
                 v-else-if="GET_TEST_TYPE === TEST_TYPES.VARIANT"
                 :subjects="referencesStore.subjects"
@@ -61,14 +62,13 @@ const testTypesList = ref([
         name: 'by_block',
         key: TEST_TYPES.BLOCK,
     },
-    // {
-    //     name: 'by_variant',
-    //     key: TEST_TYPES.VARIANT,
-    // },
-
     {
-        name: 'Milliy sertifikat testlari',
+        name: 'national_certificate_tests',
         key: TEST_TYPES.CERTIFICATE,
+    },
+    {
+        name: 'traffic_rules_tests',
+        key: TEST_TYPES.BY_YHQ,
     },
 ])
 
@@ -76,6 +76,7 @@ import { useReferencesStore } from 'src/stores/references'
 import { useTestStore } from 'src/stores/test'
 import { storeToRefs } from 'pinia'
 import { useMainStore } from 'src/stores/main'
+import TestYHQStart from './components/TestYHQStart.vue'
 
 const referencesStore = useReferencesStore()
 const testStore = useTestStore()

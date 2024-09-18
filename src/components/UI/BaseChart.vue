@@ -1,41 +1,41 @@
 <template>
-  <div :id="chartName" width="100%" style="min-height: 150px" />
+    <div :id="chartName" width="100%" style="min-height: 150px" />
 </template>
 
 <script setup>
-import { onMounted, onBeforeUnmount } from "vue-demi";
-import ApexCharts from "apexcharts";
+import { onMounted, onBeforeUnmount } from 'vue-demi'
+import ApexCharts from 'apexcharts'
 
 const props = defineProps({
-  chartName: {
-    type: String,
-    default: "canvas",
-  },
-  options: {
-    type: Object,
-    default: () => ({}),
-  },
-});
-let chart = null;
+    chartName: {
+        type: String,
+        default: 'canvas',
+    },
+    options: {
+        type: Object,
+        default: () => ({}),
+    },
+})
+let chart = null
 function render() {
-  const ctx = document.getElementById(props.chartName);
+    const ctx = document.getElementById(props.chartName)
 
-  chart = new ApexCharts(ctx, props.options);
+    chart = new ApexCharts(ctx, props.options)
 
-  chart.render();
+    chart.render()
 }
 function refresh() {
-  chart.destroy();
-  render();
+    chart.destroy()
+    render()
 }
-onMounted(() => {});
+onMounted(() => {})
 
-onBeforeUnmount(() => chart.destroy());
+onBeforeUnmount(() => chart.destroy())
 
 defineExpose({
-  render,
-  refresh,
-});
+    render,
+    refresh,
+})
 </script>
 
 <style scoped></style>

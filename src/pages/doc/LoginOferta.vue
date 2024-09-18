@@ -1,5 +1,5 @@
 <template>
-  <div>Client oferta</div>
+    <div>Client oferta</div>
 </template>
 
 <script setup></script>

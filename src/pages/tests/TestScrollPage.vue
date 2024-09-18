@@ -221,6 +221,10 @@ const { notifyTestModal, endTestModal } = storeToRefs(modalStore)
 
 async function confirmBack() {
     mainStore.changeSiteLoader(true)
+    if (testStore.GET_TEST_TYPE === TEST_TYPES.BY_YHQ) {
+        await testStore.GET
+    }
+
     await testStore.UPDATE_TEST_RESULT()
     router.replace({ name: 'home' })
     testStore.RESET_TEST_STORE()
@@ -384,8 +388,6 @@ const formatTime = (seconds) => {
 }
 
 function selectAnswer(index, question_index) {
-    console.log('index', index)
-    console.log('question_index', question_index)
     testStore.SELECT_ANSWER(index, question_index)
 }
 

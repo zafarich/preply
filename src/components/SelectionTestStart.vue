@@ -39,13 +39,14 @@
 
         <q-btn
             @click="openModal"
-            color="primary"
+            color="warning"
             class="full-width"
             no-caps
             :loading="loading"
             :disable="selectedSubject && subjectSelection"
-            >{{ $t('start') }}</q-btn
         >
+            {{ $t('start') }}
+        </q-btn>
 
         <StartTestModal @startTest="startTest" />
     </div>

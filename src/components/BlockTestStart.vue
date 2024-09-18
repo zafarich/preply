@@ -54,7 +54,7 @@
 
         <q-btn
             @click="openModal"
-            color="primary"
+            color="warning"
             class="full-width"
             no-caps
             :loading="loading"
