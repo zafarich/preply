@@ -1,7 +1,9 @@
 <template>
-    <q-btn @click="openModal" class="full-width" no-caps color="warning">{{
-        $t('start')
-    }}</q-btn>
+    <q-btn @click="openModal" class="full-width" no-caps color="warning">
+        <img src="/icons/play.png" class="h-5 w-5 mr-1" />{{
+            $t('start')
+        }}</q-btn
+    >
 
     <StartTestModal @startTest="startTest" />
 </template>

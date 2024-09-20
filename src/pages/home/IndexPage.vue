@@ -24,15 +24,15 @@
         </div>
 
         <!-- TODO: YPX tests -->
+        <div class="text-md font-semibold mb-6">
+            {{ $t('traffic_rules_tests') }}
+        </div>
         <div
-            class="mb-8 flex justify-between items-center border border-[#e9eaec] p-6 rounded-2xl cursor-pointer"
+            class="mb-8 flex justify-center items-center border border-[#e9eaec] p-6 rounded-2xl cursor-pointer"
             v-if="getYHQTests && getYHQTests.id"
             @click="openModal"
         >
-            <div class="font-medium text-lg">{{ getYHQTests.title }}</div>
-            <div>
-                <img :src="getYHQTests.image" class="h-8 w-8" />
-            </div>
+            <img :src="getYHQTests.image" class="h-20 w-20" />
         </div>
 
         <div class="mb-8" v-if="languageSelections">

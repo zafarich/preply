@@ -45,6 +45,7 @@
             :loading="loading"
             :disable="selectedSubject && subjectSelection"
         >
+            <img src="/icons/play.png" class="h-5 w-5 mr-1" />
             {{ $t('start') }}
         </q-btn>
 

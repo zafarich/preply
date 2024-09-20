@@ -26,19 +26,10 @@
                     </div>
                 </div>
 
-                <!-- <q-toggle
-                    v-model="is_agree"
-                    label="Offerta shartlarini qabul qilaman"
-                    class="mb-2"
-                /> -->
-
-                <!-- :disabled="!is_agree" -->
-                <button
-                    @click="startTest"
-                    class="px-5 w-full h-10 text-base text-white rounded-xl bg-primary"
-                >
+                <q-btn @click="startTest" class="w-full" color="primary">
+                    <img src="/icons/play.png" class="h-5 w-5 mr-1" />
                     {{ $t('start') }}
-                </button>
+                </q-btn>
             </div>
         </div>
     </BaseModal>

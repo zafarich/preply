@@ -59,7 +59,9 @@
             no-caps
             :loading="loading"
             :disable="data.s1 && data.s2"
-            >{{ $t('start') }}</q-btn
+        >
+            <img src="/icons/play.png" class="h-5 w-5 mr-1" />
+            {{ $t('start') }}</q-btn
         >
 
         <StartTestModal @startTest="startTest" />
