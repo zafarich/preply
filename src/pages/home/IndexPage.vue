@@ -39,14 +39,14 @@
             <div class="text-md font-semibold mb-6">
                 {{ $t('international_certificates') }}
             </div>
-            <TestsList :subjects="languageSelections" />
+            <TestsList :subjects="languageSelections" id="2" />
         </div>
 
         <div class="mb-8" v-if="languageSelections">
             <div class="text-md font-semibold mb-6">
                 {{ $t('world_olympic_tests') }}
             </div>
-            <TestsList :subjects="olympicTest" />
+            <OlympicTestList :subjects="olympicTest" id="5" />
         </div>
     </div>
     <StartYpxTestModal @startTest="startYHQTest" />
@@ -73,6 +73,7 @@ import { storeToRefs } from 'pinia'
 import { useModalStore } from 'src/stores/modal'
 import { useTestStore } from 'src/stores/test'
 import { useRouter } from 'vue-router'
+import OlympicTestList from 'src/components/OlympicTestList.vue'
 
 const { t } = useI18n()
 const userStore = useUserStore()

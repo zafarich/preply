@@ -20,6 +20,7 @@ export const useModalStore = defineStore('modal', () => {
     const privacyModal = ref(false)
     const soonDaysModal = ref(false)
     const yhqTestStartModal = ref(false)
+    const startByOlympicModal = ref(false)
 
     function changeYHQModal(value) {
         yhqTestStartModal.value = value
@@ -61,6 +62,7 @@ export const useModalStore = defineStore('modal', () => {
         userEditModal,
         startModal,
         backToModal,
+        startByOlympicModal,
         notifyTestModal,
         paymentModal,
         subscriptionModal,

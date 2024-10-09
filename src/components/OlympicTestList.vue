@@ -4,19 +4,18 @@
             v-for="subject in subjects"
             :key="subject.title"
             class="tests-item"
-            @click="openModal(subject.unique_name, subject.id)"
+            @click="openModal(subject.unique_name)"
         >
             <div>
                 <BaseImg width="70px" height="70px" :src="subject.image" />
             </div>
         </div>
     </div>
-    <StartBySelectionsModal @start-test="startTest" />
+    <StartBySelectionOlympicModal @start-test="startTest" />
 </template>
 
 <script setup>
 import { TEST_TYPES } from 'src/utils/constants'
-import StartBySelectionsModal from 'src/components/modals/StartBySelectionsModal.vue'
 import BaseImg from 'src/components/UI/BaseImg.vue'
 import { useModalStore } from 'src/stores/modal'
 import { storeToRefs } from 'pinia'
@@ -25,6 +24,7 @@ import { useTestStore } from 'src/stores/test'
 import { useRouter } from 'vue-router'
 import { ref } from 'vue'
 import { useUserStore } from 'src/stores/user'
+import StartBySelectionOlympicModal from './modals/StartBySelectionOlympicModal.vue'
 
 const router = useRouter()
 
@@ -33,7 +33,7 @@ const mainStore = useMainStore()
 const testStore = useTestStore()
 const userStore = useUserStore()
 
-const { startBySelectionModal, soonDaysModal } = storeToRefs(modalStore)
+const { startByOlympicModal, soonDaysModal } = storeToRefs(modalStore)
 
 const props = defineProps({
     subjects: {
@@ -44,10 +44,10 @@ const props = defineProps({
 
 const selectedTest = ref(null)
 
-const openModal = (unique_name, id) => {
+const openModal = (unique_name) => {
     if (unique_name == 'ielts') {
-        selectedTest.value = id
-        startBySelectionModal.value = true
+        selectedTest.value = unique_name
+        startByOlympicModal.value = true
     } else {
         soonDaysModal.value = true
     }
@@ -65,7 +65,7 @@ const startTest = async () => {
             name: 'test-solve',
         })
     }
-    startBySelectionModal.value = false
+    startByOlympicModal.value = false
 
     mainStore.changeSiteLoader(false)
 }

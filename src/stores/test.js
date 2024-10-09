@@ -93,6 +93,8 @@ export const useTestStore = defineStore(
         async function START_TEST(type, payload) {
             let res
 
+            console.log('type', type)
+            console.log('payload', payload)
             test_type.value = type
 
             try {
