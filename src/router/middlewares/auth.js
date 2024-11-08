@@ -6,6 +6,7 @@ import { useRoute, useRouter } from 'vue-router'
 export default async function auth({ to, from, next }) {
     const tgUserId = to.query.telegram_user_id
     const userStore = useUserStore()
+    console.log('auth middleware work')
 
     if (tgUserId) setTelegramUserId(tgUserId)
 
